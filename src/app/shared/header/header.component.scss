@@ -1,0 +1,37 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 120px;
+    padding-right: 120px;
+}
+
+.socialLinks {
+    display: flex;
+    gap: 10px;
+}
+
+.logoHeader {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 80px;
+                transform: rotate(-20deg); 
+
+    }
+}
+
+.settings {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .settingsIcon {
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+    }
+}
