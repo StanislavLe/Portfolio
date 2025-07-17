@@ -1,15 +1,37 @@
-<div class="header">
-    <div class="socialLinks">
-        <img style="color: black;" src="assets/icons/githubIcon.png">
-        <img style="color: black;" src="assets/icons/linkedInIcon.png">
-        <img style="color: black;" src="assets/icons/emailIcon.png">
+<mat-toolbar color="primary" class="main-toolbar">
+  <div class="socialLinks">
+    <img src="assets/icons/githubIcon.png" alt="GitHub" />
+    <img src="assets/icons/linkedInIcon.png" alt="LinkedIn" />
+    <img src="assets/icons/emailIcon.png" alt="E-Mail" />
+  </div>
+  <div class="logoHeader">
+    <img src="assets/img/logo.png" alt="Logo" />
+    <span>Stanislav Levin</span>
+  </div>
+  <div class="settings">
+    <button mat-button>EN</button>
+    <!-- Burger-Button -->
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenavContainer">
+  <mat-sidenav #sidenav class="sidenav" mode="over" position="end">
+    <div class="sidenav-header">
+      <button mat-icon-button class="close-btn" (click)="sidenav.close()">
+        <mat-icon>close</mat-icon>
+      </button>
     </div>
-    <div class="logoHeader">
-        <img class src="assets/img/logo.png">
-        <p>Stanislav Levin</p>
-    </div>
-    <div class="settings">
-        <button>EN</button>
-        <div class="burgerMenu">|||</div>
-    </div>
-</div>
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list class="navList">
+      <a mat-list-item href="#">About Me</a>
+      <a mat-list-item href="#">Skillset</a>
+      <a mat-list-item href="#">Portfolio</a>
+      <a mat-list-item href="#">References</a>
+      <a mat-list-item href="#">Contact me</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <div class="main-content"></div>
+</mat-sidenav-container>

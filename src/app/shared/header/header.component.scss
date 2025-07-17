@@ -1,37 +1,77 @@
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 120px;
-    padding-right: 120px;
+:host {
+  display: block;
+  width: 100vw;
+}
+
+.main-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 1001;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  height: 64px;
 }
 
 .socialLinks {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .logoHeader {
-    width: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    img {
-        width: 80px;
-                transform: rotate(-20deg); 
-
-    }
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  img {
+    width: 50px;
+    transform: rotate(-20deg);
+  }
 }
 
 .settings {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 
-    .settingsIcon {
-        cursor: pointer;
-        width: 24px;
-        height: 24px;
-    }
+.sidenavContainer {
+  position: fixed;
+  top: 64px; // Höhe der Toolbar
+  right: 0;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 64px);
+  z-index: 1000;
+  background: transparent;
+}
+
+.sidenav {
+  width: 320px !important;
+  max-width: 90vw;
+  background: #679AAC !important;
+  color: black !important;
+}
+
+.navList {
+  background: #679AAC;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  ::ng-deep a {
+    color: black !important;
+    font-family: 'quicksandBold';
+  }
+}
+
+.main-content {
+  margin-top: 64px;
+  padding: 24px;
+}
+
+.mat-toolbar.mat-primary {
+  background: #679AAC;
 }

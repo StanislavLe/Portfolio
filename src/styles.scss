@@ -3,5 +3,64 @@
 body {
     background-color: #679AAC;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@font-face {
+    font-family: 'eczarBold';
+    src: url('assets/fonts/eczar/Eczar-Bold.ttf');
+    font-size: larger;
+}
+
+@font-face {
+    font-family: 'eczarExtraBold';
+    src: url('assets/fonts/eczar/Eczar-ExtraBold.ttf');
+}
+
+@font-face {
+    font-family: 'eczarMedium';
+    src: url('assets/fonts/eczar/Eczar-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'eczarRegular';
+    src: url('assets/fonts/eczar/Eczar-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'eczarSemiBold';
+    src: url('assets/fonts/eczar/Eczar-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'quicksandBold';
+    src: url('assets/fonts/quicksand/Quicksand_Bold.otf');
+}
+
+@font-face {
+    font-family: 'quicksandBoldOblique';
+    src: url('assets/fonts/quicksand/Quicksand_Bold_Oblique.otf');
+}
+
+@font-face {
+    font-family: 'quicksandBook';
+    src: url('assets/fonts/quicksand/Quicksand_Book.otf');
+}
+
+@font-face {
+    font-family: 'quicksandBookOblique';
+    src: url('assets/fonts/quicksand/Quicksand_Book_Oblique.otf');
+}
+
+@font-face {
+    font-family: 'quicksandDash';
+    src: url('assets/fonts/quicksand/Quicksand_Dash.otf');
+}
+
+@font-face {
+    font-family: 'quicksandLight';
+    src: url('assets/fonts/quicksand/Quicksand_Light.otf');
+}
+
+@font-face {
+    font-family: 'quicksandLightOblique';
+    src: url('assets/fonts/quicksand/Quicksand_Light_Oblique.otf');
+}
