@@ -1,30 +1,15 @@
-<mat-toolbar color="primary" class="main-toolbar">
-  <div class="socialLinks">
-    <img src="assets/icons/githubIcon.png" alt="GitHub" />
-    <img src="assets/icons/linkedInIcon.png" alt="LinkedIn" />
-    <img src="assets/icons/emailIcon.png" alt="E-Mail" />
-  </div>
-  <div class="logoHeader">
-    <img src="assets/img/logo.png" alt="Logo" />
-    <span>Stanislav Levin</span>
-  </div>
-  <div class="settings">
-    <button mat-button>EN</button>
-    <!-- Burger-Button -->
-    <button mat-icon-button (click)="sidenav.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-  </div>
-</mat-toolbar>
-
 <mat-sidenav-container class="sidenavContainer">
-  <mat-sidenav #sidenav class="sidenav" mode="over" position="end">
-    <div class="sidenav-header">
+  <!-- Sidenav rechts -->
+  <mat-sidenav #sidenav
+               class="sidenav"
+               mode="over"
+               position="end">
+    <div class="sidenavHeader">
+      <span>Menu</span>
       <button mat-icon-button class="close-btn" (click)="sidenav.close()">
-        <mat-icon>close</mat-icon>
+        <img src="assets/icons/closeMenu.png" alt="Close" />
       </button>
     </div>
-    <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list class="navList">
       <a mat-list-item href="#">About Me</a>
       <a mat-list-item href="#">Skillset</a>
@@ -33,5 +18,23 @@
       <a mat-list-item href="#">Contact me</a>
     </mat-nav-list>
   </mat-sidenav>
-  <div class="main-content"></div>
+
+  <!-- Toolbar -->
+  <mat-toolbar color="primary" class="mainToolbar">
+    <div class="socialLinks">
+      <img src="assets/icons/githubIcon.png" alt="GitHub" />
+      <img src="assets/icons/linkedInIcon.png" alt="LinkedIn" />
+      <img src="assets/icons/emailIcon.png" alt="E-Mail" />
+    </div>
+    <div class="logoHeader">
+      <img src="assets/img/logo.png" alt="Logo" />
+      <span>Stanislav Levin</span>
+    </div>
+    <div class="settings">
+      <button mat-button class="languageButton">EN</button>
+      <button mat-icon-button class="sidenav-btn" (click)="sidenav.toggle()" disableRipple>
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
 </mat-sidenav-container>
