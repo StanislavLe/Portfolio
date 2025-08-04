@@ -1,0 +1,121 @@
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 20px;
+    height: 100vh;
+}
+
+
+.hero-image {
+    width: 610px;
+    position: absolute;
+    bottom: 0px;
+    right: 200px;
+    z-index: 2;
+}
+
+.orange-star {
+    width: 500px;
+    position: absolute;
+    bottom: 300px;
+    right: 50px;
+    z-index: 1;
+}
+
+.greeting {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 52px;
+    width: 500px;
+    position: absolute;
+    left: 150px;
+    bottom: 250px;
+    height: 586px;
+    z-index: 2;
+
+}
+
+.greeting-text {
+    font-size: 48px;
+    color: #F8F7E5;
+    font-family: 'quicksandBook';
+    text-wrap: break-word;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    line-height: 110%;
+
+}
+
+.greeting-text-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-wrap: break-word;
+    font-size: 96px;
+    color: #F8F7E5;
+    font-family: 'eczarBold';
+    height: 100px;
+    line-height: 110%;
+
+}
+
+
+.conectBtn {
+    font-family: 'quicksandBook';
+    font-weight: 700;
+    font-size: 18px;
+    width: 198px;
+    height: 40px;
+    line-height: 120%;
+    border: solid #F8F7E5 1px;
+    padding: 12px 24px;
+    border-radius: 100px;
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s;
+
+    &:hover {
+        background-color: #FF834F;
+    }
+}
+
+.scrollAnimation {
+    position: absolute;
+    top: 543px;
+    width: 144px;
+    height: 144px;
+    -webkit-animation: spin 4s linear infinite;
+    -moz-animation: spin 4s linear infinite;
+    animation: spin 4s linear infinite;
+}
+
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+
+.arrow {
+    position: absolute;
+    top: 589px;
+    left: 47px;
+    width: 50px;
+    height: 50px;
+}
