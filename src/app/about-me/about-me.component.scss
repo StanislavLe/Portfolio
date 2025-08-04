@@ -1,0 +1,44 @@
+.aboutMeImg {
+    width: 740px;
+}
+
+.conectBtn {
+    font-family: 'quicksandBook';
+    font-weight: 700;
+    font-size: 18px;
+    width: 198px;
+    height: 40px;
+    line-height: 120%;
+    border: solid #F8F7E5 1px;
+    padding: 12px 24px;
+    border-radius: 100px;
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s;
+
+    &:hover {
+        background-color: #FF834F;
+    }
+}
+
+.aboutMeContainer {
+    padding: 32px;
+    width: 600px;
+    height: 250px;
+    background-color: #1D1D1D;
+    color: #F8F7E5;
+    font-family: 'quicksandBook';
+    font-size: 16px;
+    line-height: 120%;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    >div {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 20px;
+    }
+}
