@@ -14,10 +14,27 @@
   background-color: #679AAC;
 }
 
+.sidenavContainer.about .mainToolbar {
+  background: #F8F7E5;
+  color: #679AAC;
+}
+
 .socialLinks {
   display: flex;
   gap: 10px;
+  opacity: 1;
+  max-height: 100px;
+  transition: opacity 0.5s cubic-bezier(.4,0,.2,1), max-height 0.5s cubic-bezier(.4,0,.2,1);
+  overflow: hidden;
 }
+
+.sidenavContainer.about .mainToolbar .socialLinks {
+  opacity: 0;
+  max-height: 0;
+  pointer-events: none;
+  // KEIN display: none;
+}
+
 
 .socialLinks img {
   transition: filter 0.2s;
@@ -32,7 +49,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
-
+  margin: 0 auto;  // ZENTRIERT!
+  transition: margin 0.6s cubic-bezier(.4,0,.2,1), transform 0.6s cubic-bezier(.4,0,.2,1);
   img {
     width: 100px;
     transform: rotate(-20deg);
@@ -43,6 +61,13 @@
     font-family: 'quicksandBold';
   }
 }
+
+
+.sidenavContainer.about .mainToolbar .logoHeader {
+  margin: 0;                  
+  transform: translateX(-320px); 
+}
+
 
 .settings {
   display: flex;
@@ -73,6 +98,11 @@
   font-size: 18px;
   font-family: 'quicksandBold';
   transition: background 0.1s, color 0.1s, border-color 0.1s;
+}
+
+.sidenavContainer.about .mainToolbar .languageButton {
+  border: 2px solid #1D1D1D !important;
+  color: #1D1D1D !important;
 }
 
 .languageButton:hover,
@@ -167,6 +197,11 @@
   transition: color 0.1s;
 }
 
+
+.sidenavContainer.about .mainToolbar .mat-icon {
+  color: #1D1D1D !important;
+}
+
 .sidenav-btn:hover mat-icon {
   color: #FF834F !important; // Orange beim Hover
 }
@@ -198,9 +233,4 @@
   backdrop-filter: none !important;
   opacity: 0 !important;
   pointer-events: none !important; // Jetzt kann man auf den Main-Content klicken!
-}
-
-mat-sidenav-container.about {
-  background: #F8F7E5 !important;
-  color: #679AAC !important;
 }

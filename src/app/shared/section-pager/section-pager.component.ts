@@ -1,14 +1,12 @@
 import { Component, ViewChildren, QueryList, ElementRef, AfterViewInit, HostListener, Output, EventEmitter } from '@angular/core';
 import { NgFor, NgSwitch, NgSwitchCase } from '@angular/common';
 
-// Importiere deine Sections!
 import { HeroSectionComponent } from '../../hero-section/hero-section.component';
 import { AboutMeComponent } from '../../about-me/about-me.component';
 import { SkillsetComponent } from '../../skillset/skillset.component';
 import { PortfolioComponent } from '../../portfolio/portfolio.component';
 import { ReferencesComponent } from '../../references/references.component';
 import { ContactMeComponent } from '../../contact-me/contact-me.component';
-
 
 @Component({
   selector: 'app-section-pager',
@@ -41,11 +39,11 @@ export class SectionPagerComponent implements AfterViewInit {
   currentSectionIndex = 0;
   isScrolling = false;
 
+  @Output() sectionChanged = new EventEmitter<string>();
+
   ngAfterViewInit() {
     this.scrollToSection(0);
   }
-
-  @Output() sectionChanged = new EventEmitter<string>();
 
   @HostListener('wheel', ['$event'])
   onWheel(event: WheelEvent) {
@@ -59,12 +57,13 @@ export class SectionPagerComponent implements AfterViewInit {
     }
   }
 
-   scrollToSection(index: number) {
+  scrollToSection(index: number) {
     const el = this.sectionRefs.get(index)?.nativeElement;
     if (el && typeof el.scrollIntoView === 'function') {
       el.scrollIntoView({ behavior: 'smooth' });
     }
     this.currentSectionIndex = index;
+    this.sectionChanged.emit(this.sections[index].id);
     setTimeout(() => this.isScrolling = false, 700);
   }
 }

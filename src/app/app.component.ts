@@ -22,7 +22,9 @@ export class AppComponent {
 
   currentSection: string = 'hero';
 
-  onSectionChanged(sectionId: string) {
-    this.currentSection = sectionId;
-  }
+ onSectionChanged(sectionId: string) {
+  console.log('Section gewechselt zu:', sectionId);
+  this.currentSection = sectionId;
+}
+
 }
