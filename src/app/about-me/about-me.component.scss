@@ -1,5 +1,19 @@
+h1 {
+    position: relative;
+    bottom: 678px;
+    left: 560px;
+    z-index: 100;
+    font-family: 'eczarBold';
+    font-size: 72px;
+}
+
+
 .aboutMeImg {
-    width: 740px;
+    width: 640px;
+    position: relative;
+    right: 250px;
+    top: 170px;
+    z-index: 1;
 }
 
 .conectBtn {
@@ -20,6 +34,9 @@
 }
 
 .aboutMeContainer {
+    position: relative;
+    bottom: 250px;
+    left: 250px;
     padding: 32px;
     width: 600px;
     height: 250px;
@@ -34,6 +51,7 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
+    z-index: 20;
 
     >div {
         display: flex;
@@ -41,4 +59,95 @@
         width: 100%;
         gap: 20px;
     }
+}
+
+.floating-emoji {
+    animation: floatUpDown 2.2s ease-in-out infinite;
+    will-change: transform;
+
+    &:hover {
+        animation-play-state: paused; // Schweben stoppt beim Hover!
+        filter: brightness(1.2) drop-shadow(0 2px 6px #0002);
+    }
+}
+
+@keyframes floatUpDown {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-18px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+h3 {
+    font-family: 'QuicksandBold';
+    font-size: 24px;
+}
+
+.secret-info-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    left: 488px;
+    top: 270px;
+    transform: translate(-50%, 100%);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(.21, 1.11, .84, .86), opacity 0.35s;
+    background: #679AAC;
+    color: #F8F7E5;
+    width: 272px;
+    height: 263px;
+    border-radius: 4px;
+    border: #1D1D1D solid 1px;
+    min-width: 220px;
+    box-shadow: 0 8px 32px #2222;
+    padding: 32px;
+    gap: 0px;
+    font-size: 16px;
+    font-family: 'quicksandBook';
+    font-weight: 100;
+}
+
+.floating-emoji:hover+.secret-info-panel {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -12px);
+}
+
+.USP {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+.mat-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mat-checklist li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.mat-icon {
+    height: 16px;
+    width: 16px;
+}
+
+.material-icons {
+    font-size: 16px;
 }
