@@ -18,5 +18,11 @@ import { SkillsetComponent } from './skillset/skillset.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'MeinPortfolio';
+  title = 'Stanislav Levin';
+
+  currentSection: string = 'hero';
+
+  onSectionChanged(sectionId: string) {
+    this.currentSection = sectionId;
+  }
 }

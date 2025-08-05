@@ -1,4 +1,3 @@
-<app-section-pager></app-section-pager>
-<app-header></app-header>
-
+<app-section-pager (sectionChanged)="onSectionChanged($event)"></app-section-pager>
+<app-header [currentSection]="currentSection"></app-header>
 <router-outlet></router-outlet>

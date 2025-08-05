@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenavContainer">
+<mat-sidenav-container [ngClass]="currentSection" class="sidenavContainer">
   <!-- Sidenav rechts -->
   <mat-sidenav #sidenav
                class="sidenav"
@@ -20,7 +20,7 @@
   </mat-sidenav>
 
   <!-- Toolbar -->
-  <mat-toolbar color="primary" class="mainToolbar">
+  <mat-toolbar class="mainToolbar">
     <div class="socialLinks">
       <img src="assets/icons/githubIcon.png" alt="GitHub" />
       <img src="assets/icons/linkedInIcon.png" alt="LinkedIn" />

@@ -1,4 +1,4 @@
-import { Component, ViewChildren, QueryList, ElementRef, AfterViewInit, HostListener } from '@angular/core';
+import { Component, ViewChildren, QueryList, ElementRef, AfterViewInit, HostListener, Output, EventEmitter } from '@angular/core';
 import { NgFor, NgSwitch, NgSwitchCase } from '@angular/common';
 
 // Importiere deine Sections!
@@ -45,6 +45,8 @@ export class SectionPagerComponent implements AfterViewInit {
     this.scrollToSection(0);
   }
 
+  @Output() sectionChanged = new EventEmitter<string>();
+
   @HostListener('wheel', ['$event'])
   onWheel(event: WheelEvent) {
     if (this.isScrolling) return;
@@ -57,11 +59,11 @@ export class SectionPagerComponent implements AfterViewInit {
     }
   }
 
-  scrollToSection(index: number) {
-    if (index < 0 || index >= this.sections.length) return;
-    this.isScrolling = true;
+   scrollToSection(index: number) {
     const el = this.sectionRefs.get(index)?.nativeElement;
-    el.scrollIntoView({ behavior: 'smooth' });
+    if (el && typeof el.scrollIntoView === 'function') {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
     this.currentSectionIndex = index;
     setTimeout(() => this.isScrolling = false, 700);
   }
