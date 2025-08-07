@@ -28,6 +28,7 @@ h1 {
     padding-top: 150px;
     padding-bottom: 100px;
 }
+
 .icon-section {
     display: flex;
     flex-direction: row;
@@ -77,19 +78,93 @@ h1 {
     padding-right: 100px;
 }
 
+.growth-mindset-container {
+    width: 360px;
+    height: 285px;
+    background-color: #F9AF42;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    left: 520px;
+    transform: translate(-50%, 100%);
+    opacity: 0;
+    border: solid 1px #F8F7E5;
+    border-radius: 4px;
+    transition: transform 0.5s cubic-bezier(.21, 1.11, .84, .86), opacity 0.35s;
+
+    h2 {
+        font-family: 'quicksandBold';
+        font-weight: 700;
+        font-size: 24px;
+        text-align: center;
+        padding: 0px;
+    }
+
+    span {
+        font-family: 'quicksandBook';
+        font-weight: 100;
+        font-size: 16px;
+        text-align: center;
+        padding: 10px 20px;
+        text-align: center;
+    }
+
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+
+        >div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column-reverse;
+            padding: 0 10px;
+
+            img {
+                width: 40px;
+                height: 40px;
+            }
+
+            span {
+                padding-top: 10px;
+            }
+        }
+    }
+}
+
+.learning-emoji:hover+.growth-mindset-container {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -167px);
+}
+
+.img-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    padding-top: 408px;
+}
+
 .skillsetImg {
     width: 120px;
     height: 120px;
-    position: relative;
-    right: 348px;
-    top: 150px;
+    display: flex;
+    justify-content: start;
+    align-items: end;
     -webkit-animation: spin 10s linear infinite;
     -moz-animation: spin 10s linear infinite;
     animation: spin 10s linear infinite;
 }
 
-.learningEmoji {
+.learning-emoji {
+    padding-bottom: 50px;
     position: relative;
-    left: 35px;
-    top: 150px
+    bottom: 80px;
 }
