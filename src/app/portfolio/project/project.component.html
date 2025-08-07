@@ -1,0 +1,7 @@
+<!-- project.component.html -->
+<div class="project-card">
+  <img [src]="imageUrl" [alt]="title" />
+  <h3>{{ title }}</h3>
+  <p>{{ description }}</p>
+  <a *ngIf="projectLink" [href]="projectLink" target="_blank">Projekt ansehen</a>
+</div>

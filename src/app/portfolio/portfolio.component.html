@@ -1,1 +1,9 @@
-<p>portfolio works!</p>
+<!-- Richtig -->
+<ng-container *ngFor="let project of projects">
+  <app-project
+    [title]="project.title"
+    [description]="project.description"
+    [imageUrl]="project.imageUrl"
+    [projectLink]="project.projectLink">
+  </app-project>
+</ng-container>
