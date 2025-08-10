@@ -14,13 +14,13 @@ export class PortfolioComponent {
     {
       title: 'JOIN',
       description: 'Task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories. ',
-      imageUrl: 'assets/projects/shop.png',
+      imageUrl: 'assets/img/JOIN-SC.png',
       projectLink: 'https://join-386.developerakademie.net/Join/index.html'
     },
     {
       title: 'SHARKY',
       description: 'A simple Jump-n-Run ggame based on an object-oriented approach. The player controls Sharky and helps him to collect coins while avoiding and fighting against enemies.',
-      imageUrl: 'assets/projects/todo.png',
+      imageUrl: 'assets/img/SHARKY-SC.png',
       projectLink: 'https://stanislav-levin.developerakademie.net/SHARKY/index.html'
     }
   ];
