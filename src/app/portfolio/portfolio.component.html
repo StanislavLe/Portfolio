@@ -1,9 +1,14 @@
-<!-- Richtig -->
+<div class="main-content">
+<div class="portfolio-header">
+  <h1>My Work</h1>
+  <span>Explore a selection of my work here -
+    Interact with the projects to see my skills in action.</span>
+</div>
+
+
 <ng-container *ngFor="let project of projects">
-  <app-project
-    [title]="project.title"
-    [description]="project.description"
-    [imageUrl]="project.imageUrl"
+  <app-project [title]="project.title" [description]="project.description" [imageUrl]="project.imageUrl"
     [projectLink]="project.projectLink">
   </app-project>
 </ng-container>
+</div>

@@ -1,0 +1,29 @@
+.main-content {
+    background-color: #F8F7E5;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'eczarRegular';
+    display: flex;
+    flex-direction: column;
+    padding-top: 210px;
+    padding-left: 150px;
+}
+
+h1 {
+    font-size: 72px;
+    font-weight: 700;
+    font-family: 'eczarBold';
+}
+
+.portfolio-header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+    color: #1D1D1D;
+    column-gap: 136px;
+
+    span {
+        width: 600px;
+    }
+}

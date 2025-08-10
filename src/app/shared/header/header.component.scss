@@ -24,6 +24,11 @@
   color: #F8F7E5;
 }
 
+.sidenavContainer.portfolio .mainToolbar {
+  background: #F8F7E5;
+  color: #679AAC;
+}
+
 .socialLinks {
   display: flex;
   gap: 10px;
@@ -37,14 +42,18 @@
   opacity: 0;
   max-height: 0;
   pointer-events: none;
-  // KEIN display: none;
 }
 
 .sidenavContainer.skills .mainToolbar .socialLinks {
   opacity: 0;
   max-height: 0;
   pointer-events: none;
-  // KEIN display: none;
+}
+
+.sidenavContainer.portfolio .mainToolbar .socialLinks {
+  opacity: 0;
+  max-height: 0;
+  pointer-events: none;
 }
 
 
@@ -86,6 +95,11 @@
   transform: translateX(-480px);
 }
 
+.sidenavContainer.portfolio .mainToolbar .logoHeader {
+  margin: 0;
+  transform: translateX(-480px);
+}
+
 .settings {
   display: flex;
   align-items: center;
@@ -118,6 +132,11 @@
 }
 
 .sidenavContainer.about .mainToolbar .languageButton {
+  border: 2px solid #1D1D1D !important;
+  color: #1D1D1D !important;
+}
+
+.sidenavContainer.portfolio .mainToolbar .languageButton {
   border: 2px solid #1D1D1D !important;
   color: #1D1D1D !important;
 }
@@ -216,6 +235,10 @@
 
 
 .sidenavContainer.about .mainToolbar .mat-icon {
+  color: #1D1D1D !important;
+}
+
+.sidenavContainer.portfolio .mainToolbar .mat-icon {
   color: #1D1D1D !important;
 }
 

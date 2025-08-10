@@ -1,27 +1,27 @@
 import { Component } from '@angular/core';
+import { NgFor } from '@angular/common';
 import { ProjectComponent } from './project/project.component';
-
 
 @Component({
   selector: 'app-portfolio',
   standalone: true,
-  imports: [ProjectComponent],
+  imports: [NgFor, ProjectComponent],
   templateUrl: './portfolio.component.html',
   styleUrl: './portfolio.component.scss'
 })
 export class PortfolioComponent {
- projects = [
+  projects = [
     {
-      title: 'Mein Shop',
-      description: 'Ein cooles Shop-Projekt mit Angular.',
+      title: 'JOIN',
+      description: 'Task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories. ',
       imageUrl: 'assets/projects/shop.png',
-      projectLink: 'https://meinshop.de'
+      projectLink: 'https://join-386.developerakademie.net/Join/index.html'
     },
     {
-      title: 'ToDo App',
-      description: 'Produktivitäts-App für Aufgabenverwaltung.',
+      title: 'SHARKY',
+      description: 'A simple Jump-n-Run ggame based on an object-oriented approach. The player controls Sharky and helps him to collect coins while avoiding and fighting against enemies.',
       imageUrl: 'assets/projects/todo.png',
-      projectLink: 'https://meintodo.de'
+      projectLink: 'https://stanislav-levin.developerakademie.net/SHARKY/index.html'
     }
-    ];
+  ];
 }
