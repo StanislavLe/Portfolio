@@ -15,4 +15,9 @@ export class ProjectComponent {
   @Input() description!: string;
   @Input() imageUrl!: string;
   @Input() projectLink?: string;
+  @Input() color!: string;
+  @Input() iconUrl?: string;
+  @Input() gitHubLink?: string;
+  @Input() skillset: string[] = []; // <— direkt als Array
+  trackBySkill = (_: number, s: string) => s;
 }

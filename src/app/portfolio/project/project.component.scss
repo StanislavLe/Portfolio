@@ -1,0 +1,11 @@
+.skills {
+  display: flex;
+  gap: 12px; /* Abstand zwischen den <p> */
+  flex-wrap: wrap; /* Falls es nicht in eine Zeile passt */
+}
+
+.skills p {
+  margin: 0;
+  font-size: 14px;
+  font-family: 'quicksandBook';
+}
