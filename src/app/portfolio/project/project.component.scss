@@ -1,11 +1,53 @@
+.project-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-details {
+    background-color: #1D1D1D; 
+  width: 688px;
+  height: 422px;
+}
+
 .skills {
   display: flex;
-  gap: 12px; /* Abstand zwischen den <p> */
-  flex-wrap: wrap; /* Falls es nicht in eine Zeile passt */
+  gap: 12px;
+  /* Abstand zwischen den <p> */
+  flex-wrap: wrap;
+  /* Falls es nicht in eine Zeile passt */
 }
 
 .skills p {
   margin: 0;
   font-size: 14px;
   font-family: 'quicksandBook';
+}
+
+.project-preview {
+  width: 413px;
+  position: absolute;
+  z-index: 1;
+}
+
+.img-container {
+  width: 488px;
+  height: 488px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.orange-star {
+  width: 180px;
+  height: 180px;
+  position: relative;
+  top: 154px;
+  right: 154px;
+  -webkit-animation: spin 10s linear infinite;
+  -moz-animation: spin 10s linear infinite;
+  animation: spin 10s linear infinite;
 }

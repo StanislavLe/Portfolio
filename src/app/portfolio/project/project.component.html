@@ -1,36 +1,42 @@
 <div class="project-card">
 
-  <div [ngStyle]="{'background-color': color}">
-    <img [src]="imageUrl" [alt]="title" />
-    <img src="assets/img/Component 11.png">
+  <div class="img-container" [ngStyle]="{'background-color': color}">
+    <img class="project-preview" [src]="imageUrl" [alt]="title" />
+    <img class="orange-star" src="assets/img/Component 11.png">
   </div>
 
   <div>
     <div class="project-details">
+      <div>
 
-      <div class="project-info">
-        <h3>{{ title }}</h3>
-        
-        <div class="skills">
-          <p *ngFor="let skill of skillset">{{ skill }}</p>
+        <div class="project-info">
+          <h3>{{ title }}</h3>
+
+          <div class="skills">
+            <p *ngFor="let skill of skillset">{{ skill }}</p>
+          </div>
+
+          <p>{{ description }}</p>
         </div>
 
-        <p>{{ description }}</p>
+        <img *ngIf="iconUrl" [src]="iconUrl">
       </div>
 
-      <img *ngIf="iconUrl" [src]="iconUrl">
+
+      <div class="project-links">
+        <button><a *ngIf="projectLink" [href]="projectLink" target="_blank">LiveTest</a></button>
+        <button><a *ngIf="gitHubLink" [href]="gitHubLink" target="_blank">GitHub</a></button>
+      </div>
+
+
     </div>
 
-
-    <div class="project-links">
-      <button><a *ngIf="projectLink" [href]="projectLink" target="_blank">LiveTest</a></button>
-      <button><a *ngIf="gitHubLink" [href]="gitHubLink" target="_blank">GitHub</a></button>
+    <div>
+      <button class="back-button" (click)="goBack()">Previous project</button>
+      <button class="for-button" (click)="gofor()">Next project</button>
     </div>
-
 
   </div>
-
-
 
 
 </div>

@@ -6,12 +6,20 @@
   </div>
 
 
-  <ng-container *ngFor="let project of projects">
-    <app-project [title]="project.title" [description]="project.description" [imageUrl]="project.imageUrl"
-      [projectLink]="project.projectLink" [color]="project.color" [iconUrl]="project.iconUrl"
-      [gitHubLink]="project.gitHubLink" [skillset]="project.skillset">
+<div class="project-wrapper" [@slideFade]="currentIndex">
+    <app-project
+      [title]="current.title"
+      [description]="current.description"
+      [imageUrl]="current.imageUrl"
+      [projectLink]="current.projectLink"
+      [gitHubLink]="current.gitHubLink"
+      [color]="current.color"
+      [iconUrl]="current.iconUrl"
+      [skillset]="current.skillset"
+      (prev)="prevProject()"
+      (next)="nextProject()">
     </app-project>
-  </ng-container>
+  </div>
 
 
 </div>

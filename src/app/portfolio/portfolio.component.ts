@@ -1,14 +1,30 @@
 import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { ProjectComponent } from './project/project.component';
+import { trigger, style, animate, transition } from '@angular/animations';
+
 
 @Component({
   selector: 'app-portfolio',
   standalone: true,
   imports: [NgFor, ProjectComponent],
   templateUrl: './portfolio.component.html',
-  styleUrl: './portfolio.component.scss'
+  styleUrl: './portfolio.component.scss',
+  animations: [
+    trigger('slideFade', [
+      transition(':increment', [
+        style({ opacity: 0, transform: 'translateX(30px)' }),
+        animate('400ms ease', style({ opacity: 1, transform: 'translateX(0)' }))
+      ]),
+      transition(':decrement', [
+        style({ opacity: 0, transform: 'translateX(-30px)' }),
+        animate('400ms ease', style({ opacity: 1, transform: 'translateX(0)' }))
+      ])
+    ])
+  ]
 })
+
+
 export class PortfolioComponent {
   projects = [
     {
@@ -19,7 +35,7 @@ export class PortfolioComponent {
       gitHubLink: 'https://github.com/SilverBlure/Join',
       color: '#F9AF42',
       iconUrl: 'assets/img/JOIN-emoji.png',
-    skillset: ['HTML', 'CSS', 'Firebase', 'Angular', 'TypeScript']   // <— Array!
+      skillset: ['HTML', 'CSS', 'Firebase', 'Angular', 'TypeScript']
     },
     {
       title: 'SHARKY',
@@ -29,7 +45,23 @@ export class PortfolioComponent {
       gitHubLink: 'https://github.com/StanislavLe/Sharky',
       color: '#679AAC',
       iconUrl: 'assets/img/SHARKY-emoji.png',
-    skillset: ['HTML', 'CSS', 'JavaScript']                           // <— Array!
+      skillset: ['HTML', 'CSS', 'JavaScript']
     }
   ];
+
+   currentIndex = 0;
+
+  get current() {
+    return this.projects[this.currentIndex];
+  }
+
+  prevProject() {
+    if (!this.projects.length) return;
+    this.currentIndex = (this.currentIndex - 1 + this.projects.length) % this.projects.length;
+  }
+
+  nextProject() {
+    if (!this.projects.length) return;
+    this.currentIndex = (this.currentIndex + 1) % this.projects.length;
+  }
 }

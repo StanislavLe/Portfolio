@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgIf } from '@angular/common';
 
@@ -20,4 +20,10 @@ export class ProjectComponent {
   @Input() gitHubLink?: string;
   @Input() skillset: string[] = []; // <— direkt als Array
   trackBySkill = (_: number, s: string) => s;
+
+  @Output() prev = new EventEmitter<void>();
+  @Output() next = new EventEmitter<void>();
+
+  goBack() { this.prev.emit(); }
+  gofor() { this.next.emit(); }
 }
