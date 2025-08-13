@@ -18,6 +18,7 @@ export class ProjectComponent {
   @Input() color!: string;
   @Input() iconUrl?: string;
   @Input() gitHubLink?: string;
-  @Input() skillset: string[] = []; // <— direkt als Array
+  @Input() skillset: string[] = []; 
+  @Input() hoverInfo!: string;
   trackBySkill = (_: number, s: string) => s;
 }
