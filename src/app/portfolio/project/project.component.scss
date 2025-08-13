@@ -2,27 +2,90 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: start;
+  gap: 24px;
+}
+
+.project-info {
+  display: flex;
   justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+
+  p {
+    margin: 0;
+    font-size: 16px;
+    font-family: 'quicksandBook';
+    line-height: 120%;
+  }
 }
 
 .project-details {
-    background-color: #1D1D1D; 
+  background-color: #1D1D1D;
   width: 688px;
   height: 422px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding: 20px 24px;
+}
+
+.linkBtn {
+  font-family: 'quicksandBook';
+  background-color: #1D1D1D;
+  font-weight: 700;
+  font-size: 18px;
+  width: 198px;
+  height: 40px;
+  line-height: 120%;
+  border: solid #F8F7E5 1px;
+  padding: 12px 24px;
+  border-radius: 100px;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s;
+  color: #F8F7E5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: #FF834F;
+  }
+
+  a {
+    text-decoration: none;
+    color: #F8F7E5;
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+    margin-left: 8px;
+    transform: rotate(270deg);
+  }
+}
+
+.infoHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+
 }
 
 .skills {
   display: flex;
   gap: 12px;
-  /* Abstand zwischen den <p> */
   flex-wrap: wrap;
-  /* Falls es nicht in eine Zeile passt */
-}
 
-.skills p {
-  margin: 0;
-  font-size: 14px;
-  font-family: 'quicksandBook';
+  p {
+    margin: 0;
+    font-size: 14px;
+    font-family: 'quicksandBook';
+    line-height: 120%;
+    color: #679AAC;
+  }
 }
 
 .project-preview {
@@ -40,6 +103,12 @@
   flex-direction: column;
 }
 
+h3 {
+  margin: 0px;
+  font-size: 24px;
+  font-family: 'quicksandBold';
+
+}
 
 .orange-star {
   width: 180px;
@@ -50,4 +119,23 @@
   -webkit-animation: spin 10s linear infinite;
   -moz-animation: spin 10s linear infinite;
   animation: spin 10s linear infinite;
+}
+
+.project-links {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.infoIcon {
+  width: 40px;
+  height: 40px;
+  margin-left: 16px;
+  animation: floatUpDown 2.2s ease-in-out infinite;
+  will-change: transform;
+
+  &:hover {
+    animation-play-state: paused; // Schweben stoppt beim Hover!
+    filter: brightness(1.2) drop-shadow(0 2px 6px #0002);
+  }
 }

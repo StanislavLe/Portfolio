@@ -6,19 +6,16 @@
   </div>
 
 
-<div class="project-wrapper" [@slideFade]="currentIndex">
-    <app-project
-      [title]="current.title"
-      [description]="current.description"
-      [imageUrl]="current.imageUrl"
-      [projectLink]="current.projectLink"
-      [gitHubLink]="current.gitHubLink"
-      [color]="current.color"
-      [iconUrl]="current.iconUrl"
-      [skillset]="current.skillset"
-      (prev)="prevProject()"
-      (next)="nextProject()">
+  <div class="project-wrapper" [@slideFade]="currentIndex">
+    <app-project [title]="current.title" [description]="current.description" [imageUrl]="current.imageUrl"
+      [projectLink]="current.projectLink" [gitHubLink]="current.gitHubLink" [color]="current.color"
+      [iconUrl]="current.iconUrl" [skillset]="current.skillset" (prev)="prevProject()" (next)="nextProject()">
     </app-project>
+
+    <div class="navigation">
+       <button (click)="prevProject()">Previous project</button>
+      <button (click)="nextProject()">Next project</button>
+    </div>
   </div>
 
 

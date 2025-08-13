@@ -7,34 +7,33 @@
 
   <div>
     <div class="project-details">
-      <div>
 
-        <div class="project-info">
+      <div class="project-info">
+        <div class="infoHeader">
           <h3>{{ title }}</h3>
-
-          <div class="skills">
-            <p *ngFor="let skill of skillset">{{ skill }}</p>
-          </div>
-
-          <p>{{ description }}</p>
+          <img class="infoIcon" *ngIf="iconUrl" [src]="iconUrl">
         </div>
 
-        <img *ngIf="iconUrl" [src]="iconUrl">
+        <div class="skills">
+          <p *ngFor="let skill of skillset">{{ skill }}</p>
+        </div>
+
+        <p>{{ description }}</p>
       </div>
+
 
 
       <div class="project-links">
-        <button><a *ngIf="projectLink" [href]="projectLink" target="_blank">LiveTest</a></button>
-        <button><a *ngIf="gitHubLink" [href]="gitHubLink" target="_blank">GitHub</a></button>
+        <button class="linkBtn"><a *ngIf="projectLink" [href]="projectLink" target="_blank">LiveTest</a><img
+            src="assets/img/8. Scroll down.png"></button>
+        <button class="linkBtn"><a *ngIf="gitHubLink" [href]="gitHubLink" target="_blank">GitHub</a><img
+            src="assets/img/8. Scroll down.png"></button>
       </div>
 
 
     </div>
 
-    <div>
-      <button class="back-button" (click)="goBack()">Previous project</button>
-      <button class="for-button" (click)="gofor()">Next project</button>
-    </div>
+
 
   </div>
 

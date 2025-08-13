@@ -5,8 +5,8 @@
     font-family: 'eczarRegular';
     display: flex;
     flex-direction: column;
-    padding-top: 210px;
-    padding-left: 150px;
+    padding-top: 170px;
+    padding-left: 100px;
 }
 
 h1 {
@@ -22,8 +22,34 @@ h1 {
     flex-direction: row;
     color: #1D1D1D;
     column-gap: 136px;
+    margin-bottom: 60px;
+
 
     span {
         width: 600px;
+        line-height: 120%;
+        font-family: 'quicksandBook';
+        font-size: 16px;
+    }
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding-left: 513px;
+    padding-right: 116px;
+
+    button {
+        border-style: none;
+        color: #1D1D1D;
+        font-family: 'QuicksandBold';
+        font-size: 18px;
+        background-color: transparent;
+
+        &:hover {
+            color: #FF834F;
+        }
     }
 }

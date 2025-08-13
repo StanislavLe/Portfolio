@@ -49,12 +49,12 @@ export class PortfolioComponent {
     }
   ];
 
-   currentIndex = 0;
+  currentIndex = 0;
 
   get current() {
     return this.projects[this.currentIndex];
   }
-
+  
   prevProject() {
     if (!this.projects.length) return;
     this.currentIndex = (this.currentIndex - 1 + this.projects.length) % this.projects.length;
