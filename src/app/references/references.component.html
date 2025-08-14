@@ -1,1 +1,11 @@
-<p>references works!</p>
+<h1>What my colleagues say about me</h1>
+
+<div class="comments">
+  <app-colleague-comment
+    *ngFor="let c of comments; trackBy: trackByName"
+    [name]="c.name"
+    [comment]="c.comment"
+    [profileLink]="c.profileLink"
+    [title]="c.title">
+  </app-colleague-comment>
+</div>

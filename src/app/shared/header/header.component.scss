@@ -29,6 +29,11 @@
   color: #679AAC;
 }
 
+.sidenavContainer.references .mainToolbar {
+  color: #F8F7E5;
+  background: #679AAC;
+}
+
 .socialLinks {
   display: flex;
   gap: 10px;
@@ -51,6 +56,12 @@
 }
 
 .sidenavContainer.portfolio .mainToolbar .socialLinks {
+  opacity: 0;
+  max-height: 0;
+  pointer-events: none;
+}
+
+.sidenavContainer.references .mainToolbar .socialLinks {
   opacity: 0;
   max-height: 0;
   pointer-events: none;
@@ -96,6 +107,11 @@
 }
 
 .sidenavContainer.portfolio .mainToolbar .logoHeader {
+  margin: 0;
+  transform: translateX(-480px);
+}
+
+.sidenavContainer.references .mainToolbar .logoHeader {
   margin: 0;
   transform: translateX(-480px);
 }

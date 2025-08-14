@@ -1,0 +1,27 @@
+h1 {
+    font-family: 'eczarBold';
+    font-size: 72px;
+}
+
+.comments {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
+  width: 1210px;
+  gap: 32px;
+  height: 472px;
+  margin-top: 72px;
+}
+
+.comments > app-colleague-comment:nth-child(1) {
+  align-self: flex-start;
+}
+
+.comments > app-colleague-comment:nth-child(2) {
+  align-self: center;
+}
+
+.comments > app-colleague-comment:nth-child(3) {
+  align-self: flex-end;
+}

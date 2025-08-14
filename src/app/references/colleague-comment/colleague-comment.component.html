@@ -1,0 +1,12 @@
+<div class="comment-block">
+    <div class="colleague-comment">
+        <div>
+            <h2 *ngIf="name">{{ name }}</h2>
+            <img src="assets/img/Component 11.png">
+        </div>
+        <p *ngIf="comment">{{ comment }}</p>
+        <p *ngIf="title">{{ title }}</p>
+    </div>
+    <a *ngIf="profileLink" [href]="profileLink" target="_blank">View Linkedin Profile >>
+    </a>
+</div>
