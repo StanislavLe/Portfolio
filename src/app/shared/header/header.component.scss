@@ -24,6 +24,11 @@
   color: #F8F7E5;
 }
 
+.sidenavContainer.contact .mainToolbar {
+  background: #1D1D1D;
+  color: #F8F7E5;
+}
+
 .sidenavContainer.portfolio .mainToolbar {
   background: #F8F7E5;
   color: #679AAC;
@@ -50,6 +55,12 @@
 }
 
 .sidenavContainer.skills .mainToolbar .socialLinks {
+  opacity: 0;
+  max-height: 0;
+  pointer-events: none;
+}
+
+.sidenavContainer.contact .mainToolbar .socialLinks {
   opacity: 0;
   max-height: 0;
   pointer-events: none;
@@ -102,6 +113,11 @@
 }
 
 .sidenavContainer.skills .mainToolbar .logoHeader {
+  margin: 0;
+  transform: translateX(-480px);
+}
+
+.sidenavContainer.contact .mainToolbar .logoHeader {
   margin: 0;
   transform: translateX(-480px);
 }
