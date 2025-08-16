@@ -34,11 +34,11 @@ h1 {
 
 .navigation {
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
     flex-direction: row;
-    padding-left: 513px;
-    padding-right: 116px;
+    width: 1468px;
+    gap: 427px;
 
     button {
         border-style: none;
