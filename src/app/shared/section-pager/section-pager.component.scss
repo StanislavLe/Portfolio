@@ -1,6 +1,6 @@
 .main-container {
-    height: 73vh;
-    overflow: hidden;
+  height: 73vh;
+  overflow: hidden;
 }
 
 .pager-container {
@@ -15,27 +15,52 @@
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   font-size: 2rem;
   background: #679aac;
   color: #fff;
+  max-width: 1900px;
+  padding: 60px;
+  padding-left: 112px;
+}
 
-  // Wechselnde Farben als Beispiel:
-  &:nth-child(2) { background: #f8f7e5; color: #222; }
-  &:nth-child(3) { background: #ff834f; color: #fff; }
-  &:nth-child(4) { background: #282a36; color: #fffa; }
+.pager-section#about {
+  background: #F8F7E5;
+  color: #1D1D1D;
+  max-width: 1900px;
+  padding: 60px;
+  padding-left: 112px;
+}
+
+.pager-section#portfolio {
+  background: #F8F7E5;
+  max-width: 1900px;
+  padding: 60px;
+  padding-left: 112px;
+}
+
+.pager-section#skills {
+  background: #1D1D1D;
+  max-width: 1900px;
+  padding: 60px;
+  padding-left: 112px;
+}
+
+
+.page-wrapper {
+  max-width: 1900px;
+  margin: 0 auto;
+  position: relative;
 }
 
 .dot-nav {
   position: fixed;
   top: 50%;
-  right: 32px;
+  right: 75px;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   gap: 24px;
-  z-index: 100;
 }
 
 .dot {
@@ -48,7 +73,8 @@
   cursor: pointer;
   transition: background 0.2s, opacity 0.2s, box-shadow 0.2s;
 
-  &.active, &:hover {
+  &.active,
+  &:hover {
     background: #FF834F;
     opacity: 1;
     box-shadow: 0 0 0 4px #ff834f33;

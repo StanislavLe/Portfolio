@@ -3,24 +3,24 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    padding: 20px;
     height: 100vh;
+    max-width: 1800px;
 }
 
 
 .hero-image {
     width: 610px;
-    position: absolute;
-    bottom: 0px;
-    right: 200px;
+    position: relative;
+    top: 71px;
+    right: 0px;
     z-index: 2;
 }
 
 .orange-star {
     width: 500px;
-    position: absolute;
-    bottom: 300px;
-    right: 50px;
+    position: relative;
+    bottom: 24px;
+    right: 289px;
     z-index: 1;
 }
 
@@ -30,12 +30,8 @@
     align-items: flex-start;
     gap: 52px;
     width: 500px;
-    position: absolute;
-    left: 150px;
-    bottom: 250px;
     height: 586px;
     z-index: 2;
-
 }
 
 .greeting-text {
@@ -83,8 +79,6 @@
 }
 
 .scrollAnimation {
-    position: absolute;
-    top: 543px;
     width: 144px;
     height: 144px;
     -webkit-animation: spin 10s linear infinite;
@@ -93,11 +87,9 @@
 }
 
 
-
-
 .arrow {
-    position: absolute;
-    top: 589px;
+    position: relative;
+    bottom: 152px;
     left: 47px;
     width: 50px;
     height: 50px;

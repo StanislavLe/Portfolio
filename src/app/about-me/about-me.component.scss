@@ -1,18 +1,26 @@
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 1800px;
+    padding-top: 122px;
+}
+
 h1 {
-    position: relative;
-    bottom: 678px;
-    left: 560px;
     z-index: 100;
-    font-family: 'eczarBold';
+    font-family: "eczarBold";
     font-size: 72px;
+    width: 1410px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
 }
 
 
 .aboutMeImg {
     width: 640px;
-    position: relative;
-    right: 250px;
-    top: 170px;
     z-index: 1;
 }
 
@@ -40,14 +48,14 @@ h1 {
 
 .aboutMeContainer {
     position: relative;
-    bottom: 250px;
-    left: 250px;
+    bottom: 562px;
+    left: 593px;
     padding: 32px;
     width: 600px;
     height: 250px;
     background-color: #1D1D1D;
     color: #F8F7E5;
-    font-family: 'quicksandBook';
+    font-family: "quicksandBook";
     font-size: 16px;
     line-height: 120%;
     font-weight: 400;

@@ -2,6 +2,12 @@
   display: block;
 }
 
+.sidenavContainer.hero .mainToolbar {
+  max-width: 1900px;
+}
+
+
+
 .mainToolbar {
   position: fixed;
   width: 100vw;
@@ -17,26 +23,35 @@
 .sidenavContainer.about .mainToolbar {
   background: #F8F7E5;
   color: #679AAC;
+    max-width: 1900px;
+
 }
 
 .sidenavContainer.skills .mainToolbar {
   background: #1D1D1D;
   color: #F8F7E5;
+    max-width: 1900px;
+
 }
 
 .sidenavContainer.contact .mainToolbar {
   background: #1D1D1D;
   color: #F8F7E5;
+    max-width: 1900px;
+
 }
 
 .sidenavContainer.portfolio .mainToolbar {
   background: #F8F7E5;
   color: #679AAC;
+    max-width: 1900px;
+
 }
 
 .sidenavContainer.references .mainToolbar {
   color: #F8F7E5;
   background: #679AAC;
+    max-width: 1900px;
 }
 
 .socialLinks {
@@ -109,27 +124,27 @@
 
 .sidenavContainer.about .mainToolbar .logoHeader {
   margin: 0;
-  transform: translateX(-480px);
+  transform: translateX(-720px);
 }
 
 .sidenavContainer.skills .mainToolbar .logoHeader {
   margin: 0;
-  transform: translateX(-480px);
+  transform: translateX(-720px);
 }
 
 .sidenavContainer.contact .mainToolbar .logoHeader {
   margin: 0;
-  transform: translateX(-480px);
+  transform: translateX(-720px);
 }
 
 .sidenavContainer.portfolio .mainToolbar .logoHeader {
   margin: 0;
-  transform: translateX(-480px);
+  transform: translateX(-720px);
 }
 
 .sidenavContainer.references .mainToolbar .logoHeader {
   margin: 0;
-  transform: translateX(-480px);
+  transform: translateX(-720px);
 }
 
 .settings {
