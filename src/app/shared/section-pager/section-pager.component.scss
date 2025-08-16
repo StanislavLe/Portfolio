@@ -7,10 +7,11 @@
   position: absolute;
   height: 100vh;
   overflow: hidden;
+  width: 100%;
 }
 
 .pager-section {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   scroll-snap-align: start;
   display: flex;
@@ -19,36 +20,37 @@
   font-size: 2rem;
   background: #679aac;
   color: #fff;
-  max-width: 1900px;
+  max-width: 100%;
   padding: 60px;
   padding-left: 112px;
+  position: relative;
 }
 
 .pager-section#about {
   background: #F8F7E5;
   color: #1D1D1D;
-  max-width: 1900px;
+  max-width: 100%;
   padding: 60px;
   padding-left: 112px;
 }
 
 .pager-section#portfolio {
   background: #F8F7E5;
-  max-width: 1900px;
+  max-width: 100%;
   padding: 60px;
   padding-left: 112px;
 }
 
 .pager-section#skills {
   background: #1D1D1D;
-  max-width: 1900px;
+  max-width: 100%;
   padding: 60px;
   padding-left: 112px;
 }
 
 .pager-section#contact {
   background: #1D1D1D;
-  max-width: 1900px;
+  max-width: 100%;
   padding: 60px;
   padding-left: 112px;
   padding-top: 0px;
@@ -86,5 +88,75 @@
     background: #FF834F;
     opacity: 1;
     box-shadow: 0 0 0 4px #ff834f33;
+  }
+}
+
+
+.arrow-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  /* Linie standard unsichtbar */
+  transition: border-color .2s ease;
+  width: max-content;
+  padding: 8px 10px;
+
+
+  &:hover {
+    border-bottom: 2px solid #FF834F;
+    /* Linie wird orange */
+  }
+}
+
+.bounce-arrow {
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+  /* Klicks gehen an Wrapper */
+  user-select: none;
+  opacity: 0;
+  transform-origin: bottom center;
+  animation: jumpSquash 1.2s cubic-bezier(.22, .61, .36, 1) infinite;
+  will-change: transform;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .25));
+  transition: filter .2s ease;
+
+  .arrow-wrapper:hover & {
+    /* Bild selbst orange färben */
+    filter: brightness(0) saturate(100%) invert(52%) sepia(75%) saturate(726%) hue-rotate(338deg) brightness(98%) contrast(96%);
+  }
+}
+
+
+/* Nur in der Contact-Section sichtbar/anklickbar */
+.pager-section#contact .bounce-arrow {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+
+
+
+@keyframes jumpSquash {
+  0% {
+    transform: translateY(0) scaleX(1) scaleY(1);
+  }
+
+  35% {
+    transform: translateY(-18px) scaleX(1) scaleY(1);
+  }
+
+  80% {
+    transform: translateY(0) scaleX(1) scaleY(0.78);
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bounce-arrow {
+    animation: none;
   }
 }

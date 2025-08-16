@@ -1,5 +1,5 @@
 import { Component, ViewChildren, QueryList, ElementRef, AfterViewInit, HostListener, Output, EventEmitter } from '@angular/core';
-import { NgFor, NgSwitch, NgSwitchCase } from '@angular/common';
+import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 
 import { HeroSectionComponent } from '../../hero-section/hero-section.component';
 import { AboutMeComponent } from '../../about-me/about-me.component';
@@ -20,7 +20,8 @@ import { ContactMeComponent } from '../../contact-me/contact-me.component';
     SkillsetComponent,
     PortfolioComponent,
     ReferencesComponent,
-    ContactMeComponent
+    ContactMeComponent,
+    NgIf
   ],
   templateUrl: './section-pager.component.html',
   styleUrl: './section-pager.component.scss'

@@ -1,28 +1,32 @@
 <div class="pager-container">
-  <div
-    *ngFor="let section of sections; let i = index"
-    #sectionRef
-    class="pager-section"
-    [id]="section.id"
-  >
+  <div *ngFor="let section of sections; let i = index"
+       #sectionRef
+       class="pager-section"
+       [id]="section.id">
+
     <ng-container class="main-container" [ngSwitch]="section.id">
-      <app-hero-section *ngSwitchCase="'hero'"></app-hero-section>
-      <app-about-me *ngSwitchCase="'about'"></app-about-me>
-      <app-skillset *ngSwitchCase="'skills'"></app-skillset>
-      <app-portfolio *ngSwitchCase="'portfolio'"></app-portfolio>
-      <app-references *ngSwitchCase="'references'"></app-references>
-      <app-contact-me *ngSwitchCase="'contact'"></app-contact-me>
+      <app-hero-section     *ngSwitchCase="'hero'"></app-hero-section>
+      <app-about-me         *ngSwitchCase="'about'"></app-about-me>
+      <app-skillset         *ngSwitchCase="'skills'"></app-skillset>
+      <app-portfolio        *ngSwitchCase="'portfolio'"></app-portfolio>
+      <app-references       *ngSwitchCase="'references'"></app-references>
+      <app-contact-me       *ngSwitchCase="'contact'"></app-contact-me>
     </ng-container>
+
+<!-- In der Contact Section -->
+<div class="arrow-wrapper">
+  <img src="assets/icons/arrow2.png"
+       alt="Back to top"
+       class="bounce-arrow" />
+</div>
+
   </div>
 
-  <!-- Dots Navigation rechts -->
   <nav class="dot-nav">
-    <button
-      *ngFor="let s of sections; let idx = index"
-      class="dot"
-      [class.active]="idx === currentSectionIndex"
-      (click)="scrollToSection(idx)"
-      [attr.aria-label]="s.label"
-    ></button>
+    <button *ngFor="let s of sections; let idx = index"
+            class="dot"
+            [class.active]="idx === currentSectionIndex"
+            (click)="scrollToSection(idx)"
+            [attr.aria-label]="s.label"></button>
   </nav>
 </div>
