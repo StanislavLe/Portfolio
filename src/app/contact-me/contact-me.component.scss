@@ -102,25 +102,32 @@
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
-            border-radius: 5px;
-            border: none;
             background-color: transparent;
             color: #F8F7E5;
             font-size: 16px;
-            border-bottom: 2px solid #F9AF42;
-            border-radius: 0;
-            outline: none;
-            transition: border-color 0.3s ease;
 
-            &:hover {
-                border-bottom-color: #FF834F;
-                cursor: pointer;
+            border: none;
+            border-radius: 0;
+            border-bottom: 2px solid #F9AF42;
+            outline: none;
+
+            &::placeholder {
+                color: #FFFFFFCC;
             }
 
+            &:hover,
             &:focus {
-                border-bottom-color: #F8F7E5;
+                border-bottom-color: #F9AF42;
+                cursor: text;
             }
         }
+
+        input.is-error::placeholder,
+        textarea.is-error::placeholder,
+        input.is-error-email::placeholder {
+            color: #EC7B7B;
+        }
+
 
         textarea {
             resize: none;
@@ -265,7 +272,7 @@
     align-items: center;
     width: 100%;
     gap: 20px;
-        position: relative;
+    position: relative;
     top: 200px;
 
     a {
