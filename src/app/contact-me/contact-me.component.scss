@@ -4,10 +4,32 @@
     flex-direction: row;
     align-items: start;
     background-color: #1D1D1D;
-    height: max-content;
-    width: 100vw;
     gap: 84px;
     max-width: 1900px;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+}
+
+.contact-header {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 243px;
+}
+
+h1 {
+    font-size: 72px;
+    font-family: 'eczarBold';
+    line-height: 100%;
+    color: #F9AF42;
+    margin-bottom: 64px;
+    width: 530px;
 }
 
 .text-content {
@@ -15,16 +37,7 @@
     height: 382px;
     display: flex;
     flex-direction: column;
-    align-items: start;
 
-    h1 {
-        font-size: 72px;
-        font-family: 'eczarBold';
-        line-height: 100%;
-        color: #F9AF42;
-        margin-bottom: 64px;
-
-    }
 
     h2 {
         color: #FF834F;
@@ -50,7 +63,7 @@
     flex-direction: column;
     align-items: start;
     position: relative;
-    top: 172px;
+    bottom: 156px;
 
     form {
         width: 100%;
@@ -224,8 +237,7 @@
     font-size: 16px;
     line-height: 120%;
     font-family: 'quicksandBook';
-    bottom: 30px;
-    position: relative;
+    max-width: 1900px;
 
     img:first-of-type {
         width: 180px;
@@ -284,5 +296,80 @@
         &:hover {
             color: #FF834F;
         }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.arrow-wrapper {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    /* Linie standard unsichtbar */
+    transition: border-color .2s ease;
+    width: max-content;
+    padding: 8px 10px;
+
+
+    &:hover {
+        border-bottom: 2px solid #FF834F;
+        /* Linie wird orange */
+    }
+}
+
+.bounce-arrow {
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0;
+    transform-origin: bottom center;
+    animation: jumpSquash 1.2s cubic-bezier(.22, .61, .36, 1) infinite;
+    will-change: transform;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .25));
+    transition: filter .2s ease;
+
+    .arrow-wrapper:hover & {
+        filter: brightness(0) saturate(100%) invert(52%) sepia(75%) saturate(726%) hue-rotate(338deg) brightness(98%) contrast(96%);
+    }
+}
+
+
+.bounce-arrow {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+@keyframes jumpSquash {
+    0% {
+        transform: translateY(0) scaleX(1) scaleY(1);
+    }
+
+    35% {
+        transform: translateY(-18px) scaleX(1) scaleY(1);
+    }
+
+    80% {
+        transform: translateY(0) scaleX(1) scaleY(0.78);
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bounce-arrow {
+        animation: none;
     }
 }
