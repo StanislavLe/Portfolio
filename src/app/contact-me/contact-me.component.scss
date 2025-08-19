@@ -6,12 +6,22 @@
     background-color: #1D1D1D;
     gap: 84px;
     max-width: 1900px;
+    padding-right: 72px;
 
-    div {
+    .agreement {
+        color: #F8F7E5;
+        font-size: 16px;
+        font-family: 'quicksandBook';
+        line-height: 120%;
+        flex-direction: row;
         display: flex;
-        flex-direction: column;
-        align-items: start;
+
+        a {
+            padding-right: 4px;
+            padding-left: 4px;
+        }
     }
+
 }
 
 .contact-header {
@@ -20,7 +30,8 @@
     align-items: start;
     justify-content: space-between;
     width: 100%;
-    padding-top: 243px;
+    padding-top: 330px;
+    max-width: 1900px;
 }
 
 h1 {
@@ -33,7 +44,7 @@ h1 {
 }
 
 .text-content {
-    width: 736px;
+    width: 50%;
     height: 382px;
     display: flex;
     flex-direction: column;
@@ -57,7 +68,7 @@ h1 {
 
 
 .contact-form {
-    width: 600px;
+    width: 50%;
     height: 382px;
     display: flex;
     flex-direction: column;
@@ -211,12 +222,7 @@ h1 {
     flex-direction: row-reverse;
 }
 
-.agreement {
-    color: #F8F7E5;
-    font-size: 16px;
-    font-family: 'quicksandBook';
-    line-height: 120%;
-}
+
 
 .form-group {
     display: flex;
@@ -245,7 +251,7 @@ h1 {
         -moz-animation: spin 10s linear infinite;
         animation: spin 10s linear infinite;
         position: relative;
-        top: 206px;
+        bottom: 124px;
         right: 229px;
     }
 
@@ -255,8 +261,8 @@ h1 {
         -moz-animation: spin-reverse 10s linear infinite;
         animation: spin-reverse 10s linear infinite;
         position: relative;
-        top: 165px;
-        right: 274px;
+        bottom: 136px;
+        right: 288px;
     }
 }
 
@@ -273,9 +279,6 @@ h1 {
     font-family: 'quicksandBook';
     color: #F8F7E5;
     width: 100%;
-    text-align: center;
-    position: relative;
-    top: 200px;
 }
 
 .footer-links {
@@ -284,8 +287,6 @@ h1 {
     align-items: center;
     width: 100%;
     gap: 20px;
-    position: relative;
-    top: 200px;
 
     a {
         color: #F8F7E5;
