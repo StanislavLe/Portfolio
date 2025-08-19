@@ -6,11 +6,19 @@
   max-width: 100%;
 }
 
+.sidenavSpacerInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 60%;
+}
+
 .sidenavSpacer {
-  max-width: 2064px;
+  max-width: 1946px;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -114,8 +122,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 0 auto; // ZENTRIERT!
-  transition: margin 0.6s cubic-bezier(.4, 0, .2, 1), transform 0.6s cubic-bezier(.4, 0, .2, 1);
+  transition: margin 0.6s cubic-bezier(.4, 0, .2, 1),
+    transform 0.6s cubic-bezier(.4, 0, .2, 1);
 
   img {
     width: 100px;
@@ -129,29 +137,48 @@
 }
 
 
-.sidenavContainer.about .mainToolbar .logoHeader {
-  margin: 0;
-  transform: translateX(-720px);
+.sidenavContainer.about .mainToolbar .sidenavSpacerInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-direction: row-reverse;
 }
 
-.sidenavContainer.skills .mainToolbar .logoHeader {
-  margin: 0;
-  transform: translateX(-720px);
+.sidenavContainer.skills .mainToolbar .sidenavSpacerInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-direction: row-reverse;
+
 }
 
-.sidenavContainer.contact .mainToolbar .logoHeader {
-  margin: 0;
-  transform: translateX(-720px);
+.sidenavContainer.contact .mainToolbar .sidenavSpacerInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-direction: row-reverse;
+
 }
 
-.sidenavContainer.portfolio .mainToolbar .logoHeader {
-  margin: 0;
-  transform: translateX(-720px);
+.sidenavContainer.portfolio .mainToolbar .sidenavSpacerInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-direction: row-reverse;
+
 }
 
-.sidenavContainer.references .mainToolbar .logoHeader {
-  margin: 0;
-  transform: translateX(-720px);
+.sidenavContainer.references .mainToolbar .sidenavSpacerInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-direction: row-reverse;
+
 }
 
 .settings {
@@ -231,7 +258,7 @@
 
 
 .mat-drawer.mat-drawer-end {
-  right: 38px;
+  right: 154px;
 }
 
 .sidenavHeader {
