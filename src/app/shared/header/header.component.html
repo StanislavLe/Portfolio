@@ -1,9 +1,6 @@
 <mat-sidenav-container [ngClass]="currentSection" class="sidenavContainer">
   <!-- Sidenav rechts -->
-  <mat-sidenav #sidenav
-               class="sidenav"
-               mode="over"
-               position="end">
+  <mat-sidenav #sidenav class="sidenav" mode="over" position="end">
     <div class="sidenavHeader">
       <span>Menu</span>
       <button mat-icon-button class="close-btn" (click)="sidenav.close()">
@@ -21,20 +18,24 @@
 
   <!-- Toolbar -->
   <mat-toolbar class="mainToolbar">
-    <div class="socialLinks">
-      <img src="assets/icons/githubIcon.png" alt="GitHub" />
-      <img src="assets/icons/linkedInIcon.png" alt="LinkedIn" />
-      <img src="assets/icons/emailIcon.png" alt="E-Mail" />
+    <div class="sidenavSpacer">
+
+      <div class="socialLinks">
+        <img src="assets/icons/githubIcon.png" alt="GitHub" />
+        <img src="assets/icons/linkedInIcon.png" alt="LinkedIn" />
+        <img src="assets/icons/emailIcon.png" alt="E-Mail" />
+      </div>
+      <div class="logoHeader">
+        <img src="assets/img/logo.png" alt="Logo" />
+        <span>Stanislav Levin</span>
+      </div>
+      <div class="settings">
+        <button mat-button class="languageButton">EN</button>
+        <button mat-icon-button class="sidenav-btn" (click)="sidenav.toggle()" disableRipple>
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
     </div>
-    <div class="logoHeader">
-      <img src="assets/img/logo.png" alt="Logo" />
-      <span>Stanislav Levin</span>
-    </div>
-    <div class="settings">
-      <button mat-button class="languageButton">EN</button>
-      <button mat-icon-button class="sidenav-btn" (click)="sidenav.toggle()" disableRipple>
-        <mat-icon>menu</mat-icon>
-      </button>
-    </div>
+
   </mat-toolbar>
 </mat-sidenav-container>

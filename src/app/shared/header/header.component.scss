@@ -3,10 +3,16 @@
 }
 
 .sidenavContainer.hero .mainToolbar {
-  max-width: 2062px;
+  max-width: 100%;
 }
 
-
+.sidenavSpacer {
+  max-width: 2064px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .mainToolbar {
   position: fixed;
@@ -24,35 +30,35 @@
 .sidenavContainer.about .mainToolbar {
   background: #F8F7E5;
   color: #679AAC;
-  max-width: 2062px;
+  max-width: 100%;
 
 }
 
 .sidenavContainer.skills .mainToolbar {
   background: #1D1D1D;
   color: #F8F7E5;
-  max-width: 2062px;
+  max-width: 100%;
 
 }
 
 .sidenavContainer.contact .mainToolbar {
   background: #1D1D1D;
   color: #F8F7E5;
-  max-width: 2062px;
+  max-width: 100%;
 
 }
 
 .sidenavContainer.portfolio .mainToolbar {
   background: #F8F7E5;
   color: #679AAC;
-  max-width: 2062px;
+  max-width: 100%;
 
 }
 
 .sidenavContainer.references .mainToolbar {
   color: #F8F7E5;
   background: #679AAC;
-  max-width: 2062px;
+  max-width: 100%;
 }
 
 .socialLinks {
@@ -321,4 +327,8 @@
   backdrop-filter: none !important;
   opacity: 0 !important;
   pointer-events: none !important; // Jetzt kann man auf den Main-Content klicken!
+}
+
+sidenav-content {
+  max-width: 1900px;
 }
