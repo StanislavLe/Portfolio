@@ -1,27 +1,45 @@
+.main-content {
+  height: 100vh;
+  width: 92vw;
+  font-family: 'eczarRegular';
+  display: flex;
+  flex-direction: column;
+  padding-top: 170px;
+  max-width: 1900px;
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+
 h1 {
-    font-family: 'eczarBold';
-    font-size: 72px;
+  font-family: 'eczarBold';
+  font-size: 72px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1900px;
 }
 
 .comments {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: flex-start;
   flex-direction: row;
-  width: 1210px;
+  width: 100%;
   gap: 32px;
   height: 472px;
   margin-top: 72px;
 }
 
-.comments > app-colleague-comment:nth-child(1) {
+.comments>app-colleague-comment:nth-child(1) {
   align-self: flex-start;
 }
 
-.comments > app-colleague-comment:nth-child(2) {
+.comments>app-colleague-comment:nth-child(2) {
   align-self: center;
 }
 
-.comments > app-colleague-comment:nth-child(3) {
+.comments>app-colleague-comment:nth-child(3) {
   align-self: flex-end;
 }

@@ -8,6 +8,8 @@
   height: 100vh;
   overflow: hidden;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .pager-section {
@@ -21,10 +23,15 @@
   background: #679aac;
   color: #fff;
   max-width: 100%;
-  padding: 60px;
-  padding-left: 112px;
   position: relative;
 }
+
+.pager-section#hero {
+  max-width: 100%;
+  padding: 60px;
+  padding-left: 112px;
+}
+
 
 .pager-section#about {
   background: #F8F7E5;
@@ -66,15 +73,16 @@
 .dot-nav {
   position: fixed;
   top: 50%;
+  right: 0; /* an den rechten Rand pinnen */
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: end;
+  align-items: flex-end;
   gap: 24px;
-  width: 100%;
-  padding: 82px;
-  max-width: 2074px;
+  padding: 20px; 
+  padding-right: 81px;
+  max-width: 1900px;
 }
 
 .dot {
