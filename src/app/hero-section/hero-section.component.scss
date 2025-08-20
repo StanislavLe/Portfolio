@@ -5,23 +5,23 @@
     flex-direction: row;
     height: 100vh;
     max-width: 1800px;
+    width: 100%;
 }
 
 
 .hero-image {
-    width: 610px;
+    width: 57%;
     position: relative;
-    top: 71px;
-    right: 0px;
+    top: 316px;
     z-index: 2;
 }
 
 .orange-star {
     width: 500px;
     position: relative;
-    bottom: 24px;
-    right: 289px;
     z-index: 1;
+    left: 214px;
+    bottom: 362px;
 }
 
 .greeting {
@@ -29,8 +29,8 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 52px;
-    width: 500px;
     height: 586px;
+    width: 100%;
     z-index: 2;
 }
 
