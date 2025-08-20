@@ -1,47 +1,40 @@
 <div class="project-card">
-
-  <div class="img-container" [ngStyle]="{'background-color': color}">
+  <div class="img-container" [ngStyle]="{ 'background-color': color }">
     <img class="project-preview" [src]="imageUrl" [alt]="title" />
-    <img class="orange-star" src="assets/img/Component 11.png">
+    <img class="orange-star" src="assets/img/Component 11.png" />
   </div>
 
   <div>
     <div class="project-details">
-
       <div class="project-info">
         <div class="infoHeader">
           <h3>{{ title }}</h3>
-          <img class="infoIcon" *ngIf="iconUrl" [src]="iconUrl">
-
+          <img class="infoIcon" *ngIf="iconUrl" [src]="iconUrl" alt="" />
           <div class="hoverInfo">
             <span>{{ hoverInfo }}</span>
           </div>
-
         </div>
 
         <div class="skills">
-          <p *ngFor="let skill of skillset">{{ skill }}</p>
+          <p *ngFor="let skill of skillset; trackBy: trackBySkill">{{ skill }}</p>
         </div>
 
         <p>{{ description }}</p>
       </div>
 
-
-
       <div class="project-links">
-        <button class="linkBtn"><a *ngIf="projectLink" [href]="projectLink" target="_blank">LiveTest</a><img
-            src="assets/img/8. Scroll down.png"></button>
-        <button class="linkBtn"><a *ngIf="gitHubLink" [href]="gitHubLink" target="_blank">GitHub</a><img
-            src="assets/img/8. Scroll down.png"></button>
+        <a class="linkBtn" *ngIf="projectLink" [href]="projectLink" target="_blank" rel="noopener">
+          LiveTest <img src="assets/img/8. Scroll down.png" alt="" />
+        </a>
+        <a class="linkBtn" *ngIf="gitHubLink" [href]="gitHubLink" target="_blank" rel="noopener">
+          GitHub <img src="assets/img/8. Scroll down.png" alt="" />
+        </a>
       </div>
-
-
     </div>
 
-    
-
-
+    <div class="navigation">
+      <button type="button" (click)="onPrev()">Previous project</button>
+      <button type="button" (click)="onNext()">Next project</button>
+    </div>
   </div>
-
-
 </div>

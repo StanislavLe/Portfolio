@@ -3,8 +3,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  max-width: 1460px;
+  gap: 50px;
+  width: 87%;
 }
 
 .project-info {
@@ -23,7 +23,7 @@
 
 .project-details {
   background-color: #1D1D1D;
-  width: 688px;
+  width: 100%;
   height: 422px;
   display: flex;
   flex-direction: column;
@@ -48,6 +48,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
 
   &:hover {
     background-color: #FF834F;
@@ -101,7 +102,7 @@
 }
 
 .img-container {
-  width: 488px;
+  width: 70%;
   height: 488px;
   display: flex;
   justify-content: center;
@@ -175,4 +176,23 @@ h3 {
   pointer-events: auto;
   transform: translate(-50%, -80px);
   right: -139px;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+
+    button {
+        border-style: none;
+        color: #1D1D1D;
+        font-family: 'QuicksandBold';
+        font-size: 18px;
+        background-color: transparent;
+
+        &:hover {
+            color: #FF834F;
+        }
+    }
 }

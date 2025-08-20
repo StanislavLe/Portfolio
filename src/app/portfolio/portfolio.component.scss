@@ -6,6 +6,15 @@
     display: flex;
     flex-direction: column;
     padding-top: 170px;
+  padding-left: 112px;
+}
+
+.project-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: 1900px;
 }
 
 h1 {
@@ -32,23 +41,3 @@ h1 {
     }
 }
 
-.navigation {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    flex-direction: row;
-    width: 1468px;
-    gap: 427px;
-
-    button {
-        border-style: none;
-        color: #1D1D1D;
-        font-family: 'QuicksandBold';
-        font-size: 18px;
-        background-color: transparent;
-
-        &:hover {
-            color: #FF834F;
-        }
-    }
-}

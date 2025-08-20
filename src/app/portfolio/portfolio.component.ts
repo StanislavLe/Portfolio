@@ -1,13 +1,23 @@
 import { Component } from '@angular/core';
-import { NgFor } from '@angular/common';
 import { ProjectComponent } from './project/project.component';
 import { trigger, style, animate, transition } from '@angular/animations';
 
+type Project = {
+  title: string;
+  description: string;
+  imageUrl: string;
+  projectLink?: string;
+  gitHubLink?: string;
+  color: string;
+  iconUrl?: string;
+  skillset: string[];
+  hoverInfo: string;
+};
 
 @Component({
   selector: 'app-portfolio',
   standalone: true,
-  imports: [NgFor, ProjectComponent],
+  imports: [ProjectComponent],
   templateUrl: './portfolio.component.html',
   styleUrl: './portfolio.component.scss',
   animations: [
@@ -23,13 +33,11 @@ import { trigger, style, animate, transition } from '@angular/animations';
     ])
   ]
 })
-
-
 export class PortfolioComponent {
-  projects = [
+  projects: Project[] = [
     {
       title: 'JOIN',
-      description: 'Task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories. ',
+      description: 'Task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories.',
       imageUrl: 'assets/img/JOIN-SC.png',
       projectLink: 'https://join-386.developerakademie.net/Join/index.html',
       gitHubLink: 'https://github.com/SilverBlure/Join',
@@ -40,7 +48,7 @@ export class PortfolioComponent {
     },
     {
       title: 'SHARKY',
-      description: 'A simple Jump-n-Run ggame based on an object-oriented approach. The player controls Sharky and helps him to collect coins while avoiding and fighting against enemies.',
+      description: 'A simple Jump-n-Run game based on an object-oriented approach. The player controls Sharky and helps him to collect coins while avoiding and fighting against enemies.',
       imageUrl: 'assets/img/SHARKY-SC.png',
       projectLink: 'https://stanislav-levin.developerakademie.net/SHARKY/index.html',
       gitHubLink: 'https://github.com/StanislavLe/Sharky',
@@ -53,10 +61,10 @@ export class PortfolioComponent {
 
   currentIndex = 0;
 
-  get current() {
+  get current(): Project {
     return this.projects[this.currentIndex];
   }
-  
+
   prevProject() {
     if (!this.projects.length) return;
     this.currentIndex = (this.currentIndex - 1 + this.projects.length) % this.projects.length;
