@@ -3,18 +3,19 @@
     something Cool
     together!</h1>
   <div class="arrow-wrapper">
-    <img src="assets/icons/arrow2.png" alt="Back to top" class="bounce-arrow" />
+    <img src="assets/icons/arrow2.png" alt="Back to top" class="bounce-arrow"
+    (click)="scrollToTop.emit()">
   </div>
 </div>
 <div class="main-content">
-    <div class="text-content">
-      <div>
-        <h2>Got a problem to solve?</h2>
-        <span>Encourage people to contact you and describe what role
-          you are interested in. Show that you will add
-          value to their projects through your work. </span>
-      </div>
+  <div class="text-content">
+    <div>
+      <h2>Got a problem to solve?</h2>
+      <span>Encourage people to contact you and describe what role
+        you are interested in. Show that you will add
+        value to their projects through your work. </span>
     </div>
+  </div>
 
 
   <div class="contact-form">
@@ -23,7 +24,7 @@
         <div class="form-group">
           <label for="name">What`s your name?</label>
           <input #name="ngModel" [(ngModel)]="contactData.name" name="name" id="name" type="text" required
-            pattern="^[A-Za-zÀ-ž\- ]{2,}$"
+            pattern="^[A-Za-zÀ-ž\- ]{2,}$" autocomplete="off"
             [placeholder]="(name.invalid && name.touched) ? 'Please enter a valid name' : 'Your name goes here'"
             [class.is-error]="name.invalid && name.touched" [class.is-error-name]="name.invalid && name.touched"
             (blur)="name.invalid ? (contactData.name='') : null">
@@ -32,7 +33,7 @@
         <div class="form-group">
           <label for="email">What's your email?</label>
           <input #email="ngModel" [(ngModel)]="contactData.email" name="email" id="email" type="email" required
-            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" autocomplete="off"
             [placeholder]="(email.invalid && email.touched) ? 'Please enter a valid email' : 'youremail@email.com'"
             [class.is-error]="email.invalid && email.touched" [class.is-error-email]="email.invalid && email.touched"
             (blur)="email.invalid ? (contactData.email='') : null">
@@ -44,7 +45,7 @@
         <textarea #message="ngModel" [(ngModel)]="contactData.message" name="message" id="message" rows="2" required
           minlength="4"
           [placeholder]="(message.invalid && message.touched) ? 'Please enter a message (min. 4 characters)' : 'Hello Stanislav, I am interested in...'"
-          [class.is-error]="message.invalid && message.touched"
+          [class.is-error]="message.invalid && message.touched" autocomplete="off"
           [class.is-error-message]="message.invalid && message.touched"
           (blur)="message.invalid ? (contactData.message='') : null"></textarea>
       </div>

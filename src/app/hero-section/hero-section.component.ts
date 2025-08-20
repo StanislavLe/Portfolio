@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 
@@ -10,5 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './hero-section.component.scss'
 })
 export class HeroSectionComponent {
+
+@Output() scrollToBottom = new EventEmitter<void>();
+
 
 }
