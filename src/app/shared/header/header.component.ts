@@ -25,6 +25,19 @@ import { CommonModule } from '@angular/common';
 
 export class HeaderComponent {
   @Input() currentSection: string = '';
+
+  languages = ['de', 'en', 'ru'];
+  currentLanguage = 'de';
+  justClicked = false;
+
+  cycleLanguage() {
+    const currentIndex = this.languages.indexOf(this.currentLanguage);
+    const nextIndex = (currentIndex + 1) % this.languages.length;
+    this.currentLanguage = this.languages[nextIndex];
+    this.justClicked = true;
+    setTimeout(() => this.justClicked = false, 150); 
+  }
+
 }
 
 

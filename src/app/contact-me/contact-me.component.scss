@@ -20,6 +20,20 @@
             padding-right: 4px;
             padding-left: 4px;
         }
+
+        @media screen and (max-width: 1711px) {
+            flex-direction: column;
+            margin-bottom: 36px;
+
+            p {
+                margin: 0px;
+
+            }
+
+            a {
+                padding: 0px;
+            }
+        }
     }
 
 }

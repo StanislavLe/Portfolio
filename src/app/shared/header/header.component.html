@@ -31,7 +31,14 @@
       </div>
       </div>
       <div class="settings">
-        <button mat-button class="languageButton">EN</button>
+<button
+  mat-button
+  class="languageButton"
+  [class.flash]="justClicked"
+  [class.active]="true" 
+  (click)="cycleLanguage()">
+  {{ currentLanguage.toUpperCase() }}
+</button>
         <button mat-icon-button class="sidenav-btn" (click)="sidenav.toggle()" disableRipple>
           <mat-icon>menu</mat-icon>
         </button>

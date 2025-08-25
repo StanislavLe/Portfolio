@@ -2,8 +2,9 @@
   display: block;
 }
 
-.sidenavContainer.hero .mainToolbar {
-  max-width: 100%;
+.sidenavContainer {
+  max-width: 1990px;
+
 }
 
 .sidenavSpacerInner {
@@ -25,14 +26,15 @@
 .mainToolbar {
   position: fixed;
   width: 100%;
-  max-width: 1900px;
+  max-width: 1990px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 50px 60px;
   height: 64px;
   z-index: 1;
   background-color: #679AAC;
+  padding: 50px 60px 50px 60px;
+
 }
 
 .sidenavContainer.about .mainToolbar {
@@ -206,7 +208,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: unset !important; // Material-Override
+  min-width: unset !important;
   font-size: 18px;
   font-family: 'quicksandBold';
   transition: background 0.1s, color 0.1s, border-color 0.1s;
@@ -222,10 +224,7 @@
   color: #1D1D1D !important;
 }
 
-.languageButton:hover,
-.languageButton:active,
-.languageButton:focus,
-.languageButton:focus-visible {
+.languageButton:hover {
   background: #FF834F !important;
   outline: none !important;
   box-shadow: none !important;
@@ -236,6 +235,13 @@
   box-shadow: none !important;
   opacity: 0 !important;
 }
+
+.languageButton.flash {
+  background: #FF834F !important;
+  border-color: #FF834F !important;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
 
 
 .sidenav {
@@ -258,8 +264,9 @@
 
 
 .mat-drawer.mat-drawer-end {
-  right: 154px;
+  right: 44px;
 }
+
 
 .sidenavHeader {
   display: flex;
