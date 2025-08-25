@@ -30,6 +30,7 @@
   justify-content: center;
   align-items: start;
   padding: 20px 24px;
+  max-width: 1144px;
 }
 
 .linkBtn {
@@ -96,9 +97,10 @@
 }
 
 .project-preview {
-  width: 413px;
+  max-width: 413px;
   position: absolute;
   z-index: 1;
+  width: 24%;
 }
 
 .img-container {
@@ -179,20 +181,20 @@ h3 {
 }
 
 .navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
 
-    button {
-        border-style: none;
-        color: #1D1D1D;
-        font-family: 'QuicksandBold';
-        font-size: 18px;
-        background-color: transparent;
+  button {
+    border-style: none;
+    color: #1D1D1D;
+    font-family: 'QuicksandBold';
+    font-size: 18px;
+    background-color: transparent;
 
-        &:hover {
-            color: #FF834F;
-        }
+    &:hover {
+      color: #FF834F;
     }
+  }
 }

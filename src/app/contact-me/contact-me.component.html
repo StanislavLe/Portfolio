@@ -3,8 +3,7 @@
     something Cool
     together!</h1>
   <div class="arrow-wrapper">
-    <img src="assets/icons/arrow2.png" alt="Back to top" class="bounce-arrow"
-    (click)="scrollToTop.emit()">
+    <img src="assets/icons/arrow2.png" alt="Back to top" class="bounce-arrow" (click)="scrollToTop.emit()">
   </div>
 </div>
 <div class="main-content">
@@ -52,7 +51,8 @@
 
       <div class="agreement-group">
         <div class="agreement">
-          I've read the <a href="">privacy policy</a> and agree to the processing of my data.
+          <p>I've read the</p> <a href="">privacy policy</a>
+          <p>and agree to the processing of my data.</p>
         </div>
         <input type="checkbox" id="agreementbox" name="agreement" required>
       </div>
