@@ -1,6 +1,10 @@
-import { Component, ViewChildren, QueryList, ElementRef, AfterViewInit, HostListener, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChildren, QueryList, ElementRef, AfterViewInit, HostListener, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 
+// Zentrale Config
+import { SECTIONS } from '../sections.config';
+
+// Deine Section Components (alle Standalone!)
 import { HeroSectionComponent } from '../../hero-section/hero-section.component';
 import { AboutMeComponent } from '../../about-me/about-me.component';
 import { SkillsetComponent } from '../../skillset/skillset.component';
@@ -13,6 +17,7 @@ import { ContactMeComponent } from '../../contact-me/contact-me.component';
   standalone: true,
   imports: [
     NgFor,
+    NgIf,
     NgSwitch,
     NgSwitchCase,
     HeroSectionComponent,
@@ -20,30 +25,32 @@ import { ContactMeComponent } from '../../contact-me/contact-me.component';
     SkillsetComponent,
     PortfolioComponent,
     ReferencesComponent,
-    ContactMeComponent,
-    NgIf
+    ContactMeComponent
   ],
   templateUrl: './section-pager.component.html',
   styleUrl: './section-pager.component.scss'
 })
-export class SectionPagerComponent implements AfterViewInit {
-  sections = [
-    { id: 'hero', label: 'Hero' },
-    { id: 'about', label: 'About Me' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'portfolio', label: 'Portfolio' },
-    { id: 'references', label: 'References' },
-    { id: 'contact', label: 'Contact' }
-  ];
+export class SectionPagerComponent implements AfterViewInit, OnChanges {
+  sections = SECTIONS;
 
   @ViewChildren('sectionRef') sectionRefs!: QueryList<ElementRef>;
+  @Input() currentSection: string = 'hero';
+  @Output() sectionChanged = new EventEmitter<string>();
+
   currentSectionIndex = 0;
   isScrolling = false;
 
-  @Output() sectionChanged = new EventEmitter<string>();
-
   ngAfterViewInit() {
     this.scrollToSection(0);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['currentSection']) {
+      const idx = this.sections.findIndex(s => s.id === this.currentSection);
+      if (idx >= 0 && idx !== this.currentSectionIndex) {
+        this.currentSectionIndex = idx;
+      }
+    }
   }
 
   @HostListener('wheel', ['$event'])

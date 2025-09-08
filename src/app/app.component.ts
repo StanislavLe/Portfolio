@@ -1,30 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+
+// deine eigenen Components
 import { SectionPagerComponent } from './shared/section-pager/section-pager.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { HeroSectionComponent } from './hero-section/hero-section.component';
-import { AboutMeComponent } from './about-me/about-me.component';
-import { ContactMeComponent } from './contact-me/contact-me.component';
-import { PortfolioComponent } from './portfolio/portfolio.component';
-import { ReferencesComponent } from './references/references.component';
-import { SkillsetComponent } from './skillset/skillset.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, SectionPagerComponent, HeaderComponent, SkillsetComponent, HeroSectionComponent, ReferencesComponent, RouterOutlet, AboutMeComponent, ContactMeComponent, PortfolioComponent],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    SectionPagerComponent,
+    HeaderComponent
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'Stanislav Levin';
-
   currentSection: string = 'hero';
 
- onSectionChanged(sectionId: string) {
-  console.log('Section gewechselt zu:', sectionId);
-  this.currentSection = sectionId;
-}
+  @ViewChild('pager') pager!: SectionPagerComponent;
 
+  onSectionChanged(sectionId: string) {
+    this.currentSection = sectionId;
+  }
+
+  onHeaderSectionSelected(sectionId: string) {
+    const index = this.pager.sections.findIndex(s => s.id === sectionId);
+    if (index >= 0) {
+      this.pager.scrollToSection(index);
+    }
+  }
 }
