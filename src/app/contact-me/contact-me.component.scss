@@ -8,34 +8,6 @@
     max-width: 1900px;
     padding-right: 72px;
 
-    .agreement {
-        color: #F8F7E5;
-        font-size: 16px;
-        font-family: 'quicksandBook';
-        line-height: 120%;
-        flex-direction: row;
-        display: flex;
-
-        a {
-            padding-right: 4px;
-            padding-left: 4px;
-        }
-
-        @media screen and (max-width: 1711px) {
-            flex-direction: column;
-            margin-bottom: 36px;
-
-            p {
-                margin: 0px;
-
-            }
-
-            a {
-                padding: 0px;
-            }
-        }
-    }
-
 }
 
 .contact-header {
@@ -229,11 +201,49 @@ h1 {
             }
         }
     }
+
+
+    .agreement {
+        color: #F8F7E5;
+        font-size: 16px;
+        font-family: 'quicksandBook';
+        line-height: 120%;
+        flex-direction: row;
+        display: flex;
+        width: 1000px !important;
+
+        p {
+            margin: 0 0 20px;
+
+        }
+
+        a {
+            padding-right: 4px;
+            padding-left: 4px;
+        }
+
+        @media screen and (max-width: 1711px) {
+            flex-direction: column;
+            margin-bottom: 20px;
+
+            p {
+                margin: 0px;
+
+            }
+
+            a {
+                padding: 0px;
+            }
+        }
+    }
+
 }
 
 .agreement-group {
     display: flex;
     flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -251,7 +261,7 @@ h1 {
     height: 100px;
     background-color: #1D1D1D;
     display: flex;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
     color: #F8F7E5;
     font-size: 16px;
@@ -260,25 +270,30 @@ h1 {
     max-width: 1900px;
 
     img:first-of-type {
-        width: 180px;
+        max-width: 180px;
+        width: 60%;
         -webkit-animation: spin 10s linear infinite;
         -moz-animation: spin 10s linear infinite;
         animation: spin 10s linear infinite;
         position: absolute;
-        top: 571px;
-        left: 74px;
+        bottom: 53px;
+        left: 117px;
     }
 
     img:nth-of-type(2) {
-        width: 263px;
+        max-width: 263px;
+        width: 65%;
         -webkit-animation: spin-reverse 10s linear infinite;
         -moz-animation: spin-reverse 10s linear infinite;
         animation: spin-reverse 10s linear infinite;
         position: absolute;
-        top: 510px;
-        left: 188px;
+        bottom: 52px;
+        left: 255px;
     }
 }
+
+
+
 
 .footer-content {
     display: flex;
