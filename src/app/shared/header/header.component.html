@@ -1,4 +1,5 @@
-<mat-sidenav-container [ngClass]="currentSection" class="sidenavContainer">
+<mat-sidenav-container   [ngClass]="isLegalPage ? 'contact' : currentSection" 
+ class="sidenavContainer">
 
   <mat-sidenav #sidenav class="sidenav" mode="over" position="end">
     <div class="sidenavHeader">

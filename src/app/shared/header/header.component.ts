@@ -6,8 +6,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { SECTIONS } from '../sections.config';
-import { Router } from '@angular/router';
-import { RouterModule } from '@angular/router';
+import { Router, NavigationEnd, RouterModule } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -34,7 +34,17 @@ export class HeaderComponent {
   currentLanguage = 'de';
   justClicked = false;
 
-  constructor(private router: Router) {}
+  // Extra state für Impressum / Privacy
+  isLegalPage = false;
+
+  constructor(private router: Router) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        const url = (event as NavigationEnd).urlAfterRedirects;
+        this.isLegalPage = url.startsWith('/impressum') || url.startsWith('/privacy-policy');
+      });
+  }
 
   cycleLanguage() {
     const currentIndex = this.languages.indexOf(this.currentLanguage);
@@ -44,12 +54,11 @@ export class HeaderComponent {
     setTimeout(() => this.justClicked = false, 150);
   }
 
-navigateTo(sectionId: string) {
-  if (!this.router.url.startsWith('/home')) {
-    this.router.navigate(['/home'], { queryParams: { section: sectionId } });
-  } else {
-    this.sectionSelected.emit(sectionId);
+  navigateTo(sectionId: string) {
+    if (!this.router.url.startsWith('/home')) {
+      this.router.navigate(['/home'], { queryParams: { section: sectionId } });
+    } else {
+      this.sectionSelected.emit(sectionId);
+    }
   }
-}
-
 }
