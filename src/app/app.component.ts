@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, Router } from '@angular/router';
+import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { HeaderComponent } from './shared/header/header.component';
 import { HomeComponent } from './home/home.component';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,17 @@ export class AppComponent {
   currentSection: string = 'hero';
   private homeInstance?: HomeComponent;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    // 👇 Scroll-to-top nur für Impressum & Privacy Policy
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        const url = event.urlAfterRedirects;
+        if (url.startsWith('/impressum') || url.startsWith('/privacy-policy')) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+  }
 
   onActivate(component: any) {
     if (component instanceof HomeComponent) {
@@ -40,21 +51,19 @@ export class AppComponent {
     }
   }
 
-onHeaderSectionSelected(sectionId: string) {
-  if (this.router.url.startsWith('/home')) {
-    if (this.homeInstance) {
-      this.homeInstance.scrollTo(sectionId);
+  onHeaderSectionSelected(sectionId: string) {
+    if (this.router.url.startsWith('/home')) {
+      if (this.homeInstance) {
+        this.homeInstance.scrollTo(sectionId);
+      }
+    } else {
+      this.router.navigate(['/home'], { queryParams: { section: sectionId } }).then(() => {
+        setTimeout(() => {
+          if (this.homeInstance) {
+            this.homeInstance.scrollTo(sectionId);
+          }
+        }, 300); 
+      });
     }
-  } else {
-    this.router.navigate(['/home'], { queryParams: { section: sectionId } }).then(() => {
-      setTimeout(() => {
-        if (this.homeInstance) {
-          this.homeInstance.scrollTo(sectionId);
-        }
-      }, 300); 
-    });
   }
-}
-
-
 }

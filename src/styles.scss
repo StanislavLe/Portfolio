@@ -129,3 +129,19 @@ html, body {
     }
 }
 
+/* ========== Chrome, Safari, Edge ========== */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+/* ========== Firefox ========== */
+html, body {
+  scrollbar-width: none;  /* keine Scrollbar */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+html::-webkit-scrollbar, 
+body::-webkit-scrollbar {
+  display: none;
+}
