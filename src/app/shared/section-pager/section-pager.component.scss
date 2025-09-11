@@ -5,16 +5,17 @@
 
 .pager-container {
   position: absolute;
-  height: 100vh;
+  overflow-y: auto;
   overflow: hidden;
   width: 100%;
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
 .pager-section {
+    height: 100vh;
   width: 100%;
-  height: 100vh;
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
@@ -67,14 +68,15 @@
 .dot-nav {
   position: fixed;
   top: 50%;
-  right: 0; /* an den rechten Rand pinnen */
+  right: 0;
+  /* an den rechten Rand pinnen */
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
   gap: 24px;
-  padding: 20px; 
+  padding: 20px;
   padding-right: 81px;
   max-width: 1900px;
 }

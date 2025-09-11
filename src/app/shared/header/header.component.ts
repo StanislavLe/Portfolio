@@ -6,6 +6,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { SECTIONS } from '../sections.config';
+import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +18,8 @@ import { SECTIONS } from '../sections.config';
     MatIconModule,
     MatListModule,
     MatButtonModule,
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -31,6 +34,8 @@ export class HeaderComponent {
   currentLanguage = 'de';
   justClicked = false;
 
+  constructor(private router: Router) {}
+
   cycleLanguage() {
     const currentIndex = this.languages.indexOf(this.currentLanguage);
     const nextIndex = (currentIndex + 1) % this.languages.length;
@@ -39,7 +44,12 @@ export class HeaderComponent {
     setTimeout(() => this.justClicked = false, 150);
   }
 
-  navigateTo(sectionId: string) {
+navigateTo(sectionId: string) {
+  if (!this.router.url.startsWith('/home')) {
+    this.router.navigate(['/home'], { queryParams: { section: sectionId } });
+  } else {
     this.sectionSelected.emit(sectionId);
   }
+}
+
 }

@@ -1,12 +1,13 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';      // ⬅️ wichtig für ngForm & ngModel
 import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
+import { RouterModule } from '@angular/router'; // ✅ wichtig für routerLink
 
 
 @Component({
   selector: 'app-contact-me',
   standalone: true,
-  imports: [FormsModule, NgFor, NgSwitch, NgSwitchCase, NgIf],
+  imports: [FormsModule, NgFor, NgSwitch, NgSwitchCase, NgIf, RouterModule],
   templateUrl: './contact-me.component.html',
   styleUrl: './contact-me.component.scss'
 })
@@ -27,7 +28,7 @@ export class ContactMeComponent {
     };
   }
 
-@Output() scrollToTop = new EventEmitter<void>();
+  @Output() scrollToTop = new EventEmitter<void>();
 
 
 

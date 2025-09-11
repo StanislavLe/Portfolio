@@ -4,7 +4,6 @@
 
 .sidenavContainer {
   max-width: 1990px;
-
 }
 
 .sidenavSpacerInner {
@@ -26,7 +25,7 @@
 .mainToolbar {
   position: fixed;
   width: 100%;
-  max-width: 1990px;
+  max-width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -62,7 +61,6 @@
   background: #F8F7E5;
   color: #679AAC;
   max-width: 100%;
-
 }
 
 .sidenavContainer.references .mainToolbar {
@@ -187,6 +185,7 @@
   display: flex;
   align-items: center;
   gap: 15px;
+  padding-right: 68px;
 
   span {
     font-family: 'quicksandBold';
@@ -245,7 +244,7 @@
 
 
 .sidenav {
-  top: 9px;
+  top: 12px;
   right: 20px;
   width: 208px !important;
   height: 222px;
@@ -256,7 +255,6 @@
 
 
 .sidenavContainer {
-  height: 250px;
   width: 100%;
   background-color: transparent !important;
   z-index: 1000;
@@ -264,8 +262,11 @@
 
 
 .mat-drawer.mat-drawer-end {
-  right: 44px;
+  right: 112px;
+    position: fixed;
+
 }
+
 
 
 .sidenavHeader {
@@ -283,6 +284,12 @@
     cursor: pointer;
   }
 }
+
+
+
+
+
+
 
 .navList {
   background: #F8F7E5;
@@ -306,6 +313,41 @@
     font-size: 18px;
   }
 }
+
+
+.nav-item-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  position: relative;
+  right: 18px;
+
+  .nav-icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  span {
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  &:hover .nav-icon {
+    opacity: 1;
+    transform: translateX(20px);
+  }
+
+  &:hover span {
+    transform: translateX(20px);
+    color: #FF834F;
+  }
+}
+
+
 
 
 .sidenav-btn {
@@ -366,3 +408,4 @@
 sidenav-content {
   max-width: 1900px;
 }
+

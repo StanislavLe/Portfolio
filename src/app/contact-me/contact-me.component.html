@@ -1,3 +1,5 @@
+<div class="main-content">
+
 <div class="contact-header">
   <h1>Let's build
     something Cool
@@ -6,7 +8,7 @@
     <img src="assets/icons/arrow2.png" alt="Back to top" class="bounce-arrow" (click)="scrollToTop.emit()">
   </div>
 </div>
-<div class="main-content">
+<div class="contentContainer">
   <div class="text-content">
     <div>
       <h2>Got a problem to solve?</h2>
@@ -51,7 +53,7 @@
 
       <div class="agreement-group">
         <div class="agreement">
-          <p>I've read the</p> <a href="">privacy policy</a>
+          <p>I've read the</p> <a mat-list-item routerLink="/privacy-policy">privacy policy</a>
           <p>and agree to the processing of my data.</p>
         </div>
         <input type="checkbox" id="agreementbox" name="agreement" required>
@@ -71,10 +73,12 @@
       <span>© 2025 Stanislav Levin</span>
     </div>
     <div class="footer-links">
-      <a href="">Impressum</a>
-      <a href="">LinkedIn</a>
-      <a href="">GitHub</a>
-      <a href="">Privacy Policy</a>
+      <a mat-list-item routerLink="/impressum">Impressum</a>
+      <a href="https://www.linkedin.com/in/stanislav-levin-881ab32b5">LinkedIn</a>
+      <a href="https://github.com/StanislavLe">GitHub</a>
+      <a mat-list-item routerLink="/privacy-policy">Privacy Policy</a>
     </div>
   </div>
+</div>
+
 </div>

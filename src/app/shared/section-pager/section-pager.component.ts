@@ -41,17 +41,35 @@ export class SectionPagerComponent implements AfterViewInit, OnChanges {
   isScrolling = false;
 
   ngAfterViewInit() {
-    this.scrollToSection(0);
+    const idx = this.sections.findIndex(s => s.id === this.currentSection);
+    if (idx >= 0) {
+      setTimeout(() => this.scrollToSection(idx));
+    } else {
+      setTimeout(() => this.scrollToSection(0));
+    }
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['currentSection']) {
-      const idx = this.sections.findIndex(s => s.id === this.currentSection);
-      if (idx >= 0 && idx !== this.currentSectionIndex) {
-        this.currentSectionIndex = idx;
+
+ ngOnChanges(changes: SimpleChanges) {
+  if (changes['currentSection']) {
+    const idx = this.sections.findIndex(s => s.id === this.currentSection);
+    if (idx >= 0 && idx !== this.currentSectionIndex) {
+      if (this.sectionRefs && this.sectionRefs.length > 0) {
+        this.scrollToSection(idx);
+      } else {
+        // Falls noch nicht gerendert: nachträglich scrollen
+        setTimeout(() => {
+          if (this.sectionRefs && this.sectionRefs.length > 0) {
+            this.scrollToSection(idx);
+          }
+        });
       }
     }
   }
+}
+
+
+
 
   @HostListener('wheel', ['$event'])
   onWheel(event: WheelEvent) {
@@ -66,12 +84,18 @@ export class SectionPagerComponent implements AfterViewInit, OnChanges {
   }
 
   scrollToSection(index: number) {
+    if (this.isScrolling) return;
+    this.isScrolling = true;
+
     const el = this.sectionRefs.get(index)?.nativeElement;
     if (el && typeof el.scrollIntoView === 'function') {
       el.scrollIntoView({ behavior: 'smooth' });
     }
+
     this.currentSectionIndex = index;
     this.sectionChanged.emit(this.sections[index].id);
+
     setTimeout(() => this.isScrolling = false, 700);
   }
+
 }

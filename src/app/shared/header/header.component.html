@@ -1,5 +1,5 @@
 <mat-sidenav-container [ngClass]="currentSection" class="sidenavContainer">
-  <!-- Sidenav rechts -->
+
   <mat-sidenav #sidenav class="sidenav" mode="over" position="end">
     <div class="sidenavHeader">
       <span>Menu</span>
@@ -10,36 +10,47 @@
     <mat-nav-list class="navList">
       <a mat-list-item *ngFor="let s of sections" [class.active]="s.id === currentSection"
         (click)="navigateTo(s.id); sidenav.close()">
-        {{ s.label }}
+
+        <div class="nav-item-content">
+          <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
+          <span>{{ s.label }}</span>
+        </div>
+
       </a>
     </mat-nav-list>
-  </mat-sidenav>   <!-- ✅ HIER war dein fehlendes schließendes Tag -->
 
+  </mat-sidenav>
 
-    <!-- Toolbar -->
-    <mat-toolbar class="mainToolbar">
-      <div class="sidenavSpacer">
-        <div class="sidenavSpacerInner">
-          <div class="socialLinks">
+  <mat-toolbar class="mainToolbar">
+    <div class="sidenavSpacer">
+      <div class="sidenavSpacerInner">
+        <div class="socialLinks">
+          <a href="https://github.com/StanislavLe" target="_blank" rel="noopener noreferrer">
             <img src="assets/icons/githubIcon.png" alt="GitHub" />
+          </a>
+          <a href="https://www.linkedin.com/in/stanislav-levin-881ab32b5" target="_blank" rel="noopener noreferrer">
             <img src="assets/icons/linkedInIcon.png" alt="LinkedIn" />
+          </a>
+          <a href="mailto:stanislav1994@live.de">
             <img src="assets/icons/emailIcon.png" alt="E-Mail" />
-          </div>
-          <div class="logoHeader">
-            <img src="assets/img/logo.png" alt="Logo" />
-            <span>Stanislav Levin</span>
-          </div>
+          </a>
         </div>
-        <div class="settings">
-          <button mat-button class="languageButton" [class.flash]="justClicked" [class.active]="true"
-            (click)="cycleLanguage()">
-            {{ currentLanguage.toUpperCase() }}
-          </button>
-          <button mat-icon-button class="sidenav-btn" (click)="sidenav.toggle()" disableRipple>
-            <mat-icon>menu</mat-icon>
-          </button>
+
+        <div class="logoHeader">
+          <img src="assets/img/logo.png" alt="Logo" />
+          <span>Stanislav Levin</span>
         </div>
       </div>
+      <div class="settings">
+        <button mat-button class="languageButton" [class.flash]="justClicked" [class.active]="true"
+          (click)="cycleLanguage()">
+          {{ currentLanguage.toUpperCase() }}
+        </button>
+        <button mat-icon-button class="sidenav-btn" (click)="sidenav.toggle()" disableRipple>
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+    </div>
 
-    </mat-toolbar>
+  </mat-toolbar>
 </mat-sidenav-container>
