@@ -42,19 +42,16 @@ export class AppComponent {
 
 onHeaderSectionSelected(sectionId: string) {
   if (this.router.url.startsWith('/home')) {
-    // Direkt scrollen
     if (this.homeInstance) {
       this.homeInstance.scrollTo(sectionId);
     }
   } else {
-    // Navigation nach Home
     this.router.navigate(['/home'], { queryParams: { section: sectionId } }).then(() => {
-      // Sobald Home geladen ist → scrollen
       setTimeout(() => {
         if (this.homeInstance) {
           this.homeInstance.scrollTo(sectionId);
         }
-      }, 300); // kleine Verzögerung, bis View da ist
+      }, 300); 
     });
   }
 }

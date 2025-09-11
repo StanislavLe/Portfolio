@@ -2,12 +2,13 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';      // ⬅️ wichtig für ngForm & ngModel
 import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 import { RouterModule } from '@angular/router'; // ✅ wichtig für routerLink
+import { FooterComponent } from '../shared/footer/footer.component';
 
 
 @Component({
   selector: 'app-contact-me',
   standalone: true,
-  imports: [FormsModule, NgFor, NgSwitch, NgSwitchCase, NgIf, RouterModule],
+  imports: [FormsModule, NgFor, NgSwitch, NgSwitchCase, NgIf, RouterModule, FooterComponent],
   templateUrl: './contact-me.component.html',
   styleUrl: './contact-me.component.scss'
 })
