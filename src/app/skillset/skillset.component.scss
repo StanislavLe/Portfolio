@@ -11,7 +11,7 @@
 
 .text {
     width: 600px;
-    height: 140px;
+    height: max-content;
     color: #F8F7E5;
     background-color: #679AAC;
     padding: 32px;
@@ -78,6 +78,8 @@ h1 {
     width: 100%;
     padding-right: 100px;
     max-width: 1700px;
+    position: relative;
+    bottom: 136px;
 }
 
 .growth-mindset-container {

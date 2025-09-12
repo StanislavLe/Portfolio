@@ -9,7 +9,6 @@
     padding-bottom: 300px;
     background-color: #1D1D1D;
     width: 100%;
-    
 
 
     h1 {
@@ -19,7 +18,8 @@
         color: #F9AF42;
         margin-bottom: 64px;
         width: 530px;
-        max-width: 1900px;
+        max-width: 1816px;
+        padding-right: 80px;
 
     }
 
@@ -27,7 +27,8 @@
         color: #FF834F;
         font-weight: 700;
         font-size: 24px;
-        max-width: 1900px;
+        max-width: 1816px;
+        padding-right: 80px;
 
     }
 
@@ -36,7 +37,8 @@
         font-size: 26px;
         line-height: 120%;
         color: #F8F7E5;
-        max-width: 1900px;
+        max-width: 1816px;
+        padding-right: 80px;
 
     }
 }
@@ -46,4 +48,3 @@ app-footer {
     position: relative;
     top: 140px;
 }
-

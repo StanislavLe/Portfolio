@@ -65,7 +65,7 @@ h1 {
     padding: 32px;
     max-width: 600px;
     width: 50%;
-    height: 250px;
+    height: max-content;
     background-color: #1D1D1D;
     color: #F8F7E5;
     font-family: "quicksandBook";
@@ -88,17 +88,6 @@ h1 {
         gap: 20px;
     }
 }
-
-.floating-emoji {
-    animation: floatUpDown 2.2s ease-in-out infinite;
-    will-change: transform;
-
-    &:hover {
-        animation-play-state: paused; // Schweben stoppt beim Hover!
-        filter: brightness(1.2) drop-shadow(0 2px 6px #0002);
-    }
-}
-
 
 
 h3 {
@@ -132,7 +121,21 @@ h3 {
     font-weight: 100;
 }
 
-.floating-emoji:hover+.secret-info-panel {
+
+
+.floating-emoji {
+    animation: floatUpDown 2.2s ease-in-out infinite;
+    will-change: transform;
+
+    &:hover {
+        animation-play-state: paused; // Schweben stoppt beim Hover!
+        filter: brightness(1.2) drop-shadow(0 2px 6px #0002);
+        cursor: pointer;
+    }
+}
+
+
+.floating-emoji:hover~.secret-info-panel {
     opacity: 1;
     pointer-events: auto;
     transform: translate(-50%, -12px);

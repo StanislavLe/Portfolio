@@ -37,25 +37,25 @@ export class PortfolioComponent {
   projects: Project[] = [
     {
       title: 'JOIN',
-      description: 'Task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories.',
+      description: 'Task-Manager inspiriert vom Kanban-System. Erstelle und organisiere Aufgaben mit Drag-and-Drop-Funktionen, weise Benutzer und Kategorien zu.',
       imageUrl: 'assets/img/JOIN-SC.png',
       projectLink: 'https://join-386.developerakademie.net/Join/index.html',
       gitHubLink: 'https://github.com/SilverBlure/Join',
       color: '#F9AF42',
       iconUrl: 'assets/img/JOIN-emoji.png',
       skillset: ['HTML', 'CSS', 'Firebase', 'Angular', 'TypeScript'],
-      hoverInfo: 'A task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories.'
+      hoverInfo: 'Ein Task-Manager, inspiriert vom Kanban-System. Erstelle und organisiere Aufgaben mit Drag-and-Drop-Funktionen und weise Benutzer sowie Kategorien zu.'
     },
     {
       title: 'SHARKY',
-      description: 'A simple Jump-n-Run game based on an object-oriented approach. The player controls Sharky and helps him to collect coins while avoiding and fighting against enemies.',
+      description: 'Ein einfaches Jump-’n’-Run-Spiel auf objektorientierter Basis. Der Spieler steuert Sharky und hilft ihm, Münzen zu sammeln, während er Gegnern ausweicht und gegen sie kämpft.',
       imageUrl: 'assets/img/SHARKY-SC.png',
       projectLink: 'https://stanislav-levin.developerakademie.net/SHARKY/index.html',
       gitHubLink: 'https://github.com/StanislavLe/Sharky',
       color: '#679AAC',
       iconUrl: 'assets/img/SHARKY-emoji.png',
       skillset: ['HTML', 'CSS', 'JavaScript'],
-      hoverInfo: 'A simple Jump-n-Run game based on an object-oriented approach. The player controls Sharky and helps him to collect coins while avoiding and fighting against enemies.'
+      hoverInfo: 'Ein einfaches Jump-’n’-Run-Spiel auf objektorientierter Basis. Der Spieler steuert Sharky, sammelt Münzen und muss Gegnern ausweichen oder sie bekämpfen.'
     }
   ];
 
