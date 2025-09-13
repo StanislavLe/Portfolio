@@ -25,12 +25,18 @@
   color: #fff;
   max-width: 100%;
   position: relative;
+
+
 }
 
 .pager-section#hero {
   max-width: 100%;
   padding: 80px;
   padding-left: 112px;
+
+       @media screen and (max-width: 1200px) {
+  padding: 20px;
+  padding-left: 42px;    }
 }
 
 
