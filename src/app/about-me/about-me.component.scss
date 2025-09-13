@@ -4,7 +4,7 @@
     align-items: start;
     flex-direction: column;
     height: 100vh;
-    max-width: 1800px;
+    max-width: 2000px;
     padding-top: 122px;
     padding-right: 60px;
     padding-left: 112px;
@@ -66,8 +66,8 @@ h1 {
 
 .aboutMeContainer {
     padding: 32px;
-    max-width: 600px;
-    width: 50%;
+    max-width: 900px;
+    width: 100%;
     height: max-content;
     background-color: #1D1D1D;
     color: #F8F7E5;
@@ -103,9 +103,7 @@ h3 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    position: absolute;
-    left: 488px;
-    top: 270px;
+    position: relative;
     transform: translate(-50%, 100%);
     opacity: 0;
     transition: transform 0.5s cubic-bezier(.21, 1.11, .84, .86), opacity 0.35s;
@@ -122,6 +120,8 @@ h3 {
     font-size: 16px;
     font-family: 'quicksandBook';
     font-weight: 100;
+    right: 320px;
+    bottom: 44px;
 }
 
 
@@ -138,11 +138,18 @@ h3 {
 }
 
 
-.floating-emoji:hover~.secret-info-panel {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translate(-50%, -12px);
+.emoji-wrapper {
+    position: relative;
+    height: 20px;
+    width: 44px;
+
+    .floating-emoji:hover+.secret-info-panel {
+        opacity: 1;
+        transform: translate(-50%, 0%);
+        pointer-events: auto;
+    }
 }
+
 
 .USP {
     display: flex;
