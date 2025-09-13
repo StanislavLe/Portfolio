@@ -34,7 +34,7 @@
             <label for="email">Wie ist deine email?</label>
             <input #email="ngModel" [(ngModel)]="contactData.email" name="email" id="email" type="email" required
               pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" autocomplete="off"
-              [placeholder]="(email.invalid && email.touched) ? 'Bitte trage eine gültige E-mail adresse ein' : 'deine-Email@email.com'"
+              [placeholder]="(email.invalid && email.touched) ? 'Bitte trage eine E-mail adresse ein' : 'deine-Email@email.com'"
               [class.is-error]="email.invalid && email.touched" [class.is-error-email]="email.invalid && email.touched"
               (blur)="email.invalid ? (contactData.email='') : null">
           </div>
@@ -42,7 +42,7 @@
 
         <div class="message-group">
           <label for="message">Wie kann ich dir helfen?</label>
-          <textarea #message="ngModel" [(ngModel)]="contactData.message" name="message" id="message" rows="2" required
+          <textarea #message="ngModel" [(ngModel)]="contactData.message" name="message" id="message" rows="1" required
             minlength="4"
             [placeholder]="(message.invalid && message.touched) ? 'Schreibe mir eine kurze Nachricht worum es sich dreht (min. 4 Zeichen)' : 'Hallo Stanislav, mich interressiert...'"
             [class.is-error]="message.invalid && message.touched" autocomplete="off"
@@ -55,7 +55,8 @@
             <p>Ich habe die</p> <a mat-list-item routerLink="/privacy-policy">Datenschutzerklärung</a>
             <p>gelesen und bin mit der Verarbeitunug meiner Daten einverstanden.</p>
           </div>
-          <input type="checkbox" id="agreementbox" name="agreement" required>
+          <input [(ngModel)]="contactData.agreement" #agreement="ngModel" required class="checkbox" type="checkbox"
+            id="agreementbox" name="agreement" required>
         </div>
 
         <input type="submit" class="submit-btn" value="Drop a Line" [disabled]="contactForm.invalid">

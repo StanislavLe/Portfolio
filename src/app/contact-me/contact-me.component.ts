@@ -17,7 +17,8 @@ export class ContactMeComponent {
   contactData = {
     name: '',
     email: '',
-    message: ''
+    message: '',
+    agreement: false
   };
 
   constructor() {
