@@ -14,7 +14,7 @@
 }
 
 .pager-section {
-    height: 100vh;
+  height: 100vh;
   width: 100%;
   scroll-snap-align: start;
   display: flex;
@@ -68,8 +68,7 @@
 .dot-nav {
   position: fixed;
   top: 50%;
-  right: 0;
-  /* an den rechten Rand pinnen */
+  right: clamp(20px, (100vw - 2072px), 1900px);
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
@@ -98,5 +97,3 @@
     box-shadow: 0 0 0 4px #ff834f33;
   }
 }
-
-

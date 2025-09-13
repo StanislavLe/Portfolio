@@ -263,8 +263,8 @@
 
 .mat-drawer.mat-drawer-end {
   right: 112px;
-    position: fixed;
-
+  position: fixed;
+  right: clamp(60px, (100vw - 2006px), 1900px);
 }
 
 
@@ -408,4 +408,3 @@
 sidenav-content {
   max-width: 1900px;
 }
-

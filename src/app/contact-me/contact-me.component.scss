@@ -217,12 +217,14 @@ h1 {
 
     .agreement {
         color: #F8F7E5;
-        font-size: 16px;
+        font-size: clamp(12px, 1.2vw, 16px); // 👈 passt sich an
         font-family: 'quicksandBook';
         line-height: 120%;
         flex-direction: row;
         display: flex;
-        width: 1000px !important;
+        white-space: nowrap;
+        width: 100%;
+        overflow-x: auto;
 
         p {
             margin: 0 0 20px;
@@ -234,7 +236,7 @@ h1 {
             padding-left: 4px;
         }
 
-        @media screen and (max-width: 1711px) {
+        @media screen and (max-width: 2024px) {
             flex-direction: column;
             margin-bottom: 20px;
 
