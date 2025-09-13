@@ -11,7 +11,12 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  width: 60%;
+  width: 62%;
+
+  
+    @media screen and (max-width: 1200px) {
+  width: 69%;
+    }
 }
 
 .sidenavSpacer {

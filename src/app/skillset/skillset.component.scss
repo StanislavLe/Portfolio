@@ -10,7 +10,7 @@
 }
 
 .text {
-    width: 43%;
+    width: 30%;
     height: max-content;
     color: #F8F7E5;
     background-color: #679AAC;
@@ -38,9 +38,10 @@ h1 {
     align-items: center;
     gap: 38px;
     margin-top: 20px;
-    width: 640px;
+    width: 55%;
     height: 283px;
     flex-wrap: wrap;
+
 
     div {
         display: flex;
@@ -78,10 +79,24 @@ h1 {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding-right: 100px;
     max-width: 1700px;
     position: relative;
     bottom: 136px;
+    padding-right: 60px;
+
+    @media screen and (max-width: 1533px) {
+        position: relative;
+        bottom: 333px;
+        gap: 40px;
+
+    }
+
+}
+
+.mindset-icon {
+
+    position: relative;
+
 }
 
 .growth-mindset-container {
@@ -146,14 +161,15 @@ h1 {
     opacity: 1;
     pointer-events: auto;
     transform: translate(-50%, -167px);
+
 }
 
 .img-section {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     justify-content: center;
-    width: 200px;
+    width: 50%;
     height: 200px;
     padding-top: 408px;
 }
@@ -174,4 +190,6 @@ h1 {
     position: relative;
     bottom: 80px;
     cursor: pointer;
+    left: 40px;
+
 }
