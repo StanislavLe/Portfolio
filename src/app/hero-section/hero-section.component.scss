@@ -15,7 +15,9 @@
     position: relative;
     width: 64%;
 
-
+    @media screen and (max-width: 1247px) {
+        right: 80px;
+    }
 }
 
 
@@ -49,7 +51,6 @@
     }
 
     @media screen and (max-width: 1200px) {
-        right: 554px;
         bottom: 200px;
     }
 }

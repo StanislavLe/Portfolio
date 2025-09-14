@@ -34,9 +34,10 @@
   padding: 80px;
   padding-left: 112px;
 
-       @media screen and (max-width: 1247px) {
-  padding: 20px;
-  padding-left: 42px;    }
+  @media screen and (max-width: 1247px) {
+    padding: 20px;
+    padding-left: 42px;
+  }
 }
 
 
@@ -44,32 +45,39 @@
   background: #F8F7E5;
   color: #1D1D1D;
   max-width: 100%;
-    padding: 80px;
+  padding: 80px;
   padding-left: 112px;
-         @media screen and (max-width: 1247px) {
-  padding: 20px;
-  padding-left: 42px;    }
+
+  @media screen and (max-width: 1247px) {
+    padding: 20px;
+    padding-left: 42px;
+    padding-right: 80px;
+  }
 }
 
 .pager-section#portfolio {
   background: #F8F7E5;
   max-width: 100%;
-    padding: 80px;
+  padding: 80px;
   padding-left: 112px;
-         @media screen and (max-width: 1247px) {
-  padding: 20px;
-  padding-left: 42px;    }
+
+  @media screen and (max-width: 1247px) {
+    padding: 20px;
+    padding-left: 42px;
+  }
 }
 
 .pager-section#skills {
   background: #1D1D1D;
   max-width: 100%;
-    padding: 80px;
+  padding: 80px;
   padding-left: 112px;
-         @media screen and (max-width: 1247px) {
-  padding: 20px;
-  padding-left: 42px;   
-padding-right: 80px; }
+
+  @media screen and (max-width: 1247px) {
+    padding: 20px;
+    padding-left: 42px;
+    padding-right: 80px;
+  }
 }
 
 .pager-section#contact {
@@ -78,9 +86,11 @@ padding-right: 80px; }
   padding: 80px;
   padding: 80px;
   padding-left: 112px;
-         @media screen and (max-width: 1200px) {
-  padding: 20px;
-  padding-left: 42px;    }
+
+  @media screen and (max-width: 1200px) {
+    padding: 20px;
+    padding-left: 42px;
+  }
 }
 
 

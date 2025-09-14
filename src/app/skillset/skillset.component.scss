@@ -47,6 +47,12 @@ h1 {
     font-weight: 600;
     padding-top: 150px;
     padding-bottom: 100px;
+
+
+    @media screen and (max-width: 1400px) {
+        padding-top: 130px;
+        padding-bottom: 21px;
+    }
 }
 
 .icon-section {
@@ -111,7 +117,10 @@ h1 {
 .mindset-icon {
     position: relative;
 
-    @media screen and (max-width: 1247px) {}
+    @media screen and (max-width: 1247px) {
+        left: 62px;
+        top: 292px;
+    }
 }
 
 .growth-mindset-container {
@@ -125,7 +134,7 @@ h1 {
     position: relative;
     left: 600px;
     bottom: 150px;
- transform: translate(-50%, 100%);
+    transform: translate(-50%, 100%);
     opacity: 0;
     border: solid 1px #F8F7E5;
     border-radius: 4px;
@@ -136,6 +145,10 @@ h1 {
         bottom: 66px;
     }
 
+    @media screen and (max-width: 1247px) {
+        left: 365px;
+        top: 31px;
+    }
 
     h2 {
         font-family: 'quicksandBold';
@@ -194,6 +207,9 @@ h1 {
     height: 200px;
     position: relative;
     top: 352px;
+
+
+
 }
 
 .skillsetImg {
