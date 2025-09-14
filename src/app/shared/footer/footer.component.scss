@@ -14,6 +14,10 @@
     bottom: 0px;
 
 
+    @media screen and (max-width: 1300px) {
+        bottom: 50px;
+    }
+
     img:first-of-type {
         max-width: 180px;
         width: 60%;

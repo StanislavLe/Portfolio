@@ -1,11 +1,10 @@
 .main-content {
-  width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: start;
   flex-direction: column;
-  max-width: 1900px;
+  max-width: 2000px;
   width: 100%;
   padding-top: 70px;
 }
@@ -20,6 +19,11 @@
   gap: 160px;
   max-width: 1900px;
   padding-right: 72px;
+
+
+  @media screen and (max-width: 1490px) {
+    gap: 40px;
+  }
 }
 
 .contact-header {
@@ -33,7 +37,7 @@
 }
 
 h1 {
-  font-size: 72px;
+  font-size: clamp(36px, 4vw, 72px);
   font-family: 'eczarBold';
   line-height: 100%;
   color: #F9AF42;
@@ -56,7 +60,7 @@ h1 {
 
   span {
     font-family: 'quicksandBook';
-    font-size: 26px;
+    font-size: 16px;
     line-height: 120%;
     color: #F8F7E5;
   }
@@ -84,6 +88,10 @@ h1 {
       gap: 32px;
       margin-bottom: 20px;
 
+      @media screen and (max-width: 1300px) {
+        flex-direction: column;
+      }
+
       .form-group {
         flex: 1;
         display: flex;
@@ -92,7 +100,7 @@ h1 {
     }
 
     label {
-      font-size: 24px;
+      font-size: clamp(18px, 1.5vw, 24px);
       color: #F8F7E5;
       margin-bottom: 5px;
       font-family: 'quicksandBold';
@@ -105,7 +113,7 @@ h1 {
       margin-bottom: 20px;
       background: transparent;
       color: #F8F7E5;
-      font-size: 16px;
+      font-size: clamp(16px, 1.5vw, 24px);
       font-family: 'quicksandBook';
       border: none;
       border-bottom: 2px solid #F9AF42;
@@ -226,11 +234,14 @@ h1 {
 
     a {
       padding: 0 4px;
+
+      @media screen and (max-width: 2024px) {
+        padding: 0px;
+      }
     }
 
     @media screen and (max-width: 2024px) {
       flex-direction: column;
-      margin-bottom: 20px;
       align-items: flex-start;
 
       p {
@@ -302,8 +313,6 @@ h1 {
   transition: border-color .2s ease;
   width: max-content;
   padding: 8px 10px;
-  padding-top: 150px;
-
 
   &:hover {
     border-bottom: 2px solid #FF834F;

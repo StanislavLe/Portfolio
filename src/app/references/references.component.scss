@@ -1,19 +1,18 @@
 .main-content {
   height: 100vh;
-  width: 92vw;
+  width: 100%;
   font-family: 'eczarRegular';
   display: flex;
   flex-direction: column;
   padding-top: 170px;
-  max-width: 1900px;
-  padding-left: 60px;
-  padding-right: 60px;
+  padding-right: 80px;
+  max-width: 2000px;
 }
 
 
 h1 {
   font-family: 'eczarBold';
-  font-size: 72px;
+  font-size: clamp(36px, 4vw, 72px);
   width: 100%;
   display: flex;
   justify-content: center;
@@ -27,6 +26,8 @@ h1 {
   align-items: flex-start;
   flex-direction: row;
   width: 100%;
+  max-width: 1736px;
+
   gap: 32px;
   height: 472px;
   margin-top: 72px;

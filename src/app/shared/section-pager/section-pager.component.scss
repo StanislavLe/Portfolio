@@ -80,10 +80,19 @@
   }
 }
 
+.pager-section#references {
+  width: 100%;
+  padding: 80px;
+  padding-left: 112px;
+
+  @media screen and (max-width: 1247px) {
+    padding-left: 42px;
+  }
+}
+
 .pager-section#contact {
   background: #1D1D1D;
   max-width: 100%;
-  padding: 80px;
   padding: 80px;
   padding-left: 112px;
 
