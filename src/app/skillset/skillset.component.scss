@@ -4,21 +4,39 @@
     align-items: start;
     background-color: #1D1D1D;
     height: 100vh;
-    width: 100vw;
-    padding-right: 60px;
-    padding-left: 112px;
+    width: 100%;
+    max-width: 2000px;
+}
+
+.text-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 60px;
+    gap: 20px;
+    position: absolute;
+
+    @media screen and (max-width: 1550px) {}
 }
 
 .text {
-    width: 30%;
+    width: 45%;
     height: max-content;
     color: #F8F7E5;
     background-color: #679AAC;
     padding: 32px;
-    font-size: 16px;
+    font-size: clamp(14px, 1vw, 16px);
     font-family: 'quicksandBook';
     font-weight: 100;
     max-width: 800px;
+
+
+    @media screen and (max-width: 1850px) {
+        width: 38%;
+
+    }
 }
 
 
@@ -38,9 +56,10 @@ h1 {
     align-items: center;
     gap: 38px;
     margin-top: 20px;
-    width: 55%;
+    width: 50%;
     height: 283px;
     flex-wrap: wrap;
+    max-width: 765px;
 
 
     div {
@@ -79,24 +98,20 @@ h1 {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    max-width: 1700px;
     position: relative;
-    bottom: 136px;
     padding-right: 60px;
+    top: 392px;
+    max-width: 1832px;
 
-    @media screen and (max-width: 1533px) {
-        position: relative;
-        bottom: 333px;
-        gap: 40px;
-
+    @media screen and (max-width: 1247px) {
+        top: 216px;
     }
-
 }
 
 .mindset-icon {
-
     position: relative;
 
+    @media screen and (max-width: 1247px) {}
 }
 
 .growth-mindset-container {
@@ -107,13 +122,20 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    position: absolute;
-    left: 520px;
-    transform: translate(-50%, 100%);
+    position: relative;
+    left: 600px;
+    bottom: 150px;
+ transform: translate(-50%, 100%);
     opacity: 0;
     border: solid 1px #F8F7E5;
     border-radius: 4px;
     transition: transform 0.5s cubic-bezier(.21, 1.11, .84, .86), opacity 0.35s;
+
+    @media screen and (max-width: 1720px) {
+        left: 317px;
+        bottom: 66px;
+    }
+
 
     h2 {
         font-family: 'quicksandBold';
@@ -157,21 +179,21 @@ h1 {
     }
 }
 
-.learning-emoji:hover+.growth-mindset-container {
+.mindset-icon:hover+.growth-mindset-container {
     opacity: 1;
     pointer-events: auto;
     transform: translate(-50%, -167px);
-
 }
+
 
 .img-section {
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: center;
-    width: 50%;
     height: 200px;
-    padding-top: 408px;
+    position: relative;
+    top: 352px;
 }
 
 .skillsetImg {
