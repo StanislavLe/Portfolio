@@ -12,11 +12,6 @@
   align-items: center;
   flex-direction: row;
   width: 62%;
-
-  
-    @media screen and (max-width: 1200px) {
-  width: 69%;
-    }
 }
 
 .sidenavSpacer {
@@ -39,39 +34,64 @@
   background-color: #679AAC;
   padding: 50px 60px 50px 60px;
 
+  @media screen and (max-width: 1200px) {
+    padding: 50px 60px 50px 20px;
+  }
 }
 
 .sidenavContainer.about .mainToolbar {
   background: #F8F7E5;
   color: #679AAC;
   max-width: 100%;
+  padding: 50px 60px 50px 60px;
 
+  @media screen and (max-width: 1200px) {
+    padding: 50px 60px 50px 20px;
+  }
 }
 
 .sidenavContainer.skills .mainToolbar {
   background: #1D1D1D;
   color: #F8F7E5;
   max-width: 100%;
+  padding: 50px 60px 50px 60px;
 
+  @media screen and (max-width: 1200px) {
+    padding: 50px 60px 50px 20px;
+  }
 }
 
 .sidenavContainer.contact .mainToolbar {
   background: #1D1D1D;
   color: #F8F7E5;
   max-width: 100%;
+  padding: 50px 60px 50px 60px;
 
+  @media screen and (max-width: 1200px) {
+    padding: 50px 60px 50px 20px;
+  }
 }
 
 .sidenavContainer.portfolio .mainToolbar {
   background: #F8F7E5;
   color: #679AAC;
   max-width: 100%;
+    padding: 50px 60px 50px 60px;
+
+  @media screen and (max-width: 1200px) {
+    padding: 50px 60px 50px 20px;
+  }
 }
 
 .sidenavContainer.references .mainToolbar {
   color: #F8F7E5;
   background: #679AAC;
   max-width: 100%;
+    padding: 50px 60px 50px 60px;
+
+  @media screen and (max-width: 1200px) {
+    padding: 50px 60px 50px 20px;
+  }
 }
 
 .socialLinks {
@@ -81,6 +101,10 @@
   max-height: 100px;
   transition: opacity 0.5s cubic-bezier(.4, 0, .2, 1), max-height 0.5s cubic-bezier(.4, 0, .2, 1);
   overflow: hidden;
+
+  @media screen and (max-width: 1200px) {
+    display: none;
+  }
 }
 
 .sidenavContainer.about .mainToolbar .socialLinks {
@@ -144,46 +168,45 @@
 
 .sidenavContainer.about .mainToolbar .sidenavSpacerInner {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   width: 100%;
   flex-direction: row-reverse;
 }
+
 
 .sidenavContainer.skills .mainToolbar .sidenavSpacerInner {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   width: 100%;
   flex-direction: row-reverse;
-
 }
+
 
 .sidenavContainer.contact .mainToolbar .sidenavSpacerInner {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   width: 100%;
   flex-direction: row-reverse;
-
 }
+
 
 .sidenavContainer.portfolio .mainToolbar .sidenavSpacerInner {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   width: 100%;
   flex-direction: row-reverse;
-
 }
 
 .sidenavContainer.references .mainToolbar .sidenavSpacerInner {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   width: 100%;
   flex-direction: row-reverse;
-
 }
 
 .settings {
