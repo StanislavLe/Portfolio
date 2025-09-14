@@ -12,7 +12,7 @@
 
 
     h1 {
-        font-size: 72px;
+        font-size: clamp(36px, 4vw, 72px);
         font-family: 'eczarBold';
         line-height: 100%;
         color: #F9AF42;
@@ -26,7 +26,7 @@
     h2 {
         color: #FF834F;
         font-weight: 700;
-        font-size: 24px;
+        font-size: clamp(18px, 1.5vw, 24px);
         max-width: 1816px;
         padding-right: 80px;
 
@@ -34,7 +34,7 @@
 
     p {
         font-family: 'quicksandBook';
-        font-size: 26px;
+        font-size: clamp(16px, 1.5vw, 24px);
         line-height: 120%;
         color: #F8F7E5;
         max-width: 1816px;
