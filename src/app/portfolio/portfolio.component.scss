@@ -1,12 +1,12 @@
 .main-content {
     background-color: #F8F7E5;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     font-family: 'eczarRegular';
     display: flex;
     flex-direction: column;
     padding-top: 170px;
-  padding-left: 112px;
+    max-width: 2000px;
 }
 
 .project-wrapper {
@@ -18,19 +18,23 @@
 }
 
 h1 {
-    font-size: 72px;
+    font-size: clamp(36px, 4vw, 72px);
     font-weight: 700;
     font-family: 'eczarBold';
+    line-height: 100%;
 }
 
 .portfolio-header {
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     color: #1D1D1D;
-    column-gap: 136px;
     margin-bottom: 60px;
+    width: 93%;
+    max-width: 1588px;
+    padding-right: 50px;
+    gap: 50px;
 
 
     span {
@@ -40,4 +44,3 @@ h1 {
         font-size: 16px;
     }
 }
-

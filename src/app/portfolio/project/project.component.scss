@@ -38,7 +38,8 @@
   background-color: #1D1D1D;
   font-weight: 700;
   font-size: 18px;
-  width: 198px;
+  max-width: 198px;
+  width: 50%;
   height: 40px;
   line-height: 120%;
   border: solid #F8F7E5 1px;
@@ -103,12 +104,16 @@
 }
 
 .img-container {
-  width: 81%;
+  width: 50%;
   height: 488px;
   display: flex;
   justify-content: end;
   align-items: start;
   flex-direction: column;
+}
+
+.text-container {
+  width: 50%;
 }
 
 .img-wrapper {
@@ -145,6 +150,7 @@ h3 {
   display: flex;
   gap: 24px;
   margin-top: 24px;
+  width: 100%;
 }
 
 .infoIcon {
