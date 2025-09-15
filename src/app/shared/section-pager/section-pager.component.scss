@@ -38,6 +38,12 @@
     padding-bottom: 0px;
     padding-left: 42px;
   }
+
+     @media screen and (max-width: 690px) {
+        padding: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+        }
 }
 
 
@@ -123,6 +129,10 @@
   padding: 20px;
   padding-right: 81px;
   max-width: 1900px;
+
+     @media screen and (max-width: 690px) {
+      display: none;
+    }
 }
 
 .dot {

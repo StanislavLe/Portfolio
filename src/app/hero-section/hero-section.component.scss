@@ -1,6 +1,6 @@
 .main-content {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: flex-end;
     flex-direction: row;
     height: 100vh;
@@ -14,68 +14,6 @@
     }
 }
 
-.hero-image-container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    width: 50%;
-
-    @media screen and (max-width: 1247px) {}
-
-    @media screen and (max-width: 1129px) {
-        justify-content: flex-end;
-        width: 55%;
-    }
-}
-
-.hero-image {
-    position: relative;
-    z-index: 2;
-    width: 123%;
-    max-width: 1200px;
-    left: 432px;
-    bottom: 40px;
-
-    @media screen and (max-width: 1129px) {
-        width: 100%;
-        position: absolute;
-        bottom: 0px;
-        left: 0px;
-    }
-
-    @media screen and (max-width: 1247px) {
-        bottom: 10px;
-    }
-
-    @media screen and (max-width: 800px) {
-        width: 120%;
-        left: unset;
-
-    }
-
-}
-
-.orange-star {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: 500px;
-    right: 132px;
-    bottom: 240px;
-
-
-    @media screen and (max-width: 1400px) {
-        width: 80%;
-    }
-
-    @media screen and (max-width: 1300px) {}
-
-    @media screen and (max-width: 1129px) {
-        position: absolute;
-        width: 50%;
-    }
-}
-
 .greeting {
     display: flex;
     flex-direction: column;
@@ -84,15 +22,54 @@
     height: 586px;
     width: 44%;
     z-index: 2;
-    margin-bottom: 200px;
+    margin-bottom: 172px;
 
-    @media screen and (max-width: 1247px) {
-        margin-bottom: 140px;
-        margin-top: 0px;
+    span {
+        font-size: clamp(24px, 2.5vw, 48px);
+        color: #F8F7E5;
+        font-family: 'quicksandBook';
+        text-wrap: break-word;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: calc(clamp(24px, 2.5vw, 48px) * 1.2);
+        line-height: 110%;
+        flex-wrap: wrap;
+        width: 100%;
+
+        @media screen and (max-width: 690px) {
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    h1 {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: clamp(48px, 5vw, 96px);
+        color: #F8F7E5;
+        font-family: 'eczarBold';
+        height: calc(clamp(24px, 2.5vw, 48px) * 1.2);
+        line-height: 110%;
+        width: 100%;
+
+        @media screen and (max-width: 800px) {}
+
+
+        @media screen and (max-width: 690px) {
+            justify-content: center;
+            align-items: center;
+        }
+
     }
 
     @media screen and (max-width: 1400px) {
         margin-top: 40px;
+    }
+
+    @media screen and (max-width: 1247px) {
+        margin-bottom: 254px;
     }
 
     @media screen and (max-width: 1129px) {
@@ -102,39 +79,13 @@
         width: 100%;
         height: 420px;
     }
-}
 
-.greeting-text {
-    font-size: clamp(24px, 2.5vw, 48px);
-    color: #F8F7E5;
-    font-family: 'quicksandBook';
-    text-wrap: break-word;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    height: 100px;
-    line-height: 110%;
-    flex-wrap: wrap;
-    width: 100%;
 
-    @media screen and (max-width: 1129px) {
-        height: 40px;
-    }
-}
-
-.greeting-text-name {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: clamp(48px, 5vw, 96px);
-    color: #F8F7E5;
-    font-family: 'eczarBold';
-    height: 100px;
-    line-height: 110%;
-    width: 100%;
-
-    @media screen and (max-width: 1129px) {
-        width: 100%;
+    @media screen and (max-width: 690px) {
+        justify-content: center;
+        align-items: center;
+        margin-top: 67px;
+        height: 28%;
     }
 }
 
@@ -155,6 +106,125 @@
     }
 }
 
+.hero-image-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 50%;
+
+    @media screen and (max-width: 1129px) {
+        justify-content: flex-end;
+        width: 55%;
+    }
+
+    @media screen and (max-width: 690px) {
+        width: 100%;
+    }
+}
+
+.hero-image {
+    position: relative;
+    z-index: 2;
+    width: 123%;
+    max-width: 1200px;
+    left: 432px;
+    bottom: 40px;
+
+    @media screen and (max-width: 1400px) {
+        width: 184%;
+        left: 565px;
+    }
+
+    @media screen and (max-width: 1247px) {
+        bottom: 10px;
+        left: 456px;
+    }
+
+    @media screen and (max-width: 1129px) {
+        width: 105%;
+        position: absolute;
+        bottom: 0;
+        left: unset;
+    }
+
+    @media screen and (max-width: 900px) {
+        width: 120%;
+    }
+
+    @media screen and (max-width: 800px) {
+        width: 120%;
+        right: -20px;
+    }
+
+
+    @media screen and (max-width: 785px) {
+        width: 120%;
+    }
+
+    @media screen and (max-width: 690px) {
+        width: 136%;
+        right: -75px;
+        height: auto;
+    }
+
+    @media screen and (max-width: 570px) {
+        width: 160%;
+        right: -115px;
+        height: auto;
+    }
+
+    @media screen and (max-width: 470px) {
+        width: 203%;
+        right: -202px;
+        height: auto;
+    }
+
+
+    @media screen and (max-width: 411px) {
+        width: 245%;
+        right: -242px;
+        height: auto;
+    }
+}
+
+.orange-star {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 500px;
+    right: 132px;
+    bottom: 240px;
+
+    @media screen and (max-width: 1400px) {
+        width: 80%;
+    }
+
+    @media screen and (max-width: 1129px) {
+        position: absolute;
+        width: 33%;
+    }
+
+    @media screen and (max-width: 690px) {
+        width: 55%;
+        left: 121px;
+        bottom: 235px;
+    }
+
+    @media screen and (max-width: 570px) {
+        width: 70%;
+    }
+}
+
+.animation-container {
+    position: absolute;
+    bottom: 50px;
+    z-index: 2;
+
+    @media screen and (max-width: 1247px) {
+        left: 0;
+    }
+}
+
 .scrollAnimation {
     width: 144px;
     height: 144px;
@@ -163,12 +233,11 @@
 
 .arrow {
     position: relative;
-    bottom: 152px;
-    left: 47px;
+    right: 96px;
     width: 50px;
     height: 50px;
 
     @media screen and (max-width: 1129px) {
-        bottom: 109px;
+        bottom: 0px;
     }
 }

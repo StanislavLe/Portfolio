@@ -37,6 +37,10 @@
   @media screen and (max-width: 1200px) {
     padding: 50px 60px 50px 20px;
   }
+
+    @media screen and (max-width: 600px) {
+    padding: 0px 0px 0px 0px;
+  }
 }
 
 .sidenavContainer.about .mainToolbar {
