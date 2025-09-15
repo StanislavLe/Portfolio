@@ -76,7 +76,7 @@
   background: #F8F7E5;
   color: #679AAC;
   max-width: 100%;
-    padding: 50px 60px 50px 60px;
+  padding: 50px 60px 50px 60px;
 
   @media screen and (max-width: 1200px) {
     padding: 50px 60px 50px 20px;
@@ -87,7 +87,7 @@
   color: #F8F7E5;
   background: #679AAC;
   max-width: 100%;
-    padding: 50px 60px 50px 60px;
+  padding: 50px 60px 50px 60px;
 
   @media screen and (max-width: 1200px) {
     padding: 50px 60px 50px 20px;
@@ -155,12 +155,14 @@
     transform 0.6s cubic-bezier(.4, 0, .2, 1);
 
   img {
-    width: 100px;
+    max-width: 100px;
+    min-width: 40px;
+    width: 30%;
     transform: rotate(-20deg);
   }
 
   span {
-    font-size: 40px;
+    font-size: clamp(20px, 2.5vw, 40px);
     font-family: 'quicksandBold';
   }
 }
@@ -217,7 +219,7 @@
 
   span {
     font-family: 'quicksandBold';
-    font-size: 24px;
+    font-size: clamp(16px, 2.5vw, 24px);
     color: #F8F7E5;
     padding: 0%;
     margin: 0%;
@@ -225,7 +227,7 @@
 }
 
 .languageButton {
-  width: 44px; // Button wird 44x44px groß
+  width: 44px;
   height: 44px;
   border-radius: 100%; // Kreisschnitt!
   border: 2px solid #F8F7E5 !important;
@@ -236,7 +238,7 @@
   align-items: center;
   justify-content: center;
   min-width: unset !important;
-  font-size: 18px;
+  font-size: clamp(16px, 2.5vw, 18px);
   font-family: 'quicksandBold';
   transition: background 0.1s, color 0.1s, border-color 0.1s;
 }
