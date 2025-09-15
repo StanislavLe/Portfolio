@@ -1,59 +1,78 @@
 .main-content {
     display: flex;
-    justify-content: space-between;
-    align-items: end;
+    justify-content: start;
+    align-items: flex-end;
     flex-direction: row;
-    height: 100%;
-    min-height: 100vh;
-    max-width: 1800px;
+    height: 100vh;
+    max-width: 1888px;
     width: 100%;
+    position: relative;
 
     @media screen and (max-width: 1129px) {
         flex-direction: column;
-        align-items: end;
+        align-items: flex-end;
     }
 }
 
 .hero-image-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 64%;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 50%;
 
-    @media screen and (max-width: 1247px) {
-        right: 80px;
+    @media screen and (max-width: 1247px) {}
+
+    @media screen and (max-width: 1129px) {
+        justify-content: flex-end;
+        width: 55%;
     }
 }
-
-
 
 .hero-image {
     position: relative;
     z-index: 2;
-    width: 127%;
+    width: 123%;
+    max-width: 1200px;
+    left: 432px;
+    bottom: 40px;
 
-    @media screen and (max-width: 1200px) {
-        right: 20px;
+    @media screen and (max-width: 1129px) {
+        width: 100%;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
     }
 
-    @media screen and (max-width: 1300px) {
-        width: 180%;
+    @media screen and (max-width: 1247px) {
+        bottom: 10px;
     }
 
+    @media screen and (max-width: 800px) {
+        width: 120%;
+        left: unset;
+
+    }
 
 }
 
 .orange-star {
-    width: 100%;
-    max-width: 500px;
     position: relative;
     z-index: 1;
-    right: 462px;
-    bottom: 88px;
+    width: 100%;
+    max-width: 500px;
+    right: 132px;
+    bottom: 240px;
 
-    @media screen and (max-width: 1300px) {
-        width: 60%;
+
+    @media screen and (max-width: 1400px) {
+        width: 80%;
+    }
+
+    @media screen and (max-width: 1300px) {}
+
+    @media screen and (max-width: 1129px) {
+        position: absolute;
+        width: 50%;
     }
 }
 
@@ -61,14 +80,15 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 52px;
+    gap: clamp(8px, 3vw, 52px);
     height: 586px;
-    width: 57%;
+    width: 44%;
     z-index: 2;
     margin-bottom: 200px;
 
     @media screen and (max-width: 1247px) {
-        margin-bottom: 80px;
+        margin-bottom: 140px;
+        margin-top: 0px;
     }
 
     @media screen and (max-width: 1400px) {
@@ -76,10 +96,11 @@
     }
 
     @media screen and (max-width: 1129px) {
-        flex-direction: column;
-        margin-bottom: 0px;
-        margin-top: 88px;
+        margin-bottom: 0;
+        margin-top: 120px;
         position: relative;
+        width: 100%;
+        height: 420px;
     }
 }
 
@@ -89,28 +110,33 @@
     font-family: 'quicksandBook';
     text-wrap: break-word;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     height: 100px;
     line-height: 110%;
     flex-wrap: wrap;
+    width: 100%;
+
+    @media screen and (max-width: 1129px) {
+        height: 40px;
+    }
 }
 
 .greeting-text-name {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     font-size: clamp(48px, 5vw, 96px);
     color: #F8F7E5;
     font-family: 'eczarBold';
     height: 100px;
     line-height: 110%;
+    width: 100%;
 
-    @media screen and (max-width: 1200px) {
-        width: 100px;
+    @media screen and (max-width: 1129px) {
+        width: 100%;
     }
 }
-
 
 .conectBtn {
     font-family: 'quicksandBook';
@@ -132,11 +158,8 @@
 .scrollAnimation {
     width: 144px;
     height: 144px;
-    -webkit-animation: spin 10s linear infinite;
-    -moz-animation: spin 10s linear infinite;
     animation: spin 10s linear infinite;
 }
-
 
 .arrow {
     position: relative;
@@ -144,4 +167,8 @@
     left: 47px;
     width: 50px;
     height: 50px;
+
+    @media screen and (max-width: 1129px) {
+        bottom: 109px;
+    }
 }
