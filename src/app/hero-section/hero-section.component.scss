@@ -1,93 +1,60 @@
 .main-content {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    flex-direction: row;
-    height: 100vh;
-    max-width: 1888px;
-    width: 100%;
-    position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex-direction: row;
+  min-height: 100dvh; // volle Höhe, dynamisch auch auf Mobile
+  max-width: 1888px;
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+  padding: 5vh 2vw;
 
-    @media screen and (max-width: 1129px) {
-        flex-direction: column;
-        align-items: flex-end;
-    }
+  @media screen and (max-width: 1129px) {
+    flex-direction: column;
+    align-items: flex-end;
+  }
 }
 
 .greeting {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(16px, 3vw, 52px);
+  width: 44%;
+  z-index: 2;
+
+  span {
+    font-size: clamp(24px, 2.5vw, 48px);
+    color: #F8F7E5;
+    font-family: 'quicksandBook';
+    line-height: 1.2;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: clamp(8px, 3vw, 52px);
-    height: 586px;
-    width: 44%;
-    z-index: 2;
-    margin-bottom: 172px;
-
-    span {
-        font-size: clamp(24px, 2.5vw, 48px);
-        color: #F8F7E5;
-        font-family: 'quicksandBook';
-        text-wrap: break-word;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        height: calc(clamp(24px, 2.5vw, 48px) * 1.2);
-        line-height: 110%;
-        flex-wrap: wrap;
-        width: 100%;
-
-        @media screen and (max-width: 690px) {
-            justify-content: center;
-            align-items: center;
-        }
-    }
-
-    h1 {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        font-size: clamp(48px, 5vw, 96px);
-        color: #F8F7E5;
-        font-family: 'eczarBold';
-        height: calc(clamp(24px, 2.5vw, 48px) * 1.2);
-        line-height: 110%;
-        width: 100%;
-
-        @media screen and (max-width: 800px) {}
-
-
-        @media screen and (max-width: 690px) {
-            justify-content: center;
-            align-items: center;
-        }
-
-    }
-
-    @media screen and (max-width: 1400px) {
-        margin-top: 40px;
-    }
-
-    @media screen and (max-width: 1247px) {
-        margin-bottom: 254px;
-    }
-
-    @media screen and (max-width: 1129px) {
-        margin-bottom: 0;
-        margin-top: 120px;
-        position: relative;
-        width: 100%;
-        height: 420px;
-    }
-
+    align-items: center;
 
     @media screen and (max-width: 690px) {
-        justify-content: center;
-        align-items: center;
-        margin-top: 67px;
-        height: 28%;
+      justify-content: center;
+      text-align: center;
     }
+  }
+
+  h1 {
+    font-size: clamp(48px, 5vw, 96px);
+    color: #F8F7E5;
+    font-family: 'eczarBold';
+    line-height: 1.1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width: 690px) {
+      justify-content: center;
+      text-align: center;
+    }
+  }
 }
+
 
 .conectBtn {
     font-family: 'quicksandBook';
@@ -107,112 +74,35 @@
 }
 
 .hero-image-container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 50%;
 
-    @media screen and (max-width: 1129px) {
-        justify-content: flex-end;
-        width: 55%;
-    }
+  @media screen and (max-width: 1129px) {
+    width: 55%;
+  }
 
-    @media screen and (max-width: 690px) {
-        width: 100%;
-    }
+  @media screen and (max-width: 690px) {
+    width: 100%;
+  }
 }
 
 .hero-image {
-    position: relative;
-    z-index: 2;
-    width: 123%;
-    max-width: 1200px;
-    left: 432px;
-    bottom: 40px;
-
-    @media screen and (max-width: 1400px) {
-        width: 184%;
-        left: 565px;
-    }
-
-    @media screen and (max-width: 1247px) {
-        bottom: 10px;
-        left: 456px;
-    }
-
-    @media screen and (max-width: 1129px) {
-        width: 105%;
-        position: absolute;
-        bottom: 0;
-        left: unset;
-    }
-
-    @media screen and (max-width: 900px) {
-        width: 120%;
-    }
-
-    @media screen and (max-width: 800px) {
-        width: 120%;
-        right: -20px;
-    }
-
-
-    @media screen and (max-width: 785px) {
-        width: 120%;
-    }
-
-    @media screen and (max-width: 690px) {
-        width: 136%;
-        right: -75px;
-        height: auto;
-    }
-
-    @media screen and (max-width: 570px) {
-        width: 160%;
-        right: -115px;
-        height: auto;
-    }
-
-    @media screen and (max-width: 470px) {
-        width: 203%;
-        right: -202px;
-        height: auto;
-    }
-
-
-    @media screen and (max-width: 411px) {
-        width: 245%;
-        right: -242px;
-        height: auto;
-    }
+  position: relative;
+  z-index: 2;
+  width: clamp(80%, 120%, 200%);
+  max-width: 1200px;
+  height: auto; // kein festes px mehr
 }
 
 .orange-star {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: 500px;
-    right: 132px;
-    bottom: 240px;
-
-    @media screen and (max-width: 1400px) {
-        width: 80%;
-    }
-
-    @media screen and (max-width: 1129px) {
-        position: absolute;
-        width: 33%;
-    }
-
-    @media screen and (max-width: 690px) {
-        width: 55%;
-        left: 121px;
-        bottom: 235px;
-    }
-
-    @media screen and (max-width: 570px) {
-        width: 70%;
-    }
+  position: absolute;
+  z-index: 1;
+  width: clamp(30%, 40%, 55%);
+  max-width: 500px;
+  bottom: 15%;
+  right: 10%;
 }
 
 .animation-container {
@@ -226,8 +116,8 @@
 }
 
 .scrollAnimation {
-    width: 144px;
-    height: 144px;
+    width: 10vw; // relativ zur Viewportbreite
+    height: 10vw;
     animation: spin 10s linear infinite;
 }
 
