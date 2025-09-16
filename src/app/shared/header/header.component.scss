@@ -299,6 +299,11 @@
   right: 112px;
   position: fixed;
   right: clamp(60px, (100vw - 2006px), 1900px);
+
+     @media screen and (max-width: 600px) {
+  right: 0px;
+  top: 0px;
+  }
 }
 
 
