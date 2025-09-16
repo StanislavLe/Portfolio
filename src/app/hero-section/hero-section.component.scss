@@ -5,24 +5,43 @@
   flex-direction: row;
   min-height: 100dvh; // volle Höhe, dynamisch auch auf Mobile
   max-width: 1888px;
-  width: 100%;
+  width: 100vw;
   position: relative;
   margin: 0 auto;
-  padding: 5vh 2vw;
+  padding: 5vh 2vw 0;
 
-  @media screen and (max-width: 1129px) {
+  @media screen and (max-width: 690px) {
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
+    width: 100vw;
   }
 }
 
+/* ---------------- Greeting ---------------- */
 .greeting {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: clamp(16px, 3vw, 52px);
-  width: 44%;
+  width: 100%;
   z-index: 2;
+  height: 65vh;
+  padding-top: 20px;
+
+
+  @media screen and (max-width: 1247px) {
+    height: 70vh;
+  }
+
+  @media screen and (max-width: 1150px) {
+    width: 100%;
+    gap: 3vw;
+    position: relative;
+  }
+
+  @media screen and (max-width: 690px) {
+    gap: 16px;
+  }
 
   span {
     font-size: clamp(24px, 2.5vw, 48px);
@@ -33,9 +52,12 @@
     display: flex;
     align-items: center;
 
+    @media screen and (max-width: 1150px) {
+      font-size: clamp(24px, 2.5vw, 48px);
+    }
+
     @media screen and (max-width: 690px) {
-      justify-content: center;
-      text-align: center;
+      font-size: clamp(24px, 2.5vw, 48px);
     }
   }
 
@@ -47,53 +69,118 @@
     width: 100%;
     display: flex;
     align-items: center;
+    margin-bottom: 0px;
+
+    @media screen and (max-width: 1150px) {
+      font-size: clamp(48px, 5vw, 96px);
+    }
 
     @media screen and (max-width: 690px) {
-      justify-content: center;
-      text-align: center;
+      font-size: clamp(48px, 5vw, 96px);
     }
   }
 }
 
-
+/* ---------------- Button ---------------- */
 .conectBtn {
-    font-family: 'quicksandBook';
-    font-weight: 700;
-    font-size: 18px;
-    width: 198px;
-    height: 40px;
-    line-height: 120%;
-    border: solid #F8F7E5 1px;
-    padding: 12px 24px;
-    border-radius: 100px;
-    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s;
+  font-family: 'quicksandBook';
+  font-weight: 700;
+  font-size: clamp(16px, 1vw, 17px);
+  width: clamp(200px, 12vw, 220px);
+  height: clamp(36px, 4.5vh, 44px);
+  line-height: 120%;
+  border: solid #F8F7E5 1px;
+  padding: clamp(16px, 2vh, 18px) clamp(18px, 3vw, 32px);
+  border-radius: 100px;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s;
 
-    &:hover {
-        background-color: #FF834F;
-    }
+  &:hover {
+    background-color: #FF834F;
+  }
 }
 
+
+
+/* ---------------- Hero Image ---------------- */
 .hero-image-container {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   width: 50%;
+  margin-right: 186px;
 
-  @media screen and (max-width: 1129px) {
-    width: 55%;
+  @media screen and (max-width: 1247px) {
+    width: 57%;
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 57%;
+    right: -442px;
+
+    position: relative;
+  }
+
+  @media screen and (max-width: 900px) {
+    width: 52%;
+  }
+
+  @media screen and (max-width: 831px) {
+    width: 44vw;
   }
 
   @media screen and (max-width: 690px) {
+    position: absolute;
+    bottom: 0;
     width: 100%;
+    right: unset;
+  }
+
+  @media screen and (max-width: 600px) {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    right: unset;
   }
 }
 
 .hero-image {
-  position: relative;
+  position: absolute;
   z-index: 2;
-  width: clamp(80%, 120%, 200%);
+  width: clamp(150%, 10vw, 269%);
   max-width: 1200px;
-  height: auto; // kein festes px mehr
+  height: auto;
+  right: 184px;
+
+
+  @media screen and (max-width: 1500px) {
+    width: clamp(80%, 10vw, 269%);
+
+  }
+
+  @media screen and (max-width: 1247px) {
+    width: 100vw;
+    right: 24px;
+  }
+
+  @media screen and (max-width: 900px) {
+    width: 110vw;
+  }
+
+  @media screen and (max-width: 831px) {}
+
+  @media screen and (max-width: 781px) {
+    width: 900px;
+  }
+
+  @media screen and (max-width: 690px) {
+    width: 133%;
+    right: -60px;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 780px;
+    right: -128px;
+  }
 }
 
 .orange-star {
@@ -101,33 +188,68 @@
   z-index: 1;
   width: clamp(30%, 40%, 55%);
   max-width: 500px;
-  bottom: 15%;
-  right: 10%;
+  bottom: 29%;
+  right: 20%;
+
+  @media screen and (max-width: 1000px) {
+    right: 236px;
+    bottom: 283px;
+    width: 40vw;
+  }
+
+  @media screen and (max-width: 690px) {
+    right: 86px;
+    bottom: 324px;
+    width: 40vw;
+  }
+
+  @media screen and (max-width: 600px) {
+
+    right: 32px;
+    bottom: 271px;
+    width: 51vw;
+  }
+}
+
+/* ---------------- Text & Animation ---------------- */
+.text-wrapper {
+  display: flex;
+  flex-direction: column; // Text oben, Icon unten
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 95%;
+  height: 100%;
+  position: absolute;
+  top: 88px;
 }
 
 .animation-container {
-    position: absolute;
-    bottom: 50px;
-    z-index: 2;
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  position: relative;
+  padding-bottom: 5vh;
+  z-index: 3;
+}
 
-    @media screen and (max-width: 1247px) {
-        left: 0;
-    }
+.icon-wrapper {
+  position: relative;
+  display: inline-block;
+  bottom: 50px;
 }
 
 .scrollAnimation {
-    width: 10vw; // relativ zur Viewportbreite
-    height: 10vw;
-    animation: spin 10s linear infinite;
+  width: clamp(80px, 10vw, 144px);
+  height: auto;
+  animation: spin 10s linear infinite;
 }
 
 .arrow {
-    position: relative;
-    right: 96px;
-    width: 50px;
-    height: 50px;
-
-    @media screen and (max-width: 1129px) {
-        bottom: 0px;
-    }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: auto;
 }
