@@ -1,47 +1,45 @@
 .main-content {
     display: flex;
     justify-content: start;
-    align-items: start;
+    align-items: end;
     flex-direction: column;
-    height: 100vh;
-    max-width: 2000px;
-    padding-top: 50px;
+    min-height: 100dvh; // statt feste Höhe
+    max-width: 1888px;
+    padding: 50px 2vw;
+    padding-bottom: 0px;
 }
 
 h1 {
-    z-index: 100;
     font-family: "eczarBold";
-    font-size: 72px;
+    font-size: clamp(36px, 5vw, 72px);
     width: 100%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     max-width: 1900px;
-    padding-top: 100px;
-    padding-right: 160px;
+    padding: 100px 160px 0 0;
 
-
-    @media screen and (max-width: 1200px) {
-        padding-bottom: 80px;
-        padding-right: 82px;
-    }
+    @media screen and (max-width: 1100px) {}
 }
 
-
-.aboutMeImg {
-    max-width: 640px;
-    width: 46%;
-    z-index: 1;
-}
-
+/* ---------------- About Me ---------------- */
 .aboutMeSection {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: row;
-    bottom: 62px;
-    position: relative;
     width: 100%;
+    gap: 40px;
+
+    @media screen and (max-width: 1100px) {
+        gap: 0px;
+    }
+
+    @media screen and (max-width: 900px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
 }
 
 .conectBtn {
@@ -68,35 +66,49 @@ h1 {
     }
 }
 
+.aboutMeImg {
+    max-width: 640px;
+    width: 41%;
+
+    @media screen and (max-width: 1300px) {
+    }
+
+    @media screen and (max-width: 900px) {
+    
+    }
+}
+
 .aboutMeContainer {
     padding: 32px;
-    max-width: 900px;
-    width: 100%;
-    height: max-content;
+    flex: 1;
     background-color: #1D1D1D;
     color: #F8F7E5;
     font-family: "quicksandBook";
-    font-size: 16px;
-    line-height: 120%;
+    font-size: clamp(14px, 1.2vw, 18px);
+    line-height: 1.4;
     font-weight: 400;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     gap: 20px;
-    z-index: 20;
-    position: relative;
-    right: 80px;
+    transform: translateX(-150px) translateY(50px);
 
-    >div {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        gap: 20px;
+    align-self: flex-start;
+
+    @media screen and (max-width: 1550px) {
+        transform: translateX(-150px) translateY(50px);
     }
 }
 
 
+.aboutMeContainer>div {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* ---------------- Secret Info ---------------- */
 h3 {
     font-family: 'QuicksandBold';
     font-size: 24px;
@@ -107,7 +119,7 @@ h3 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    position: relative;
+    position: absolute;
     transform: translate(-50%, 100%);
     opacity: 0;
     transition: transform 0.5s cubic-bezier(.21, 1.11, .84, .86), opacity 0.35s;
@@ -117,35 +129,27 @@ h3 {
     height: 263px;
     border-radius: 4px;
     border: #1D1D1D solid 1px;
-    min-width: 220px;
     box-shadow: 0 8px 32px #2222;
     padding: 32px;
-    gap: 0px;
     font-size: 16px;
     font-family: 'quicksandBook';
-    font-weight: 100;
-    right: 320px;
-    bottom: 44px;
+    right: 0;
+    bottom: -280px; // unterhalb des Emojis
 }
-
-
 
 .floating-emoji {
     animation: floatUpDown 2.2s ease-in-out infinite;
     will-change: transform;
 
     &:hover {
-        animation-play-state: paused; // Schweben stoppt beim Hover!
+        animation-play-state: paused;
         filter: brightness(1.2) drop-shadow(0 2px 6px #0002);
         cursor: pointer;
     }
 }
 
-
 .emoji-wrapper {
     position: relative;
-    height: 20px;
-    width: 44px;
 
     .floating-emoji:hover+.secret-info-panel {
         opacity: 1;
@@ -154,11 +158,10 @@ h3 {
     }
 }
 
-
 .USP {
     display: flex;
     flex-direction: column;
-    gap: 0px;
+    gap: 8px;
 }
 
 .mat-checklist {
@@ -168,19 +171,8 @@ h3 {
 }
 
 .mat-checklist li {
-    list-style: none;
     display: flex;
     align-items: center;
     gap: 12px;
     font-size: 1.1em;
-    margin-bottom: 10px;
-}
-
-.mat-icon {
-    height: 16px;
-    width: 16px;
-}
-
-.material-icons {
-    font-size: 16px;
 }
