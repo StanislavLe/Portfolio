@@ -1,11 +1,22 @@
 .main-content {
     display: flex;
-    flex-direction: column;
+    justify-content: flex-start;
     align-items: start;
-    background-color: #1D1D1D;
-    height: 100vh;
-    width: 100%;
-    max-width: 2000px;
+    flex-direction: row;
+    min-height: 100dvh; // volle Höhe, dynamisch auch auf Mobile
+    max-width: 2040px;
+    width: 100vw;
+    position: relative;
+    margin: 0 auto;
+
+    @media screen and (max-width: 510px) {
+        flex-direction: column;
+        width: 100%;
+    }
+
+       @media screen and (max-height: 800px) {
+        padding-top: 260px;
+    }
 }
 
 .text-section {
@@ -17,7 +28,17 @@
     gap: 20px;
     position: absolute;
 
-    @media screen and (max-width: 1550px) {}
+    @media screen and (max-height: 540px) {}
+
+    @media screen and (max-width: 510px) {
+        align-items: center;
+        position: relative;
+    }
+
+
+    @media screen and (max-height: 540px) {
+        padding-top: 144px;
+    }
 }
 
 .text {
@@ -25,33 +46,49 @@
     height: max-content;
     color: #F8F7E5;
     background-color: #679AAC;
-    padding: 32px;
+    padding: clamp(16px, 2vw, 32px);
     font-size: clamp(14px, 1vw, 16px);
     font-family: 'quicksandBook';
     font-weight: 100;
     max-width: 800px;
 
 
-    @media screen and (max-width: 1850px) {
-        width: 38%;
+    @media screen and (max-width: 1850px) {}
 
+    @media screen and (max-width: 510px) {
+        width: 100%;
     }
 }
 
 
 h1 {
     color: #F8F7E5;
-    font-size: 72px;
+    font-size: clamp(36px, 5vw, 72px);
     font-family: 'eczarBold';
     font-weight: 600;
     padding-top: 150px;
     padding-bottom: 100px;
 
 
-    @media screen and (max-width: 1400px) {
-        padding-top: 130px;
-        padding-bottom: 21px;
+    @media screen and (max-width: 1400px) {}
+
+    @media screen and (max-width: 1247px) {
+        padding-bottom: 18px;
+
     }
+
+    @media screen and (max-height: 800px) {
+        padding-bottom: 0px;
+        padding-top: 84px;
+        margin-bottom: 0px;
+    }
+
+   @media screen and (max-height: 800px) {
+        padding-bottom: 0px;
+        padding-top: 44px;
+        margin-bottom: 0px;
+    }
+
 }
 
 .icon-section {
@@ -61,11 +98,30 @@ h1 {
     align-items: center;
     gap: 38px;
     margin-top: 20px;
-    width: 50%;
+    width: 40%;
     height: 283px;
     flex-wrap: wrap;
     max-width: 765px;
 
+    @media screen and (max-width: 1200px) {
+        gap: 20px;
+    }
+
+    @media screen and (max-width: 690px) {
+        width: 49%;
+    }
+
+    @media screen and (max-width: 510px) {
+        flex-direction: row;
+        width: 83%;
+    }
+
+    @media screen and (max-height: 800px) {
+        margin-top: 10px;
+        height: 50%;
+        //        top: -104px;
+
+    }
 
     div {
         display: flex;
@@ -81,12 +137,32 @@ h1 {
             font-family: 'quicksandBook';
             width: 96px;
             padding-top: 32px;
+
+            /* 📱 Anpassung <= 1200px */
+            @media screen and (max-width: 1200px) {
+                font-size: clamp(12px, 1.2vw, 14px);
+                padding-top: 20px;
+            }
+
+            /* 📱 Anpassung <= 390px */
+            @media screen and (max-width: 510px) {
+                font-size: 12px;
+                width: auto;
+                /* nicht mehr fix */
+                padding-top: 10px;
+            }
         }
 
         img {
             transition: transform 0.20s cubic-bezier(.4, 0, .2, 1);
             will-change: transform;
             cursor: pointer;
+
+            /* 📱 Anpassung <= 390px */
+            @media screen and (max-width: 510px) {
+                width: clamp(30px, 12vw, 40px);
+                height: auto;
+            }
         }
 
         img:hover,
@@ -97,6 +173,8 @@ h1 {
 }
 
 
+
+
 .skillset-container {
     display: flex;
     flex-direction: row-reverse;
@@ -104,33 +182,51 @@ h1 {
     justify-content: space-between;
     width: 100%;
     position: relative;
-    padding-right: 60px;
+    margin-right: 272px;
     top: 392px;
-    max-width: 1832px;
+
+    @media screen and (max-width: 1516px) {
+        top: 244px;
+    }
 
     @media screen and (max-width: 1247px) {
-        top: 216px;
-    }
-}
+        margin-right: 23%;
 
-.mindset-icon {
-    position: relative;
-
-    @media screen and (max-width: 1247px) {
-        top: 292px;
     }
+
+    @media screen and (max-width: 1023px) {
+        top: 126px;
+    }
+
+
+    @media screen and (max-width: 690px) {
+        margin-right: 10%;
+    }
+
+    @media screen and (max-width: 510px) {
+        flex-direction: column;
+        width: 100%;
+        top: 0;
+    }
+
+
+
 }
 
 .growth-mindset-container {
-    width: 360px;
-    height: 285px;
+    width: clamp(260px, 40vw, 360px);
+    /* Breite passt sich an Viewport-Breite an */
+    height: auto;
+    /* Höhe passt sich dynamisch am Text an */
+
     background-color: #F9AF42;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     position: relative;
-    left: 600px;
+    left: 100%;
+    /* zentriert */
     bottom: 150px;
     transform: translate(-50%, 100%);
     opacity: 0;
@@ -138,19 +234,30 @@ h1 {
     border-radius: 4px;
     transition: transform 0.5s cubic-bezier(.21, 1.11, .84, .86), opacity 0.35s;
 
-    @media screen and (max-width: 1720px) {
-        left: 317px;
-        bottom: 66px;
+
+    @media screen and (max-width: 1516px) {
+        top: -232px;
     }
 
     @media screen and (max-width: 1247px) {
-        top: 31px;
+        top: -343px;
+        left: 72%;
+    }
+
+    @media screen and (max-width: 510px) {
+        left: 50%;
+    }
+
+    @media screen and (max-height: 800px) {
+
+        top: -343px;
+
     }
 
     h2 {
         font-family: 'quicksandBold';
         font-weight: 700;
-        font-size: 24px;
+        font-size: clamp(18px, 2vw, 24px);
         text-align: center;
         padding: 0px;
     }
@@ -158,9 +265,8 @@ h1 {
     span {
         font-family: 'quicksandBook';
         font-weight: 100;
-        font-size: 16px;
-        text-align: center;
-        padding: 10px 20px;
+        padding-top: clamp(6px, 1.2vw, 10px);
+        font-size: clamp(12px, 1.2vw, 14px);
         text-align: center;
     }
 
@@ -178,12 +284,12 @@ h1 {
             padding: 0 10px;
 
             img {
-                width: 40px;
-                height: 40px;
+                width: clamp(30px, 4vw, 40px);
+                height: clamp(30px, 4vw, 40px);
             }
 
             span {
-                padding-top: 10px;
+                padding-top: clamp(6px, 1.2vw, 10px);
             }
         }
     }
@@ -201,30 +307,56 @@ h1 {
     flex-direction: column;
     align-items: start;
     justify-content: center;
-    height: 200px;
     position: relative;
     top: 352px;
+    width: 39%;
 
+    @media screen and (max-width: 1516px) {
 
+        top: 611px;
+    }
 
+    @media screen and (max-width: 1023px) {
+        top: 716px;
+    }
+
+    @media screen and (max-width: 510px) {
+        align-items: start;
+        justify-content: end;
+        top: 0;
+        width: 100%;
+    }
 }
 
-.skillsetImg {
-    width: 120px;
-    height: 120px;
+.mindset-icon {
+    position: relative;
+    z-index: 2;
     display: flex;
-    justify-content: start;
-    align-items: end;
+    justify-content: center;
+    align-items: center;
+    width: clamp(60px, 8vw, 120px);
+    height: clamp(60px, 8vw, 120px);
+}
+
+/* drehendes Icon */
+.skillsetImg {
+    width: 100%;
+    height: auto;
     -webkit-animation: spin 10s linear infinite;
     -moz-animation: spin 10s linear infinite;
     animation: spin 10s linear infinite;
 }
 
+/* Emoji, am unteren Rand fixiert */
 .learning-emoji {
-    padding-bottom: 50px;
-    position: relative;
-    bottom: 80px;
+    position: absolute;
+    bottom: 29%;
+    /* immer unten am Container */
+    left: 50%;
+    /* horizontal zentrieren */
+    transform: translateX(-50%);
+    width: clamp(20px, 3vw, 50px);
+    /* dynamisch kleiner/größer */
+    height: auto;
     cursor: pointer;
-    left: 40px;
-
 }
