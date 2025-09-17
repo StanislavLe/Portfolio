@@ -1,12 +1,12 @@
 .main-content {
     background-color: #F8F7E5;
-    height: 100vh;
-    width: 100%;
+    min-height: 100dvh; // volle Höhe, dynamisch auch auf Mobile
+    max-width: 1780px;
+    width: 80vw;
     font-family: 'eczarRegular';
     display: flex;
     flex-direction: column;
     padding-top: 170px;
-    max-width: 2000px;
 }
 
 .project-wrapper {
@@ -18,7 +18,7 @@
 }
 
 h1 {
-    font-size: clamp(36px, 4vw, 72px);
+    font-size: clamp(36px, 5vw, 72px);
     font-weight: 700;
     font-family: 'eczarBold';
     line-height: 100%;
@@ -31,8 +31,7 @@ h1 {
     flex-direction: row;
     color: #1D1D1D;
     margin-bottom: 60px;
-    width: 93%;
-    max-width: 1588px;
+    width: 100%;
     padding-right: 50px;
     gap: 50px;
 
