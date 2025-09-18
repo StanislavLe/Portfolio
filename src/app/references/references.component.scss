@@ -42,48 +42,52 @@ h1 {
 
 .comments {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: flex-start;
   flex-direction: row;
   width: 100%;
   max-width: 1736px;
-
   gap: 32px;
   max-height: 472px;
+  /* sorgt für Treppeneffekt */
   margin-top: 72px;
+  height: 50vh;
 
+
+  /* Tablet */
   @media screen and (max-width: 1100px) {
     gap: 16px;
     margin-top: 32px;
   }
 
+  /* Mobile */
   @media screen and (max-width: 900px) {
     flex-direction: column;
     width: 75%;
     align-items: stretch;
-    /* 🔑 sorgt dafür, dass die Kinder die volle Breite nehmen */
+    /* Kinder volle Breite */
   }
-
-  .comments>app-colleague-comment {
-    flex: 1 1 auto;
-    /* 🔑 sorgt dafür, dass jedes Kind gleichmäßig wächst */
-  }
-
 
   @media screen and (max-width: 690px) {
     width: 96%;
   }
 
+  /* Kleine Höhen */
   @media screen and (max-height: 770px) {
     margin-top: 6px;
   }
 
   @media screen and (max-height: 733px) {
     gap: 4px;
-
   }
 }
 
+/* Standard-Kommentare – gleichmäßig flexibel */
+.comments>app-colleague-comment {
+  flex: 1 1 auto;
+}
+
+/* Treppeneffekt für Desktop */
 .comments>app-colleague-comment:nth-child(1) {
   align-self: flex-start;
 }
