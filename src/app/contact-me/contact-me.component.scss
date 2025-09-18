@@ -1,30 +1,51 @@
 .main-content {
-  height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   flex-direction: column;
+  padding-top: clamp(50px, 6vh, 80px); // dynamisch
+  min-height: 100dvh; // volle Höhe, auch auf Mobile
   max-width: 2000px;
-  width: 100%;
-  padding-top: 70px;
+  width: 100%; // dynamisch begrenzt
+  position: relative;
+  margin: 0 auto;
+
+  @media screen and (max-width: 690px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
+
 
 
 .contentContainer {
   background-color: #1D1D1D;
   display: flex;
   flex-direction: row;
-  align-items: start;
-  background-color: #1D1D1D;
-  gap: 160px;
+  align-items: flex-start;
+  gap: clamp(24px, 5vw, 160px); // dynamisch
   max-width: 1900px;
-  padding-right: 72px;
+  width: 130%;
+  padding-right: 0;
 
+  @media screen and (max-width: 1850px) {
+    width: 121%;
+  }
 
-  @media screen and (max-width: 1490px) {
+  @media screen and (max-width: 1750px) {
+    width: 95%;
+  }
+
+  @media screen and (max-width: 1247px) {
+    width: 83%;
+  }
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
     gap: 40px;
   }
 }
+
 
 .contact-header {
   display: flex;
@@ -34,38 +55,49 @@
   width: 100%;
   padding-top: 36px;
   max-width: 1900px;
+
+  @media screen and (max-width: 1247px) {
+    width: 94%;
+  }
+
+  @media screen and (max-width: 820px) {
+    width: 92%;
+  }
 }
 
 h1 {
-  font-size: clamp(36px, 4vw, 72px);
+  font-size: clamp(28px, 5vw, 72px);
   font-family: 'eczarBold';
-  line-height: 100%;
+  line-height: 110%;
   color: #F9AF42;
-  margin-bottom: 64px;
-  width: 700px;
+  margin-bottom: clamp(32px, 6vh, 64px);
+  width: fit-content; // nicht fix 700px
+  max-width: 700px;
 }
 
+
 .text-content {
-  width: 50%;
-  height: 382px;
+  flex: 1; // nimmt immer verfügbaren Platz ein
+  min-width: 280px;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
-
+  gap: 16px; // etwas Abstand
 
   h2 {
     color: #FF834F;
     font-weight: 700;
-    font-size: 24px;
+    font-size: clamp(18px, 2vw, 24px);
   }
 
   span {
     font-family: 'quicksandBook';
-    font-size: 16px;
-    line-height: 120%;
+    font-size: clamp(14px, 1.5vw, 16px);
+    line-height: 1.4;
     color: #F8F7E5;
   }
-
 }
+
 
 
 .contact-form {
