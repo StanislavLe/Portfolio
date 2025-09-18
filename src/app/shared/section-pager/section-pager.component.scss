@@ -113,7 +113,15 @@
   padding-left: 112px;
 
   @media screen and (max-width: 1247px) {
+    padding: 20px;
+    padding-bottom: 0px;
     padding-left: 42px;
+  }
+
+  @media screen and (max-width: 690px) {
+    padding: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
   }
 }
 
