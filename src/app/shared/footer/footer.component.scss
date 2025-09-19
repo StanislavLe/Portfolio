@@ -1,40 +1,55 @@
 .footer {
-    width: 100%;
+    width: 100vw;
+    margin-left: calc(-1 * var(--parent-padding-left));
     height: 100px;
     background-color: #1D1D1D;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     color: #F8F7E5;
     font-size: 16px;
     line-height: 120%;
-    font-family: 'quicksandBook';
-    max-width: 1900px;
-    position: relative;
-    bottom: 0px;
+    font-family: "quicksandBook";
+    max-width: 2061px;
+    padding: 0 92px;
+    position: absolute;
+    bottom: 112px;
+    left: 20px;
+    z-index: 1;
 
-
-    @media screen and (max-width: 1300px) {
-        bottom: 50px;
+     @media screen and (max-width: 1247px) {
+    padding-left: 36px;
     }
 
-    img:first-of-type {
-        max-width: 180px;
-        width: 60%;
-        -webkit-animation: spin 10s linear infinite;
-        -moz-animation: spin 10s linear infinite;
-        animation: spin 10s linear infinite;
 
+    @media screen and (max-width: 980px) {
+        justify-content: start;
     }
 
-    img:nth-of-type(2) {
-        max-width: 263px;
-        width: 65%;
-        -webkit-animation: spin-reverse 10s linear infinite;
-        -moz-animation: spin-reverse 10s linear infinite;
-        animation: spin-reverse 10s linear infinite;
+    .footer-image-container {
         position: relative;
-        right: 60px;
+        width: clamp(200px, 20vw, 400px); // Container skaliert dynamisch mit Bildschirmbreite
+        aspect-ratio: 2 / 1; // grobe Verhältnis, damit Zahnräder gleichmäßig Platz haben
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            position: absolute; // Zahnräder übereinander platzieren
+            max-width: 100%; // passen sich dem Container an
+            height: auto;
+        }
+
+        img:first-of-type {
+            width: 40%;
+            left: 0; // linkes Zahnrad
+            animation: spin 10s linear infinite;
+        }
+
+        img:nth-of-type(2) {
+            width: 70%;
+            right: 0; // rechtes Zahnrad
+            animation: spin-reverse 10s linear infinite;
+        }
     }
 }
 
@@ -73,4 +88,15 @@
     padding: 0 20px;
     position: relative;
     top: 72px;
+
+    @media screen and (max-width: 1370px) {
+        padding: unset;
+        width: 68%;
+    }
+
+
+    @media screen and (max-width: 980px) {
+        width: 73%;
+    }
+
 }
