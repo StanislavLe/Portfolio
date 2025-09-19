@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  padding-top: clamp(50px, 6vh, 80px); // dynamisch
+  padding-top: clamp(131px, 7vh, 140px); // dynamisch
   min-height: 100dvh; // volle Höhe, auch auf Mobile
   max-width: 2000px;
   width: 100%; // dynamisch begrenzt
@@ -13,6 +13,10 @@
   @media screen and (max-width: 690px) {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  @media screen and (max-width: 690px) {
+    justify-content: flex-start;
   }
 }
 
@@ -71,6 +75,10 @@
   @media screen and (max-width: 690px) {
     width: 100%;
   }
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
 }
 
 h1 {
@@ -90,6 +98,10 @@ h1 {
 
   @media screen and (max-width: 690px) {
     width: 100%;
+  }
+
+  @media screen and (max-width: 690px) {
+    margin-bottom: 8px;
   }
 }
 
@@ -255,9 +267,9 @@ h1 {
       align-items: center;
       transition: background-color 0.3s, color 0.3s;
 
-          @media screen and (max-width: 900px) {
-          margin-bottom: 40px;
-          }
+      @media screen and (max-width: 900px) {
+        margin-bottom: 40px;
+      }
 
       &:hover {
         background-color: #FF834F;
@@ -402,6 +414,32 @@ h1 {
   &:hover {
     border-bottom: 2px solid #FF834F;
   }
+
+  @media screen and (max-width: 690px) {
+    position: relative;
+    bottom: 285px;
+    left: 468px;
+  }
+
+  @media screen and (max-width: 557px) {
+    bottom: 272px;
+    left: 399px;
+  }
+
+  @media screen and (max-width: 547px) {
+    bottom: 233px;
+    left: 399px;
+  }
+
+  @media screen and (max-width: 512px) {
+    bottom: 216px;
+        left: 343px;
+  }
+
+    @media screen and (max-width: 466px) {
+    bottom: 216px;
+        left: 343px;
+  }
 }
 
 .bounce-arrow {
@@ -415,9 +453,20 @@ h1 {
   will-change: transform;
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .25));
   transition: filter 0.2s ease;
+  z-index: 2;
 
   .arrow-wrapper:hover & {
     filter: brightness(0) saturate(100%) invert(52%) sepia(75%) saturate(726%) hue-rotate(338deg) brightness(98%) contrast(96%);
+  }
+
+  @media screen and (max-width: 547px) {
+    width: clamp(20px, 3vw, 40px);
+    height: auto;
+  }
+
+  @media screen and (max-width: 547px) {
+    animation: floatUpDownSmall 2s ease-in-out infinite;
+
   }
 }
 
@@ -443,6 +492,19 @@ h1 {
   }
 }
 
+@keyframes floatUpDownSmall {
+  0% {
+    transform: translateY(10px);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+
+  100% {
+    transform: translateY(10px);
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .bounce-arrow {

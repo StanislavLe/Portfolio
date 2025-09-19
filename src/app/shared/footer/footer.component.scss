@@ -45,6 +45,10 @@
 
         }
 
+         @media screen and (max-width: 690px) {
+            top: 38px;
+  }
+
         img {
             position: absolute; // Zahnräder übereinander platzieren
             max-width: 100%; // passen sich dem Container an
