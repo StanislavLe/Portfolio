@@ -18,6 +18,39 @@
   @media screen and (max-width: 690px) {
     justify-content: flex-start;
   }
+
+  @media screen and (max-height: 923px) {
+    padding-top: clamp(92px, 10vh, 92px);
+  }
+
+  @media screen and (max-height: 716px) {
+    padding-top: clamp(112px, 10vh, 112px);
+  }
+
+  @media screen and (max-height: 696px) {
+    padding-top: clamp(120px, 10vh, 120px);
+  }
+
+  @media screen and (max-height: 696px) {
+    padding-top: clamp(125px, 10vh, 125px);
+  }
+
+  @media screen and (max-height: 660px) {
+    padding-top: clamp(130px, 10vh, 130px);
+  }
+
+
+  @media screen and (max-height: 655px) {
+    padding-top: clamp(135px, 10vh, 135px);
+  }
+
+  @media screen and (max-height: 650px) {
+    padding-top: clamp(140px, 10vh, 140px);
+  }
+
+  @media screen and (max-height: 645px) {
+    padding-top: clamp(150px, 10vh, 170px);
+  }
 }
 
 
@@ -101,7 +134,7 @@ h1 {
   }
 
   @media screen and (max-width: 690px) {
-    margin-bottom: 8px;
+    margin-bottom: 4px;
   }
 }
 
@@ -118,11 +151,23 @@ h1 {
     max-width: none;
   }
 
+  @media screen and (max-height: 696px) {
+    gap: 4px;
+  }
+
   h2 {
     color: #FF834F;
     font-weight: 700;
     font-size: clamp(18px, 2vw, 24px);
+
+    @media screen and (max-height: 696px) {
+      font-size: clamp(16px, 2vw, 24px);
+      margin: 0 0 4px;
+
+    }
   }
+
+
 
   span {
     font-family: 'quicksandBook';
@@ -147,10 +192,11 @@ h1 {
   @media screen and (max-width: 900px) {
     width: 100%;
     margin-top: clamp(8px, 2vh, 32px);
-
   }
 
-  @media screen and (max-width: 690px) {}
+  @media screen and (max-height: 677px) {
+    margin-top: clamp(4px, 1vh, 8px);
+  }
 
   form {
     width: 100%;
@@ -174,6 +220,11 @@ h1 {
       @media screen and (max-width: 690px) {
         margin-bottom: 8px;
 
+      }
+
+      @media screen and (max-height: 669px) {
+        margin-bottom: 4px;
+        gap: 4px;
       }
 
       .form-group {
@@ -202,6 +253,11 @@ h1 {
       border: none;
       border-bottom: 2px solid #F9AF42;
       outline: none;
+
+      @media screen and (max-width: 466px) {
+        padding: 4px;
+        margin-bottom: 4px;
+      }
 
       &::placeholder {
         color: #FFFFFFCC;
@@ -269,6 +325,15 @@ h1 {
 
       @media screen and (max-width: 900px) {
         margin-bottom: 40px;
+      }
+
+
+      @media screen and (max-height: 890px) {
+        margin-bottom: 97px;
+        width: 133px;
+        height: 31px;
+        font-size: 16px;
+
       }
 
       &:hover {
@@ -364,6 +429,10 @@ h1 {
   flex-direction: column;
   width: 100%;
   margin-bottom: 20px;
+
+  @media screen and (max-height: 890px) {
+    margin-bottom: 4px;
+  }
 }
 
 
@@ -379,6 +448,10 @@ h1 {
   align-items: center;
   padding-bottom: 32px;
   width: 100%;
+
+  @media screen and (max-height: 890px) {
+    padding-bottom: 8px;
+  }
 }
 
 
@@ -388,6 +461,10 @@ h1 {
   flex-direction: column;
   width: 100%;
   margin-bottom: 20px;
+
+  @media screen and (max-height: 890px) {
+    margin-bottom: 4px;
+  }
 }
 
 
@@ -417,29 +494,60 @@ h1 {
 
   @media screen and (max-width: 690px) {
     position: relative;
-    bottom: 285px;
+    bottom: 330px;
     left: 468px;
   }
 
-  @media screen and (max-width: 557px) {
-    bottom: 272px;
-    left: 399px;
+  @media screen and (max-width: 576px) {
+    bottom: 315px;
+    left: 390px;
   }
 
   @media screen and (max-width: 547px) {
-    bottom: 233px;
-    left: 399px;
+    bottom: 274px;
+    left: 390px;
   }
 
-  @media screen and (max-width: 512px) {
-    bottom: 216px;
-        left: 343px;
+  @media screen and (max-width: 466px) {
+    bottom: 346px;
+    left: 338px;
   }
 
-    @media screen and (max-width: 466px) {
-    bottom: 216px;
-        left: 343px;
+  @media screen and (max-width: 462px) {
+    bottom: 333px;
+    left: 338px;
   }
+
+  @media screen and (max-width: 401px) {
+    bottom: 311px;
+    left: 311px;
+  }
+
+  @media screen and (max-height: 960px) {
+    bottom: 264px;
+  }
+
+  @media screen and (max-height: 923px) {
+    bottom: 272px;
+  }
+
+  @media screen and (max-height: 890px) {
+    bottom: 235px;
+  }
+
+  @media screen and (max-height: 795px) {
+    bottom: 26%;
+  }
+
+  @media screen and (max-height: 766px) {
+    bottom: 23%;
+  }
+
+  @media screen and (max-height: 740px) {
+    bottom: 21%;
+  }
+
+  @media screen and (max-height: 700px) {}
 }
 
 .bounce-arrow {

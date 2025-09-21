@@ -24,12 +24,20 @@
         justify-content: start;
     }
 
-      @media screen and (max-width: 613px) {
+    @media screen and (max-width: 613px) {
         flex-direction: column;
-            justify-content: end;
-            align-items: center;
+        justify-content: end;
+        align-items: center;
 
     }
+
+    @media screen and (max-height: 745px) {
+        bottom: 84px;
+    }
+
+          @media screen and (max-height: 660px) {
+        bottom: 75px;
+  }
 
     .footer-image-container {
         position: relative;
@@ -45,9 +53,35 @@
 
         }
 
-         @media screen and (max-width: 690px) {
+        @media screen and (max-width: 690px) {
             top: 38px;
-  }
+        }
+
+        @media screen and (max-width: 613px) {
+            right: unset;
+
+        }
+
+        @media screen and (max-height: 960px) {
+            width: auto;
+            height: clamp(140px, 16vw, 200px); // Container skaliert dynamisch mit Bildschirmbreite
+        }
+
+        @media screen and (max-height: 810px) {
+            top: 55px;
+            width: auto;
+            height: clamp(60px, 31vw, 120px); // Container skaliert dynamisch mit Bildschirmbreite
+        }
+
+        @media screen and (max-height: 716px) {
+        height: clamp(16px, 8vw, 45px);
+        top: 63px;
+        }
+
+           @media screen and (max-height: 646px) {
+        height: clamp(12px, 6vw, 32px);
+        top: 63px;
+        }
 
         img {
             position: absolute; // Zahnräder übereinander platzieren
@@ -119,7 +153,7 @@
 
     @media screen and (max-width: 850px) {
         flex-direction: column;
-            justify-content: end;
+        justify-content: end;
 
     }
 }
