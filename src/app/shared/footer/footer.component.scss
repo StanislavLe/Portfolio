@@ -17,7 +17,7 @@
 
     @media screen and (max-width: 1247px) {
         padding-right: 148px;
-
+        padding-left: 20px;
     }
 
     @media screen and (max-width: 980px) {
@@ -162,6 +162,11 @@
     &.contact {
         background: #1D1D1D;
         color: #F8F7E5;
+        padding-left: 92px;
+
+        @media screen and (max-width: 1247px) {
+            padding-left: 20px;
+        }
 
         .footer-links a {
             color: #F8F7E5;
