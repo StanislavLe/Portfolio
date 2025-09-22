@@ -157,3 +157,24 @@
 
     }
 }
+
+footer {
+  &.contact {
+    background: #111;
+    color: #fff;
+  }
+
+  &.impressum {
+    background: #f0f0f0;
+    color: #333;
+  }
+
+  &.privacy {
+    background: #eaeaea;
+    font-style: italic;
+  }
+
+  &.default {
+    background: #222;
+  }
+}

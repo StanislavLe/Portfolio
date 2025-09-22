@@ -1,12 +1,21 @@
+html,
+body {
+    height: 100dvh;
+    margin: 0;
+}
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100dvh;
+}
+
 .main-content {
     display: flex;
     justify-content: start;
     align-items: start;
     flex-direction: column;
-    padding-top: 122px;
-    padding-right: 60px;
-    padding-left: 112px;
-    padding-bottom: 300px;
+    padding: 122px 60px 80px 112px;
     background-color: #1D1D1D;
     width: 100%;
 
@@ -44,7 +53,11 @@
 }
 
 app-footer {
-    width: 100%;
-    position: relative;
-    top: 140px;
+    position: unset;
+    width: 100% !important;
+    background-color: #111;
+
+    .footer {
+        position: unset !important;
+    }
 }

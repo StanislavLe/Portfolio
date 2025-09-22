@@ -1,10 +1,6 @@
 import { Component, ViewChildren, QueryList, ElementRef, AfterViewInit, HostListener, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
-
-// Zentrale Config
 import { SECTIONS } from '../sections.config';
-
-// Deine Section Components (alle Standalone!)
 import { HeroSectionComponent } from '../../hero-section/hero-section.component';
 import { AboutMeComponent } from '../../about-me/about-me.component';
 import { SkillsetComponent } from '../../skillset/skillset.component';
