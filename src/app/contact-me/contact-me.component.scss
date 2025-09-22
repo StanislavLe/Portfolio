@@ -1,6 +1,6 @@
 .main-content {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: flex-start;
   flex-direction: column;
   padding-top: clamp(131px, 7vh, 140px); // dynamisch
@@ -523,7 +523,7 @@ h1 {
     left: 311px;
   }
 
-  @media screen and (max-height: 960px) {
+  @media screen and (max-height: 951px) {
     bottom: 264px;
   }
 

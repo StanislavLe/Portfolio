@@ -18,7 +18,19 @@ body {
     padding: 122px 60px 80px 112px;
     background-color: #1D1D1D;
     width: 100%;
+    min-height: 136dvh;
 
+      @media screen and (max-width: 1247px) {
+    padding: 20px;
+    padding-top: 100px;
+    padding-left: 42px;
+  }
+
+  @media screen and (max-width: 690px) {
+    padding: 6px;
+    padding-top: 100px;
+    padding-left: 6px;
+  }
 
     h1 {
         font-size: clamp(36px, 4vw, 72px);
@@ -53,11 +65,6 @@ body {
 }
 
 app-footer {
-    position: unset;
     width: 100% !important;
-    background-color: #111;
 
-    .footer {
-        position: unset !important;
-    }
 }
