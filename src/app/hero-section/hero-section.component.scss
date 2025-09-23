@@ -23,7 +23,7 @@
   align-items: flex-start;
   gap: clamp(16px, 3vw, 52px);
   width: 100%;
-  z-index: 2;
+  z-index: 3;
   height: 65vh;
   padding-top: 20px;
 
@@ -92,6 +92,7 @@
   padding: clamp(16px, 2vh, 18px) clamp(18px, 3vw, 32px);
   border-radius: 100px;
   transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s;
+  z-index: 5;
 
   &:hover {
     background-color: #FF834F;
