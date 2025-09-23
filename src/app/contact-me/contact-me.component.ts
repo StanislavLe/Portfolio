@@ -42,7 +42,7 @@ export class ContactMeComponent {
   mailTest = true;
 
   post = {
-    endPoint: 'https://deineDomain.de/sendMail.php',
+    endPoint: 'https://stanislav-levin/sendMail.php',
     body: (payload: any) => JSON.stringify(payload),
     options: {
       headers: {
