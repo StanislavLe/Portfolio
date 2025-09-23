@@ -39,10 +39,10 @@ export class ContactMeComponent {
   }
 
 
-  mailTest = true;
+  mailTest = false;
 
   post = {
-    endPoint: 'https://stanislav-levin/sendMail.php',
+    endPoint: 'https://stanislav-levin.de/sendMail.php',
     body: (payload: any) => JSON.stringify(payload),
     options: {
       headers: {
