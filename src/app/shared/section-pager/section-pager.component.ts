@@ -36,6 +36,10 @@ export class SectionPagerComponent implements AfterViewInit, OnChanges {
   currentSectionIndex = 0;
   isScrolling = false;
 
+  private touchStartY: number = 0;
+  private touchEndY: number = 0;
+  private swipeThreshold: number = 50; // Pixel zum Auslösen
+
   ngAfterViewInit() {
     const idx = this.sections.findIndex(s => s.id === this.currentSection);
     if (idx >= 0) {
@@ -45,27 +49,23 @@ export class SectionPagerComponent implements AfterViewInit, OnChanges {
     }
   }
 
-
- ngOnChanges(changes: SimpleChanges) {
-  if (changes['currentSection']) {
-    const idx = this.sections.findIndex(s => s.id === this.currentSection);
-    if (idx >= 0 && idx !== this.currentSectionIndex) {
-      if (this.sectionRefs && this.sectionRefs.length > 0) {
-        this.scrollToSection(idx);
-      } else {
-        // Falls noch nicht gerendert: nachträglich scrollen
-        setTimeout(() => {
-          if (this.sectionRefs && this.sectionRefs.length > 0) {
-            this.scrollToSection(idx);
-          }
-        });
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['currentSection']) {
+      const idx = this.sections.findIndex(s => s.id === this.currentSection);
+      if (idx >= 0 && idx !== this.currentSectionIndex) {
+        if (this.sectionRefs && this.sectionRefs.length > 0) {
+          this.scrollToSection(idx);
+        } else {
+          // Falls noch nicht gerendert: nachträglich scrollen
+          setTimeout(() => {
+            if (this.sectionRefs && this.sectionRefs.length > 0) {
+              this.scrollToSection(idx);
+            }
+          });
+        }
       }
     }
   }
-}
-
-
-
 
   @HostListener('wheel', ['$event'])
   onWheel(event: WheelEvent) {
@@ -76,6 +76,34 @@ export class SectionPagerComponent implements AfterViewInit, OnChanges {
     } else if (event.deltaY < 0 && this.currentSectionIndex > 0) {
       this.scrollToSection(this.currentSectionIndex - 1);
       event.preventDefault();
+    }
+  }
+
+  // 📱 Touch Support
+  @HostListener('touchstart', ['$event'])
+  onTouchStart(event: TouchEvent) {
+    this.touchStartY = event.touches[0].clientY;
+  }
+
+  @HostListener('touchend', ['$event'])
+  onTouchEnd(event: TouchEvent) {
+    this.touchEndY = event.changedTouches[0].clientY;
+    this.handleSwipe();
+  }
+
+  private handleSwipe() {
+    if (this.isScrolling) return;
+
+    const deltaY = this.touchStartY - this.touchEndY;
+
+    if (Math.abs(deltaY) > this.swipeThreshold) {
+      if (deltaY > 0 && this.currentSectionIndex < this.sections.length - 1) {
+        // Swipe nach oben → nächste Section
+        this.scrollToSection(this.currentSectionIndex + 1);
+      } else if (deltaY < 0 && this.currentSectionIndex > 0) {
+        // Swipe nach unten → vorherige Section
+        this.scrollToSection(this.currentSectionIndex - 1);
+      }
     }
   }
 
@@ -93,5 +121,4 @@ export class SectionPagerComponent implements AfterViewInit, OnChanges {
 
     setTimeout(() => this.isScrolling = false, 700);
   }
-
 }
