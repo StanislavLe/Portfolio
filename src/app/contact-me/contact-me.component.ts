@@ -45,9 +45,11 @@ export class ContactMeComponent {
     endPoint: 'https://stanislav-levin.de/sendMail.php',
     body: (payload: any) => JSON.stringify(payload),
     options: {
-      headers: { 'Content-Type': 'application/json' },
-      responseType: 'text' as const
-    }
+      headers: {
+        'Content-Type': 'text/plain',
+        responseType: 'text',
+      },
+    },
   };
 
   onSubmit(ngForm: NgForm) {
