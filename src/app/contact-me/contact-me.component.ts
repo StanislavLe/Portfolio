@@ -1,12 +1,9 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';      // ⬅️ wichtig für ngForm & ngModel
-import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
-import { RouterModule } from '@angular/router'; // ✅ wichtig für routerLink
+import { Component, Output, EventEmitter, inject } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
+import { NgFor, NgIf, NgSwitch, NgSwitchCase, CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../shared/footer/footer.component';
-import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { inject } from '@angular/core';
-
 
 @Component({
   selector: 'app-contact-me',
@@ -26,7 +23,7 @@ import { inject } from '@angular/core';
 })
 export class ContactMeComponent {
 
-  http = inject(HttpClient)
+  http = inject(HttpClient);
 
   contactData = {
     name: '',
@@ -35,47 +32,30 @@ export class ContactMeComponent {
     agreement: false
   };
 
-  constructor() {
-  }
-
-
-  mailTest = false;
-
   post = {
     endPoint: 'https://stanislav-levin.de/sendMail.php',
     body: (payload: any) => JSON.stringify(payload),
     options: {
-      headers: {
-        'Content-Type': 'text/plain',
-        responseType: 'text',
-      },
-    },
+      headers: { 'Content-Type': 'application/json' },
+      responseType: 'json' as const
+    }
   };
 
   onSubmit(ngForm: NgForm) {
-    if (ngForm.submitted && ngForm.form.valid && !this.mailTest) {
-      this.http.post(this.post.endPoint, this.post.body(this.contactData))
+    if (ngForm.submitted && ngForm.form.valid) {
+      this.http.post(this.post.endPoint, this.post.body(this.contactData), this.post.options)
         .subscribe({
           next: (response: any) => {
-
+            console.log('✅ Response:', response);
             ngForm.resetForm();
           },
           error: (error: any) => {
-            console.error(error);
+            console.error('❌ Error:', error);
           },
-          complete: () => console.info('send post complete'),
+          complete: () => console.info('📬 send post complete'),
         });
-    } else if (ngForm.submitted && ngForm.form.valid && this.mailTest) {
-
-      ngForm.resetForm();
     }
   }
 
   @Output() scrollToTop = new EventEmitter<void>();
-
-
-
-
-
-
 }
