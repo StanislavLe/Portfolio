@@ -145,3 +145,22 @@ html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   display: none;
 }
+
+/* Viewport-Fix für iOS Safari */
+html, body {
+  height: 100%;
+  margin: 0;
+  height: -webkit-fill-available;
+}
+
+/* Container volle Höhe */
+.mat-drawer-container,
+.mat-drawer-content {
+  height: 100% !important;
+}
+
+/* Sidenav volle Höhe */
+.sidenav {
+  height: 100vh !important;
+  height: -webkit-fill-available !important;
+}
