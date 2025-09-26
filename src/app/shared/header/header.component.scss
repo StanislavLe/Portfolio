@@ -30,7 +30,9 @@
   justify-content: space-between;
   align-items: center;
   height: 64px;
-  z-index: 1;
+  z-index: 10000;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
   background-color: #679AAC;
   padding: 50px 60px 50px 60px;
 
@@ -422,9 +424,9 @@
 ::ng-deep .mat-mdc-icon-button .mat-mdc-button-persistent-ripple,
 ::ng-deep .mat-mdc-icon-button .mdc-button__ripple,
 ::ng-deep .mat-mdc-icon-button .mdc-state-layer {
-  background: none !important;
+  background: rgba(0,0,0,0.001) !important; /* praktisch transparent */
   box-shadow: none !important;
-  opacity: 0 !important;
+  opacity: 1 !important;
   transition: none !important;
 }
 
@@ -433,10 +435,10 @@
 ::ng-deep .mat-drawer-backdrop,
 ::ng-deep .mat-mdc-sidenav-backdrop {
   // Alle möglichen Overlays/Backdrop-Elemente von Angular Material/MDC
-  background: none !important;
+  background: rgba(0,0,0,0.001) !important; /* praktisch transparent */
   backdrop-filter: none !important;
-  opacity: 0 !important;
-  pointer-events: none !important; // Jetzt kann man auf den Main-Content klicken!
+  opacity: 1 !important;
+  pointer-events: auto !important; // Jetzt kann man auf den Main-Content klicken!
 }
 
 sidenav-content {
