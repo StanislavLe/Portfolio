@@ -42,6 +42,11 @@
     gap: 16px;
   }
 
+  @media screen and (max-height: 850px) {
+    padding-top: 0px;
+    gap: 26px;
+  }
+
   span {
     font-size: clamp(24px, 2.5vw, 48px);
     color: #F8F7E5;
@@ -254,6 +259,10 @@
   height: 100%;
   position: absolute;
   top: 88px;
+
+  @media screen and (max-height: 850px) {
+    top: 64px;
+  }
 }
 
 .animation-container {
