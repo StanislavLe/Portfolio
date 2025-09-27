@@ -129,38 +129,3 @@ html, body {
     }
 }
 
-/* ========== Chrome, Safari, Edge ========== */
-::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
-}
-
-/* ========== Firefox ========== */
-html, body {
-  scrollbar-width: none;  /* keine Scrollbar */
-  -ms-overflow-style: none; /* IE/Edge */
-}
-
-html::-webkit-scrollbar, 
-body::-webkit-scrollbar {
-  display: none;
-}
-
-/* Viewport-Fix für iOS Safari */
-html, body {
-  height: 100%;
-  margin: 0;
-  height: -webkit-fill-available;
-}
-
-/* Container volle Höhe */
-.mat-drawer-container,
-.mat-drawer-content {
-  height: 100% !important;
-}
-
-/* Sidenav volle Höhe */
-.sidenav {
-  height: 100vh !important;
-  height: -webkit-fill-available !important;
-}

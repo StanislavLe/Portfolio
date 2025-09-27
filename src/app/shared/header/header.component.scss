@@ -4,6 +4,14 @@
 
 .sidenavContainer {
   max-width: 1990px;
+  transform: none !important;
+  will-change: auto !important;
+  width: 100%;
+  background-color: transparent !important;
+  z-index: 1000;
+  overflow: visible !important;
+  /* wichtig für iOS */
+
 }
 
 .sidenavSpacerInner {
@@ -24,18 +32,17 @@
 
 .mainToolbar {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   max-width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 64px;
-  z-index: 10000;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+  z-index: 20000;
   background-color: #679AAC;
   padding: 50px 60px 50px 60px;
-  will-change: transform;
 
   @media screen and (max-width: 1200px) {
     padding: 50px 60px 50px 20px;
@@ -286,21 +293,22 @@
 }
 
 
-.sidenavContainer {
-  width: 100%;
-  background-color: transparent !important;
-  z-index: 10000;
-}
-
-
 .mat-drawer.mat-drawer-end {
-  right: 112px;
   position: fixed;
+  top: 12px;
   right: clamp(60px, (100vw - 2006px), 1900px);
+  width: 208px;
+  background: #679AAC !important;
+
+  z-index: 20001; /* über Toolbar */
+  -webkit-transform: translate3d(0,0,0); /* Safari GPU-Fix */
+  will-change: transform;
 
   @media screen and (max-width: 600px) {
-    right: 0px;
-    top: 0px;
+    right: 0;
+    top: 0;
+    width: 100vw;
+    border-radius: 0;
   }
 }
 
@@ -415,59 +423,4 @@
 
 ::ng-deep .sidenav-btn:hover mat-icon {
   color: #FF834F !important;
-}
-
-
-
-
-// Entfernt den Overlay- bzw. State-Layer-Effekt auf allen mat-icon-buttons
-::ng-deep .mat-mdc-icon-button .mat-mdc-focus-indicator,
-::ng-deep .mat-mdc-icon-button .mat-mdc-button-persistent-ripple,
-::ng-deep .mat-mdc-icon-button .mdc-button__ripple,
-::ng-deep .mat-mdc-icon-button .mdc-state-layer {
-  background: rgba(0,0,0,0.001) !important; /* praktisch transparent */
-  box-shadow: none !important;
-  opacity: 1 !important;
-  transition: none !important;
-}
-
-
-::ng-deep .cdk-overlay-backdrop,
-::ng-deep .mat-drawer-backdrop,
-::ng-deep .mat-mdc-sidenav-backdrop {
-  // Alle möglichen Overlays/Backdrop-Elemente von Angular Material/MDC
-  background: rgba(0,0,0,0.001) !important; /* praktisch transparent */
-  backdrop-filter: none !important;
-  opacity: 1 !important;
-  pointer-events: auto !important; // Jetzt kann man auf den Main-Content klicken!
-}
-
-sidenav-content {
-  max-width: 1900px;
-}
-
-/* OnePager ganz hinten */
-.mat-drawer-content {
-  position: relative;
-  z-index: 0;
-}
-
-/* Header über dem OnePager */
-.mainToolbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100 !important;  /* Header über Content */
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-}
-
-/* Sidenav über allem */
-.mat-drawer {
-  position: fixed !important;  /* sicherstellen, dass sie global drüberliegt */
-  z-index: 200 !important;     /* Sidebar ganz oben */
-  height: 100vh !important;
-  height: -webkit-fill-available !important; /* iOS Fix */
-  top: 0 !important;
 }
