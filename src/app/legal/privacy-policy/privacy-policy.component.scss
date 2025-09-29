@@ -9,7 +9,7 @@
     padding-bottom: 300px;
     background-color: #1D1D1D;
     width: 100%;
-    min-height: 100dvh;
+    min-height: 254dvh;
 
     @media screen and (max-width: 1247px) {
         padding: 20px;
@@ -19,7 +19,7 @@
 
     }
 
-        @media screen and (max-width: 900px) {
+    @media screen and (max-width: 900px) {
         padding: 20px;
         padding-top: 100px;
         padding-left: 42px;
@@ -29,6 +29,15 @@
     }
 
     @media screen and (max-width: 690px) {
+        padding: 6px;
+        padding-top: 100px;
+        padding-left: 6px;
+    }
+
+        @media screen and (max-height: 690px) {
+        padding: 6px;
+        padding-top: 100px;
+        padding-left: 6px;
     }
 
     h1 {

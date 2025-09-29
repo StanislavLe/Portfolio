@@ -6,20 +6,35 @@
   padding: 122px 60px 80px 112px;
   background-color: #1D1D1D;
   width: 100%;
-  min-height: 130dvh;
+  min-height: 102dvh;
 
   @media screen and (max-width: 1247px) {
     padding: 20px;
     padding-top: 100px;
     padding-left: 42px;
-      min-height: 110dvh;
-
+    min-height: 110dvh;
   }
 
   @media screen and (max-width: 690px) {
     padding: 6px;
     padding-top: 100px;
     padding-left: 6px;
+  }
+
+  @media screen and (max-height: 990px) {
+    min-height: 120dvh;
+  }
+
+  @media screen and (max-height: 900px) {
+    min-height: 140dvh;
+  }
+
+  @media screen and (max-height: 780px) {
+    min-height: 170dvh;
+  }
+
+  @media screen and (max-height: 680px) {
+    min-height: 200dvh;
   }
 
   h1 {
@@ -32,9 +47,9 @@
     max-width: 1816px;
     padding-right: 80px;
 
-  @media screen and (max-width: 690px) {
-   margin-bottom: 8px;
-  }
+    @media screen and (max-width: 690px) {
+      margin-bottom: 8px;
+    }
 
   }
 
