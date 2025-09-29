@@ -81,8 +81,8 @@
         }
 
         @media screen and (max-height: 716px) {
-            height: clamp(16px, 8vw, 45px);
-            top: 63px;
+            height: clamp(16px, 7vw, 45px);
+            top: 64px;
         }
 
         @media screen and (max-height: 646px) {
@@ -121,6 +121,8 @@
         align-items: center;
         gap: 20px;
         text-align: center;
+        position: relative;
+        z-index: 10000;
 
         :hover {
             color: #FF834F;

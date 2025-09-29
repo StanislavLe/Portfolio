@@ -205,7 +205,7 @@ h3 {
 }
 
 .floating-emoji {
-    width: clamp(32px, 5vw, 52px);
+    width: clamp(32px, 3vw, 40px);
     /* wird kleiner auf kleinen Screens */
     animation: floatUpDown 2.2s ease-in-out infinite;
     will-change: transform;

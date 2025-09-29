@@ -33,7 +33,7 @@
 
   p {
     margin: 0;
-  font-size: clamp(14px, 1.5vw, 18px);
+    font-size: clamp(14px, 1.5vw, 18px);
     font-family: 'quicksandBook';
     line-height: 120%;
   }
@@ -127,7 +127,7 @@
 
   p {
     margin: 0;
-  font-size: clamp(14px, 1.5vw, 18px);
+    font-size: clamp(14px, 1.5vw, 18px);
     font-family: 'quicksandBook';
     line-height: 120%;
     color: #679AAC;
@@ -247,10 +247,8 @@ h3 {
 
 .hoverInfo {
   position: absolute;
-  top: 50%;
-  /* mittig zum Icon */
+  bottom: 20%;
   left: calc(100% + 12px);
-  /* direkt rechts daneben */
   transform: translateY(-50%);
   opacity: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -266,12 +264,20 @@ h3 {
   font-weight: 100;
   pointer-events: none;
   z-index: 5;
+
+
+
+
 }
 
 .infoIcon:hover+.hoverInfo {
   opacity: 1;
   pointer-events: auto;
-  transform: translateY(-80%) translateX(-100%) scale(1);
+  transform: translateY(-67%) translateX(-141%) scale(1);
+
+  @media screen and (max-width: 690px) {
+    transform: translateY(-33%) translateX(-138%) scale(1);
+  }
 }
 
 .navigation {

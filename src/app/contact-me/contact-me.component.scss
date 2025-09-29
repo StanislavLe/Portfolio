@@ -1,69 +1,68 @@
+// 🎨 Farben & Variablen
+$color-primary: #F9AF42;
+$color-secondary: #FF834F;
+$color-bg-dark: #1D1D1D;
+$color-light: #F8F7E5;
+$color-white: #FFFFFFCC;
+
+$font-headline: 'eczarBold';
+$font-regular: 'quicksandBook';
+$font-bold: 'quicksandBold';
+
+// 📱 Breakpoints
+$bp-large: 1247px;
+$bp-medium: 900px;
+$bp-small: 690px;
+$bp-xsmall: 466px;
+
+// ===================== MAIN LAYOUT =====================
 .main-content {
   display: flex;
-  justify-content: start;
-  align-items: flex-start;
   flex-direction: column;
-  padding-top: clamp(131px, 7vh, 140px); // dynamisch
-  min-height: 100dvh; // volle Höhe, auch auf Mobile
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  padding-top: clamp(131px, 7vh, 140px);
+  min-height: 100dvh;
   max-width: 2000px;
-  width: 100%; // dynamisch begrenzt
-  position: relative;
+  width: 100%;
   margin: 0 auto;
+  position: relative;
 
-  @media screen and (max-width: 690px) {
+  @media screen and (max-width: $bp-small) {
     flex-direction: column;
-    align-items: flex-start;
   }
 
-  @media screen and (max-width: 690px) {
-    justify-content: flex-start;
-  }
-
+  // Dynamische Höhenanpassungen
   @media screen and (max-height: 923px) {
-    padding-top: clamp(92px, 10vh, 92px);
+    padding-top: 92px;
   }
 
   @media screen and (max-height: 716px) {
-    padding-top: clamp(112px, 10vh, 112px);
+    padding-top: 112px;
   }
 
   @media screen and (max-height: 696px) {
-    padding-top: clamp(120px, 10vh, 120px);
-  }
-
-  @media screen and (max-height: 696px) {
-    padding-top: clamp(125px, 10vh, 125px);
+    padding-top: 120px;
   }
 
   @media screen and (max-height: 660px) {
-    padding-top: clamp(130px, 10vh, 130px);
-  }
-
-
-  @media screen and (max-height: 655px) {
-    padding-top: clamp(135px, 10vh, 135px);
-  }
-
-  @media screen and (max-height: 650px) {
-    padding-top: clamp(140px, 10vh, 140px);
+    padding-top: 130px;
   }
 
   @media screen and (max-height: 645px) {
-    padding-top: clamp(150px, 10vh, 170px);
+    padding-top: 150px;
   }
 }
 
-
-
 .contentContainer {
-  background-color: #1D1D1D;
+  background-color: $color-bg-dark;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: clamp(24px, 5vw, 160px); // dynamisch
+  gap: clamp(24px, 5vw, 160px);
   max-width: 1900px;
   width: 130%;
-  padding-right: 0;
 
   @media screen and (max-width: 1850px) {
     width: 121%;
@@ -73,82 +72,69 @@
     width: 95%;
   }
 
-  @media screen and (max-width: 1247px) {
+  @media screen and (max-width: $bp-large) {
     width: 83%;
   }
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: $bp-medium) {
     flex-direction: column;
     gap: 40px;
     width: 80%;
   }
 
-  @media screen and (max-width: 690px) {
+  @media screen and (max-width: $bp-small) {
     width: 100%;
   }
 }
 
-
 .contact-header {
   display: flex;
   flex-direction: row;
-  align-items: start;
+  align-items: flex-start;
   justify-content: space-between;
   width: 100%;
   max-width: 1900px;
 
-  @media screen and (max-width: 1247px) {
+  @media screen and (max-width: $bp-large) {
     width: 94%;
   }
 
-  @media screen and (max-width: 900px) {
-    width: 100%;
-  }
-
-  @media screen and (max-width: 690px) {
-    width: 100%;
-  }
-
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: $bp-medium) {
     width: 100%;
   }
 }
 
 h1 {
   font-size: clamp(28px, 5vw, 72px);
-  font-family: 'eczarBold';
+  font-family: $font-headline;
+  color: $color-primary;
   line-height: 110%;
-  color: #F9AF42;
   margin-bottom: clamp(32px, 6vh, 64px);
-  width: fit-content; // nicht fix 700px
   max-width: 700px;
+  width: fit-content;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: $bp-medium) {
     max-width: 93%;
     margin-bottom: clamp(32px, 4vh, 64px);
-
   }
 
-  @media screen and (max-width: 690px) {
+  @media screen and (max-width: $bp-small) {
     width: 100%;
-  }
-
-  @media screen and (max-width: 690px) {
     margin-bottom: 4px;
   }
 }
 
-
+// ===================== TEXT CONTENT =====================
 .text-content {
-  flex: 1; // nimmt immer verfügbaren Platz ein
+  flex: 1;
   max-width: 600px;
   display: flex;
   flex-direction: column;
-  gap: 16px; // etwas Abstand
+  gap: 16px;
 
-  @media screen and (max-width: 900px) {
-    width: 100%;
+  @media screen and (max-width: $bp-medium) {
     max-width: none;
+    width: 100%;
   }
 
   @media screen and (max-height: 696px) {
@@ -156,31 +142,27 @@ h1 {
   }
 
   h2 {
-    color: #FF834F;
+    color: $color-secondary;
     font-weight: 700;
     font-size: clamp(18px, 2vw, 24px);
 
     @media screen and (max-height: 696px) {
-      font-size: clamp(16px, 2vw, 24px);
-      margin: 0 0 4px;
-
+      font-size: 16px;
+      margin-bottom: 4px;
     }
   }
 
-
-
   span {
-    font-family: 'quicksandBook';
+    font-family: $font-regular;
     font-size: clamp(14px, 1.5vw, 16px);
     line-height: 1.4;
-    color: #F8F7E5;
+    color: $color-light;
   }
 }
 
-
-
+// ===================== FORM =====================
 .contact-form {
-  width: 50%;
+  width: 60%;
   min-height: 382px;
   display: flex;
   flex-direction: column;
@@ -189,56 +171,173 @@ h1 {
   bottom: 40px;
   z-index: 2;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: $bp-medium) {
     width: 100%;
     margin-top: clamp(8px, 2vh, 32px);
   }
 
-  @media screen and (max-height: 677px) {
-    margin-top: clamp(4px, 1vh, 8px);
+  @media screen and (max-height: 690px) {
+    margin-top: 4px;
   }
 
   form {
-    width: 100%;
+    width: 87%;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media screen and (max-width: 690px) {
+      width: 100%;
+    }
 
     .personal-group {
       display: flex;
       gap: 32px;
       margin-bottom: 20px;
+      width: 100%;
 
       @media screen and (max-width: 1300px) {
         flex-direction: column;
       }
 
-      @media screen and (max-width: 900px) {
+      @media screen and (max-width: $bp-medium) {
         gap: 8px;
       }
 
-      @media screen and (max-width: 690px) {
+      @media screen and (max-width: $bp-small) {
         margin-bottom: 8px;
+      }
+    }
 
+    // ✨ Gemeinsamer Hover-Effekt für Inputs & Textarea
+    .form-group,
+    .message-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      &:hover {
+        cursor: pointer;
+
+        label {
+          color: $color-secondary;
+        }
+
+        input,
+        textarea {
+          border-bottom-color: $color-secondary;
+          color: $color-secondary;
+          cursor: pointer;
+
+          &::placeholder {
+            color: $color-secondary;
+          }
+        }
+      }
+    }
+
+    .message-group {
+      width: 100%;
+    }
+
+
+    .message-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+
+    .agreement-group {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 32px;
+      width: 100%;
+
+
+      @media screen and (max-height: 780px) {
+        padding-bottom: 4px;
       }
 
-      @media screen and (max-height: 669px) {
-        margin-bottom: 4px;
-        gap: 4px;
-      }
-
-      .form-group {
-        flex: 1;
+      .agreement {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap; // darf umbrechen, wenn zu eng
+        font-size: clamp(12px, 1.2vw, 16px);
+        font-family: 'quicksandBook';
+        color: #F8F7E5;
+        line-height: 120%;
+        width: 100%;
+        margin-bottom: 20px;
+
+
+        @media screen and (max-height: 750px) {
+          margin-bottom: 4px;
+          padding: 0px;
+
+        }
+
+        p {
+          margin: 0;
+        }
+
+        a {
+          color: #FF834F;
+          text-decoration: none;
+          font-family: 'quicksandBook';
+
+          @media screen and (max-width: 2024px) {
+            padding: 0px;
+          }
+
+          @media screen and (max-height: 658px) {
+            margin-bottom: 4px;
+            padding: 0px;
+
+          }
+
+        }
+
+        @media screen and (max-width: 2024px) {
+          flex-direction: column;
+          align-items: flex-start;
+
+          p {
+            margin: 0;
+          }
+        }
+      }
+
+      #agreementbox {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        border: 2px solid #FF834F;
+        border-radius: 4px;
+        background: transparent;
+        cursor: pointer;
+        appearance: none;
+        transition: border-color 0.3s ease;
+
+        &:hover {
+          border-color: #F8F7E5;
+        }
+
+        &:checked {
+          background-color: #FF834F;
+          border-color: #FF834F;
+        }
       }
     }
 
     label {
+      font-family: $font-bold;
       font-size: clamp(18px, 1.5vw, 24px);
-      color: #F8F7E5;
       margin-bottom: 5px;
-      font-family: 'quicksandBold';
+      color: $color-light;
+      cursor: pointer;
     }
 
     input,
@@ -246,233 +345,80 @@ h1 {
       width: 100%;
       padding: 10px;
       margin-bottom: 20px;
-      background: transparent;
-      color: #F8F7E5;
+      font-family: $font-regular;
       font-size: clamp(16px, 1.5vw, 24px);
-      font-family: 'quicksandBook';
+      background: transparent;
+      color: $color-light;
       border: none;
-      border-bottom: 2px solid #F9AF42;
+      border-bottom: 2px solid $color-primary;
       outline: none;
-
-      @media screen and (max-width: 466px) {
-        padding: 4px;
-        margin-bottom: 4px;
-      }
-
-      &::placeholder {
-        color: #FFFFFFCC;
-        font-size: 16px;
-        line-height: 120%; // fix gegen den Versatz
-      }
-
-      &:hover,
-      &:focus {
-        border-bottom-color: #F9AF42;
-        cursor: text;
-      }
 
       &.is-error::placeholder,
       &.is-error-email::placeholder,
       &.is-error-message::placeholder {
         color: #EC7B7B;
       }
+
+            &.is-error-message::placeholder {
+            height: max-content;
+            }
+
+      @media screen and (max-width: $bp-xsmall) {
+        padding: 4px;
+        margin-bottom: 4px;
+      }
+
+      &::placeholder {
+        color: $color-white;
+        line-height: 120%;
+      }
+
+      &:focus {
+        border-bottom-color: $color-secondary;
+      }
+
+      &:hover {
+        border-bottom-color: $color-secondary;
+      }
     }
 
     textarea {
       resize: none;
-      height: 40px;
-      padding: 10px;
-      display: flex;
-      align-items: flex-end;
       line-height: 1.4;
-      vertical-align: bottom;
-
-      &::placeholder {
-        line-height: 120%;
-      }
-    }
-
-    .checkbox {
-      margin: 0px;
-    }
-
-    a {
-      color: #FF834F;
-      text-decoration: none;
-      font-size: 16px;
-      font-family: 'quicksandBook';
-
-      &:hover {
-        color: #F8F7E5;
-      }
     }
 
     .submit-btn {
-      font-family: 'quicksandBook';
+      font-family: $font-regular;
       font-weight: 700;
       font-size: 18px;
       width: 160px;
       height: 40px;
-      border: 1px solid #F8F7E5;
       border-radius: 100px;
-      background-color: #1D1D1D;
-      color: #F8F7E5;
+      border: 1px solid $color-light;
+      background: $color-bg-dark;
+      color: $color-light;
       cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: background-color 0.3s, color 0.3s;
-
-      @media screen and (max-width: 900px) {
-        margin-bottom: 40px;
-      }
+      transition: background-color .3s, color .3s;
 
 
-      @media screen and (max-height: 890px) {
-        margin-bottom: 97px;
-        width: 133px;
-        height: 31px;
+      @media screen and (max-height: 730px) {
         font-size: 16px;
-
+        width: 135px;
+        height: 30px;
       }
+
 
       &:hover {
-        background-color: #FF834F;
+        background: $color-secondary;
       }
 
       &:disabled {
-        opacity: 0.5;
+        opacity: .5;
         cursor: not-allowed;
       }
     }
-
-    // Agreement Checkbox
-    #agreementbox {
-      width: 20px;
-      height: 20px;
-      margin-right: 10px;
-      border: 2px solid #FF834F;
-      border-radius: 4px;
-      background: transparent;
-      cursor: pointer;
-      appearance: none;
-      transition: border-color 0.3s ease;
-
-      &:hover {
-        border-color: #F8F7E5;
-      }
-
-      &:checked {
-        background-color: #FF834F;
-        border-color: #FF834F;
-      }
-    }
-  }
-
-  // Agreement Text
-  .agreement {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap; // darf umbrechen, wenn zu eng
-    font-size: clamp(12px, 1.2vw, 16px);
-    font-family: 'quicksandBook';
-    color: #F8F7E5;
-    line-height: 120%;
-    width: 100%;
-
-    p {
-      margin: 0;
-    }
-
-    a {
-      padding: 0 4px;
-
-      @media screen and (max-width: 2024px) {
-        padding: 0px;
-      }
-
-      @media screen and (max-width: 900px) {
-        padding: 0 4px;
-
-      }
-    }
-
-    @media screen and (max-width: 2024px) {
-      flex-direction: column;
-      align-items: flex-start;
-
-      p {
-        margin: 0;
-      }
-    }
-
-
-    @media screen and (max-width: 900px) {
-      width: 100%;
-      flex-direction: row;
-    }
   }
 }
-
-
-
-
-.personal-group {
-  display: flex;
-  gap: 32px;
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-.message-group {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-bottom: 20px;
-
-  @media screen and (max-height: 890px) {
-    margin-bottom: 4px;
-  }
-}
-
-
-
-
-
-
-
-.agreement-group {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 32px;
-  width: 100%;
-
-  @media screen and (max-height: 890px) {
-    padding-bottom: 8px;
-  }
-}
-
-
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-bottom: 20px;
-
-  @media screen and (max-height: 890px) {
-    margin-bottom: 4px;
-  }
-}
-
-
-
-
-
-
-
 
 
 .arrow-wrapper {
@@ -618,9 +564,4 @@ h1 {
   .bounce-arrow {
     animation: none;
   }
-}
-
-
-app-footer {
-  width: 100%;
 }

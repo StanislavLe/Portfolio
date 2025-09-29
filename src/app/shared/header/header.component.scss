@@ -147,13 +147,35 @@
 }
 
 
-.socialLinks img {
-  transition: filter 0.2s;
+.socialLinks a:nth-child(1) img {
+  content: none; 
+  display: block;
+  width: 32px;
+  height: 32px;
+  background: url("/assets/icons/githubIcon.png") no-repeat center / contain;
 }
 
-.socialLinks img:hover {
-  filter: brightness(0) saturate(100%) invert(57%) sepia(75%) saturate(708%) hue-rotate(332deg) brightness(93%) contrast(97%);
+.socialLinks a:nth-child(1):hover img {
+  background: url("/assets/icons/githubIconHover.png") no-repeat center / contain;
 }
+
+.socialLinks a:nth-child(2) img {
+  background: url("/assets/icons/linkedInIcon.png") no-repeat center / contain;
+}
+
+.socialLinks a:nth-child(2):hover img {
+  background: url("/assets/icons/linkedInIconHover.png") no-repeat center / contain;
+}
+
+.socialLinks a:nth-child(3) img {
+  background: url("/assets/icons/emailIcon.png") no-repeat center / contain;
+}
+
+.socialLinks a:nth-child(3):hover img {
+  background: url("/assets/icons/emailIconHover.png") no-repeat center / contain;
+}
+
+
 
 
 .logoHeader {
@@ -409,6 +431,7 @@
 }
 
 
+/* Standardfarben pro Section */
 .sidenavContainer.about .mainToolbar .mat-icon {
   color: #1D1D1D !important;
 }
@@ -417,10 +440,26 @@
   color: #1D1D1D !important;
 }
 
-.sidenav-btn:hover mat-icon {
-  color: #FF834F !important; // Orange beim Hover
+/* Standardfarbe für alle anderen */
+.sidenavContainer .mainToolbar .mat-icon {
+  color: #F8F7E5 !important;
 }
 
-::ng-deep .sidenav-btn:hover mat-icon {
-  color: #FF834F !important;
+/* Hover-Effekt NUR wenn die Schaltfläche gehovert wird */
+.sidenavContainer.about .mainToolbar .sidenav-btn:hover mat-icon,
+.sidenavContainer.portfolio .mainToolbar .sidenav-btn:hover mat-icon,
+.sidenavContainer .mainToolbar .sidenav-btn:hover mat-icon {
+  color: #FF834F !important; 
+  background: none;
+}
+
+/* Entfernt den Hover-Kreis / Ripple-Hintergrund nur bei Icon-Buttons */
+::ng-deep .mat-mdc-icon-button .mat-mdc-focus-indicator,
+::ng-deep .mat-mdc-icon-button .mat-mdc-button-persistent-ripple,
+::ng-deep .mat-mdc-icon-button .mdc-button__ripple,
+::ng-deep .mat-mdc-icon-button .mdc-state-layer {
+  background: none !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+  transition: none !important;
 }

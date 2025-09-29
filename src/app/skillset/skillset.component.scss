@@ -97,7 +97,7 @@ h1 {
 
     }
 
-       @media screen and (max-height: 580px) {
+    @media screen and (max-height: 580px) {
         padding-top: 26%;
 
     }
@@ -263,7 +263,7 @@ h1 {
 
     @media screen and (max-height: 800px) {
 
-        top: -187px;
+        top: -284px;
 
     }
 
@@ -357,7 +357,6 @@ h1 {
 
 }
 
-/* drehendes Icon */
 .skillsetImg {
     width: 100%;
     height: auto;
@@ -366,16 +365,12 @@ h1 {
     animation: spin 10s linear infinite;
 }
 
-/* Emoji, am unteren Rand fixiert */
 .learning-emoji {
     position: absolute;
     bottom: 29%;
-    /* immer unten am Container */
     left: 50%;
-    /* horizontal zentrieren */
     transform: translateX(-50%);
     width: clamp(20px, 3vw, 50px);
-    /* dynamisch kleiner/größer */
     height: auto;
     cursor: pointer;
 }

@@ -180,6 +180,7 @@
   padding: 20px;
   padding-right: 81px;
   max-width: 1900px;
+  z-index: 10000;
 
   @media screen and (max-width: 690px) {
     display: none;

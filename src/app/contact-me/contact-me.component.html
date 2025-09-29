@@ -39,7 +39,7 @@
           <label for="message">Wie kann ich dir helfen?</label>
           <textarea #message="ngModel" [(ngModel)]="contactData.message" name="message" id="message" rows="1" required
             minlength="4"
-            [placeholder]="(message.invalid && message.touched) ? 'Schreibe mir eine kurze Nachricht worum es sich dreht (min. 4 Zeichen)' : 'Hallo Stanislav, mich interressiert...'"
+            [placeholder]="(message.invalid && message.touched) ? 'Schreibe mir eine Nachricht (min. 4 Zeichen)' : 'Hallo Stanislav, mich interressiert...'"
             [class.is-error]="message.invalid && message.touched" autocomplete="off"
             [class.is-error-message]="message.invalid && message.touched"
             (blur)="message.invalid ? (contactData.message='') : null"></textarea>
