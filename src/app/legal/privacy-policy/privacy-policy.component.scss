@@ -19,12 +19,16 @@
 
     }
 
-    @media screen and (max-width: 690px) {
-        padding: 6px;
+        @media screen and (max-width: 900px) {
+        padding: 20px;
         padding-top: 100px;
-        padding-left: 6px;
-        padding-bottom: 150px;
+        padding-left: 42px;
+        padding-bottom: 220px;
 
+
+    }
+
+    @media screen and (max-width: 690px) {
     }
 
     h1 {
@@ -37,6 +41,10 @@
         max-width: 1816px;
         padding-right: 80px;
 
+
+        @media screen and (max-width: 690px) {
+            margin-bottom: 8px;
+        }
     }
 
     h2 {

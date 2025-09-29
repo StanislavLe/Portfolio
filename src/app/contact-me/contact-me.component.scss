@@ -359,9 +359,9 @@ h1 {
         color: #EC7B7B;
       }
 
-            &.is-error-message::placeholder {
-            height: max-content;
-            }
+      &.is-error-message::placeholder {
+        height: max-content;
+      }
 
       @media screen and (max-width: $bp-xsmall) {
         padding: 4px;
@@ -430,9 +430,16 @@ h1 {
   transition: border-color .2s ease;
   width: max-content;
   padding: 8px 10px;
-  position: absolute;
-  bottom: 657px;
+  position: relative;
+  bottom: calc(30vh + env(safe-area-inset-bottom));
   right: clamp(82px, (100vw - 2012px), 1900px);
+   // 🟠 Safari Fix
+  will-change: transform;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  z-index: 10000;
 
   &:hover {
     border-bottom: 2px solid #FF834F;
@@ -440,57 +447,57 @@ h1 {
 
   @media screen and (max-width: 690px) {
     position: relative;
-    bottom: 330px;
+    //bottom: 330px;
     left: 468px;
   }
 
   @media screen and (max-width: 576px) {
-    bottom: 315px;
+   // bottom: 315px;
     left: 390px;
   }
 
   @media screen and (max-width: 547px) {
-    bottom: 274px;
+   // bottom: 274px;
     left: 390px;
   }
 
   @media screen and (max-width: 466px) {
-    bottom: 346px;
+   // bottom: 346px;
     left: 338px;
   }
 
   @media screen and (max-width: 462px) {
-    bottom: 333px;
+  //  bottom: 333px;
     left: 338px;
   }
 
   @media screen and (max-width: 401px) {
-    bottom: 311px;
-    left: 311px;
+   // bottom: 311px;
+    left: 285px;
   }
 
   @media screen and (max-height: 951px) {
-    bottom: 264px;
+   // bottom: 264px;
   }
 
   @media screen and (max-height: 923px) {
-    bottom: 272px;
+   // bottom: 272px;
   }
 
   @media screen and (max-height: 890px) {
-    bottom: 235px;
+   // bottom: 235px;
   }
 
-  @media screen and (max-height: 795px) {
-    bottom: 26%;
+  @media screen and (max-height: 810px) {
+  bottom: calc(24vh + env(safe-area-inset-bottom));
   }
 
   @media screen and (max-height: 766px) {
-    bottom: 23%;
+   // bottom: 23%;
   }
 
   @media screen and (max-height: 740px) {
-    bottom: 21%;
+   // bottom: 21%;
   }
 
   @media screen and (max-height: 700px) {}
@@ -504,10 +511,8 @@ h1 {
   opacity: 1;
   transform-origin: center;
   animation: floatUpDown 2s ease-in-out infinite;
-  will-change: transform;
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .25));
   transition: filter 0.2s ease;
-  z-index: 2;
 
   .arrow-wrapper:hover & {
     filter: brightness(0) saturate(100%) invert(52%) sepia(75%) saturate(726%) hue-rotate(338deg) brightness(98%) contrast(96%);
@@ -560,8 +565,8 @@ h1 {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .bounce-arrow {
-    animation: none;
-  }
+
+
+app-footer {
+  width: 100%;
 }

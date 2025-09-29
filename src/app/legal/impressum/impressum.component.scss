@@ -1,17 +1,19 @@
 .main-content {
-    display: flex;
-    justify-content: start;
-    align-items: start;
-    flex-direction: column;
-    padding: 122px 60px 80px 112px;
-    background-color: #1D1D1D;
-    width: 100%;
-    min-height: 174dvh;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  padding: 122px 60px 80px 112px;
+  background-color: #1D1D1D;
+  width: 100%;
+  min-height: 130dvh;
 
-      @media screen and (max-width: 1247px) {
+  @media screen and (max-width: 1247px) {
     padding: 20px;
     padding-top: 100px;
     padding-left: 42px;
+      min-height: 110dvh;
+
   }
 
   @media screen and (max-width: 690px) {
@@ -20,39 +22,43 @@
     padding-left: 6px;
   }
 
-    h1 {
-        font-size: clamp(36px, 4vw, 72px);
-        font-family: 'eczarBold';
-        line-height: 100%;
-        color: #F9AF42;
-        margin-bottom: 64px;
-        width: 530px;
-        max-width: 1816px;
-        padding-right: 80px;
+  h1 {
+    font-size: clamp(36px, 4vw, 72px);
+    font-family: 'eczarBold';
+    line-height: 100%;
+    color: #F9AF42;
+    margin-bottom: 64px;
+    width: 530px;
+    max-width: 1816px;
+    padding-right: 80px;
 
-    }
+  @media screen and (max-width: 690px) {
+   margin-bottom: 8px;
+  }
 
-    h2 {
-        color: #FF834F;
-        font-weight: 700;
-        font-size: clamp(18px, 1.5vw, 24px);
-        max-width: 1816px;
-        padding-right: 80px;
+  }
 
-    }
+  h2 {
+    color: #FF834F;
+    font-weight: 700;
+    font-size: clamp(18px, 1.5vw, 24px);
+    max-width: 1816px;
+    padding-right: 80px;
 
-    p {
-        font-family: 'quicksandBook';
-        font-size: clamp(16px, 1.5vw, 24px);
-        line-height: 120%;
-        color: #F8F7E5;
-        max-width: 1816px;
-        padding-right: 80px;
+  }
 
-    }
+  p {
+    font-family: 'quicksandBook';
+    font-size: clamp(16px, 1.5vw, 24px);
+    line-height: 120%;
+    color: #F8F7E5;
+    max-width: 1816px;
+    padding-right: 80px;
+
+  }
 }
 
 app-footer {
-    width: 100% !important;
+  width: 100% !important;
 
 }
