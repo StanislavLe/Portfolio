@@ -10,6 +10,10 @@
     @media screen and (max-width: 690px) {
         width: 120%;
     }
+
+    @media screen and (max-height: 810px) {
+        padding: 0px;
+    }
 }
 
 /* ---------------- Titel ---------------- */
@@ -36,10 +40,11 @@ h1 {
         padding: 80px 180px 0 0;
     }
 
-      @media screen and (max-height: 850px) {
-        padding: 32px 140px 0 0;
-
-  }
+    @media screen and (max-height: 850px) {
+        position: relative;
+        top: 62px;
+        left: 80px;
+    }
 }
 
 /* ---------------- About Me Section ---------------- */
@@ -131,6 +136,8 @@ h1 {
 
     @media screen and (max-width: 523px) {
         width: 260px;
+        padding: 12px;
+
     }
 
 }
@@ -198,9 +205,11 @@ h3 {
 }
 
 .floating-emoji {
+    width: clamp(32px, 5vw, 52px);
+    /* wird kleiner auf kleinen Screens */
     animation: floatUpDown 2.2s ease-in-out infinite;
     will-change: transform;
-    z-index: 3;
+    z-index: 10000;
     position: relative;
 
     &:hover {
@@ -209,6 +218,7 @@ h3 {
         cursor: pointer;
     }
 }
+
 
 .emoji-wrapper {
     position: relative;

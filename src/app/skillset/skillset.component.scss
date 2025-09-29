@@ -12,10 +12,14 @@
     @media screen and (max-width: 510px) {
         flex-direction: column;
         width: 100%;
+        padding: 0px;
+        /* ein bisschen Luft */
+
     }
 
-       @media screen and (max-height: 800px) {
-        padding-top: 260px;
+    @media screen and (max-height: 800px) {
+        padding: 0px;
+        /* ein bisschen Luft */
     }
 }
 
@@ -28,7 +32,9 @@
     gap: 20px;
     position: absolute;
 
-    @media screen and (max-height: 540px) {}
+    @media screen and (max-height: 590px) {
+        gap: 6px;
+    }
 
     @media screen and (max-width: 510px) {
         align-items: center;
@@ -66,8 +72,9 @@ h1 {
     font-size: clamp(36px, 5vw, 72px);
     font-family: 'eczarBold';
     font-weight: 600;
-    padding-top: 150px;
     padding-bottom: 100px;
+    padding-top: 36px;
+
 
 
     @media screen and (max-width: 1400px) {}
@@ -78,15 +85,21 @@ h1 {
     }
 
     @media screen and (max-height: 800px) {
-        padding-bottom: 0px;
-        padding-top: 84px;
+        padding-top: 0px;
         margin-bottom: 0px;
+        padding-bottom: 4px;
+
     }
 
-   @media screen and (max-height: 800px) {
-        padding-bottom: 0px;
-        padding-top: 44px;
-        margin-bottom: 0px;
+    @media screen and (max-height: 680px) {
+        padding-top: 20%;
+        padding-bottom: 4px;
+
+    }
+
+       @media screen and (max-height: 580px) {
+        padding-top: 26%;
+
     }
 
 }
@@ -183,10 +196,10 @@ h1 {
     width: 100%;
     position: relative;
     margin-right: 272px;
-    top: 392px;
+    top: 280px;
 
     @media screen and (max-width: 1516px) {
-        top: 244px;
+        top: 88px;
     }
 
     @media screen and (max-width: 1247px) {
@@ -195,7 +208,7 @@ h1 {
     }
 
     @media screen and (max-width: 1023px) {
-        top: 126px;
+        top: 60px;
     }
 
 
@@ -250,7 +263,7 @@ h1 {
 
     @media screen and (max-height: 800px) {
 
-        top: -343px;
+        top: -187px;
 
     }
 
@@ -336,6 +349,12 @@ h1 {
     align-items: center;
     width: clamp(60px, 8vw, 120px);
     height: clamp(60px, 8vw, 120px);
+    bottom: 24px;
+
+    @media screen and (max-height: 1023px) {
+        bottom: 60px;
+    }
+
 }
 
 /* drehendes Icon */

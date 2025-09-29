@@ -11,10 +11,12 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  height: -webkit-fill-available;
 }
 
 .pager-section {
-  height: 100%;
+  min-height: 100%;
+  height: -webkit-fill-available;
   min-width: 100%;
   width: 100%;
   scroll-snap-align: start;
@@ -27,6 +29,8 @@
   position: relative;
   height: 100%;
   align-items: start;
+  scroll-snap-align: start;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .pager-section#hero {
@@ -92,11 +96,14 @@
   max-width: 100%;
   padding: 80px;
   padding-left: 112px;
+  padding-top: 256px;
 
   @media screen and (max-width: 1247px) {
     padding: 20px;
     padding-left: 42px;
     padding-right: 80px;
+    padding-top: 180px;
+
   }
 
 
@@ -104,7 +111,16 @@
     padding: 6px;
     padding-bottom: 6px;
     padding-left: 6px;
+    padding-top: 180px;
+
   }
+
+
+  @media screen and (max-height: 780px) {
+    padding-top: 72%;
+  }
+
+
 }
 
 .pager-section#references {
