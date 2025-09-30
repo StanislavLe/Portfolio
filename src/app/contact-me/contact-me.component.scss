@@ -15,6 +15,10 @@ $bp-medium: 900px;
 $bp-small: 690px;
 $bp-xsmall: 466px;
 
+html {
+  max-width: 2000px;
+}
+
 // ===================== MAIN LAYOUT =====================
 .main-content {
   display: flex;
@@ -43,15 +47,11 @@ $bp-xsmall: 466px;
   }
 
   @media screen and (max-height: 696px) {
-    padding-top: 120px;
+    padding-top: 68px;
   }
 
-  @media screen and (max-height: 660px) {
-    padding-top: 130px;
-  }
-
-  @media screen and (max-height: 645px) {
-    padding-top: 150px;
+  @media screen and (max-height: 665px) {
+    padding-top: 80px;
   }
 }
 
@@ -122,6 +122,11 @@ h1 {
     width: 100%;
     margin-bottom: 4px;
   }
+
+  @media screen and (max-height: 665px) {
+    padding: 0px;
+    margin: 0px;
+  }
 }
 
 // ===================== TEXT CONTENT =====================
@@ -146,9 +151,14 @@ h1 {
     font-weight: 700;
     font-size: clamp(18px, 2vw, 24px);
 
-    @media screen and (max-height: 696px) {
+    @media screen and (max-height: 770px) {
       font-size: 16px;
       margin-bottom: 4px;
+    }
+
+    @media screen and (max-height: 665px) {
+      padding: 0px;
+      margin: 0px;
     }
   }
 
@@ -257,7 +267,7 @@ h1 {
       width: 100%;
 
 
-      @media screen and (max-height: 780px) {
+      @media screen and (max-height: 800px) {
         padding-bottom: 4px;
       }
 
@@ -287,6 +297,8 @@ h1 {
           color: #FF834F;
           text-decoration: none;
           font-family: 'quicksandBook';
+          padding-right: 4px;
+          padding-left: 4px;
 
           @media screen and (max-width: 2024px) {
             padding: 0px;
@@ -430,10 +442,10 @@ h1 {
   transition: border-color .2s ease;
   width: max-content;
   padding: 8px 10px;
-  position: relative;
-  bottom: calc(30vh + env(safe-area-inset-bottom));
-  right: clamp(82px, (100vw - 2012px), 1900px);
-   // 🟠 Safari Fix
+  position: absolute;
+  bottom: calc(62vh + env(safe-area-inset-bottom));
+  right: clamp(80px, 100vw - 2015px, 1900px);
+  // 🟠 Safari Fix
   will-change: transform;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
@@ -445,62 +457,44 @@ h1 {
     border-bottom: 2px solid #FF834F;
   }
 
-  @media screen and (max-width: 690px) {
-    position: relative;
-    //bottom: 330px;
-    left: 468px;
-  }
 
   @media screen and (max-width: 576px) {
-   // bottom: 315px;
-    left: 390px;
+    bottom: calc(27vh + env(safe-area-inset-bottom));
+
   }
 
-  @media screen and (max-width: 547px) {
-   // bottom: 274px;
-    left: 390px;
+  @media screen and (max-width: 690px) {
+    bottom: calc(30vh + env(safe-area-inset-bottom));
+
   }
 
-  @media screen and (max-width: 466px) {
-   // bottom: 346px;
-    left: 338px;
+  @media screen and (max-width: 466px) {}
+
+  @media screen and (max-width: 453px) {
+    bottom: calc(37vh + env(safe-area-inset-bottom));
+    right: clamp(44px, 100vw - 2015px, 1900px);
   }
 
-  @media screen and (max-width: 462px) {
-  //  bottom: 333px;
-    left: 338px;
-  }
+  @media screen and (max-width: 401px) {}
 
-  @media screen and (max-width: 401px) {
-   // bottom: 311px;
-    left: 285px;
-  }
+  @media screen and (max-height: 951px) {}
 
-  @media screen and (max-height: 951px) {
-   // bottom: 264px;
-  }
+  @media screen and (max-height: 923px) {}
 
-  @media screen and (max-height: 923px) {
-   // bottom: 272px;
-  }
-
-  @media screen and (max-height: 890px) {
-   // bottom: 235px;
-  }
+  @media screen and (max-height: 890px) {}
 
   @media screen and (max-height: 810px) {
-  bottom: calc(24vh + env(safe-area-inset-bottom));
+    bottom: calc(16vh + env(safe-area-inset-bottom));
   }
 
-  @media screen and (max-height: 766px) {
-   // bottom: 23%;
-  }
+  @media screen and (max-height: 766px) {}
 
-  @media screen and (max-height: 740px) {
-   // bottom: 21%;
-  }
+  @media screen and (max-height: 740px) {}
 
-  @media screen and (max-height: 700px) {}
+  @media screen and (max-height: 625px) {
+    bottom: calc(13vh + env(safe-area-inset-bottom));
+
+  }
 }
 
 .bounce-arrow {

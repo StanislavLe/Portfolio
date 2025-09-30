@@ -1,3 +1,8 @@
+html {
+    max-width: 2000px;
+    width: 100%;
+}
+
 .main-content {
     display: flex;
     justify-content: start;
@@ -9,7 +14,8 @@
     padding-bottom: 300px;
     background-color: #1D1D1D;
     width: 100%;
-    min-height: 254dvh;
+    min-height: 100dvh;
+    
 
     @media screen and (max-width: 1247px) {
         padding: 20px;
@@ -32,12 +38,16 @@
         padding: 6px;
         padding-top: 100px;
         padding-left: 6px;
+        padding-bottom: 140px;
+
     }
 
-        @media screen and (max-height: 690px) {
+    @media screen and (max-height: 690px) {
         padding: 6px;
         padding-top: 100px;
         padding-left: 6px;
+        padding-bottom: 140px;
+
     }
 
     h1 {
