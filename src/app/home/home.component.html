@@ -1,0 +1,11 @@
+<app-header
+  variant="home"
+  [currentSection]="currentSection"
+  (navigateSection)="onNavigateSection($event)">
+</app-header>
+<!-- src/app/home/home.component.html (Ausschnitt) -->
+<app-footer
+  *ngIf="isLastSection"
+  variant="home"
+  (navigateSection)="onNavigateSection($event)">
+</app-footer>

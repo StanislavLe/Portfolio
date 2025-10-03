@@ -1,4 +1,24 @@
-// sections.config.ts
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
+
+@Injectable({ providedIn: 'root' })
+export class SectionNavService {
+  // Header/Footer -> Pager: scroll request
+  private _scrollTo$ = new Subject<string>();
+  scrollTo$ = this._scrollTo$.asObservable();
+  requestScroll(id: string) { this._scrollTo$.next(id); }
+
+  // Pager -> Header/Footer: active section id
+  private _active$ = new BehaviorSubject<string>('hero');
+  active$ = this._active$.asObservable();
+  setActive(id: string) { this._active$.next(id); }
+
+  // Pager -> Home: bin ich auf der letzten Section?
+  private _isLast$ = new BehaviorSubject<boolean>(false);
+  isLast$ = this._isLast$.asObservable();
+  setIsLast(v: boolean) { this._isLast$.next(v); }
+}
+
 export const SECTIONS = [
   { id: 'hero', label: 'Hero' },
   { id: 'about', label: 'About Me' },

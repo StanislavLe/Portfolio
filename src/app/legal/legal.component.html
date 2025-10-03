@@ -1,0 +1,12 @@
+<app-header variant="legal"></app-header>
+
+<main class="container mx-auto px-4 py-10">
+  <ng-container *ngIf="showOutlet">
+    <router-outlet
+      (activate)="onActivate($event)"
+      (deactivate)="onDeactivate($event)">
+    </router-outlet>
+  </ng-container>
+</main>
+
+<app-footer variant="legal"></app-footer>

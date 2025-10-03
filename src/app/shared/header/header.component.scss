@@ -2,34 +2,20 @@
   display: block;
 }
 
+/* ---------- Container Basics ---------- */
 .sidenavContainer {
   max-width: 1990px;
-  transform: none !important;
-  will-change: auto !important;
   width: 100%;
   background-color: transparent !important;
-  z-index: 1000;
+
+  /* iOS / Safari Stabilität */
+  transform: none !important;
+  will-change: auto !important;
   overflow: visible !important;
-  /* wichtig für iOS */
-
+  z-index: 1000;
 }
 
-.sidenavSpacerInner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  width: 62%;
-}
-
-.sidenavSpacer {
-  max-width: 1946px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
+/* ---------- Toolbar ---------- */
 .mainToolbar {
   position: fixed;
   top: 0;
@@ -41,149 +27,142 @@
   align-items: center;
   height: 64px;
   z-index: 20000;
-  background-color: #679AAC;
-  padding: 50px 60px 50px 60px;
+
+
 
   @media screen and (max-width: 1200px) {
     padding: 50px 60px 50px 20px;
   }
-
   @media screen and (max-width: 600px) {
-    padding: 0px 0px 0px 0px;
+    padding: 0;
   }
 }
 
-.sidenavContainer.about .mainToolbar {
-  background: #F8F7E5;
-  color: #679AAC;
-  max-width: 100%;
+/* ---------- Theme Switching (per Section) ---------- */
+/* Spezifität gegen Material erhöhen: .mainToolbar.mat-toolbar */
+.sidenavContainer.about   .mainToolbar.mat-toolbar {
+  background: #F8F7E5 !important;
+  color: #679AAC !important;
 }
 
-.sidenavContainer.skills .mainToolbar {
-  background: #1D1D1D;
-  color: #F8F7E5;
-  max-width: 100%;
-  padding: 50px 60px 50px 60px;
-
-  @media screen and (max-width: 600px) {
-    padding: 0px 0px 0px 0px;
-  }
+.sidenavContainer.hero   .mainToolbar.mat-toolbar {
+  /* Default (falls keine Theme-Klasse aktiv ist) */
+  background-color: #679AAC;
+  padding: 50px 60px;
 }
 
-.sidenavContainer.contact .mainToolbar {
-  background: #1D1D1D;
-  color: #F8F7E5;
+.sidenavContainer.skills  .mainToolbar.mat-toolbar,
+.sidenavContainer.contact .mainToolbar.mat-toolbar,
+.sidenavContainer.portfolio .mainToolbar.mat-toolbar,
+.sidenavContainer.references .mainToolbar.mat-toolbar {
   max-width: 100%;
-  padding: 50px 60px 50px 60px;
+  padding: 50px 60px;
 
-  @media screen and (max-width: 600px) {
-    padding: 0px 0px 0px 0px;
-  }
+  @media screen and (max-width: 600px) { padding: 0; }
 }
 
-.sidenavContainer.portfolio .mainToolbar {
-  background: #F8F7E5;
-  color: #679AAC;
-  max-width: 100%;
-  padding: 50px 60px 50px 60px;
-
-  @media screen and (max-width: 600px) {
-    padding: 0px 0px 0px 0px;
-  }
+.sidenavContainer.skills  .mainToolbar.mat-toolbar,
+.sidenavContainer.contact .mainToolbar.mat-toolbar {
+  background: #1D1D1D !important;
+  color: #F8F7E5 !important;
 }
 
-.sidenavContainer.references .mainToolbar {
-  color: #F8F7E5;
-  background: #679AAC;
-  max-width: 100%;
-  padding: 50px 60px 50px 60px;
-
-  @media screen and (max-width: 600px) {
-    padding: 0px 0px 0px 0px;
-  }
+.sidenavContainer.portfolio .mainToolbar.mat-toolbar {
+  background: #F8F7E5 !important;
+  color: #679AAC !important;
 }
 
+.sidenavContainer.references .mainToolbar.mat-toolbar {
+  background: #679AAC !important;
+  color: #F8F7E5 !important;
+}
+
+/* ---------- Social Links Sichtbarkeit je Theme ---------- */
 .socialLinks {
   display: flex;
   gap: 10px;
   opacity: 1;
   max-height: 100px;
-  transition: opacity 0.5s cubic-bezier(.4, 0, .2, 1), max-height 0.5s cubic-bezier(.4, 0, .2, 1);
+  transition: opacity .5s cubic-bezier(.4, 0, .2, 1),
+              max-height .5s cubic-bezier(.4, 0, .2, 1);
   overflow: hidden;
 
-  @media screen and (max-width: 1200px) {
-    display: none;
-  }
+  @media screen and (max-width: 1200px) { display: none; }
 }
 
-.sidenavContainer.about .mainToolbar .socialLinks {
-  opacity: 0;
-  max-height: 0;
-  pointer-events: none;
-}
-
-.sidenavContainer.skills .mainToolbar .socialLinks {
-  opacity: 0;
-  max-height: 0;
-  pointer-events: none;
-}
-
-.sidenavContainer.contact .mainToolbar .socialLinks {
-  opacity: 0;
-  max-height: 0;
-  pointer-events: none;
-}
-
-.sidenavContainer.portfolio .mainToolbar .socialLinks {
-  opacity: 0;
-  max-height: 0;
-  pointer-events: none;
-}
-
+.sidenavContainer.about .mainToolbar .socialLinks,
+.sidenavContainer.skills .mainToolbar .socialLinks,
+.sidenavContainer.contact .mainToolbar .socialLinks,
+.sidenavContainer.portfolio .mainToolbar .socialLinks,
 .sidenavContainer.references .mainToolbar .socialLinks {
   opacity: 0;
   max-height: 0;
   pointer-events: none;
 }
 
-
+/* ---------- Social Icons (Pfad-Fix) ---------- */
 .socialLinks a:nth-child(1) img {
-  content: none; 
   display: block;
-  width: 32px;
-  height: 32px;
+  width: 32px; height: 32px;
   background: url("/assets/icons/githubIcon.png") no-repeat center / contain;
 }
-
 .socialLinks a:nth-child(1):hover img {
   background: url("/assets/icons/githubIconHover.png") no-repeat center / contain;
 }
 
 .socialLinks a:nth-child(2) img {
+  width: 32px; height: 32px;
   background: url("/assets/icons/linkedInIcon.png") no-repeat center / contain;
 }
-
 .socialLinks a:nth-child(2):hover img {
   background: url("/assets/icons/linkedInIconHover.png") no-repeat center / contain;
 }
 
 .socialLinks a:nth-child(3) img {
+  width: 32px; height: 32px;
   background: url("/assets/icons/emailIcon.png") no-repeat center / contain;
 }
-
 .socialLinks a:nth-child(3):hover img {
   background: url("/assets/icons/emailIconHover.png") no-repeat center / contain;
 }
 
+/* ---------- Layout Blöcke ---------- */
+.sidenavSpacer {
+  max-width: 1946px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.sidenavSpacerInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 62%;
+}
 
+/* Theme-spezifisch: Spiegelung des Innenlayouts */
+.sidenavContainer.about .mainToolbar .sidenavSpacerInner,
+.sidenavContainer.skills .mainToolbar .sidenavSpacerInner,
+.sidenavContainer.contact .mainToolbar .sidenavSpacerInner,
+.sidenavContainer.portfolio .mainToolbar .sidenavSpacerInner,
+.sidenavContainer.references .mainToolbar .sidenavSpacerInner {
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  flex-direction: row-reverse;
+}
 
+/* ---------- Logo ---------- */
 .logoHeader {
   display: flex;
   align-items: center;
   gap: 10px;
-  transition: margin 0.6s cubic-bezier(.4, 0, .2, 1),
-    transform 0.6s cubic-bezier(.4, 0, .2, 1);
+  transition:
+    margin .6s cubic-bezier(.4, 0, .2, 1),
+    transform .6s cubic-bezier(.4, 0, .2, 1);
 
   img {
     max-width: 100px;
@@ -198,50 +177,7 @@
   }
 }
 
-
-.sidenavContainer.about .mainToolbar .sidenavSpacerInner {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  width: 100%;
-  flex-direction: row-reverse;
-}
-
-
-.sidenavContainer.skills .mainToolbar .sidenavSpacerInner {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  width: 100%;
-  flex-direction: row-reverse;
-}
-
-
-.sidenavContainer.contact .mainToolbar .sidenavSpacerInner {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  width: 100%;
-  flex-direction: row-reverse;
-}
-
-
-.sidenavContainer.portfolio .mainToolbar .sidenavSpacerInner {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  width: 100%;
-  flex-direction: row-reverse;
-}
-
-.sidenavContainer.references .mainToolbar .sidenavSpacerInner {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  width: 100%;
-  flex-direction: row-reverse;
-}
-
+/* ---------- Settings / Language ---------- */
 .settings {
   display: flex;
   align-items: center;
@@ -251,16 +187,15 @@
   span {
     font-family: 'quicksandBold';
     font-size: clamp(16px, 2.5vw, 24px);
-    color: #F8F7E5;
-    padding: 0%;
-    margin: 0%;
+    color: #F8F7E5; /* wird über Theme ggf. übersteuert */
+    margin: 0;
   }
 }
 
 .languageButton {
   width: 44px;
   height: 44px;
-  border-radius: 100%; // Kreisschnitt!
+  border-radius: 100%;
   border: 2px solid #F8F7E5 !important;
   color: #F8F7E5 !important;
   background: transparent !important;
@@ -271,16 +206,13 @@
   min-width: unset !important;
   font-size: clamp(16px, 2.5vw, 18px);
   font-family: 'quicksandBold';
-  transition: background 0.1s, color 0.1s, border-color 0.1s;
+  transition: background .1s, color .1s, border-color .1s;
 }
 
-.sidenavContainer.about .mainToolbar .languageButton {
-  border: 2px solid #1D1D1D !important;
-  color: #1D1D1D !important;
-}
-
+/* dunkler Text in hellen Themes */
+.sidenavContainer.about .mainToolbar .languageButton,
 .sidenavContainer.portfolio .mainToolbar .languageButton {
-  border: 2px solid #1D1D1D !important;
+  border-color: #1D1D1D !important;
   color: #1D1D1D !important;
 }
 
@@ -295,15 +227,13 @@
   box-shadow: none !important;
   opacity: 0 !important;
 }
-
 .languageButton.flash {
   background: #FF834F !important;
   border-color: #FF834F !important;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  transition: background .15s, color .15s, border-color .15s;
 }
 
-
-
+/* ---------- Sidenav ---------- */
 .sidenav {
   top: 12px;
   right: 20px;
@@ -314,7 +244,6 @@
   color: black !important;
 }
 
-
 .mat-drawer.mat-drawer-end {
   position: fixed;
   top: 12px;
@@ -322,7 +251,7 @@
   width: 208px;
   background: #679AAC !important;
 
-  z-index: 20001; /* über Toolbar */
+  z-index: 20001;               /* über Toolbar */
   -webkit-transform: translate3d(0,0,0); /* Safari GPU-Fix */
   will-change: transform;
 
@@ -334,8 +263,6 @@
   }
 }
 
-
-
 .sidenavHeader {
   display: flex;
   justify-content: space-between;
@@ -346,17 +273,8 @@
   font-size: 24px;
   padding: 8px 16px;
 
-  img {
-    width: 24px;
-    cursor: pointer;
-  }
+  img { width: 24px; cursor: pointer; }
 }
-
-
-
-
-
-
 
 .navList {
   background: #F8F7E5;
@@ -381,7 +299,7 @@
   }
 }
 
-
+/* Hover Animationen im Drawer */
 .nav-item-content {
   display: flex;
   align-items: center;
@@ -395,61 +313,39 @@
     height: 20px;
     opacity: 0;
     transform: translateX(-20px);
-    transition: all 0.3s ease;
+    transition: all .3s ease;
     flex-shrink: 0;
   }
 
-  span {
-    transition: transform 0.3s ease, color 0.3s ease;
-  }
+  span { transition: transform .3s ease, color .3s ease; }
 
-  &:hover .nav-icon {
-    opacity: 1;
-    transform: translateX(20px);
-  }
-
-  &:hover span {
-    transform: translateX(20px);
-    color: #FF834F;
-  }
+  &:hover .nav-icon { opacity: 1; transform: translateX(20px); }
+  &:hover span { transform: translateX(20px); color: #FF834F; }
 }
 
-
-
-
+/* ---------- Buttons / Icons ---------- */
 .sidenav-btn {
   cursor: pointer;
   background: none !important;
   padding: 0 !important;
-  transition: background 0.1s, color 0.1s;
-  // Button selbst bleibt transparent, kein Hintergrund!
+  transition: background .1s, color .1s;
 }
-
 .sidenav-btn mat-icon {
-  color: #F8F7E5; // Standardfarbe wie Sprache-Button
-  transition: color 0.1s;
+  color: #F8F7E5 !important;
+  transition: color .1s;
 }
 
-
-/* Standardfarben pro Section */
-.sidenavContainer.about .mainToolbar .mat-icon {
-  color: #1D1D1D !important;
-}
-
+/* Standardfarben pro Section (Icons in Toolbar) */
+.sidenavContainer.about .mainToolbar .mat-icon,
 .sidenavContainer.portfolio .mainToolbar .mat-icon {
   color: #1D1D1D !important;
 }
 
-/* Standardfarbe für alle anderen */
-.sidenavContainer .mainToolbar .mat-icon {
-  color: #F8F7E5 !important;
-}
-
-/* Hover-Effekt NUR wenn die Schaltfläche gehovert wird */
+/* Hover-Effekt NUR auf dem Icon-Button */
 .sidenavContainer.about .mainToolbar .sidenav-btn:hover mat-icon,
 .sidenavContainer.portfolio .mainToolbar .sidenav-btn:hover mat-icon,
 .sidenavContainer .mainToolbar .sidenav-btn:hover mat-icon {
-  color: #FF834F !important; 
+  color: #FF834F !important;
   background: none;
 }
 

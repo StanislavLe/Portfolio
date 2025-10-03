@@ -1,6 +1,8 @@
-<mat-sidenav-container   [ngClass]="isLegalPage ? 'contact' : currentSection" 
- class="sidenavContainer">
-
+<mat-sidenav-container
+  class="sidenavContainer"
+  [ngClass]="themeClass"
+  [attr.data-theme]="themeClass"  
+>
   <mat-sidenav #sidenav class="sidenav" mode="over" position="end">
     <div class="sidenavHeader">
       <span>Menu</span>
@@ -8,18 +10,43 @@
         <img src="assets/icons/closeMenu.png" alt="Close" />
       </button>
     </div>
-    <mat-nav-list class="navList">
-      <a mat-list-item *ngFor="let s of sections" [class.active]="s.id === currentSection"
-        (click)="navigateTo(s.id); sidenav.close()">
 
+    <!-- One-Pager Menü -->
+    <mat-nav-list class="navList" *ngIf="variant==='home'">
+      <a
+        mat-list-item
+        *ngFor="let s of sections"
+        [class.active]="s.id === currentSection"
+        (click)="navigateTo(s.id); sidenav.close()"
+      >
         <div class="nav-item-content">
           <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
           <span>{{ s.label }}</span>
         </div>
-
       </a>
     </mat-nav-list>
 
+    <!-- Legal Menü -->
+    <mat-nav-list class="navList" *ngIf="variant==='legal'">
+      <a mat-list-item [routerLink]="['/']" (click)="sidenav.close()">
+        <div class="nav-item-content">
+          <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
+          <span>Home</span>
+        </div>
+      </a>
+      <a mat-list-item [routerLink]="['/legal','impressum']" (click)="sidenav.close()">
+        <div class="nav-item-content">
+          <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
+          <span>Impressum</span>
+        </div>
+      </a>
+      <a mat-list-item [routerLink]="['/legal','privacy-policy']" (click)="sidenav.close()">
+        <div class="nav-item-content">
+          <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
+          <span>Datenschutz</span>
+        </div>
+      </a>
+    </mat-nav-list>
   </mat-sidenav>
 
   <mat-toolbar class="mainToolbar">
@@ -42,16 +69,22 @@
           <span>Stanislav Levin</span>
         </div>
       </div>
+
       <div class="settings">
-        <button mat-button class="languageButton" [class.flash]="justClicked" [class.active]="true"
-          (click)="cycleLanguage()">
+        <button
+          mat-button
+          class="languageButton"
+          [class.flash]="justClicked"
+          [class.active]="true"
+          (click)="cycleLanguage()"
+        >
           {{ currentLanguage.toUpperCase() }}
         </button>
+
         <button mat-icon-button class="sidenav-btn" (click)="sidenav.toggle()" disableRipple>
           <mat-icon>menu</mat-icon>
         </button>
       </div>
     </div>
-
   </mat-toolbar>
 </mat-sidenav-container>

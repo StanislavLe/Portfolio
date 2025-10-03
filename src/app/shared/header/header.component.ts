@@ -1,80 +1,79 @@
-import { Component, Output, EventEmitter, Input, ViewChild } from '@angular/core';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatButtonModule } from '@angular/material/button';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+  OnChanges,
+  SimpleChanges,
+  ViewEncapsulation,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
+// Angular Material
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule, MatSidenav } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+
+// Sections für die Menüliste
 import { SECTIONS } from '../sections.config';
-import { Router, NavigationEnd, RouterModule } from '@angular/router';
-import { filter } from 'rxjs/operators';
-import { MatSidenav } from '@angular/material/sidenav';
+
+type Variant = 'home' | 'legal';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [
-    MatSidenavModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatListModule,
-    MatButtonModule,
     CommonModule,
-    RouterModule
+    RouterModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrls: ['./header.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
-export class HeaderComponent {
-  @Input() currentSection: string = '';
-  @Output() sectionSelected = new EventEmitter<string>();
-  @ViewChild('sidenav') sidenav!: MatSidenav;   // <-- Referenz auf dein MatSidenav
+
+export class HeaderComponent implements OnChanges {
+  @Input() variant: Variant = 'home';
+  @Input() currentSection: string = 'hero';
+  @Input() currentLanguage: string = 'de';
+  @Input() justClicked = false;
+  @Output() navigateSection = new EventEmitter<string>();
+  @ViewChild('sidenav') sidenav!: MatSidenav;
 
   sections = SECTIONS;
+  themeClass = 'hero'; 
 
-  languages = ['de', 'en', 'ru'];
-  currentLanguage = 'de';
-  justClicked = false;
+  ngOnChanges(_: SimpleChanges) {
+    this.themeClass = this.computeThemeClass();
+  }
 
-  // Extra state für Impressum / Privacy
-  isLegalPage = false;
+  private computeThemeClass(): string {
+    if (this.variant === 'legal') return 'contact';
+    const id = (this.currentSection || '').trim();
+    if (!id || id === 'hero') return 'hero';
+    return id;
+  }
 
-  constructor(private router: Router) {
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event) => {
-        const url = (event as NavigationEnd).urlAfterRedirects;
-        this.isLegalPage = url.startsWith('/impressum') || url.startsWith('/privacy-policy');
-      });
+  navigateTo(id: string) {
+    this.navigateSection.emit(id);
   }
 
   cycleLanguage() {
-    const currentIndex = this.languages.indexOf(this.currentLanguage);
-    const nextIndex = (currentIndex + 1) % this.languages.length;
-    this.currentLanguage = this.languages[nextIndex];
     this.justClicked = true;
-    setTimeout(() => this.justClicked = false, 150);
+    setTimeout(() => (this.justClicked = false), 150);
+    this.currentLanguage = this.currentLanguage === 'en' ? 'de' : 'en';
   }
 
-navigateTo(sectionId: string) {
-    if (!this.router.url.startsWith('/home')) {
-      this.router.navigate(['/home'], { queryParams: { section: sectionId } });
-    } else {
-      this.sectionSelected.emit(sectionId);
-    }
-    this.forceRedrawAfterClose();
+  go(e: Event, id: string) {
+    e.preventDefault();
+    this.navigateTo(id);
   }
-
-  /** 👇 Safari-Fix hier */
-  forceRedrawAfterClose() {
-    this.sidenav.close().then(() => {
-      const header = document.querySelector('.mainToolbar') as HTMLElement;
-      if (header) {
-        header.style.display = 'none';
-        void header.offsetHeight; // Reflow erzwingen
-        header.style.display = '';
-      }
-    });
-  }
-
 }

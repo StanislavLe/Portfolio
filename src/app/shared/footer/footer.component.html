@@ -1,24 +1,41 @@
-<footer class="footer-base" [ngClass]="variant">
+<footer class="footer-base" [ngClass]="variant" role="contentinfo">
   <!-- Zahnräder -->
-  <div class="footer-image-container">
-    <img src="assets/img/Component 11.png" alt="Zahnrad links">
-    <img src="assets/img/Component 12.png" alt="Zahnrad rechts">
+  <div class="footer-image-container" aria-hidden="true">
+    <img src="assets/img/Component 11.png" alt="" />
+    <img src="assets/img/Component 12.png" alt="" />
   </div>
 
   <!-- Text + Links -->
   <div class="footer-content">
     <div class="footer-text">
-      <span>© 2025 Stanislav Levin</span>
+      <span>© {{ currentYear }} Stanislav Levin</span>
     </div>
-    <div class="footer-links">
-      <a routerLink="/impressum">Impressum</a>
+
+    <div class="footer-links" *ngIf="variant === 'home'; else legalLinks">
+      <!-- One-Pager Footer: externer Kram + Back-to-top -->
       <a href="https://www.linkedin.com/in/stanislav-levin-881ab32b5" target="_blank" rel="noopener noreferrer">
         LinkedIn
       </a>
       <a href="https://github.com/StanislavLe" target="_blank" rel="noopener noreferrer">
         GitHub
       </a>
-      <a routerLink="/privacy-policy">Privacy Policy</a>
+      <a [routerLink]="['/legal','privacy-policy']">Privacy Policy</a>
+      <a [routerLink]="['/legal','impressum']">Impressum</a>
     </div>
+
+    <ng-template #legalLinks>
+      <!-- Legal Footer: interne Navigation -->
+      <div class="footer-links">
+        <a [routerLink]="['/']">Home</a>
+        <a [routerLink]="['/legal','impressum']">Impressum</a>
+        <a [routerLink]="['/legal','privacy-policy']">Privacy Policy</a>
+        <a href="https://www.linkedin.com/in/stanislav-levin-881ab32b5" target="_blank" rel="noopener noreferrer">
+          LinkedIn
+        </a>
+        <a href="https://github.com/StanislavLe" target="_blank" rel="noopener noreferrer">
+          GitHub
+        </a>
+      </div>
+    </ng-template>
   </div>
 </footer>

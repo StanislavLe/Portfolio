@@ -1,9 +1,25 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ChangeDetectorRef,
+  NgZone,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd, RouterOutlet } from '@angular/router';
+import { filter, Subscription } from 'rxjs';
+
+// Material
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule }    from '@angular/material/icon';
+import { MatListModule }    from '@angular/material/list';
+import { MatButtonModule }  from '@angular/material/button';
+
+// Dein Header (muss selbst standalone sein!)
 import { HeaderComponent } from './shared/header/header.component';
-import { HomeComponent } from './home/home.component';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -11,66 +27,88 @@ import { filter } from 'rxjs/operators';
   imports: [
     CommonModule,
     RouterOutlet,
-    HeaderComponent
+    // Material
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule,
+    MatButtonModule,
+    // eigene
+    HeaderComponent,
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = 'Stanislav Levin';
+export class AppComponent implements OnInit, OnDestroy {
   currentSection: string = 'hero';
-  private homeInstance?: HomeComponent;
-  private isBrowser: boolean;
+  isLegalPage: boolean = false;
+
+  private sub = new Subscription();
 
   constructor(
     private router: Router,
-    @Inject(PLATFORM_ID) platformId: Object
-  ) {
-    this.isBrowser = isPlatformBrowser(platformId);
+    private ar: ActivatedRoute,
+    private cdr: ChangeDetectorRef,
+    private ngZone: NgZone,
+    @Inject(PLATFORM_ID) private platformId: Object,
+  ) {}
 
-    // 👇 Scroll-to-top nur im Browser für Impressum & Privacy Policy
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: any) => {
-        if (!this.isBrowser) return;
+  ngOnInit() {
+    this.sub.add(
+      this.router.events
+        .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+        .subscribe(() => {
+          this.applyHeaderStyleFromRoute();
+          this.cdr.markForCheck();
+        })
+    );
 
-        const url = event.urlAfterRedirects;
-        if (url.startsWith('/impressum') || url.startsWith('/privacy-policy')) {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      });
-  }
-
-  onActivate(component: any) {
-    if (component instanceof HomeComponent) {
-      this.homeInstance = component;
-
-      // SectionPager → AppComponent → Header + URL
-      this.homeInstance.sectionChanged.subscribe((sectionId: string) => {
-        this.currentSection = sectionId;
-
-        this.router.navigate([], {
-          queryParams: { section: sectionId },
-          queryParamsHandling: 'merge',
-          replaceUrl: true
-        });
-      });
+    if (isPlatformBrowser(this.platformId)) {
+      window.addEventListener('pageshow', this.onPageShow);
     }
   }
 
-  onHeaderSectionSelected(sectionId: string) {
-    if (this.router.url.startsWith('/home')) {
-      if (this.homeInstance) {
-        this.homeInstance.scrollTo(sectionId);
-      }
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+    if (isPlatformBrowser(this.platformId)) {
+      window.removeEventListener('pageshow', this.onPageShow);
+    }
+  }
+
+  // ---- Template-Handler, die dir fehlten ----
+  onHeaderSectionSelected(section: string) {
+    // Wenn der Header auf Home eine Section anwählt
+    this.currentSection = section;
+  }
+
+  onActivate(_cmp: unknown) {
+    // Platzhalter, falls du hier später etwas tust
+  }
+
+  // ---- intern ----
+  private onPageShow = (e: PageTransitionEvent) => {
+    if ((e as any).persisted) {
+      this.ngZone.run(() => {
+        this.applyHeaderStyleFromRoute();
+        this.cdr.detectChanges();
+      });
+    }
+  };
+
+  private applyHeaderStyleFromRoute() {
+    const deepest = this.getDeepest(this.ar);
+    const style = deepest.snapshot.data?.['headerStyle'] as string | undefined;
+
+    if (style === 'contact') {
+      this.isLegalPage = true;
     } else {
-      this.router.navigate(['/home'], { queryParams: { section: sectionId } }).then(() => {
-        setTimeout(() => {
-          if (this.homeInstance) {
-            this.homeInstance.scrollTo(sectionId);
-          }
-        }, 300);
-      });
+      this.isLegalPage = false;
+      this.currentSection = style ?? 'hero';
     }
+  }
+
+  private getDeepest(r: ActivatedRoute): ActivatedRoute {
+    while (r.firstChild) r = r.firstChild;
+    return r;
   }
 }
