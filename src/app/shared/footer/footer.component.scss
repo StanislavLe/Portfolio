@@ -1,6 +1,6 @@
 /* Basis-Styles für alle Footer */
 .footer-base {
-    width: 100vw;
+    width: 85vw;
     height: 100px;
     display: flex;
     justify-content: space-between;
@@ -9,14 +9,12 @@
     font-family: "quicksandBook";
     max-width: 2061px;
     padding: 0px;
-    padding-right: 218px;
     position: absolute;
     bottom: 160px;
     left: 20px;
     z-index: 1;
 
     @media screen and (max-width: 1247px) {
-        padding-right: 148px;
         padding-left: 20px;
     }
 
@@ -33,7 +31,7 @@
         justify-content: end;
         align-items: center;
         padding: 0px;
-        width: 85%;
+        width: 90vw;
     }
 
     @media screen and (max-width: 1300px) {

@@ -457,28 +457,36 @@ h1 {
     border-bottom: 2px solid #FF834F;
   }
 
+  @media screen and (max-width: 690px) {
+    bottom: calc(30vh + env(safe-area-inset-bottom));
+
+  }
 
   @media screen and (max-width: 576px) {
     bottom: calc(27vh + env(safe-area-inset-bottom));
 
   }
 
-  @media screen and (max-width: 690px) {
-    bottom: calc(30vh + env(safe-area-inset-bottom));
+
+
+  @media screen and (max-width: 547px) {
+        bottom: calc(25vh + env(safe-area-inset-bottom));
 
   }
 
-  @media screen and (max-width: 466px) {}
+  @media screen and (max-width: 466px) {
+    bottom: calc(34vh + env(safe-area-inset-bottom));
+    right: clamp(72px, 100vw - 2015px, 1900px);
+  }
 
-  @media screen and (max-width: 453px) {
-    bottom: calc(37vh + env(safe-area-inset-bottom));
+  @media screen and (max-width: 462px) {
+    bottom: calc(32vh + env(safe-area-inset-bottom));
+    right: clamp(72px, 100vw - 2015px, 1900px);
+  }
+ @media screen and (max-width: 401px) {
+    bottom: calc(30vh + env(safe-area-inset-bottom));
     right: clamp(44px, 100vw - 2015px, 1900px);
   }
-
-  @media screen and (max-width: 401px) {}
-
-  @media screen and (max-height: 951px) {}
-
   @media screen and (max-height: 923px) {}
 
   @media screen and (max-height: 890px) {}

@@ -170,7 +170,7 @@
 .dot-nav {
   position: fixed;
   top: 50%;
-  right: clamp(20px, (100vw - 2072px), 1900px);
+  right: clamp(20px, (100vw - 2072px), 1900px) !important;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
