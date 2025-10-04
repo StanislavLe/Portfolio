@@ -113,6 +113,7 @@
         font-size: clamp(14px, 1.5vw, 18px);
         font-family: 'quicksandBook';
         text-align: center;
+        color: #FF834F;
     }
 
     .footer-links {
@@ -149,7 +150,7 @@
         position: relative;
         top: 72px;
 
-        @media screen and (max-width: 1370px) {
+        @media screen and (max-width: 1515px) {
             padding: unset;
             width: 68%;
         }
@@ -164,83 +165,27 @@
         }
     }
 
-    /* Varianten-Styles */
-    &.contact {
-        background: #1D1D1D;
-        color: #F8F7E5;
-        padding-left: 92px;
+}
 
-        @media screen and (max-width: 1247px) {
-            padding-left: 20px;
-        }
 
-        .footer-links a {
-            color: #F8F7E5;
+.footer-base.legal {
+    position: relative;
+    top: 80px;
+    left: 120px;
 
-            &:hover {
-                color: #FF834F;
-            }
-        }
+    @media screen and (max-width: 1938px) {
+        top: 124px;
     }
 
-    &.impressum {
-        background: #1D1D1D;
-        color: #F8F7E5;
-        position: relative;
-        top: 103px;
-        right: 92px;
-
-        @media screen and (max-width: 900px) {
-            top: -14px;
-        }
+    @media screen and (max-width: 1247px) {
+        left: 20px;
+        top: 56px;
+    }
 
 
-
-        .footer-links a {
-            color: #F8F7E5;
-
-            &:hover {
-                color: #FF834F;
-            }
-        }
-
+    .footer-image-container {
+        width: clamp(150px, 10vw, 400px);
 
     }
 
-    &.privacy {
-        background: #1D1D1D;
-        color: #F8F7E5;
-        position: relative;
-        bottom: 10px;
-        right: 92px;
-
-        @media screen and (max-width: 900px) {
-            bottom: 144px;
-        }
-
-        .footer-links a {
-            color: #F8F7E5;
-
-            &:hover {
-                color: #FF834F;
-            }
-        }
-
-
-    }
-
-    &.default {
-        background: #1D1D1D;
-        color: #F8F7E5;
-
-        .footer-links a {
-            color: #F8F7E5;
-
-            &:hover {
-                color: #FF834F;
-            }
-        }
-
-
-    }
 }

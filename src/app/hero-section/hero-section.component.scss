@@ -8,6 +8,9 @@
   width: 100vw;
   position: relative;
   margin: 0 auto;
+  z-index: auto;
+  transform: none;
+  filter: none;
 
   @media screen and (max-width: 690px) {
     flex-direction: column;
@@ -15,6 +18,8 @@
     width: 100vw;
   }
 }
+
+
 
 /* ---------------- Greeting ---------------- */
 .greeting {
@@ -165,6 +170,7 @@
   max-width: 1200px;
   height: auto;
   right: 184px;
+  pointer-events: none;
 
 
   @media screen and (max-width: 1500px) {
@@ -220,6 +226,7 @@
   max-width: 500px;
   bottom: 29%;
   right: 20%;
+  pointer-events: none;
 
   @media screen and (max-width: 1000px) {
     right: 236px;

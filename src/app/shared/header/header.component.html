@@ -81,9 +81,10 @@
           {{ currentLanguage.toUpperCase() }}
         </button>
 
-        <button mat-icon-button class="sidenav-btn" (click)="sidenav.toggle()" disableRipple>
-          <mat-icon>menu</mat-icon>
-        </button>
+       <button class="icon-btn sidenav-btn" type="button" (click)="sidenav.toggle()" aria-label="Menü öffnen">
+  <mat-icon>menu</mat-icon>
+</button>
+
       </div>
     </div>
   </mat-toolbar>

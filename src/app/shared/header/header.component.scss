@@ -1,6 +1,30 @@
+/* der Host des Header-Komponentenbaums erzeugt einen isolierten Kontext */
 :host {
+  position: relative;
+  /* aktiviert z-index auf dem Host */
+  isolation: isolate;
+  /* eigener Stacking-Context */
+  z-index: 100000;
+  /* hoch genug über allem Content */
   display: block;
 }
+
+/* die Toolbar selbst bleibt fix und noch eine Stufe höher */
+.mainToolbar {
+  position: sticky;
+  z-index: 100001;
+  /* über dem Host-Kontext */
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+/* Sidenav-Overlay soll ÜBER der Toolbar liegen */
+.mat-drawer.mat-drawer-end {
+  z-index: 100002 !important;
+  /* sonst „hängt“ der Drawer unter dem Header */
+}
+
 
 /* ---------- Container Basics ---------- */
 .sidenavContainer {
@@ -33,48 +57,71 @@
   @media screen and (max-width: 1200px) {
     padding: 50px 60px 50px 20px;
   }
+
   @media screen and (max-width: 600px) {
-    padding: 0;
+    padding: 24px 8px;
   }
 }
 
 /* ---------- Theme Switching (per Section) ---------- */
 /* Spezifität gegen Material erhöhen: .mainToolbar.mat-toolbar */
-.sidenavContainer.about   .mainToolbar.mat-toolbar {
+.sidenavContainer.about .mainToolbar.mat-toolbar {
   background: #F8F7E5 !important;
   color: #679AAC !important;
-}
-
-.sidenavContainer.hero   .mainToolbar.mat-toolbar {
-  /* Default (falls keine Theme-Klasse aktiv ist) */
-  background-color: #679AAC;
   padding: 50px 60px;
+
+  @media screen and (max-width: 600px) {
+    padding: 24px 8px;
+  }
 }
 
-.sidenavContainer.skills  .mainToolbar.mat-toolbar,
+.sidenavContainer.hero .mainToolbar.mat-toolbar {
+  background-color: #679AAC !important;
+  padding: 50px 60px;
+
+  @media screen and (max-width: 600px) {
+    padding: 24px 8px;
+  }
+}
+
+.sidenavContainer.skills .mainToolbar.mat-toolbar,
 .sidenavContainer.contact .mainToolbar.mat-toolbar,
 .sidenavContainer.portfolio .mainToolbar.mat-toolbar,
 .sidenavContainer.references .mainToolbar.mat-toolbar {
   max-width: 100%;
   padding: 50px 60px;
 
-  @media screen and (max-width: 600px) { padding: 0; }
+  @media screen and (max-width: 600px) {
+    padding: 24px 8px;
+  }
 }
 
-.sidenavContainer.skills  .mainToolbar.mat-toolbar,
+.sidenavContainer.skills .mainToolbar.mat-toolbar,
 .sidenavContainer.contact .mainToolbar.mat-toolbar {
   background: #1D1D1D !important;
   color: #F8F7E5 !important;
+
+  @media screen and (max-width: 600px) {
+    padding: 24px 8px;
+  }
 }
 
 .sidenavContainer.portfolio .mainToolbar.mat-toolbar {
   background: #F8F7E5 !important;
   color: #679AAC !important;
+
+  @media screen and (max-width: 600px) {
+    padding: 24px 8px;
+  }
 }
 
 .sidenavContainer.references .mainToolbar.mat-toolbar {
   background: #679AAC !important;
   color: #F8F7E5 !important;
+
+  @media screen and (max-width: 600px) {
+    padding: 24px 8px;
+  }
 }
 
 /* ---------- Social Links Sichtbarkeit je Theme ---------- */
@@ -84,10 +131,12 @@
   opacity: 1;
   max-height: 100px;
   transition: opacity .5s cubic-bezier(.4, 0, .2, 1),
-              max-height .5s cubic-bezier(.4, 0, .2, 1);
+    max-height .5s cubic-bezier(.4, 0, .2, 1);
   overflow: hidden;
 
-  @media screen and (max-width: 1200px) { display: none; }
+  @media screen and (max-width: 1200px) {
+    display: none;
+  }
 }
 
 .sidenavContainer.about .mainToolbar .socialLinks,
@@ -103,25 +152,31 @@
 /* ---------- Social Icons (Pfad-Fix) ---------- */
 .socialLinks a:nth-child(1) img {
   display: block;
-  width: 32px; height: 32px;
+  width: 32px;
+  height: 32px;
   background: url("/assets/icons/githubIcon.png") no-repeat center / contain;
 }
+
 .socialLinks a:nth-child(1):hover img {
   background: url("/assets/icons/githubIconHover.png") no-repeat center / contain;
 }
 
 .socialLinks a:nth-child(2) img {
-  width: 32px; height: 32px;
+  width: 32px;
+  height: 32px;
   background: url("/assets/icons/linkedInIcon.png") no-repeat center / contain;
 }
+
 .socialLinks a:nth-child(2):hover img {
   background: url("/assets/icons/linkedInIconHover.png") no-repeat center / contain;
 }
 
 .socialLinks a:nth-child(3) img {
-  width: 32px; height: 32px;
+  width: 32px;
+  height: 32px;
   background: url("/assets/icons/emailIcon.png") no-repeat center / contain;
 }
+
 .socialLinks a:nth-child(3):hover img {
   background: url("/assets/icons/emailIconHover.png") no-repeat center / contain;
 }
@@ -187,15 +242,16 @@
   span {
     font-family: 'quicksandBold';
     font-size: clamp(16px, 2.5vw, 24px);
-    color: #F8F7E5; /* wird über Theme ggf. übersteuert */
+    color: #F8F7E5;
+    /* wird über Theme ggf. übersteuert */
     margin: 0;
   }
 }
 
 .languageButton {
-  width: 44px;
-  height: 44px;
-  border-radius: 100%;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 100% !important;
   border: 2px solid #F8F7E5 !important;
   color: #F8F7E5 !important;
   background: transparent !important;
@@ -204,17 +260,20 @@
   align-items: center;
   justify-content: center;
   min-width: unset !important;
-  font-size: clamp(16px, 2.5vw, 18px);
+  font-size: 16px !important;
   font-family: 'quicksandBold';
   transition: background .1s, color .1s, border-color .1s;
 }
 
-/* dunkler Text in hellen Themes */
+/* Language-Button im About-Theme → schwarzer Text */
 .sidenavContainer.about .mainToolbar .languageButton,
-.sidenavContainer.portfolio .mainToolbar .languageButton {
-  border-color: #1D1D1D !important;
+.sidenavContainer.about .mainToolbar .languageButton .mdc-button__label,
+.sidenavContainer.portfolio .mainToolbar .languageButton,
+.sidenavContainer.portfolio .mainToolbar .languageButton .mdc-button__label {
   color: #1D1D1D !important;
+  border-color: #1D1D1D !important;
 }
+
 
 .languageButton:hover {
   background: #FF834F !important;
@@ -222,11 +281,8 @@
   box-shadow: none !important;
 }
 
-::ng-deep .languageButton.mat-mdc-button .mat-mdc-focus-indicator {
-  background: none !important;
-  box-shadow: none !important;
-  opacity: 0 !important;
-}
+
+
 .languageButton.flash {
   background: #FF834F !important;
   border-color: #FF834F !important;
@@ -247,16 +303,15 @@
 .mat-drawer.mat-drawer-end {
   position: fixed;
   top: 12px;
-  right: clamp(60px, (100vw - 2006px), 1900px);
+  right: clamp(60px, (100vw - 2006px), 1900px) !important;
   width: 208px;
   background: #679AAC !important;
-
-  z-index: 20001;               /* über Toolbar */
-  -webkit-transform: translate3d(0,0,0); /* Safari GPU-Fix */
+  z-index: 100;
+  -webkit-transform: translate3d(0, 0, 0);
   will-change: transform;
 
   @media screen and (max-width: 600px) {
-    right: 0;
+    right: 0 !important;
     top: 0;
     width: 100vw;
     border-radius: 0;
@@ -273,23 +328,33 @@
   font-size: 24px;
   padding: 8px 16px;
 
-  img { width: 24px; cursor: pointer; }
+  img {
+    width: 24px;
+    cursor: pointer;
+  }
 }
 
 .navList {
   background: #F8F7E5;
-  display: flex;
+  display: flex !important;
   justify-self: center;
   align-items: center;
   flex-direction: column;
   width: 100%;
   height: 158px;
+  gap: 8px;
+  font-family: 'quicksandBold';
+  font-weight: 700;
+  padding: 8px 0px !important;
+  padding-top: 0px !important;
 
   a {
     font-family: 'quicksandBold';
     font-size: 18px;
     text-decoration: none !important;
     background: none !important;
+    height: 18px !important;
+    color: black !important;
   }
 
   ::ng-deep .mdc-list-item__primary-text {
@@ -307,6 +372,8 @@
   flex-direction: row;
   position: relative;
   right: 18px;
+  color: black !important;
+
 
   .nav-icon {
     width: 20px;
@@ -317,10 +384,22 @@
     flex-shrink: 0;
   }
 
-  span { transition: transform .3s ease, color .3s ease; }
+  span {
+    transition: transform .3s ease, color .3s ease;
+    font-family: 'quicksandBold';
+    font-weight: 700;
+    font-size: 18px;
+  }
 
-  &:hover .nav-icon { opacity: 1; transform: translateX(20px); }
-  &:hover span { transform: translateX(20px); color: #FF834F; }
+  &:hover .nav-icon {
+    opacity: 1;
+    transform: translateX(20px);
+  }
+
+  &:hover span {
+    transform: translateX(20px);
+    color: #FF834F;
+  }
 }
 
 /* ---------- Buttons / Icons ---------- */
@@ -330,6 +409,7 @@
   padding: 0 !important;
   transition: background .1s, color .1s;
 }
+
 .sidenav-btn mat-icon {
   color: #F8F7E5 !important;
   transition: color .1s;
@@ -349,13 +429,55 @@
   background: none;
 }
 
-/* Entfernt den Hover-Kreis / Ripple-Hintergrund nur bei Icon-Buttons */
-::ng-deep .mat-mdc-icon-button .mat-mdc-focus-indicator,
-::ng-deep .mat-mdc-icon-button .mat-mdc-button-persistent-ripple,
-::ng-deep .mat-mdc-icon-button .mdc-button__ripple,
-::ng-deep .mat-mdc-icon-button .mdc-state-layer {
-  background: none !important;
-  box-shadow: none !important;
-  opacity: 0 !important;
-  transition: none !important;
+
+/* ===== Menü-Button (mat-icon-button) – Kreis/Blur komplett aus ===== */
+
+/* Pure Icon-Button ohne MDC/Material-Layer */
+.icon-btn {
+  -webkit-tap-highlight-color: transparent;
+  /* iOS */
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  /* gleiche Hit-Area wie vorher */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  outline: none;
+  /* keine Browser-Outline */
+  box-shadow: none;
+  /* kein Box-Shadow als Focus */
+
+  /* Standardfarbe des Icons – gleiche Logik wie vorher */
+  .mat-icon {
+    color: #F8F7E5;
+    transition: color .1s;
+  }
+
+  /* Hover: Orange */
+  &:hover .mat-icon {
+    color: #FF834F !important;
+  }
+}
+
+/* Themenspezifische Icon-Farbe (About/Portfolio → schwarz) */
+.sidenavContainer.about .mainToolbar .icon-btn .mat-icon,
+.sidenavContainer.portfolio .mainToolbar .icon-btn .mat-icon {
+  color: #1D1D1D !important;
+}
+
+/* Optional: Fokus ohne visuellen Ring (nur wenn ausdrücklich gewünscht) */
+.icon-btn:focus,
+.icon-btn:focus-visible,
+.icon-btn:active {
+  outline: none;
+  box-shadow: none;
 }

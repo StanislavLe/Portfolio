@@ -231,7 +231,7 @@ h1 {
     /* Breite passt sich an Viewport-Breite an */
     height: auto;
     /* Höhe passt sich dynamisch am Text an */
-
+    padding: 16px;
     background-color: #F9AF42;
     display: flex;
     justify-content: center;
@@ -278,7 +278,7 @@ h1 {
     span {
         font-family: 'quicksandBook';
         font-weight: 100;
-        padding-top: clamp(6px, 1.2vw, 10px);
+        padding-bottom: clamp(6px, 1.2vw, 10px);
         font-size: clamp(12px, 1.2vw, 14px);
         text-align: center;
     }

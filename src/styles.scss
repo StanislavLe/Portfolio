@@ -137,3 +137,29 @@ html, body {
     }
 }
 
+/* styles.scss */
+main.legal {
+  height: 100%;
+
+      @media screen and (max-width: 1247px) {
+       height: 90%;
+    }
+
+          @media screen and (max-width: 713px) {
+       height: 98%;
+    }
+
+             @media screen and (max-width: 578px) {
+       height: 107%;
+    }
+
+                 @media screen and (max-width: 522px) {
+       height: 120%;
+    }
+}
+
+
+app-header {
+  position: absolute;
+  z-index: 10000;
+}

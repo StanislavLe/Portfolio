@@ -10,6 +10,7 @@ import { FooterComponent } from '../shared/footer/footer.component';
   standalone: true,
   imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './legal.component.html',
+  host: { 'ngSkipHydration': 'true' },
 })
 export class LegalComponent implements OnInit, OnDestroy {
   showOutlet = true;
@@ -21,7 +22,7 @@ export class LegalComponent implements OnInit, OnDestroy {
     private renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(DOCUMENT) private document: Document
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
