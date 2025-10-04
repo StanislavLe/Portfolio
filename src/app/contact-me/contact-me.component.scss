@@ -33,25 +33,26 @@ html {
   margin: 0 auto;
   position: relative;
 
-  @media screen and (max-width: $bp-small) {
+  @media screen and (max-width: 690px) {
     flex-direction: column;
   }
 
+    @media screen and (max-width: 390px) {
+padding-top: 56px;  }
+
   // Dynamische Höhenanpassungen
   @media screen and (max-height: 923px) {
-    padding-top: 92px;
   }
 
   @media screen and (max-height: 716px) {
-    padding-top: 112px;
   }
 
   @media screen and (max-height: 696px) {
-    padding-top: 68px;
+        padding-top: 56px;
+
   }
 
   @media screen and (max-height: 665px) {
-    padding-top: 80px;
   }
 }
 
@@ -505,70 +506,91 @@ h1 {
   }
 }
 
+/* iOS/ Safari-feste, eindeutige Keyframes */
+@keyframes floatUpDownContact {
+  0%   { transform: translate3d(0, 23px, 0); }
+  50%  { transform: translate3d(0, -10px, 0); }
+  100% { transform: translate3d(0, 23px, 0); }
+}
+@-webkit-keyframes floatUpDownContact {
+  0%   { -webkit-transform: translate3d(0, 23px, 0); }
+  50%  { -webkit-transform: translate3d(0, -10px, 0); }
+  100% { -webkit-transform: translate3d(0, 23px, 0); }
+}
+
+/* kleine Variante */
+@keyframes floatUpDownContactSm {
+  0%   { transform: translate3d(0, 10px, 0); }
+  50%  { transform: translate3d(0, -5px, 0); }
+  100% { transform: translate3d(0, 10px, 0); }
+}
+@-webkit-keyframes floatUpDownContactSm {
+  0%   { -webkit-transform: translate3d(0, 10px, 0); }
+  50%  { -webkit-transform: translate3d(0, -5px, 0); }
+  100% { -webkit-transform: translate3d(0, 10px, 0); }
+}
+
+/* Wichtig: kein filter mehr auf dem animierten Element! */
 .bounce-arrow {
-  width: 40px;
-  height: 40px;
-  pointer-events: auto;
-  user-select: none;
-  opacity: 1;
-  transform-origin: center;
-  animation: floatUpDown 2s ease-in-out infinite;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .25));
-  transition: filter 0.2s ease;
+  display: inline-block;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 
-  .arrow-wrapper:hover & {
-    filter: brightness(0) saturate(100%) invert(52%) sepia(75%) saturate(726%) hue-rotate(338deg) brightness(98%) contrast(96%);
-  }
+  animation: floatUpDownContact 2s ease-in-out infinite;
+  -webkit-animation: floatUpDownContact 2s ease-in-out infinite;
 
-  @media screen and (max-width: 547px) {
+  /* den Drop-Shadow NICHT hier setzen (Safari-Bug)! */
+  /* filter: drop-shadow(...); <- entfernen */
+}
+
+/* Shadow stattdessen auf dem Wrapper */
+.arrow-wrapper {
+  /* wenn du den Shadow unbedingt brauchst: */
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.25));
+}
+
+/* kleine Variante ab schmalen Screens */
+@media (max-width: 547px) {
+  .bounce-arrow {
+    animation: floatUpDownContactSm 2s ease-in-out infinite;
+    -webkit-animation: floatUpDownContactSm 2s ease-in-out infinite;
     width: clamp(20px, 3vw, 40px);
     height: auto;
   }
+}
 
-  @media screen and (max-width: 547px) {
-    animation: floatUpDownSmall 2s ease-in-out infinite;
+/* iOS-only Fallback (falls Safari trotzdem zickt): Animation über top */
+@supports (-webkit-touch-callout: none) {
+  .bounce-arrow {
+    position: relative;              /* nötig für top */
+    transform: none !important;
+    -webkit-transform: none !important;
+    will-change: top;
 
+    animation: floatUpDownContactTop 2s ease-in-out infinite !important;
+    -webkit-animation: floatUpDownContactTop 2s ease-in-out infinite !important;
+  }
+
+  @keyframes floatUpDownContactTop {
+    0%   { top: 23px; }
+    50%  { top: -10px; }
+    100% { top: 23px; }
+  }
+  @-webkit-keyframes floatUpDownContactTop {
+    0%   { top: 23px; }
+    50%  { top: -10px; }
+    100% { top: 23px; }
   }
 }
 
-
-
-.bounce-arrow {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-
-@keyframes floatUpDown {
-  0% {
-    transform: translateY(23px);
+/* Reduced motion: sanfter Fallback */
+@media (prefers-reduced-motion: reduce) {
+  .bounce-arrow {
+    animation: none !important;
+    -webkit-animation: none !important;
+    transform: translate3d(0, -6px, 0);
   }
-
-  50% {
-    transform: translateY(-10px);
-  }
-
-  100% {
-    transform: translateY(23px);
-  }
-}
-
-@keyframes floatUpDownSmall {
-  0% {
-    transform: translateY(10px);
-  }
-
-  50% {
-    transform: translateY(-5px);
-  }
-
-  100% {
-    transform: translateY(10px);
-  }
-}
-
-
-
-app-footer {
-  width: 100%;
 }

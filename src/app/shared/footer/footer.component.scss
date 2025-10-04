@@ -38,6 +38,9 @@
         bottom: 88px;
     }
 
+      @media screen and (max-width: 390px) {
+    }
+
     @media screen and (max-height: 660px) {
         bottom: 75px;
     }
@@ -51,8 +54,8 @@
         align-items: center;
 
         @media screen and (max-width: 900px) {
-            top: 78px;
-            right: 28px;
+            top: 42px;
+            right: 5px;
         }
 
         @media screen and (max-width: 690px) {
@@ -62,8 +65,8 @@
 
         @media screen and (max-width: 613px) {
             right: unset;
-            width: clamp(100px, 20vw, 400px);
-            top: 46px;
+            width: clamp(58px, 18vw, 400px);
+            top: 64px;
         }
 
 
@@ -123,7 +126,7 @@
         justify-content: space-between;
         align-items: center;
         width: 56%;
-        padding: 0 20px;
+        padding-right: 90px;
         position: relative;
         top: 72px;
 
