@@ -64,29 +64,8 @@
             right: unset;
             width: clamp(100px, 20vw, 400px);
             top: 46px;
-
         }
 
-        @media screen and (max-height: 952px) {
-            width: auto;
-            height: clamp(140px, 16vw, 200px);
-        }
-
-        @media screen and (max-height: 810px) {
-            top: 55px;
-            width: auto;
-            height: clamp(60px, 31vw, 120px);
-        }
-
-        @media screen and (max-height: 716px) {
-            height: clamp(16px, 7vw, 45px);
-            top: 64px;
-        }
-
-        @media screen and (max-height: 646px) {
-            height: clamp(12px, 6vw, 32px);
-            top: 63px;
-        }
 
         img {
             position: absolute;
