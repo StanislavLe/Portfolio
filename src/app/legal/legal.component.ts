@@ -1,7 +1,8 @@
-import { Component, Inject, NgZone, OnDestroy, OnInit, Renderer2, PLATFORM_ID } from '@angular/core';
+import {
+  Component, Inject, OnInit, PLATFORM_ID
+} from '@angular/core';
 import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-
 import { HeaderComponent } from '../shared/header/header.component';
 import { FooterComponent } from '../shared/footer/footer.component';
 
@@ -10,50 +11,63 @@ import { FooterComponent } from '../shared/footer/footer.component';
   standalone: true,
   imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './legal.component.html',
-  host: { 'ngSkipHydration': 'true' },
 })
-export class LegalComponent implements OnInit, OnDestroy {
-  showOutlet = true;
-
-  private removePageshowListener?: () => void;
+export class LegalComponent implements OnInit {
+  showOutlet = true; // 👈 wieder da
 
   constructor(
-    private ngZone: NgZone,
-    private renderer: Renderer2,
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(DOCUMENT) private document: Document
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
-    // Nur bfcache-Fall (iOS/Safari) behandeln
     const win = this.document.defaultView;
+    if (win && 'scrollRestoration' in win.history) {
+      try { win.history.scrollRestoration = 'manual'; } catch {}
+    }
+
+    // optional: iOS bfcache remount
     if (win) {
-      this.removePageshowListener = this.renderer.listen(
-        win,
-        'pageshow',
-        (e: PageTransitionEvent) => {
-          if ((e as any).persisted) {
-            // Seite kam aus dem bfcache -> Outlet einmal hart neu montieren
-            this.ngZone.run(() => {
-              this.showOutlet = false;
-              queueMicrotask(() => { this.showOutlet = true; });
-            });
-          }
+      win.addEventListener('pageshow', (e: PageTransitionEvent) => {
+        if ((e as any).persisted) {
+          this.showOutlet = false;
+          queueMicrotask(() => {
+            this.showOutlet = true;
+            this.scrollToTop();
+          });
         }
-      );
+      });
     }
   }
 
-  // Optional: Debug-Hooks für dein Template
-  onActivate(_c: unknown) { /* console.log('activate', _c); */ }
-  onDeactivate(_c: unknown) { /* console.log('deactivate', _c); */ }
+  scrollToTop(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    const win = this.document.defaultView;
+    if (!win) return;
 
-  ngOnDestroy(): void {
-    if (this.removePageshowListener) {
-      this.removePageshowListener();
-      this.removePageshowListener = undefined;
-    }
+    const main = this.document.querySelector('main.legal') as HTMLElement | null;
+    if (main) main.style.overflowAnchor = 'none';
+
+    const root = (this.document.scrollingElement || this.document.documentElement) as HTMLElement;
+    const oldBehavior = (root.style as any).scrollBehavior;
+    (root.style as any).scrollBehavior = 'auto';
+
+    const doScroll = () => {
+      win.scrollTo(0, 0);
+      root.scrollTop = 0;
+      if (main) main.scrollTop = 0;
+    };
+
+    doScroll();
+    win.requestAnimationFrame(() => {
+      doScroll();
+      setTimeout(() => {
+        doScroll();
+        setTimeout(() => doScroll(), 60);
+        (root.style as any).scrollBehavior = oldBehavior ?? '';
+      }, 0);
+    });
   }
 }

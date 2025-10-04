@@ -10,15 +10,11 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-
-// Angular Material
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule, MatSidenav } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-
-// Sections für die Menüliste
 import { SECTIONS } from '../sections.config';
 
 type Variant = 'home' | 'legal';
@@ -49,7 +45,7 @@ export class HeaderComponent implements OnChanges {
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
   sections = SECTIONS;
-  themeClass = 'hero'; 
+  themeClass = 'hero';
 
   ngOnChanges(_: SimpleChanges) {
     this.themeClass = this.computeThemeClass();
@@ -69,8 +65,12 @@ export class HeaderComponent implements OnChanges {
   cycleLanguage() {
     this.justClicked = true;
     setTimeout(() => (this.justClicked = false), 150);
-    this.currentLanguage = this.currentLanguage === 'en' ? 'de' : 'en';
+    const langs = ['en', 'de', 'ру']; // letztes ist russisch in Kyrillisch
+    let idx = langs.indexOf(this.currentLanguage);
+    idx = (idx + 1) % langs.length;
+    this.currentLanguage = langs[idx];
   }
+
 
   go(e: Event, id: string) {
     e.preventDefault();

@@ -34,4 +34,11 @@ export class FooterComponent {
     e.preventDefault();
     this.navigateSection.emit(id);
   }
+
+  
 }
+
+
+
+
+

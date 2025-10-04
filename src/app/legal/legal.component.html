@@ -1,11 +1,6 @@
 <app-header variant="legal"></app-header>
 
 <main class="legal">
-  <ng-container *ngIf="showOutlet">
-    <router-outlet
-      (activate)="onActivate($event)"
-      (deactivate)="onDeactivate($event)">
-    </router-outlet>
-  </ng-container>
+  <router-outlet (activate)="scrollToTop()"></router-outlet>
 </main>
 
