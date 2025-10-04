@@ -65,7 +65,7 @@ export class HeaderComponent implements OnChanges {
   cycleLanguage() {
     this.justClicked = true;
     setTimeout(() => (this.justClicked = false), 150);
-    const langs = ['en', 'de', 'ру']; // letztes ist russisch in Kyrillisch
+    const langs = ['en', 'de', 'ru']; // letztes ist russisch in Kyrillisch
     let idx = langs.indexOf(this.currentLanguage);
     idx = (idx + 1) % langs.length;
     this.currentLanguage = langs[idx];
