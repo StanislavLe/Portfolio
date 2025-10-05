@@ -1,45 +1,28 @@
 <div class="main-content">
-  <h1>Über mich</h1>
+  <h1>{{ translations.title[currentLang] }}</h1>
 
   <div class="aboutMeSection">
     <img class="aboutMeImg" src="assets/img/aboutMe.jpg" alt="About me Image">
 
     <div class="aboutMeContainer">
-      <span>
-        Hallo, ich bin Stanislav.<br>
-        Mit Wurzeln in der Industrie habe ich den Weg ins Programmieren gefunden.
-        Heute nutze ich genau diese Schnittstelle, um neue Ideen in smarte Lösungen zu verwandeln.
-      </span>
+      <span [innerHTML]="translations.intro[currentLang]"></span>
+
 
       <div>
         <button mat-button (click)="scrollToBottom.emit()" class="conectBtn">
-          Schreib mir
+          {{ translations.button[currentLang] }}
         </button>
         <div class="emoji-wrapper">
           <img src="assets/img/6. Secret info Emojis.png" alt="Secret Emoji" class="floating-emoji">
 
           <div class="secret-info-panel">
-            <h3>Mehr über mich</h3>
+            <h3>{{ translations.secretTitle[currentLang] }}</h3>
             <ul class="USP mat-checklist">
-              <li>
-                <mat-icon fontIcon="check_circle"></mat-icon> Analytisch
-              </li>
-              <li>
-                <mat-icon fontIcon="check_circle"></mat-icon> Kreativ
-              </li>
-              <li>
-                <mat-icon fontIcon="check_circle"></mat-icon> Teamplayer
-              </li>
-              <li>
-                <mat-icon fontIcon="check_circle"></mat-icon> Detailverliebt
-              </li>
-              <li>
-                <mat-icon fontIcon="check_circle"></mat-icon> Motiviert
-              </li>
-              <li>
-                <mat-icon fontIcon="check_circle"></mat-icon> Neugierig
+              <li *ngFor="let t of translations.traits[currentLang]">
+                <mat-icon [fontIcon]="t.icon"></mat-icon> {{ t.text }}
               </li>
             </ul>
+
           </div>
         </div>
       </div>

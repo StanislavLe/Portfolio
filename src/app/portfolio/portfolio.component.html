@@ -1,15 +1,22 @@
 <div class="main-content">
   <div class="portfolio-header">
-    <h1>Meine Werke</h1>
-    <span>
-      Entdecke hier eine Auswahl meiner Arbeiten – interagiere mit den Projekten und erlebe meine Fähigkeiten in Aktion.
-    </span>
+    <h1>{{ headerTranslations.title[currentLang] }}</h1>
+    <span>{{ headerTranslations.intro[currentLang] }}</span>
   </div>
 
   <div class="project-wrapper" [@slideFade]="currentIndex">
-    <app-project [title]="current.title" [description]="current.description" [imageUrl]="current.imageUrl"
-      [projectLink]="current.projectLink" [gitHubLink]="current.gitHubLink" [color]="current.color"
-      [iconUrl]="current.iconUrl" [skillset]="current.skillset" [hoverInfo]="current.hoverInfo" (prev)="prevProject()"
-      (next)="nextProject()"></app-project>
+    <app-project
+      [title]="current.title"
+      [description]="current.description[currentLang]"
+      [imageUrl]="current.imageUrl"
+      [projectLink]="current.projectLink"
+      [gitHubLink]="current.gitHubLink"
+      [color]="current.color"
+      [iconUrl]="current.iconUrl"
+      [skillset]="current.skillset"
+      [hoverInfo]="current.hoverInfo[currentLang]"
+      (prev)="prevProject()"
+      (next)="nextProject()"
+    ></app-project>
   </div>
 </div>

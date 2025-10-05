@@ -1,9 +1,9 @@
 <div class="project-card">
   <div class="img-container" [ngStyle]="{ 'background-color': color }">
     <div class="img-wrapper">
-    <img class="project-preview" [src]="imageUrl" [alt]="title" />
+      <img class="project-preview" [src]="imageUrl" [alt]="title" />
     </div>
-    <img class="orange-star" src="assets/img/Component 11.png" />
+    <img class="orange-star" src="assets/img/Component 11.png" alt="" />
   </div>
 
   <div class="text-container">
@@ -25,18 +25,37 @@
       </div>
 
       <div class="project-links">
-        <a class="linkBtn" *ngIf="projectLink" [href]="projectLink" target="_blank" rel="noopener">
-          LiveTest <img src="assets/img/8. Scroll down.png" alt="" />
+        <a
+          class="linkBtn"
+          *ngIf="projectLink"
+          [href]="projectLink"
+          target="_blank"
+          rel="noopener"
+        >
+          {{ translations.live[currentLang] }}
+          <img src="assets/img/8. Scroll down.png" alt="" />
         </a>
-        <a class="linkBtn" *ngIf="gitHubLink" [href]="gitHubLink" target="_blank" rel="noopener">
-          GitHub <img src="assets/img/8. Scroll down.png" alt="" />
+
+        <a
+          class="linkBtn"
+          *ngIf="gitHubLink"
+          [href]="gitHubLink"
+          target="_blank"
+          rel="noopener"
+        >
+          {{ translations.github[currentLang] }}
+          <img src="assets/img/8. Scroll down.png" alt="" />
         </a>
       </div>
     </div>
 
     <div class="navigation">
-      <button type="button" (click)="onPrev()">&lt;&lt;Previous project</button>
-      <button type="button" (click)="onNext()">Next project&gt;&gt;</button>
+      <button type="button" (click)="onPrev()">
+        {{ translations.prev[currentLang] }}
+      </button>
+      <button type="button" (click)="onNext()">
+        {{ translations.next[currentLang] }}
+      </button>
     </div>
   </div>
 </div>
