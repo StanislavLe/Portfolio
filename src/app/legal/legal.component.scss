@@ -1,12 +1,1 @@
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
 
-/* dein main-Container */
-.legal {
-  min-height: 100%; /* oder calc(100% - FOOTER-Höhe) wenn sticky nötig */
-  display: block;
-}

@@ -1,8 +1,14 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
+import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 
-// Erweitert: akzeptiere die Varianten, die in deinen Templates verwendet werden
 type FooterVariant = 'home' | 'legal' | 'contact' | 'impressum' | 'privacy';
 
 @Component({
@@ -18,27 +24,28 @@ export class FooterComponent {
 
   currentYear = new Date().getFullYear();
 
-  // Mappe "contact" → Home-Modus (One-Pager), "impressum/privacy" → Legal-Modus
-  get mode(): 'home' | 'legal' {
-    if (this.variant === 'home' || this.variant === 'contact') return 'home';
-    return 'legal';
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(DOCUMENT) private document: Document
+  ) { }
+
+  navigateAndScroll(path: string[]): void {
+    this.router.navigate(path).then(success => {
+      if (success && isPlatformBrowser(this.platformId)) {
+        const win = this.document.defaultView;
+        const body = this.document.body;
+
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            //  Der Body ist der echte Scrollcontainer
+            body.scrollTo({ top: 0, behavior: 'auto' });
+          }, 50);
+        });
+      }
+    });
   }
 
-  // CSS-Klasse am <footer>
-  get cssClass(): string {
-    // wenn du spezielle Styles für contact/impressum/privacy brauchst, hier erweitern
-    return this.mode;
-  }
 
-  go(e: Event, id: string) {
-    e.preventDefault();
-    this.navigateSection.emit(id);
-  }
 
-  
 }
-
-
-
-
-
