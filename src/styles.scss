@@ -5,22 +5,37 @@ button {
 }
 
 :root {
-  --page-max: 1900px;
+    --page-max: 1900px;
 }
 
-html, body {
-  height: 100dvh;
-  overflow-x: hidden; /* verhindert horizontales Ausbluten */
-      overflow-y: scroll; // eigenes Scrollen bleibt
-  scrollbar-width: none; // Firefox
-  -ms-overflow-style: none; // IE/Edge
+html,
+body {
+    min-height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: auto;
 
+    /* Wichtig! Kein smooth scroll */
     &::-webkit-scrollbar {
-        width: 0px;
-        height: 0px;
+        width: 0;
+        height: 0;
         display: none;
+    }
 }
+
+body.force-repaint {
+    transform: translateZ(0);
+    /* triggert Safari-Repaint */
+    will-change: transform;
 }
+
 
 @font-face {
     font-family: 'eczarBold';
@@ -139,8 +154,73 @@ html, body {
 
 
 app-header {
-  position: absolute;
-  z-index: 10000;
+    position: absolute;
+    z-index: 10000;
+}
+
+/* --------- iOS Scroll Fix --------- */
+main.legal {
+  display: block;
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  overflow-y: visible !important;   /* 👈 Body darf scrollen */
+  -webkit-overflow-scrolling: touch;
+}
+
+.main-content {
+  position: relative;
+  overflow: visible !important;      /* 👈 entfernt inneres Scroll-Layering */
+  height: auto !important;
 }
 
 
+/* --- OVERRIDE Angular Material Global Layout --- */
+body.mat-typography {
+  height: auto !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  position: static !important;
+  display: block !important;
+}
+
+/* HTML-Element darf scrollen */
+html {
+  height: auto !important;
+  overflow-y: auto !important;
+}
+
+/* Sicherheitshalber: Angular Material Container */
+.mat-drawer-container,
+.mat-sidenav-container {
+  height: auto !important;
+  overflow: visible !important;
+}
+
+
+/* --- iOS Safari Scroll Container Fix --- */
+
+/* Body & HTML dürfen länger als der Viewport sein */
+html, body {
+  min-height: 101dvh !important; /* 👈 nicht exakt gleich, 1% größer */
+  height: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  position: relative !important;
+}
+
+/* Main-Layer darf nicht die Scroll-Höhe blockieren */
+main.legal {
+  min-height: 100%;
+  height: auto !important;
+  overflow-y: visible !important;
+}
+
+/* Safety Net für Angular Material Container */
+.mat-drawer-container,
+.mat-sidenav-container,
+.mat-app-background {
+  height: auto !important;
+  overflow: visible !important;
+}

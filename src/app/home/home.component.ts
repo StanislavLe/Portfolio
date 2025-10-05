@@ -1,12 +1,12 @@
-// src/app/home/home.component.ts
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { HeaderComponent } from '../shared/header/header.component';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { SectionPagerComponent } from '../shared/section-pager/section-pager.component';
 import { SectionNavService } from '../shared/sections.config';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -41,29 +41,35 @@ export class HomeComponent implements OnInit, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private nav: SectionNavService
+    private nav: SectionNavService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit() {
-    // Pager -> Home
+    // 👇 Immer auf hero zurücksetzen, wenn Home geladen wird
+    if (isPlatformBrowser(this.platformId)) {
+      this.nav.setActive('hero');
+      this.nav.requestScroll('hero');
+    }
+
     this.nav.active$.subscribe(id => this.currentSection = id);
     this.nav.isLast$.subscribe(v => this.isLastSection = v);
 
-    // Deep-Links
     this.route.fragment.subscribe(f => { if (f) this.nav.requestScroll(f); });
     this.route.queryParamMap.subscribe(p => {
-      const s = p.get('section'); if (s) this.nav.requestScroll(s);
+      const s = p.get('section');
+      if (s) this.nav.requestScroll(s);
     });
   }
 
   ngAfterViewInit() {
-    // initial zur aktuellen Section scrollen
-    this.nav.requestScroll(this.currentSection);
+    if (isPlatformBrowser(this.platformId)) {
+      this.nav.requestScroll('hero'); // 👈 sicherheitshalber nochmal
+    }
   }
 
   onSectionChanged(id: string) {
     this.currentSection = id;
-    // Fragment in URL aktualisieren (ohne History-Spam)
     this.router.navigate([], { fragment: id, replaceUrl: true, queryParamsHandling: 'preserve' });
   }
 

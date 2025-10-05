@@ -33,10 +33,10 @@ export class LegalComponent implements OnInit {
   }
 }
 
+private scrollToTop(): void {
+  if (!isPlatformBrowser(this.platformId)) return;
+  const body = this.document.body;
+  body.scrollTo({ top: 0, behavior: 'auto' });
+}
 
-  private scrollToTop(): void {
-    const win = this.document.defaultView;
-    if (!win) return;
-    win.scrollTo({ top: 0, behavior: 'auto' });
-  }
 }

@@ -27,26 +27,35 @@
     </mat-nav-list>
 
     <!-- Legal Menü -->
-    <mat-nav-list class="navList" *ngIf="variant==='legal'">
-      <a mat-list-item [routerLink]="['/']" (click)="sidenav.close()">
-        <div class="nav-item-content">
-          <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
-          <span>Home</span>
-        </div>
-      </a>
-      <a mat-list-item [routerLink]="['/legal','impressum']" (click)="sidenav.close()">
-        <div class="nav-item-content">
-          <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
-          <span>Impressum</span>
-        </div>
-      </a>
-      <a mat-list-item [routerLink]="['/legal','privacy-policy']" (click)="sidenav.close()">
-        <div class="nav-item-content">
-          <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
-          <span>Datenschutz</span>
-        </div>
-      </a>
-    </mat-nav-list>
+    <mat-nav-list class="navList" *ngIf="variant === 'legal'">
+  <a
+    mat-list-item
+    (click)="navigateAndScroll(['/'])">
+    <div class="nav-item-content">
+      <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
+      <span>Home</span>
+    </div>
+  </a>
+
+  <a
+    mat-list-item
+    (click)="navigateAndScroll(['/legal', 'impressum'])">
+    <div class="nav-item-content">
+      <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
+      <span>Impressum</span>
+    </div>
+  </a>
+
+  <a
+    mat-list-item
+    (click)="navigateAndScroll(['/legal', 'privacy-policy'])">
+    <div class="nav-item-content">
+      <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
+      <span>Datenschutz</span>
+    </div>
+  </a>
+</mat-nav-list>
+
   </mat-sidenav>
 
   <mat-toolbar class="mainToolbar">
