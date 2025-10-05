@@ -1,7 +1,7 @@
 <mat-sidenav-container class="sidenavContainer" [ngClass]="themeClass" [attr.data-theme]="themeClass">
   <mat-sidenav #sidenav class="sidenav" mode="over" position="end">
     <div class="sidenavHeader">
-      <span>Menu</span>
+      <span>{{ translations.menu[currentLanguage] }}</span>
       <button mat-icon-button class="close-btn" (click)="sidenav.close()">
         <img src="assets/icons/closeMenu.png" alt="Close" />
       </button>
@@ -21,21 +21,21 @@
       <a mat-list-item (click)="navigateAndScroll(['/'])">
         <div class="nav-item-content">
           <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
-          <span>Home</span>
+          <span>{{ translations.start[currentLanguage] }}</span>
         </div>
       </a>
 
       <a mat-list-item (click)="navigateAndScroll(['/legal', 'impressum'])">
         <div class="nav-item-content">
           <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
-          <span>Impressum</span>
+          <span>{{ translations.impressum[currentLanguage] }}</span>
         </div>
       </a>
 
       <a mat-list-item (click)="navigateAndScroll(['/legal', 'privacy-policy'])">
         <div class="nav-item-content">
           <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
-          <span>Datenschutz</span>
+          <span>{{ translations.privacy[currentLanguage] }}</span>
         </div>
       </a>
     </mat-nav-list>
@@ -59,7 +59,7 @@
 
         <div class="logoHeader">
           <img src="assets/img/logo.png" alt="Logo" />
-          <span>Stanislav Levin</span>
+          <span>{{ translations.name[currentLanguage] }}</span>
         </div>
       </div>
 

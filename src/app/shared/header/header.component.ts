@@ -48,6 +48,38 @@ export class HeaderComponent implements OnInit, OnChanges {
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
   sections = SECTIONS;
+
+
+  translations = {
+  menu: {
+    de: 'Menü',
+    en: 'Menu',
+    ru: 'Меню',
+  },
+  start: {
+    de: 'Start',
+    en: 'Home',
+    ru: 'Главная',
+  },
+  impressum: {
+    de: 'Impressum',
+    en: 'Legal Notice',
+    ru: 'Импрессум',
+  },
+  privacy: {
+    de: 'Datenschutz',
+    en: 'Privacy Policy',
+    ru: 'Конфиденциальность',
+  },
+  name: {
+    de: 'Stanislav Levin',
+    en: 'Stanislav Levin',
+    ru: 'Станислав Левин',
+  },
+};
+
+
+
   themeClass = 'hero';
 
   constructor(

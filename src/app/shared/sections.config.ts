@@ -15,12 +15,12 @@ export class SectionNavService {
 }
 
 export const SECTIONS = [
-  { id: 'hero', label: 'Hero' },
-  { id: 'about', label: 'About Me' },
+  { id: 'hero', label: 'Start' },
+  { id: 'about', label: 'Über mich' },
   { id: 'skills', label: 'Skills' },
   { id: 'portfolio', label: 'Portfolio' },
-  { id: 'references', label: 'References' },
-  { id: 'contact', label: 'Contact' }
+  { id: 'references', label: 'Referenzen' },
+  { id: 'contact', label: 'Contakt' }
 ];
 
 export const FOOTER_VARIANTS: Record<string, 'contact' | 'impressum' | 'privacy' | 'default'> = {

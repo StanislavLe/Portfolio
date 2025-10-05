@@ -40,13 +40,13 @@ export class HeroSectionComponent implements OnInit {
 
   constructor(
     private langService: LanguageService,
-    private cdr: ChangeDetectorRef // ✅ Wichtig!
+    private cdr: ChangeDetectorRef 
   ) {}
 
   ngOnInit() {
     this.langService.lang$.subscribe((lang) => {
       this.currentLang = lang;
-      this.cdr.detectChanges(); // 👈 erzwingt Neurendern bei Sprachwechsel
+      this.cdr.detectChanges(); 
     });
   }
 }

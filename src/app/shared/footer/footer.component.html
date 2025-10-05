@@ -5,48 +5,33 @@
   </div>
 
   <div class="footer-content">
-    <div class="footer-text">
-      <span>© {{ currentYear }} Stanislav Levin</span>
-    </div>
+    <span>
+      {{ translations.copyright[currentLang].replace('{{year}}', currentYear.toString()) }}
+    </span>
 
     <div class="footer-links" *ngIf="variant === 'home'; else legalLinks">
-      <a
-        href="https://www.linkedin.com/in/stanislav-levin-881ab32b5"
-        target="_blank"
-        rel="noopener noreferrer"
-        >LinkedIn</a
-      >
-      <a
-        href="https://github.com/StanislavLe"
-        target="_blank"
-        rel="noopener noreferrer"
-        >GitHub</a
-      >
-      <a (click)="navigateAndScroll(['/legal', 'impressum'])">Impressum</a>
-      <a (click)="navigateAndScroll(['/legal', 'privacy-policy'])"
-        >Privacy Policy</a
-      >
+      <a href="https://www.linkedin.com/in/stanislav-levin-881ab32b5" target="_blank" rel="noopener noreferrer">{{
+        translations.linkedin[currentLang] }}</a>
+      <a href="https://github.com/StanislavLe" target="_blank" rel="noopener noreferrer">{{
+        translations.github[currentLang] }}</a>
+      <a (click)="navigateAndScroll(['/legal', 'impressum'])"> {{ translations.impressum[currentLang] }}
+      </a>
+      <a (click)="navigateAndScroll(['/legal', 'privacy-policy'])"> {{ translations.privacy[currentLang] }}
+      </a>
     </div>
 
     <ng-template #legalLinks>
       <div class="footer-links">
-        <a (click)="navigateAndScroll(['/'])">Home</a>
-        <a (click)="navigateAndScroll(['/legal', 'impressum'])">Impressum</a>
-        <a (click)="navigateAndScroll(['/legal', 'privacy-policy'])"
-          >Privacy Policy</a
-        >
-        <a
-          href="https://www.linkedin.com/in/stanislav-levin-881ab32b5"
-          target="_blank"
-          rel="noopener noreferrer"
-          >LinkedIn</a
-        >
-        <a
-          href="https://github.com/StanislavLe"
-          target="_blank"
-          rel="noopener noreferrer"
-          >GitHub</a
-        >
+        <a (click)="navigateAndScroll(['/'])"> {{ translations.home[currentLang] }}
+        </a>
+        <a (click)="navigateAndScroll(['/legal', 'impressum'])"> {{ translations.impressum[currentLang] }}
+        </a>
+        <a (click)="navigateAndScroll(['/legal', 'privacy-policy'])"> {{ translations.privacy[currentLang] }}
+        </a>
+        <a href="https://www.linkedin.com/in/stanislav-levin-881ab32b5" target="_blank" rel="noopener noreferrer"> {{
+          translations.linkedin[currentLang] }} </a>
+        <a href="https://github.com/StanislavLe" target="_blank" rel="noopener noreferrer"> {{
+          translations.github[currentLang] }}</a>
       </div>
     </ng-template>
   </div>
