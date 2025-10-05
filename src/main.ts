@@ -8,8 +8,8 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient } from '@angular/common/http';
 
 const routerOptions: ExtraOptions = {
-  scrollPositionRestoration: 'enabled', // scrollt immer nach oben
-  anchorScrolling: 'enabled',           // erlaubt #Sprünge
+  scrollPositionRestoration: 'enabled', 
+  anchorScrolling: 'enabled',           
   scrollOffset: [0, 0],
 };
 

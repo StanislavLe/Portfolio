@@ -85,31 +85,24 @@ export class HeaderComponent implements OnChanges {
 
   navigateAndScroll(path: string[]): void {
     const target = path.join('/');
-    const isHome = target === '/' || target === ''; // Prüfen ob Home
-
+    const isHome = target === '/' || target === '';
     this.router.navigate(path).then(success => {
       if (success && isPlatformBrowser(this.platformId)) {
         const win = this.document.defaultView!;
         const html = this.document.documentElement;
         const body = this.document.body;
-
-        // 🧭 Scroll to Top
         requestAnimationFrame(() => {
           win.scrollTo({ top: 0, behavior: 'auto' });
           html.scrollTop = 0;
           body.scrollTop = 0;
         });
-
-        // ✨ Falls Home: Hero Section aktivieren
         if (isHome) {
-          // Trigger SectionNavService → hero scrollen
           const navService = (window as any).sectionNavService;
           if (navService?.requestScroll) {
             navService.requestScroll('hero');
           }
         }
       }
-
       this.sidenav?.close?.();
     });
   }

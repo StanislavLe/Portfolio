@@ -7,30 +7,17 @@
   background-color: #1D1D1D;
   width: 100%;
 
-
   @media screen and (max-width: 1247px) {
     padding-right: 20px;
     padding-top: 100px;
     padding-left: 42px;
-
   }
 
   @media screen and (max-width: 690px) {
     padding-right: 6px;
     padding-top: 100px;
     padding-left: 6px;
-
   }
-
-  @media screen and (max-width: 690px) {}
-
-  @media screen and (max-height: 990px) {}
-
-  @media screen and (max-height: 900px) {}
-
-  @media screen and (max-height: 780px) {}
-
-  @media screen and (max-height: 680px) {}
 
   h1 {
     font-size: clamp(36px, 4vw, 72px);
@@ -54,7 +41,6 @@
     font-size: clamp(18px, 1.5vw, 24px);
     max-width: 1816px;
     padding-right: 80px;
-
   }
 
   p {
@@ -64,6 +50,5 @@
     color: #F8F7E5;
     max-width: 1816px;
     padding-right: 80px;
-
   }
 }

@@ -43,10 +43,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private router: Router,
     private nav: SectionNavService,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  ) { }
 
   ngOnInit() {
-    // 👇 Immer auf hero zurücksetzen, wenn Home geladen wird
     if (isPlatformBrowser(this.platformId)) {
       this.nav.setActive('hero');
       this.nav.requestScroll('hero');
@@ -64,7 +63,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.nav.requestScroll('hero'); // 👈 sicherheitshalber nochmal
+      this.nav.requestScroll('hero');
     }
   }
 

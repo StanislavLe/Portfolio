@@ -10,15 +10,11 @@ import {
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router, ActivatedRoute, NavigationEnd, RouterOutlet } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
-
-// Material
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule }    from '@angular/material/icon';
 import { MatListModule }    from '@angular/material/list';
 import { MatButtonModule }  from '@angular/material/button';
-
-// Dein Header (muss selbst standalone sein!)
 import { HeaderComponent } from './shared/header/header.component';
 
 @Component({
@@ -27,13 +23,11 @@ import { HeaderComponent } from './shared/header/header.component';
   imports: [
     CommonModule,
     RouterOutlet,
-    // Material
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
     MatListModule,
     MatButtonModule,
-    // eigene
     HeaderComponent,
   ],
   templateUrl: './app.component.html',
@@ -75,17 +69,13 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  // ---- Template-Handler, die dir fehlten ----
   onHeaderSectionSelected(section: string) {
-    // Wenn der Header auf Home eine Section anwählt
     this.currentSection = section;
   }
 
   onActivate(_cmp: unknown) {
-    // Platzhalter, falls du hier später etwas tust
   }
 
-  // ---- intern ----
   private onPageShow = (e: PageTransitionEvent) => {
     if ((e as any).persisted) {
       this.ngZone.run(() => {

@@ -1,4 +1,3 @@
-// 🎨 Farben & Variablen
 $color-primary: #F9AF42;
 $color-secondary: #FF834F;
 $color-bg-dark: #1D1D1D;
@@ -9,7 +8,6 @@ $font-headline: 'eczarBold';
 $font-regular: 'quicksandBook';
 $font-bold: 'quicksandBold';
 
-// 📱 Breakpoints
 $bp-large: 1247px;
 $bp-medium: 900px;
 $bp-small: 690px;
@@ -19,13 +17,11 @@ html {
   max-width: 2000px;
 }
 
-// ===================== MAIN LAYOUT =====================
 .main-content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-
   padding-top: clamp(131px, 7vh, 140px);
   min-height: 100dvh;
   max-width: 2000px;
@@ -37,22 +33,13 @@ html {
     flex-direction: column;
   }
 
-    @media screen and (max-width: 390px) {
-padding-top: 56px;  }
-
-  // Dynamische Höhenanpassungen
-  @media screen and (max-height: 923px) {
-  }
-
-  @media screen and (max-height: 716px) {
+  @media screen and (max-width: 390px) {
+    padding-top: 56px;
   }
 
   @media screen and (max-height: 696px) {
-        padding-top: 56px;
+    padding-top: 56px;
 
-  }
-
-  @media screen and (max-height: 665px) {
   }
 }
 
@@ -130,7 +117,6 @@ h1 {
   }
 }
 
-// ===================== TEXT CONTENT =====================
 .text-content {
   flex: 1;
   max-width: 600px;
@@ -171,7 +157,6 @@ h1 {
   }
 }
 
-// ===================== FORM =====================
 .contact-form {
   width: 60%;
   min-height: 382px;
@@ -220,7 +205,6 @@ h1 {
       }
     }
 
-    // ✨ Gemeinsamer Hover-Effekt für Inputs & Textarea
     .form-group,
     .message-group {
       flex: 1;
@@ -275,7 +259,7 @@ h1 {
       .agreement {
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap; // darf umbrechen, wenn zu eng
+        flex-wrap: wrap; 
         font-size: clamp(12px, 1.2vw, 16px);
         font-family: 'quicksandBook';
         color: #F8F7E5;
@@ -446,7 +430,6 @@ h1 {
   position: absolute;
   bottom: calc(62vh + env(safe-area-inset-bottom));
   right: clamp(80px, 100vw - 2015px, 1900px);
-  // 🟠 Safari Fix
   will-change: transform;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
@@ -468,10 +451,8 @@ h1 {
 
   }
 
-
-
   @media screen and (max-width: 547px) {
-        bottom: calc(25vh + env(safe-area-inset-bottom));
+    bottom: calc(25vh + env(safe-area-inset-bottom));
 
   }
 
@@ -484,53 +465,77 @@ h1 {
     bottom: calc(32vh + env(safe-area-inset-bottom));
     right: clamp(72px, 100vw - 2015px, 1900px);
   }
- @media screen and (max-width: 401px) {
+
+  @media screen and (max-width: 401px) {
     bottom: calc(30vh + env(safe-area-inset-bottom));
     right: clamp(44px, 100vw - 2015px, 1900px);
   }
-  @media screen and (max-height: 923px) {}
-
-  @media screen and (max-height: 890px) {}
 
   @media screen and (max-height: 810px) {
     bottom: calc(16vh + env(safe-area-inset-bottom));
   }
 
-  @media screen and (max-height: 766px) {}
-
-  @media screen and (max-height: 740px) {}
-
   @media screen and (max-height: 625px) {
     bottom: calc(13vh + env(safe-area-inset-bottom));
-
   }
 }
 
-/* iOS/ Safari-feste, eindeutige Keyframes */
 @keyframes floatUpDownContact {
-  0%   { transform: translate3d(0, 23px, 0); }
-  50%  { transform: translate3d(0, -10px, 0); }
-  100% { transform: translate3d(0, 23px, 0); }
+  0% {
+    transform: translate3d(0, 23px, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 23px, 0);
+  }
 }
+
 @-webkit-keyframes floatUpDownContact {
-  0%   { -webkit-transform: translate3d(0, 23px, 0); }
-  50%  { -webkit-transform: translate3d(0, -10px, 0); }
-  100% { -webkit-transform: translate3d(0, 23px, 0); }
+  0% {
+    -webkit-transform: translate3d(0, 23px, 0);
+  }
+
+  50% {
+    -webkit-transform: translate3d(0, -10px, 0);
+  }
+
+  100% {
+    -webkit-transform: translate3d(0, 23px, 0);
+  }
 }
 
-/* kleine Variante */
 @keyframes floatUpDownContactSm {
-  0%   { transform: translate3d(0, 10px, 0); }
-  50%  { transform: translate3d(0, -5px, 0); }
-  100% { transform: translate3d(0, 10px, 0); }
-}
-@-webkit-keyframes floatUpDownContactSm {
-  0%   { -webkit-transform: translate3d(0, 10px, 0); }
-  50%  { -webkit-transform: translate3d(0, -5px, 0); }
-  100% { -webkit-transform: translate3d(0, 10px, 0); }
+  0% {
+    transform: translate3d(0, 10px, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -5px, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 10px, 0);
+  }
 }
 
-/* Wichtig: kein filter mehr auf dem animierten Element! */
+@-webkit-keyframes floatUpDownContactSm {
+  0% {
+    -webkit-transform: translate3d(0, 10px, 0);
+  }
+
+  50% {
+    -webkit-transform: translate3d(0, -5px, 0);
+  }
+
+  100% {
+    -webkit-transform: translate3d(0, 10px, 0);
+  }
+}
+
 .bounce-arrow {
   display: inline-block;
   will-change: transform;
@@ -538,21 +543,14 @@ h1 {
   -webkit-backface-visibility: hidden;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
-
   animation: floatUpDownContact 2s ease-in-out infinite;
   -webkit-animation: floatUpDownContact 2s ease-in-out infinite;
-
-  /* den Drop-Shadow NICHT hier setzen (Safari-Bug)! */
-  /* filter: drop-shadow(...); <- entfernen */
 }
 
-/* Shadow stattdessen auf dem Wrapper */
 .arrow-wrapper {
-  /* wenn du den Shadow unbedingt brauchst: */
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,.25));
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .25));
 }
 
-/* kleine Variante ab schmalen Screens */
 @media (max-width: 547px) {
   .bounce-arrow {
     animation: floatUpDownContactSm 2s ease-in-out infinite;
@@ -562,31 +560,45 @@ h1 {
   }
 }
 
-/* iOS-only Fallback (falls Safari trotzdem zickt): Animation über top */
 @supports (-webkit-touch-callout: none) {
   .bounce-arrow {
-    position: relative;              /* nötig für top */
+    position: relative;
     transform: none !important;
     -webkit-transform: none !important;
     will-change: top;
-
     animation: floatUpDownContactTop 2s ease-in-out infinite !important;
     -webkit-animation: floatUpDownContactTop 2s ease-in-out infinite !important;
   }
 
   @keyframes floatUpDownContactTop {
-    0%   { top: 23px; }
-    50%  { top: -10px; }
-    100% { top: 23px; }
+    0% {
+      top: 23px;
+    }
+
+    50% {
+      top: -10px;
+    }
+
+    100% {
+      top: 23px;
+    }
   }
+
   @-webkit-keyframes floatUpDownContactTop {
-    0%   { top: 23px; }
-    50%  { top: -10px; }
-    100% { top: 23px; }
+    0% {
+      top: 23px;
+    }
+
+    50% {
+      top: -10px;
+    }
+
+    100% {
+      top: 23px;
+    }
   }
 }
 
-/* Reduced motion: sanfter Fallback */
 @media (prefers-reduced-motion: reduce) {
   .bounce-arrow {
     animation: none !important;

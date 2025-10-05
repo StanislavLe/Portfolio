@@ -1,8 +1,4 @@
-<mat-sidenav-container
-  class="sidenavContainer"
-  [ngClass]="themeClass"
-  [attr.data-theme]="themeClass"  
->
+<mat-sidenav-container class="sidenavContainer" [ngClass]="themeClass" [attr.data-theme]="themeClass">
   <mat-sidenav #sidenav class="sidenav" mode="over" position="end">
     <div class="sidenavHeader">
       <span>Menu</span>
@@ -11,14 +7,9 @@
       </button>
     </div>
 
-    <!-- One-Pager Menü -->
     <mat-nav-list class="navList" *ngIf="variant==='home'">
-      <a
-        mat-list-item
-        *ngFor="let s of sections"
-        [class.active]="s.id === currentSection"
-        (click)="navigateTo(s.id); sidenav.close()"
-      >
+      <a mat-list-item *ngFor="let s of sections" [class.active]="s.id === currentSection"
+        (click)="navigateTo(s.id); sidenav.close()">
         <div class="nav-item-content">
           <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
           <span>{{ s.label }}</span>
@@ -26,35 +17,28 @@
       </a>
     </mat-nav-list>
 
-    <!-- Legal Menü -->
     <mat-nav-list class="navList" *ngIf="variant === 'legal'">
-  <a
-    mat-list-item
-    (click)="navigateAndScroll(['/'])">
-    <div class="nav-item-content">
-      <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
-      <span>Home</span>
-    </div>
-  </a>
+      <a mat-list-item (click)="navigateAndScroll(['/'])">
+        <div class="nav-item-content">
+          <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
+          <span>Home</span>
+        </div>
+      </a>
 
-  <a
-    mat-list-item
-    (click)="navigateAndScroll(['/legal', 'impressum'])">
-    <div class="nav-item-content">
-      <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
-      <span>Impressum</span>
-    </div>
-  </a>
+      <a mat-list-item (click)="navigateAndScroll(['/legal', 'impressum'])">
+        <div class="nav-item-content">
+          <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
+          <span>Impressum</span>
+        </div>
+      </a>
 
-  <a
-    mat-list-item
-    (click)="navigateAndScroll(['/legal', 'privacy-policy'])">
-    <div class="nav-item-content">
-      <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
-      <span>Datenschutz</span>
-    </div>
-  </a>
-</mat-nav-list>
+      <a mat-list-item (click)="navigateAndScroll(['/legal', 'privacy-policy'])">
+        <div class="nav-item-content">
+          <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
+          <span>Datenschutz</span>
+        </div>
+      </a>
+    </mat-nav-list>
 
   </mat-sidenav>
 
@@ -80,19 +64,14 @@
       </div>
 
       <div class="settings">
-        <button
-          mat-button
-          class="languageButton"
-          [class.flash]="justClicked"
-          [class.active]="true"
-          (click)="cycleLanguage()"
-        >
+        <button mat-button class="languageButton" [class.flash]="justClicked" [class.active]="true"
+          (click)="cycleLanguage()">
           {{ currentLanguage.toUpperCase() }}
         </button>
 
-       <button class="icon-btn sidenav-btn" type="button" (click)="sidenav.toggle()" aria-label="Menü öffnen">
-  <mat-icon>menu</mat-icon>
-</button>
+        <button class="icon-btn sidenav-btn" type="button" (click)="sidenav.toggle()" aria-label="Menü öffnen">
+          <mat-icon>menu</mat-icon>
+        </button>
 
       </div>
     </div>

@@ -56,17 +56,12 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
   private touchStartY = 0;
   private touchEndY = 0;
   private swipeThreshold = 50;
-
-  // NEW: init orchestration
   private viewReady = false;
   private pendingScrollId: string | null = null;
-
-  constructor(private nav: SectionNavService, private cdr: ChangeDetectorRef) {}
+  constructor(private nav: SectionNavService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
-    // Header/Footer → Scroll-Wünsche
     this.nav.scrollTo$.subscribe((id) => {
-      // Wenn View noch nicht fertig, später ausführen
       if (!this.viewReady) {
         this.pendingScrollId = id;
         return;
@@ -78,20 +73,14 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
 
   ngAfterViewInit() {
     this.viewReady = true;
-
-    // initial target ermitteln
     const idx = this.sections.findIndex((s) => s.id === this.currentSection);
     const targetIdx = idx >= 0 ? idx : 0;
-
-    // Falls ein pending Scroll aus ngOnInit kam, den bevorzugen
     const pendingIdx =
       this.pendingScrollId != null
         ? this.sections.findIndex((s) => s.id === this.pendingScrollId)
         : -1;
 
     const finalIdx = pendingIdx >= 0 ? pendingIdx : targetIdx;
-
-    // WICHTIG: in eine Microtask schieben, damit der erste CD-Zyklus fertig ist
     queueMicrotask(() => {
       this.scrollToSection(finalIdx);
       this.pendingScrollId = null;
@@ -106,7 +95,6 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
         if (this.sectionRefs?.length > 0) {
           this.scheduleScroll(idx);
         } else {
-          // sicherheitshalber verzögern
           setTimeout(() => {
             if (this.sectionRefs?.length > 0) this.scheduleScroll(idx);
           });
@@ -116,7 +104,6 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   private scheduleScroll(idx: number) {
-    // kleine Entkopplung vom aktuellen Zyklus
     queueMicrotask(() => this.scrollToSection(idx));
   }
 
@@ -146,7 +133,6 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
   private handleSwipe() {
     if (this.isScrolling) return;
     const deltaY = this.touchStartY - this.touchEndY;
-
     if (Math.abs(deltaY) > this.swipeThreshold) {
       if (deltaY > 0 && this.currentSectionIndex < this.sections.length - 1) {
         this.scheduleScroll(this.currentSectionIndex + 1);
@@ -159,21 +145,16 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
   scrollToSection(index: number) {
     if (this.isScrolling) return;
     this.isScrolling = true;
-
     const el = this.sectionRefs.get(index)?.nativeElement;
     if (el?.scrollIntoView) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
-
-    // State-Updates (Klassenzustände) entkoppeln
     setTimeout(() => {
       this.currentSectionIndex = index;
-
       const id = this.sections[index].id;
       this.sectionChanged.emit(id);
       this.nav.setActive(id);
       this.nav.setIsLast(index === this.sections.length - 1);
-
       this.isScrolling = false;
       this.cdr.markForCheck();
     }, 0);

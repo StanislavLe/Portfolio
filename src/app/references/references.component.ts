@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ColleagueCommentComponent } from './colleague-comment/colleague-comment.component';
-import { NgFor } from '@angular/common';                     // <-- hinzufügen
+import { NgFor } from '@angular/common';                     
 
 @Component({
   selector: 'app-references',

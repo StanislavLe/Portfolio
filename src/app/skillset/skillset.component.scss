@@ -3,7 +3,7 @@
     justify-content: flex-start;
     align-items: start;
     flex-direction: row;
-    min-height: 100dvh; // volle Höhe, dynamisch auch auf Mobile
+    min-height: 100dvh; 
     max-width: 2040px;
     width: 100vw;
     position: relative;
@@ -13,13 +13,10 @@
         flex-direction: column;
         width: 100%;
         padding: 0px;
-        /* ein bisschen Luft */
-
     }
 
     @media screen and (max-height: 800px) {
         padding: 0px;
-        /* ein bisschen Luft */
     }
 }
 
@@ -41,7 +38,6 @@
         position: relative;
     }
 
-
     @media screen and (max-height: 540px) {
         padding-top: 144px;
     }
@@ -58,9 +54,6 @@
     font-weight: 100;
     max-width: 800px;
 
-
-    @media screen and (max-width: 1850px) {}
-
     @media screen and (max-width: 510px) {
         width: 100%;
     }
@@ -75,30 +68,22 @@ h1 {
     padding-bottom: 100px;
     padding-top: 36px;
 
-
-
-    @media screen and (max-width: 1400px) {}
-
     @media screen and (max-width: 1247px) {
         padding-bottom: 18px;
-
     }
 
     @media screen and (max-height: 800px) {
         margin-bottom: 0px;
         padding-bottom: 4px;
-
     }
 
     @media screen and (max-height: 680px) {
         padding-top: 20%;
         padding-bottom: 4px;
-
     }
 
     @media screen and (max-height: 635px) {
         padding-top: 33%;
-
     }
 
 }
@@ -131,8 +116,6 @@ h1 {
     @media screen and (max-height: 800px) {
         margin-top: 10px;
         height: 50%;
-        //        top: -104px;
-
     }
 
     div {
@@ -150,17 +133,14 @@ h1 {
             width: 96px;
             padding-top: 32px;
 
-            /* 📱 Anpassung <= 1200px */
             @media screen and (max-width: 1200px) {
                 font-size: clamp(12px, 1.2vw, 14px);
                 padding-top: 20px;
             }
 
-            /* 📱 Anpassung <= 390px */
             @media screen and (max-width: 510px) {
                 font-size: 12px;
                 width: auto;
-                /* nicht mehr fix */
                 padding-top: 10px;
             }
         }
@@ -170,7 +150,6 @@ h1 {
             will-change: transform;
             cursor: pointer;
 
-            /* 📱 Anpassung <= 390px */
             @media screen and (max-width: 510px) {
                 width: clamp(30px, 12vw, 40px);
                 height: auto;
@@ -227,9 +206,7 @@ h1 {
 
 .growth-mindset-container {
     width: clamp(260px, 40vw, 360px);
-    /* Breite passt sich an Viewport-Breite an */
     height: auto;
-    /* Höhe passt sich dynamisch am Text an */
     padding: 16px;
     background-color: #F9AF42;
     display: flex;
@@ -238,7 +215,6 @@ h1 {
     flex-direction: column;
     position: relative;
     left: 100%;
-    /* zentriert */
     bottom: 150px;
     transform: translate(-50%, 100%);
     opacity: 0;
@@ -261,9 +237,7 @@ h1 {
     }
 
     @media screen and (max-height: 800px) {
-
         top: -284px;
-
     }
 
     h2 {
@@ -324,7 +298,6 @@ h1 {
     width: 39%;
 
     @media screen and (max-width: 1516px) {
-
         top: 611px;
     }
 

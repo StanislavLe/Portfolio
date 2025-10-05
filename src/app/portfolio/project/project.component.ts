@@ -26,6 +26,6 @@ export class ProjectComponent {
   onNext() { this.next.emit(); }
 
    trackBySkill(_index: number, skill: string): string {
-    return skill; // nutzt den String selbst als eindeutigen Key
+    return skill; 
   }
 }
