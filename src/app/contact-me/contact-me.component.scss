@@ -386,7 +386,7 @@ h1 {
       font-family: $font-regular;
       font-weight: 700;
       font-size: 18px;
-      width: 160px;
+      width: max-content;
       height: 40px;
       border-radius: 100px;
       border: 1px solid $color-light;
