@@ -16,48 +16,34 @@
         <div class="personal-group">
           <div class="form-group">
             <label for="name">{{ translations.labels.name[currentLang] }}</label>
-            <input
-              #name="ngModel"
-              [(ngModel)]="contactData.name"
-              name="name"
-              id="name"
-              type="text"
-              required
-              pattern="^[A-Za-zÀ-ž\- ]{2,}$"
-              autocomplete="off"
-              [placeholder]="translations.placeholders.name[currentLang]"
-            />
+            <input #name="ngModel" [(ngModel)]="contactData.name" name="name" id="name" type="text" required
+              pattern="^[A-Za-zÀ-ž\- ]{2,}$" autocomplete="off" [placeholder]="
+    (name.invalid && name.touched)
+      ? translations.errorPlaceholders.name[currentLang]
+      : translations.placeholders.name[currentLang]
+  " [class.is-error]="name.invalid && name.touched" (blur)="name.invalid ? (contactData.name='') : null" />
           </div>
 
           <div class="form-group">
             <label for="email">{{ translations.labels.email[currentLang] }}</label>
-            <input
-              #email="ngModel"
-              [(ngModel)]="contactData.email"
-              name="email"
-              id="email"
-              type="email"
-              required
-              pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
-              autocomplete="off"
-              [placeholder]="translations.placeholders.email[currentLang]"
-            />
+            <input #email="ngModel" [(ngModel)]="contactData.email" name="email" id="email" type="email" required
+              pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" autocomplete="off" [placeholder]="
+    (email.invalid && email.touched)
+      ? translations.errorPlaceholders.email[currentLang]
+      : translations.placeholders.email[currentLang]
+  " [class.is-error]="email.invalid && email.touched" (blur)="email.invalid ? (contactData.email='') : null" />
           </div>
         </div>
 
         <div class="message-group">
           <label for="message">{{ translations.labels.message[currentLang] }}</label>
-          <textarea
-            #message="ngModel"
-            [(ngModel)]="contactData.message"
-            name="message"
-            id="message"
-            rows="1"
-            required
-            minlength="4"
-            autocomplete="off"
-            [placeholder]="translations.placeholders.message[currentLang]"
-          ></textarea>
+          <textarea #message="ngModel" [(ngModel)]="contactData.message" name="message" id="message" rows="1" required
+            minlength="4" autocomplete="off" [placeholder]="
+    (message.invalid && message.touched)
+      ? translations.errorPlaceholders.message[currentLang]
+      : translations.placeholders.message[currentLang]
+  " [class.is-error]="message.invalid && message.touched"
+            (blur)="message.invalid ? (contactData.message='') : null"></textarea>
         </div>
 
         <div class="agreement-group">
@@ -66,33 +52,34 @@
               {{ translations.checkbox[currentLang] }}
             </a>
           </div>
-          <input
-            [(ngModel)]="contactData.agreement"
-            #agreement="ngModel"
-            required
-            class="checkbox"
-            type="checkbox"
-            id="agreementbox"
-            name="agreement"
-          />
+          <input [(ngModel)]="contactData.agreement" #agreement="ngModel" required class="checkbox" type="checkbox"
+            id="agreementbox" name="agreement" />
         </div>
 
-        <input
-          type="submit"
-          class="submit-btn"
-          [value]="translations.submit[currentLang]"
-          [disabled]="contactForm.invalid"
-        />
+       <div class="submit-wrapper">
+  <input
+    type="submit"
+    class="submit-btn"
+    [value]="translations.submit[currentLang]"
+    [disabled]="contactForm.invalid"
+  />
+
+  <!-- Tooltip nur wenn alle Felder ok, aber Checkbox fehlt -->
+  <!-- Tooltip-Bereich -->
+  <div
+    class="checkbox-tooltip"
+    *ngIf="isFormAlmostValid || isSuccess"
+    [class.success]="isSuccess"
+  >
+    {{ isSuccess ? successHint : checkboxHint }}
+  </div>
+</div>
+
       </form>
     </div>
   </div>
 </div>
 
 <div class="arrow-wrapper">
-  <img
-    src="assets/icons/arrow2.png"
-    alt="Back to top"
-    class="bounce-arrow"
-    (click)="scrollToTop.emit()"
-  />
+  <img src="assets/icons/arrow2.png" alt="Back to top" class="bounce-arrow" (click)="scrollToTop.emit()" />
 </div>

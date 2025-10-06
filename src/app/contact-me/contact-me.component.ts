@@ -43,6 +43,8 @@ export class ContactMeComponent implements OnInit {
     agreement: false,
   };
 
+  isSuccess: boolean = false;
+
   post = {
     endPoint: 'https://stanislav-levin.de/sendMail.php',
     body: (payload: any) => JSON.stringify(payload),
@@ -102,6 +104,23 @@ export class ContactMeComponent implements OnInit {
         ru: 'Привет, Станислав! Меня интересует...',
       },
     },
+    errorPlaceholders: {
+      name: {
+        de: 'Bitte trage einen Namen ein',
+        en: 'Please enter your name',
+        ru: 'Пожалуйста, введите ваше имя',
+      },
+      email: {
+        de: 'Bitte trage eine E-Mail-Adresse ein',
+        en: 'Please enter a valid email address',
+        ru: 'Пожалуйста, введите адрес электронной почты',
+      },
+      message: {
+        de: 'Schreibe eine Nachricht (min. 4 Zeichen)',
+        en: 'Write a message (min. 4 characters)',
+        ru: 'Напишите сообщение (мин. 4 символа)',
+      },
+    },
     checkbox: {
       de: 'Ich habe die Datenschutzerklärung gelesen und bin mit der Verarbeitung meiner Daten einverstanden.',
       en: 'I have read the privacy policy and agree to the processing of my data.',
@@ -118,7 +137,7 @@ export class ContactMeComponent implements OnInit {
     private langService: LanguageService,
     private cdr: ChangeDetectorRef,
     private zone: NgZone
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.langService.lang$.subscribe((lang) => {
@@ -136,13 +155,64 @@ export class ContactMeComponent implements OnInit {
         .subscribe({
           next: (response: any) => {
             console.log('✅ Response:', response);
-            ngForm.resetForm();
+            this.isSuccess = true;
+
+            setTimeout(() => (this.isSuccess = false), 4000);
+
+            ngForm.resetForm({
+              name: '',
+              email: '',
+              message: '',
+              agreement: false,
+            });
           },
           error: (error: any) => {
             console.error('❌ Error:', error);
+            this.isSuccess = false;
           },
           complete: () => console.info('📬 send post complete'),
         });
+    }
+  }
+
+  get isFormAlmostValid(): boolean {
+    const name = this.contactData.name ?? '';
+    const email = this.contactData.email ?? '';
+    const message = this.contactData.message ?? '';
+    const agreement = !!this.contactData.agreement;
+
+    return (
+      name.trim().length > 1 &&
+      /^[A-Za-zÀ-ž\- ]{2,}$/.test(name) &&
+      /[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/.test(email) &&
+      message.trim().length >= 4 &&
+      !agreement
+    );
+  }
+
+  get checkboxHint(): string {
+    switch (this.currentLang) {
+      case 'de':
+        return 'Bitte bestätige die Datenschutzerklärung.';
+      case 'en':
+        return 'Please confirm the privacy policy.';
+      case 'ru':
+        return 'Пожалуйста, подтвердите политику конфиденциальности.';
+      default:
+        return 'Bitte bestätige die Datenschutzerklärung.';
+    }
+  }
+
+  get successHint(): string {
+    switch (this.currentLang) {
+      case 'de':
+        return 'Nachricht erfolgreich gesendet!';
+      case 'en':
+        return 'Message sent successfully!';
+      case 'ru':
+        return 'Сообщение успешно отправлено!';
+      default:
+        return 'Nachricht erfolgreich gesendet!';
     }
   }
 }

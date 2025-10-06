@@ -231,36 +231,61 @@ main.legal {
     src: url('assets/fonts/Roboto/static/Roboto-Italic.ttf') format('truetype');
 }
 
-
 :lang(ru) {
+  html,
+  body,
+  p,
+  span,
+  a,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  li,
+  label,
+  input,
+  button,
+  textarea,
+  div {
+    font-family: 'RobotoRegular';
+  }
 
-    html,
-    body,
-    p,
-    span,
-    a,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    li,
-    label,
-    input,
-    button,
-    div {
-        font-family: 'RobotoRegular';
-    }
+  h1 {
+    font-size: 36px;
+    font-family: 'RobotoBold';
+    font-weight: 700;
+  }
 
-    h1 {
-        font-size: 36px;
-        font-family: 'RobotoBold';
-        font-weight: 700;
-    }
+  .mat-icon,
+  .material-icons,
+  [class*="material-icons"] {
+    font-family: 'Material Icons' !important;
+  }
 
-    .mat-icon,
-    .material-icons,
-    [class*="material-icons"] {
-        font-family: 'Material Icons' !important;
-    }
+  /* 🧩 Platzhalter-Schrift für russische Texte */
+  input::placeholder,
+  textarea::placeholder {
+    font-family: 'RobotoRegular';
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.6); /* optional, weicher Grauton */
+  }
+
+  /* Optional – falls dein Browser-Reset es überschreibt */
+  ::-webkit-input-placeholder {
+    font-family: 'RobotoRegular';
+  }
+
+  :-ms-input-placeholder {
+    font-family: 'RobotoRegular';
+  }
+
+  ::-moz-placeholder {
+    font-family: 'RobotoRegular';
+  }
+
+  :-moz-placeholder {
+    font-family: 'RobotoRegular';
+  }
 }
