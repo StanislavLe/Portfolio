@@ -432,3 +432,18 @@
   outline: none;
   box-shadow: none;
 }
+
+:lang(ru) {
+  html, body, p, span, a, h1, h2, h3, h4, h5, h6, li, label, input, button, div {
+    font-family: 'RobotoRegular', sans-serif !important;
+  }
+
+  /* explizit ausschließen */
+  .mat-icon,
+  .material-icons,
+  [class*="material-icons"] {
+    font-family: 'Material Icons' !important;
+    font-feature-settings: 'liga';
+  }
+}
+

@@ -26,7 +26,7 @@ app-footer.visible {
     padding-right: 106px;
     position: absolute;
     bottom: 100px;
-    z-index: 1;
+    z-index: 100;
 
     @media screen and (max-width: 1247px) {
         padding-left: 20px;
@@ -206,10 +206,10 @@ app-footer.visible {
         width: 98vw;
     }
 
-       @media screen and (max-width: 470px) {
-         bottom: 8px;
-            
-        }
+    @media screen and (max-width: 470px) {
+        bottom: 8px;
+
+    }
 
     .footer-image-container {
 
@@ -277,7 +277,8 @@ app-footer.visible {
         @media screen and (max-width: 470px) {
             flex-wrap: wrap;
             width: min-content;
-
+            justify-content: center;
+            align-items: center;
         }
 
         @media screen and (max-width: 450px) {}

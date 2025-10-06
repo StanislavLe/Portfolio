@@ -62,8 +62,8 @@ export class AboutMeComponent implements OnInit {
       ru: [
         { icon: 'check_circle', text: 'Аналитичный' },
         { icon: 'check_circle', text: 'Креативный' },
-        { icon: 'check_circle', text: 'Командный игрок' },
-        { icon: 'check_circle', text: 'Внимательный к деталям' },
+        { icon: 'check_circle', text: 'Командный тип' },
+        { icon: 'check_circle', text: 'Аккуратный' },
         { icon: 'check_circle', text: 'Мотивированный' },
         { icon: 'check_circle', text: 'Любознательный' },
       ],

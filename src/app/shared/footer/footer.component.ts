@@ -43,7 +43,7 @@ translations = {
   privacy: {
     de: 'Datenschutz',
     en: 'Privacy Policy',
-    ru: 'Конфиденциальность',
+    ru: 'Данные',
   },
   linkedin: {
     de: 'LinkedIn',

@@ -27,24 +27,24 @@ export class ProjectComponent implements OnInit {
 
   translations = {
     live: {
-      de: 'Live ansehen',
-      en: 'View Live',
-      ru: 'Открыть онлайн',
+      de: 'Live testen',
+      en: 'Live test',
+      ru: 'Открыть',
     },
     github: {
-      de: 'Code ansehen',
+      de: 'Code Link',
       en: 'View Code',
-      ru: 'Посмотреть код',
+      ru: 'Открыть код',
     },
     prev: {
-      de: '<< Vorheriges Projekt',
-      en: '<< Previous project',
-      ru: '<< Предыдущий проект',
+      de: '<< Vorherige Seite',
+      en: '<< Previous page',
+      ru: '<< Назад',
     },
     next: {
-      de: 'Nächstes Projekt >>',
-      en: 'Next project >>',
-      ru: 'Следующий проект >>',
+      de: 'Nächste Seite >>',
+      en: 'Next page >>',
+      ru: 'Вперёд >>',
     },
   };
 
