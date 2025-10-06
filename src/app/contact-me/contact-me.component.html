@@ -56,24 +56,13 @@
             id="agreementbox" name="agreement" />
         </div>
 
-       <div class="submit-wrapper">
-  <input
-    type="submit"
-    class="submit-btn"
-    [value]="translations.submit[currentLang]"
-    [disabled]="contactForm.invalid"
-  />
-
-  <!-- Tooltip nur wenn alle Felder ok, aber Checkbox fehlt -->
-  <!-- Tooltip-Bereich -->
-  <div
-    class="checkbox-tooltip"
-    *ngIf="isFormAlmostValid || isSuccess"
-    [class.success]="isSuccess"
-  >
-    {{ isSuccess ? successHint : checkboxHint }}
-  </div>
-</div>
+        <div class="submit-wrapper">
+          <input type="submit" class="submit-btn" [value]="translations.submit[currentLang]"
+            [disabled]="contactForm.invalid" />
+          <div class="checkbox-tooltip" *ngIf="isFormAlmostValid || isSuccess" [class.success]="isSuccess">
+            {{ isSuccess ? successHint : checkboxHint }}
+          </div>
+        </div>
 
       </form>
     </div>

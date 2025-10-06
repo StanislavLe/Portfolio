@@ -67,37 +67,31 @@ translations = {
     private router: Router,
     private nav: SectionNavService,
     private langService: LanguageService,
-    private cdr: ChangeDetectorRef, // ✅ nötig für Live-Update
+    private cdr: ChangeDetectorRef, 
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit() {
-    // Sprache abonnieren
     this.langService.lang$.subscribe((lang) => {
       this.currentLang = lang;
-      this.cdr.detectChanges(); // ✅ sofortige Template-Aktualisierung
+      this.cdr.detectChanges(); 
     });
   }
 
   navigateAndScroll(path: string[]): void {
     const target = path.join('/');
     const isHome = target === '/' || target === '';
-
     this.router.navigate(path).then((success) => {
       if (success && isPlatformBrowser(this.platformId)) {
         const win = this.document.defaultView!;
         const html = this.document.documentElement;
         const body = this.document.body;
-
-        // ⬆️ Seite ganz nach oben scrollen
         requestAnimationFrame(() => {
           win.scrollTo({ top: 0, behavior: 'auto' });
           html.scrollTop = 0;
           body.scrollTop = 0;
         });
-
-        // 🏠 Wenn Home-Link → Hero-Section aktivieren
         if (isHome) {
           this.nav.requestScroll('hero');
           this.nav.setActive('hero');

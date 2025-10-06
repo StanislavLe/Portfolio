@@ -652,7 +652,6 @@ h1 {
     border-color: #1a1a1a transparent transparent transparent;
   }
 
-  /* Tooltip für Checkbox: sichtbar bei Hover */
   &:hover .checkbox-tooltip {
     visibility: visible;
     opacity: 1;
@@ -660,7 +659,6 @@ h1 {
     transform: translateX(-50%) translateY(0);
   }
 
-  /* Tooltip für Erfolg: automatisch sichtbar */
   .checkbox-tooltip.success {
     visibility: visible;
     opacity: 1;

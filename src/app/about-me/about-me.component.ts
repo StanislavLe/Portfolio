@@ -78,7 +78,7 @@ export class AboutMeComponent implements OnInit {
   ngOnInit() {
     this.langService.lang$.subscribe(lang => {
       this.currentLang = lang;
-      this.cdr.detectChanges(); // 👈 Echtzeit-Aktualisierung
+      this.cdr.detectChanges(); 
     });
   }
 }

@@ -65,7 +65,7 @@ export class SkillsetComponent implements OnInit {
   ngOnInit() {
     this.langService.lang$.subscribe(lang => {
       this.currentLang = lang;
-      this.cdr.detectChanges(); // Live-Update aktivieren
+      this.cdr.detectChanges(); 
     });
   }
 }
