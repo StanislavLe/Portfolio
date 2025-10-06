@@ -45,21 +45,27 @@ export class HomeComponent implements OnInit, AfterViewInit {
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
+
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       this.nav.setActive('hero');
       this.nav.requestScroll('hero');
     }
-
     this.nav.active$.subscribe(id => this.currentSection = id);
-    this.nav.isLast$.subscribe(v => this.isLastSection = v);
-
+    this.nav.isLast$.subscribe(v => {
+      if (v) {
+        setTimeout(() => this.isLastSection = true, 200);
+      } else {
+        this.isLastSection = false;
+      }
+    });
     this.route.fragment.subscribe(f => { if (f) this.nav.requestScroll(f); });
     this.route.queryParamMap.subscribe(p => {
       const s = p.get('section');
       if (s) this.nav.requestScroll(s);
     });
   }
+
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {

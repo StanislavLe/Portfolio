@@ -4,7 +4,8 @@
   (navigateSection)="onNavigateSection($event)">
 </app-header>
 <app-footer
-  *ngIf="isLastSection"
+  [class.visible]="isLastSection"
   variant="home"
   (navigateSection)="onNavigateSection($event)">
 </app-footer>
+

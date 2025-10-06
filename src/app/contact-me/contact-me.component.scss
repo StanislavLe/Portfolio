@@ -8,9 +8,6 @@ $font-headline: 'eczarBold';
 $font-regular: 'quicksandBook';
 $font-bold: 'quicksandBold';
 
-$bp-large: 1247px;
-$bp-medium: 900px;
-$bp-small: 690px;
 $bp-xsmall: 466px;
 
 html {
@@ -29,9 +26,7 @@ html {
   margin: 0 auto;
   position: relative;
 
-  @media screen and (max-width: 690px) {
-    flex-direction: column;
-  }
+  @media screen and (max-width: 690px) {}
 
   @media screen and (max-width: 390px) {
     padding-top: 54px;
@@ -39,7 +34,10 @@ html {
 
   @media screen and (max-height: 696px) {
     padding-top: 80px;
+  }
 
+  @media screen and (max-width: 600px) {
+    padding-top: 92px;
   }
 }
 
@@ -50,28 +48,25 @@ html {
   align-items: flex-start;
   gap: clamp(24px, 5vw, 160px);
   max-width: 1900px;
-  width: 130%;
+  width: 100%;
 
-  @media screen and (max-width: 1850px) {
-    width: 121%;
-  }
+  @media screen and (max-width: 1850px) {}
 
-  @media screen and (max-width: 1750px) {
+  @media screen and (max-width: 1750px) {}
+
+  @media screen and (max-width: 1247px) {
     width: 95%;
   }
 
-  @media screen and (max-width: $bp-large) {
-    width: 83%;
+  @media screen and (max-width: 900px) {
+    width: 90%;
+
   }
 
-  @media screen and (max-width: $bp-medium) {
+  @media screen and (max-width: 690px) {
     flex-direction: column;
-    gap: 40px;
-    width: 80%;
-  }
-
-  @media screen and (max-width: $bp-small) {
-    width: 100%;
+    width: 95%;
+    gap: 8px;
   }
 }
 
@@ -83,11 +78,9 @@ html {
   width: 100%;
   max-width: 1900px;
 
-  @media screen and (max-width: $bp-large) {
-    width: 94%;
-  }
+  @media screen and (max-width: 1247px) {}
 
-  @media screen and (max-width: $bp-medium) {
+  @media screen and (max-width: 900px) {
     width: 100%;
   }
 }
@@ -101,17 +94,17 @@ h1 {
   max-width: 700px;
   width: fit-content;
 
-  @media screen and (max-width: $bp-medium) {
+  @media screen and (max-width:900px) {
     max-width: 93%;
     margin-bottom: clamp(32px, 4vh, 64px);
   }
 
-  @media screen and (max-width: $bp-small) {
+  @media screen and (max-width: 690px) {
     width: 100%;
-    margin-bottom: 4px;
+    margin-bottom: 40px;
   }
 
-  @media screen and (max-height: 665px) {
+  @media screen and (max-height: 830px) {
     padding: 0px;
     margin: 0px;
   }
@@ -119,19 +112,17 @@ h1 {
 
 .text-content {
   flex: 1;
-  max-width: 600px;
+  max-width: 875px;
   display: flex;
   flex-direction: column;
   gap: 16px;
 
-  @media screen and (max-width: $bp-medium) {
+  @media screen and (max-width: 900px) {
     max-width: none;
     width: 100%;
   }
 
-  @media screen and (max-height: 696px) {
-    gap: 4px;
-  }
+  @media screen and (max-width: 690px) {}
 
   h2 {
     color: $color-secondary;
@@ -167,13 +158,13 @@ h1 {
   bottom: 40px;
   z-index: 2;
 
-  @media screen and (max-width: $bp-medium) {
+  @media screen and (max-width: 900px) {
     width: 100%;
     margin-top: clamp(8px, 2vh, 32px);
   }
 
-  @media screen and (max-height: 690px) {
-    margin-top: 4px;
+  @media screen and (max-width: 690px) {
+    margin-top: 40px;
   }
 
   form {
@@ -196,11 +187,11 @@ h1 {
         flex-direction: column;
       }
 
-      @media screen and (max-width: $bp-medium) {
+      @media screen and (max-width: 900px) {
         gap: 8px;
       }
 
-      @media screen and (max-width: $bp-small) {
+      @media screen and (max-width: 690px) {
         margin-bottom: 8px;
       }
     }
@@ -251,6 +242,13 @@ h1 {
       padding-bottom: 32px;
       width: 100%;
 
+      @media screen and (max-width: 900px) {
+        padding-bottom: 16px;
+      }
+
+      @media screen and (max-width: 730px) {
+        padding-bottom: 4px;
+      }
 
       @media screen and (max-height: 800px) {
         padding-bottom: 4px;
@@ -259,7 +257,7 @@ h1 {
       .agreement {
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap; 
+        flex-wrap: wrap;
         font-size: clamp(12px, 1.2vw, 16px);
         font-family: 'quicksandBook';
         color: #F8F7E5;
@@ -436,47 +434,50 @@ h1 {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   z-index: 10000;
+  padding-right: 18px;
+  padding-bottom: 112px;
 
   &:hover {
     border-bottom: 2px solid #FF834F;
   }
 
   @media screen and (max-width: 690px) {
-    bottom: calc(30vh + env(safe-area-inset-bottom));
-
+    top: 628px;
   }
 
-  @media screen and (max-width: 576px) {
-    bottom: calc(27vh + env(safe-area-inset-bottom));
-
+  @media screen and (max-width: 606px) {
+    top: 645px;
   }
 
-  @media screen and (max-width: 547px) {
-    bottom: calc(25vh + env(safe-area-inset-bottom));
+  @media screen and (max-width: 600px) {
+    top: 588px;
+  }
 
+  @media screen and (max-width: 551px) {
+    top: 628px;
+    right: clamp(52px, 100vw - 2015px, 1900px);
   }
 
   @media screen and (max-width: 466px) {
-    bottom: calc(34vh + env(safe-area-inset-bottom));
-    right: clamp(72px, 100vw - 2015px, 1900px);
+    top: 547px;
   }
 
-  @media screen and (max-width: 462px) {
-    bottom: calc(32vh + env(safe-area-inset-bottom));
-    right: clamp(72px, 100vw - 2015px, 1900px);
+  @media screen and (max-width: 421px) {
+    top: 566px;
   }
 
-  @media screen and (max-width: 401px) {
-    bottom: calc(30vh + env(safe-area-inset-bottom));
-    right: clamp(44px, 100vw - 2015px, 1900px);
+  @media screen and (max-height: 830px) {
+    top: 525px;
   }
 
-  @media screen and (max-height: 810px) {
-    bottom: calc(16vh + env(safe-area-inset-bottom));
+  @media screen and (max-height: 770px) {
+        top: 510px;
   }
 
-  @media screen and (max-height: 625px) {
-    bottom: calc(13vh + env(safe-area-inset-bottom));
+    @media screen and (max-height: 750px) {
+        top: unset;
+        bottom: 10.5%;
+        padding-bottom: unset;
   }
 }
 
@@ -551,7 +552,7 @@ h1 {
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .25));
 }
 
-@media (max-width: 547px) {
+@media (max-width: 551px) {
   .bounce-arrow {
     animation: floatUpDownContactSm 2s ease-in-out infinite;
     -webkit-animation: floatUpDownContactSm 2s ease-in-out infinite;

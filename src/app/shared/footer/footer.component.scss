@@ -1,16 +1,31 @@
+app-footer {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease, transform 1s ease;
+    pointer-events: none;
+}
+
+app-footer.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+
 .footer-base {
-    width: 98vw;
+    width: 100vw;
     height: 100px;
     display: flex;
     justify-content: space-between;
     font-size: 16px;
     line-height: 120%;
     font-family: "quicksandBook";
-    max-width: 2061px;
+    max-width: 2096px;
     padding: 0px;
+    padding-left: 64px;
+    padding-right: 106px;
     position: absolute;
-    bottom: 256px;
-    left: 20px;
+    bottom: 100px;
     z-index: 1;
 
     @media screen and (max-width: 1247px) {
@@ -30,18 +45,22 @@
         justify-content: end;
         align-items: center;
         padding: 0px;
-        width: 90vw;
+        width: 98vw;
     }
 
-    @media screen and (max-width: 1300px) {
-        bottom: 110px;
+    @media screen and (max-width: 930px) {
+        padding-right: unset;
     }
 
-    @media screen and (max-width: 390px) {}
-
-    @media screen and (max-height: 660px) {
-        bottom: 75px;
+    @media screen and (max-height: 785px) {
+        bottom: 40px;
     }
+
+    @media screen and (max-height: 680px) {
+        bottom: 20px;
+    }
+
+
 
     .footer-image-container {
         position: relative;
@@ -64,7 +83,8 @@
         @media screen and (max-width: 613px) {
             right: unset;
             width: clamp(58px, 18vw, 400px);
-            top: 64px;
+            top: unset;
+            bottom: 8px;
         }
 
 
@@ -103,6 +123,10 @@
         position: relative;
         z-index: 10000;
 
+        @media screen and (max-height: 670px) {
+            gap: 8px;
+        }
+
         :hover {
             color: #FF834F;
         }
@@ -123,27 +147,35 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 56%;
-        padding-right: 90px;
+        width: 50%;
         position: relative;
-        top: 72px;
 
         span {
             color: #FF834F;
         }
 
-        @media screen and (max-width: 980px) {
+
+        @media screen and (max-width: 1350px) {
+            width: 63%;
+        }
+
+        @media screen and (max-width: 1040px) {
             width: 73%;
         }
 
-        @media screen and (max-width: 850px) {
+        @media screen and (max-width: 930px) {
             flex-direction: column;
             justify-content: end;
+            gap: 12px;
         }
 
         @media screen and (max-width: 450px) {
             width: 100%;
             padding: unset;
+        }
+
+        @media screen and (max-height: 670px) {
+            gap: 4px;
         }
     }
 
@@ -151,62 +183,80 @@
 
 
 .footer-base.impressum {
-    position: relative;
-    bottom: 0px;
-    left: 0px;
-    background-color: #1D1D1D;
-    width: 100%;
-    height: 200px;
-    max-width: 1900px;
+    padding-right: 221px;
+    padding-left: 0px;
 
-    @media screen and (max-width: 505px) {
-        width: 110%;
-        left: -19px;
+    @media screen and (max-width: 1140px) {
+        padding-right: unset;
     }
 
-    @media screen and (max-width: 450px) {
-        height: 270px;
+    @media screen and (max-width: 735px) {
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        right: 4px;
     }
+
+    @media screen and (max-width: 613px) {
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        padding: 0px;
+        width: 98vw;
+    }
+
+       @media screen and (max-width: 470px) {
+         bottom: 8px;
+            
+        }
 
     .footer-image-container {
-        width: clamp(200px, 7vw, 400px);
 
 
-        @media screen and (max-width: 900px) {
-            top: unset;
+        @media screen and (max-width: 735px) {
             right: unset;
+            width: clamp(58px, 18vw, 400px);
+            top: unset;
+            bottom: 8px;
+            height: unset;
+            padding-bottom: 16px;
         }
 
-        @media screen and (max-width: 685px) {
-            width: clamp(130px, 7vw, 400px);
-        }
+        @media screen and (max-width: 685px) {}
 
-        @media screen and (max-width: 613px) {
-            bottom: 20px;
-        }
+        @media screen and (max-width: 613px) {}
 
-        @media screen and (max-width: 505px) {
-            bottom: 55px;
-        }
+        @media screen and (max-width: 505px) {}
 
     }
 
     .footer-content {
-        top: 0px;
 
         span {
 
-            @media screen and (max-width: 450px) {
-                padding-bottom: 12px;
-            }
+            @media screen and (max-width: 450px) {}
         }
 
-        @media screen and (max-width: 613px) {
-            padding-right: 0px;
+        @media screen and (max-width: 1500px) {
+            width: 65%;
         }
 
-        @media screen and (max-width: 505px) {
-            top: -30px;
+
+        @media screen and (max-width: 1230px) {
+            width: 70%;
+        }
+
+        @media screen and (max-width: 1140px) {
+            flex-direction: column;
+            justify-content: end;
+            gap: 12px;
+        }
+
+        @media screen and (max-width: 730px) {
+            flex-direction: column;
+            justify-content: end;
+            gap: 12px;
         }
 
 
@@ -214,13 +264,9 @@
 
 
     .footer-text {
-        @media screen and (max-width: 850px) {
-            padding-bottom: 50px;
-        }
+        @media screen and (max-width: 850px) {}
 
-        @media screen and (max-width: 613px) {
-            padding-bottom: 8px;
-        }
+        @media screen and (max-width: 613px) {}
 
     }
 
@@ -228,15 +274,13 @@
 
     .footer-links {
 
-        @media screen and (max-width: 430px) {
-            gap: 12px;
+        @media screen and (max-width: 470px) {
+            flex-wrap: wrap;
+            width: min-content;
+
         }
 
-        @media screen and (max-width: 450px) {
-            gap: 12px;
-            width: 36%;
-            flex-wrap: wrap;
-        }
+        @media screen and (max-width: 450px) {}
     }
 
 }
