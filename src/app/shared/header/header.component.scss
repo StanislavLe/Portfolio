@@ -5,26 +5,18 @@
   display: block;
 }
 
-.mainToolbar {
-  position: sticky;
-  z-index: 100001;
-  left: 0;
-  right: 0;
-  top: 0;
-}
-
 .mat-drawer.mat-drawer-end {
   z-index: 100002 !important;
 }
 
 .sidenavContainer {
-  max-width: 1990px;
-  width: 100%;
+  width: 100% !important;
   background-color: transparent !important;
   transform: none !important;
   will-change: auto !important;
   overflow: visible !important;
   z-index: 1000;
+  height: 7rem !important;
 }
 
 .mainToolbar {
@@ -32,51 +24,39 @@
   top: 0;
   left: 0;
   width: 100%;
-  max-width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 64px;
+  height: 7rem;
   z-index: 20000;
 
-  @media screen and (max-width: 1200px) {
-    padding: 50px 60px 50px 20px;
-  }
+  @media screen and (max-width: 1200px) {}
 
-  @media screen and (max-width: 600px) {
-    padding: 24px 8px;
-  }
+  @media screen and (max-width: 600px) {}
 }
 
 .sidenavContainer.about .mainToolbar.mat-toolbar {
   background: #F8F7E5 !important;
   color: #679AAC !important;
-  padding: 50px 60px;
+  height: 7rem;
 
-  @media screen and (max-width: 600px) {
-    padding: 24px 8px;
-  }
+  @media screen and (max-width: 600px) {}
 }
 
 .sidenavContainer.hero .mainToolbar.mat-toolbar {
   background-color: #679AAC !important;
-  padding: 50px 60px;
+  height: 7rem;
 
-  @media screen and (max-width: 600px) {
-    padding: 24px 8px;
-  }
+  @media screen and (max-width: 600px) {}
 }
 
 .sidenavContainer.skills .mainToolbar.mat-toolbar,
 .sidenavContainer.contact .mainToolbar.mat-toolbar,
 .sidenavContainer.portfolio .mainToolbar.mat-toolbar,
 .sidenavContainer.references .mainToolbar.mat-toolbar {
-  max-width: 100%;
-  padding: 50px 60px;
+  height: 7rem;
 
-  @media screen and (max-width: 600px) {
-    padding: 24px 8px;
-  }
+  @media screen and (max-width: 600px) {}
 }
 
 .sidenavContainer.skills .mainToolbar.mat-toolbar,
@@ -84,86 +64,25 @@
   background: #1D1D1D !important;
   color: #F8F7E5 !important;
 
-  @media screen and (max-width: 600px) {
-    padding: 24px 8px;
-  }
+  @media screen and (max-width: 600px) {}
 }
 
 .sidenavContainer.portfolio .mainToolbar.mat-toolbar {
   background: #F8F7E5 !important;
   color: #679AAC !important;
 
-  @media screen and (max-width: 600px) {
-    padding: 24px 8px;
-  }
+  @media screen and (max-width: 600px) {}
 }
 
 .sidenavContainer.references .mainToolbar.mat-toolbar {
   background: #679AAC !important;
   color: #F8F7E5 !important;
 
-  @media screen and (max-width: 600px) {
-    padding: 24px 8px;
-  }
+  @media screen and (max-width: 600px) {}
 }
 
-.socialLinks {
-  display: flex;
-  gap: 10px;
-  opacity: 1;
-  max-height: 100px;
-  transition: opacity .5s cubic-bezier(.4, 0, .2, 1),
-    max-height .5s cubic-bezier(.4, 0, .2, 1);
-  overflow: hidden;
-
-  @media screen and (max-width: 1200px) {
-    display: none;
-  }
-}
-
-.sidenavContainer.about .mainToolbar .socialLinks,
-.sidenavContainer.skills .mainToolbar .socialLinks,
-.sidenavContainer.contact .mainToolbar .socialLinks,
-.sidenavContainer.portfolio .mainToolbar .socialLinks,
-.sidenavContainer.references .mainToolbar .socialLinks {
-  opacity: 0;
-  max-height: 0;
-  pointer-events: none;
-}
-
-.socialLinks a:nth-child(1) img {
-  display: block;
-  width: 32px;
-  height: 32px;
-  background: url("/assets/icons/githubIcon.png") no-repeat center / contain;
-}
-
-.socialLinks a:nth-child(1):hover img {
-  background: url("/assets/icons/githubIconHover.png") no-repeat center / contain;
-}
-
-.socialLinks a:nth-child(2) img {
-  width: 32px;
-  height: 32px;
-  background: url("/assets/icons/linkedInIcon.png") no-repeat center / contain;
-}
-
-.socialLinks a:nth-child(2):hover img {
-  background: url("/assets/icons/linkedInIconHover.png") no-repeat center / contain;
-}
-
-.socialLinks a:nth-child(3) img {
-  width: 32px;
-  height: 32px;
-  background: url("/assets/icons/emailIcon.png") no-repeat center / contain;
-}
-
-.socialLinks a:nth-child(3):hover img {
-  background: url("/assets/icons/emailIconHover.png") no-repeat center / contain;
-}
 
 .sidenavSpacer {
-  max-width: 1946px;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -175,7 +94,12 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  width: 62%;
+  width: 68%;
+
+  @media screen and (max-width: 690px) {
+    flex-direction: row-reverse;
+    width: 70%;
+  }
 }
 
 .sidenavContainer.about .mainToolbar .sidenavSpacerInner,
@@ -198,14 +122,13 @@
     transform .6s cubic-bezier(.4, 0, .2, 1);
 
   img {
-    max-width: 100px;
-    min-width: 40px;
-    width: 30%;
+    width: clamp(32px, 10vw, 160px);
+    height: clamp(32px, 10vw, 160px);
     transform: rotate(-20deg);
   }
 
   span {
-    font-size: clamp(20px, 2.5vw, 40px);
+    font-size: clamp(26px, 2.5vw, 72px);
     font-family: 'quicksandBold';
   }
 }
@@ -216,17 +139,12 @@
   gap: 15px;
   padding-right: 16px;
 
-  span {
-    font-family: 'quicksandBold';
-    font-size: clamp(16px, 2.5vw, 24px);
-    color: #F8F7E5;
-    margin: 0;
-  }
+
 }
 
 .languageButton {
-  width: 44px !important;
-  height: 44px !important;
+  width: clamp(32px, 4vw, 100px);
+  height: clamp(32px, 4vw, 100px) !important;
   border-radius: 100% !important;
   border: 2px solid #F8F7E5 !important;
   color: #F8F7E5 !important;
@@ -239,6 +157,13 @@
   font-size: 16px !important;
   font-family: 'quicksandBold';
   transition: background .1s, color .1s, border-color .1s;
+
+  span {
+    font-family: 'quicksandBold';
+    font-size: clamp(16px, 2vw, 48px);
+    color: #F8F7E5;
+    margin: 0;
+  }
 }
 
 .sidenavContainer.about .mainToolbar .languageButton,
@@ -264,29 +189,23 @@
 .sidenav {
   top: 12px;
   right: 20px;
-  width: 208px !important;
-  height: 222px;
-  max-width: 90vw;
+  height: max-content !important;
+  width: clamp(180px, 38vw, 304px) !important;
   background: #679AAC !important;
   color: black !important;
 }
 
 .mat-drawer.mat-drawer-end {
   position: fixed;
-  top: 12px;
-  right: clamp(60px, (100vw - 2006px), 1900px) !important;
-  width: 208px;
+  top: 15px;
+  right: 17px !important;
+  width: clamp(288px, 5vw, 500px);
   background: #679AAC !important;
   z-index: 100;
   -webkit-transform: translate3d(0, 0, 0);
   will-change: transform;
-
-  @media screen and (max-width: 600px) {
-    right: 0 !important;
-    top: 0;
-    width: 100vw;
-    border-radius: 0;
-  }
+  border: #1D1D1D 2px solid;
+  box-shadow: none !important;
 }
 
 .sidenavHeader {
@@ -296,11 +215,14 @@
   background: #F8F7E5;
   color: #679AAC;
   font-family: 'quicksandBold';
-  font-size: 24px;
-  padding: 8px 16px;
+  font-size: clamp(24px, 2.5vw, 42px);
+  padding-left: clamp(15px, 2.5vw, 34px);
+  padding-right: clamp(15px, 2.5vw, 34px);
+  padding-top: 8px;
 
   img {
-    width: 24px;
+    width: clamp(16px, 1.5vw, 64px) !important;
+    height: clamp(16px, 1.5vw, 64px) !important;
     cursor: pointer;
   }
 }
@@ -312,19 +234,17 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 158px;
-  gap: 8px;
+  height: max-content;
   font-family: 'quicksandBold';
   font-weight: 700;
-  padding: 8px 0px !important;
-  padding-top: 0px !important;
+
 
   a {
     font-family: 'quicksandBold';
     font-size: 18px;
     text-decoration: none !important;
     background: none !important;
-    height: 18px !important;
+    height: clamp(24px, 3.5vw, 42px) !important;
     color: black !important;
   }
 
@@ -341,12 +261,12 @@
   justify-content: flex-start;
   flex-direction: row;
   position: relative;
-  right: 18px;
+  right: 12px;
   color: black !important;
 
   .nav-icon {
-    width: 20px;
-    height: 20px;
+    width: clamp(12px, 2.5vw, 32px);
+    height: clamp(12px, 2.5vw, 32px);
     opacity: 0;
     transform: translateX(-20px);
     transition: all .3s ease;
@@ -357,16 +277,16 @@
     transition: transform .3s ease, color .3s ease;
     font-family: 'quicksandBold';
     font-weight: 700;
-    font-size: 18px;
+    font-size: clamp(14px, 2vw, 26px);
   }
 
   &:hover .nav-icon {
     opacity: 1;
-    transform: translateX(20px);
+    transform: translateX(50px);
   }
 
   &:hover span {
-    transform: translateX(20px);
+    transform: translateX(50px);
     color: #FF834F;
   }
 }
@@ -402,8 +322,8 @@
   border: 0;
   padding: 0;
   margin: 0;
-  width: 44px;
-  height: 44px;
+  width: clamp(32px, 3.5vw, 144px);
+  height: clamp(32px, 3.5vw, 144px);
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -411,9 +331,19 @@
   cursor: pointer;
   outline: none;
   box-shadow: none;
+
   .mat-icon {
     color: #F8F7E5;
     transition: color .1s;
+    width: clamp(32px, 3.5vw, 144px) !important;
+    height: clamp(32px, 3.5vw, 144px) !important;
+    padding-top: 8px;
+
+    @media screen and (max-width: 1190px) {
+      padding-top: 0px;
+    }
+
+
   }
 
   &:hover .mat-icon {
@@ -421,9 +351,14 @@
   }
 }
 
+.material-icons {
+  font-size: clamp(32px, 2.5vw, 72px) !important;
+}
+
 .sidenavContainer.about .mainToolbar .icon-btn .mat-icon,
 .sidenavContainer.portfolio .mainToolbar .icon-btn .mat-icon {
   color: #1D1D1D !important;
+
 }
 
 .icon-btn:focus,
@@ -434,7 +369,23 @@
 }
 
 :lang(ru) {
-  html, body, p, span, a, h1, h2, h3, h4, h5, h6, li, label, input, button, div {
+
+  html,
+  body,
+  p,
+  span,
+  a,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  li,
+  label,
+  input,
+  button,
+  div {
     font-family: 'RobotoRegular', sans-serif !important;
   }
 
@@ -447,3 +398,145 @@
   }
 }
 
+.mat-mdc-icon-button {
+  width: unset !important;
+  height: unset !important;
+}
+
+
+
+
+.socialLinks {
+  display: flex;
+  gap: 10px;
+  opacity: 1;
+  max-height: 200px;
+  overflow: hidden;
+
+  @media screen and (max-width: 690px) {
+    opacity: 0;
+    max-height: 0;
+    pointer-events: none;
+  }
+}
+
+.sidenavContainer.about .mainToolbar .socialLinks,
+.sidenavContainer.skills .mainToolbar .socialLinks,
+.sidenavContainer.contact .mainToolbar .socialLinks,
+.sidenavContainer.portfolio .mainToolbar .socialLinks,
+.sidenavContainer.references .mainToolbar .socialLinks {
+  opacity: 0;
+  max-height: 0;
+  pointer-events: none;
+}
+
+.socialLinks a:nth-child(1) img {
+  display: block;
+  width: clamp(32px, 1.5vw, 64px);
+  height: clamp(32px, 1.5vw, 64px);
+  background: url("/assets/icons/githubIcon.png") no-repeat center / contain;
+}
+
+.socialLinks a:nth-child(1):hover img {
+  background: url("/assets/icons/githubIconHover.png") no-repeat center / contain;
+}
+
+.socialLinks a:nth-child(2) img {
+  width: clamp(32px, 1.5vw, 64px);
+  height: clamp(32px, 1.5vw, 64px);
+  background: url("/assets/icons/linkedInIcon.png") no-repeat center / contain;
+}
+
+.socialLinks a:nth-child(2):hover img {
+  background: url("/assets/icons/linkedInIconHover.png") no-repeat center / contain;
+}
+
+.socialLinks a:nth-child(3) img {
+  width: clamp(32px, 1.5vw, 64px);
+  height: clamp(32px, 1.5vw, 64px);
+  background: url("/assets/icons/emailIcon.png") no-repeat center / contain;
+}
+
+.socialLinks a:nth-child(3):hover img {
+  background: url("/assets/icons/emailIconHover.png") no-repeat center / contain;
+}
+
+
+
+
+
+.socialLinksNavList {
+  display: flex;
+  gap: 10px;
+  overflow: hidden;
+  opacity: 1;
+  pointer-events: auto;
+  max-height: 200px;
+  background: #F8F7E5;
+  padding-left: clamp(15px, 2.5vw, 34px);
+
+
+  /* 👇 Sichtbarkeit NUR bei kleinen Screens umschalten */
+  @media screen and (max-width: 690px) {
+    opacity: 1;
+    pointer-events: auto;
+    max-height: 200px;
+  }
+
+  /* 👇 Bei größeren Screens ausblenden (nur wenn du das willst) */
+  @media screen and (min-width: 691px) {
+    opacity: 0;
+    pointer-events: none;
+    max-height: 0;
+  }
+}
+
+/* Seitenabhängige Deaktivierung */
+.sidenavContainer.about .mainToolbar .socialLinksNavList,
+.sidenavContainer.skills .mainToolbar .socialLinksNavList,
+.sidenavContainer.contact .mainToolbar .socialLinksNavList,
+.sidenavContainer.portfolio .mainToolbar .socialLinksNavList,
+.sidenavContainer.references .mainToolbar .socialLinksNavList {
+  opacity: 0;
+  pointer-events: none;
+  max-height: 0;
+}
+
+/* ====== ICONS ====== */
+
+/* GitHub */
+.socialLinksNavList a:nth-child(1) img {
+  width: clamp(32px, 1.5vw, 64px);
+  height: clamp(32px, 1.5vw, 64px);
+  display: block;
+  background: url("/assets/icons/githubIcon.png") no-repeat center / contain;
+  transition: background 0.3s ease;
+}
+
+.socialLinksNavList a:nth-child(1):hover img {
+  background: url("/assets/icons/githubIconHover.png") no-repeat center / contain;
+}
+
+/* LinkedIn */
+.socialLinksNavList a:nth-child(2) img {
+  width: clamp(32px, 1.5vw, 64px);
+  height: clamp(32px, 1.5vw, 64px);
+  background: url("/assets/icons/linkedInIcon.png") no-repeat center / contain;
+  transition: background 0.3s ease;
+}
+
+.socialLinksNavList a:nth-child(2):hover img {
+  background: url("/assets/icons/linkedInIconHover.png") no-repeat center / contain;
+}
+
+/* Email */
+.socialLinksNavList a:nth-child(3) img {
+  width: clamp(32px, 1.5vw, 64px);
+  height: clamp(32px, 1.5vw, 64px);
+  background: url("/assets/icons/emailIcon.png") no-repeat center / contain;
+  transition: background 0.3s ease;
+}
+
+.socialLinksNavList a:nth-child(3):hover img {
+  background: url("/assets/icons/emailIconHover.png") no-repeat center / contain;
+}

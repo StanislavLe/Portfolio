@@ -4,9 +4,7 @@ button {
     cursor: pointer;
 }
 
-:root {
-    --page-max: 1900px;
-}
+:root {}
 
 html,
 body {
@@ -21,6 +19,8 @@ body {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     scroll-behavior: auto;
+    display: flex;
+
 
     &::-webkit-scrollbar {
         width: 0;
@@ -232,60 +232,71 @@ main.legal {
 }
 
 :lang(ru) {
-  html,
-  body,
-  p,
-  span,
-  a,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  li,
-  label,
-  input,
-  button,
-  textarea,
-  div {
-    font-family: 'RobotoRegular';
-  }
 
-  h1 {
-    font-size: 36px;
-    font-family: 'RobotoBold';
-    font-weight: 700;
-  }
+    html,
+    body,
+    p,
+    span,
+    a,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    li,
+    label,
+    input,
+    button,
+    textarea,
+    div {
+        font-family: 'RobotoRegular';
+    }
 
-  .mat-icon,
-  .material-icons,
-  [class*="material-icons"] {
-    font-family: 'Material Icons' !important;
-  }
+    h1 {
+        font-size: 36px;
+        font-family: 'RobotoBold';
+        font-weight: 700;
+    }
 
-  /* 🧩 Platzhalter-Schrift für russische Texte */
-  input::placeholder,
-  textarea::placeholder {
-    font-family: 'RobotoRegular';
-    font-size: 15px;
-    font-weight: 400;
-    color: rgba(0, 0, 0, 0.6); /* optional, weicher Grauton */
-  }
+    .mat-icon,
+    .material-icons,
+    [class*="material-icons"] {
+        font-family: 'Material Icons' !important;
+    }
 
-  /* Optional – falls dein Browser-Reset es überschreibt */
-  ::-webkit-input-placeholder {
-    font-family: 'RobotoRegular';
-  }
+    /* 🧩 Platzhalter-Schrift für russische Texte */
+    input::placeholder,
+    textarea::placeholder {
+        font-family: 'RobotoRegular';
+        font-size: 15px;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 0.6);
+        /* optional, weicher Grauton */
+    }
 
-  :-ms-input-placeholder {
-    font-family: 'RobotoRegular';
-  }
+    /* Optional – falls dein Browser-Reset es überschreibt */
+    ::-webkit-input-placeholder {
+        font-family: 'RobotoRegular';
+    }
 
-  ::-moz-placeholder {
-    font-family: 'RobotoRegular';
-  }
+    :-ms-input-placeholder {
+        font-family: 'RobotoRegular';
+    }
 
-  :-moz-placeholder {
-    font-family: 'RobotoRegular';
-  }
+    ::-moz-placeholder {
+        font-family: 'RobotoRegular';
+    }
+
+    :-moz-placeholder {
+        font-family: 'RobotoRegular';
+    }
+}
+
+.main-content {
+    padding: 7rem 82px 0px 58px;
+
+    @media (max-width: 690px) {
+        padding: 7rem 24px 0px 16px;
+
+    }
 }

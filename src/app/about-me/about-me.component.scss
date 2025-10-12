@@ -4,16 +4,21 @@
     align-items: flex-end;
     flex-direction: column;
     min-height: 100dvh;
-    max-width: 1888px;
-    padding: 50px 2vw 0;
+    width: 100vw;
+    max-width: 1920px;
+    position: relative;
+    z-index: auto;
+    transform: none;
+    filter: none;
+    padding: 10rem 82px 0px 58px;
 
     @media screen and (max-width: 690px) {
-        width: 120%;
+        flex-direction: column;
+        padding: 8rem 82px 0px 58px;
+
     }
 
-    @media screen and (max-height: 810px) {
-        padding: 0px;
-    }
+    @media screen and (max-height: 810px) {}
 }
 
 h1 {
@@ -23,27 +28,17 @@ h1 {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    max-width: 1900px;
-    padding: 180px 160px 0 0;
+    margin: unset;
 
-    @media screen and (max-width: 1200px) {
-        padding: 120px 152px 0 0;
-    }
+    @media screen and (max-width: 1200px) {}
 
-    @media screen and (max-width: 800px) {
-        padding: 80px 82px 0 0;
-        font-size: clamp(28px, 6vw, 48px);
-    }
+    @media screen and (max-width: 800px) {}
 
     @media screen and (max-width: 690px) {
-        padding: 80px 180px 0 0;
+        margin-bottom: 16px;
     }
 
-    @media screen and (max-height: 850px) {
-        position: relative;
-        top: 62px;
-        left: 80px;
-    }
+    @media screen and (max-height: 850px) {}
 }
 
 .aboutMeSection {
@@ -51,8 +46,9 @@ h1 {
     justify-content: flex-start;
     align-items: center;
     flex-direction: row;
-    width: 100%;
+    width: 50%;
     gap: 40px;
+
 
     @media screen and (max-width: 1100px) {
         gap: 20px;
@@ -63,17 +59,25 @@ h1 {
         align-items: flex-start;
         gap: 24px;
     }
+
+    @media screen and (max-width: 690px) {
+        width: 60%;
+    }
+
+    @media screen and (max-width: 530px) {
+        width: 100%;
+    }
 }
 
 .conectBtn {
     font-family: 'quicksandBook';
     font-weight: 700;
     font-size: clamp(14px, 1.2vw, 18px);
-    width: clamp(160px, 15vw, 200px);
+    width: clamp(133px, 15vw, 200px);
     height: clamp(36px, 5vh, 44px);
     line-height: 120%;
     border: solid #F8F7E5 1px;
-    padding: 12px 24px;
+    padding: clamp(16px, 2vh, 40px) clamp(18px, 3vw, 32px);
     border-radius: 100px;
     transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s;
     background-color: #1D1D1D;
@@ -89,20 +93,32 @@ h1 {
 }
 
 .aboutMeImg {
-    max-width: 640px;
-    width: 41%;
+    max-width: 579px;
+    width: 74%;
+    position: absolute;
+    bottom: 0px;
+    left: 147px;
 
     @media screen and (max-width: 1200px) {
         width: 55%;
+        left: 44px;
+
     }
 
-    @media screen and (max-width: 800px) {
-        width: 40%;
+    @media screen and (max-width: 930px) {
+        bottom: unset;
+        top: 11rem;
     }
+
+    @media screen and (max-width: 400px) {
+        width: 60%;
+        left: 34px;
+    }
+
 }
 
 .aboutMeContainer {
-    padding: 32px;
+    padding: 24px;
     flex: 1;
     background-color: #1D1D1D;
     color: #F8F7E5;
@@ -113,24 +129,22 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    transform: translateX(-150px) translateY(50px);
     align-self: flex-start;
+    position: relative;
+    right: 50px;
+    top: 150px;
 
-    @media screen and (max-width: 1200px) {
-        transform: translateX(-150px) translateY(40px);
+
+    @media screen and (max-width: 690px) {
+        right: -50px;
     }
 
-    @media screen and (max-width: 800px) {
-        transform: translateX(77px) translateY(-68px);
-        margin-right: 80px;
-        width: 48%;
 
+    @media screen and (max-width: 530px) {
+        top: 225px;
     }
 
-    @media screen and (max-width: 523px) {
-        width: 260px;
-        padding: 16px;
-    }
+    @media screen and (max-width: 523px) {}
 
 }
 
@@ -169,29 +183,11 @@ h3 {
     right: 0;
     bottom: -280px;
 
-    @media screen and (max-width: 1200px) {
-        left: -40px;
-        right: unset;
-        bottom: -320px;
-    }
+    @media screen and (max-width: 1200px) {}
 
-    @media screen and (max-width: 800px) {
-        left: 88px;
-        right: unset;
-        top: -454px;
-    }
+    @media screen and (max-width: 800px) {}
 
-    @media screen and (max-width: 510px) {
-        position: fixed;
-        top: unset;
-        left: 50%;
-        bottom: 50%;
-        right: unset;
-        transform: translate(-50%, -50%); 
-        z-index: 9999; 
-        padding: 2px;
-        width: 196px;
-    }
+    @media screen and (max-width: 510px) {}
 }
 
 .floating-emoji {
@@ -235,5 +231,9 @@ h3 {
     display: flex;
     align-items: center;
     gap: 12px;
-    font-size: clamp(14px, 1.1vw, 18px);
+    font-size: clamp(14px, 1.1vw, 18px) !important;
+}
+
+.material-icons {
+    font-size: clamp(20px, 2vw, 24px) !important;
 }

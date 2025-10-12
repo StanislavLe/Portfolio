@@ -36,7 +36,7 @@ export const SECTIONS_TRANSLATIONS: Record<SupportedLang, { id: string; label: s
   en: [
     { id: 'hero', label: 'Home' },
     { id: 'about', label: 'About Me' },
-    { id: 'skills', label: 'Skills' },
+    { id: 'skills', label: 'Skillset' },
     { id: 'portfolio', label: 'Portfolio' },
     { id: 'references', label: 'References' },
     { id: 'contact', label: 'Contact' },
