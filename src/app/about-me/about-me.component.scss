@@ -97,13 +97,18 @@ h1 {
 
 .aboutMeImg {
     max-width: 716px;
-    width: 32%;
+    width: 34%;
     position: absolute;
     bottom: 0px;
-    left: 203px;
+    left: 44px;
 
     @media screen and (max-width: 1650px) {
         width: 38%;
+    }
+
+
+    @media screen and (max-width: 1430px) {
+        width: 45%;
     }
 
     @media screen and (max-width: 1200px) {
@@ -155,15 +160,18 @@ h1 {
     gap: 20px;
     align-self: flex-start;
     position: relative;
-    right: 100px;
+    right: 250px;
     top: 60px;
 
 
     @media screen and (max-width: 1650px) {
         top: 53px;
-        right: 14px;
-    }
+        right: 200px;}
 
+        
+    @media screen and (max-width: 1350px) {
+        right: 50px;
+    }
 
     @media screen and (max-width: 690px) {
         right: -50px;

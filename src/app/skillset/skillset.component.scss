@@ -9,18 +9,13 @@
     position: relative;
     margin: 0 auto;
 
-    @media screen and (max-width: 510px) {
+    @media screen and (max-width: 690px) {
         flex-direction: column;
-        width: 100%;
-        padding: 0px;
-        padding-top: 40px;
+        justify-content: start;
+        align-items: center;
     }
 
-    @media screen and (max-height: 800px) {
-        padding: 0px;
-        padding-top: 40px;
-
-    }
+    @media screen and (max-height: 800px) {}
 }
 
 .text-section {
@@ -28,26 +23,23 @@
     justify-content: space-between;
     align-items: start;
     flex-direction: column;
-    width: 100%;
+    width: 50%;
     gap: 20px;
-    position: absolute;
 
-    @media screen and (max-height: 590px) {
-        gap: 6px;
-    }
-
-    @media screen and (max-width: 510px) {
+    @media screen and (max-width: 690px) {
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        position: relative;
+        width: 90%;
     }
 
-    @media screen and (max-height: 540px) {
-        padding-top: 144px;
-    }
+    @media screen and (max-width: 510px) {}
+
+    @media screen and (max-height: 540px) {}
 }
 
 .text {
-    width: 45%;
+    width: 100%;
     height: max-content;
     color: #F8F7E5;
     background-color: #679AAC;
@@ -57,7 +49,7 @@
     font-weight: 100;
     max-width: 800px;
 
-    @media screen and (max-width: 510px) {
+    @media screen and (max-width: 690px) {
         width: 100%;
     }
 }
@@ -71,23 +63,15 @@ h1 {
     padding-bottom: 100px;
     padding-top: 36px;
 
-    @media screen and (max-width: 1247px) {
-        padding-bottom: 18px;
+    @media screen and (max-width: 1016px) {
+        padding-bottom: 40px;
     }
 
-    @media screen and (max-height: 800px) {
-        margin-bottom: 0px;
-        padding-bottom: 4px;
-    }
+    @media screen and (max-height: 800px) {}
 
-    @media screen and (max-height: 680px) {
-        padding-top: 20%;
-        padding-bottom: 4px;
-    }
+    @media screen and (max-height: 680px) {}
 
-    @media screen and (max-height: 635px) {
-        padding-top: 33%;
-    }
+    @media screen and (max-height: 635px) {}
 
 }
 
@@ -96,30 +80,32 @@ h1 {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 38px;
-    margin-top: 20px;
-    width: 40%;
+    gap: 24px;
+    width: 100%;
     height: 283px;
     flex-wrap: wrap;
-    max-width: 765px;
 
-    @media screen and (max-width: 1200px) {
-        gap: 20px;
+    @media screen and (max-width: 1093px) {
+        bottom: 164px;
+        position: relative;
     }
+
+     @media screen and (max-width: 1016px) {
+        bottom: unset;
+    }
+
 
     @media screen and (max-width: 690px) {
-        width: 49%;
-    }
-
-    @media screen and (max-width: 510px) {
         flex-direction: row;
-        width: 83%;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 16px;
+        padding-top: 16px;
     }
 
-    @media screen and (max-height: 800px) {
-        margin-top: 10px;
-        height: 50%;
-    }
+
+    @media screen and (max-height: 800px) {}
 
     div {
         display: flex;
@@ -127,24 +113,26 @@ h1 {
         align-items: center;
         flex-direction: column-reverse;
 
+
+
         span {
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 16px;
             font-family: 'quicksandBook';
-            width: 96px;
+            width: 127px;
             padding-top: 32px;
+            color: #F8F7E5;
 
-            @media screen and (max-width: 1200px) {
-                font-size: clamp(12px, 1.2vw, 14px);
-                padding-top: 20px;
+            @media screen and (max-width: 1016px) {
+                font-size: clamp(12px, 4vw, 16px);
+                width: clamp(90px, 4vw, 127px);
+                height: auto;
             }
 
-            @media screen and (max-width: 510px) {
-                font-size: 12px;
-                width: auto;
-                padding-top: 10px;
+            @media screen and (max-width: 690px) {
+                padding-top: 24px;
             }
         }
 
@@ -152,6 +140,11 @@ h1 {
             transition: transform 0.20s cubic-bezier(.4, 0, .2, 1);
             will-change: transform;
             cursor: pointer;
+
+            @media screen and (max-width: 1016px) {
+                width: clamp(30px, 12vw, 40px);
+                height: auto;
+            }
 
             @media screen and (max-width: 510px) {
                 width: clamp(30px, 12vw, 40px);
@@ -171,37 +164,33 @@ h1 {
 
 .skillset-container {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    width: 45%;
     position: relative;
-    margin-right: 272px;
     top: 280px;
 
-    @media screen and (max-width: 1516px) {
-        top: 88px;
+    @media screen and (max-width: 1430px) {
+        top: 203px;
     }
 
-    @media screen and (max-width: 1247px) {
-        margin-right: 23%;
-
-    }
-
-    @media screen and (max-width: 1023px) {
-        top: 60px;
+    @media screen and (max-width: 1016px) {
+        top: 143px;
     }
 
 
     @media screen and (max-width: 690px) {
-        margin-right: 10%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        top: unset;
     }
 
-    @media screen and (max-width: 510px) {
-        flex-direction: column;
-        width: 100%;
-        top: 0;
-    }
+    @media screen and (max-width: 690px) {}
+
+    @media screen and (max-width: 510px) {}
 
 
 
@@ -217,7 +206,7 @@ h1 {
     align-items: center;
     flex-direction: column;
     position: relative;
-    left: 100%;
+    left: 113%;
     bottom: 150px;
     transform: translate(-50%, 100%);
     opacity: 0;
@@ -226,22 +215,13 @@ h1 {
     transition: transform 0.5s cubic-bezier(.21, 1.11, .84, .86), opacity 0.35s;
 
 
-    @media screen and (max-width: 1516px) {
-        top: -232px;
-    }
+    @media screen and (max-width: 1516px) {}
 
-    @media screen and (max-width: 1247px) {
-        top: -343px;
-        left: 72%;
-    }
+    @media screen and (max-width: 1247px) {}
 
-    @media screen and (max-width: 510px) {
-        left: 50%;
-    }
+    @media screen and (max-width: 510px) {}
 
-    @media screen and (max-height: 800px) {
-        top: -284px;
-    }
+    @media screen and (max-height: 800px) {}
 
     h2 {
         font-family: 'quicksandBold';
@@ -296,28 +276,20 @@ h1 {
     flex-direction: column;
     align-items: start;
     justify-content: center;
-    position: relative;
-    top: 352px;
     width: 39%;
+    position: absolute;
+    bottom: 0px;
+    left: 20px;
 
-    @media screen and (max-width: 1516px) {
-        top: 611px;
-    }
+    @media screen and (max-width: 1516px) {}
 
-    @media screen and (max-width: 1023px) {
-        top: 716px;
-    }
+    @media screen and (max-width: 1023px) {}
 
-    @media screen and (max-width: 510px) {
-        align-items: start;
-        justify-content: end;
-        top: 0;
-        width: 100%;
-    }
+    @media screen and (max-width: 510px) {}
 }
 
 .mindset-icon {
-    position: relative;
+    position: absolute;
     z-index: 2;
     display: flex;
     justify-content: center;
@@ -326,9 +298,7 @@ h1 {
     height: clamp(60px, 8vw, 120px);
     bottom: 24px;
 
-    @media screen and (max-height: 1023px) {
-        bottom: 60px;
-    }
+    @media screen and (max-height: 1023px) {}
 
 }
 
