@@ -1,20 +1,17 @@
 .main-content {
-    background-color: #F8F7E5;
-    min-height: 100dvh; // volle Höhe, dynamisch auch auf Mobile
-    max-width: 1780px;
-    width: 80vw;
-    font-family: 'eczarRegular';
     display: flex;
+    justify-content: flex-start;
+    align-items: start;
     flex-direction: column;
-    padding-top: 170px;
+    min-height: 100dvh;
+    max-width: 2040px;
+    width: 100vw;
+    position: relative;
+    margin: 0 auto;
 
-    @media screen and (max-width: 690px) {
-        width: 100vw;
-    }
+    @media screen and (max-width: 690px) {}
 
-    @media screen and (max-width: 510px) {
-        padding-top: 68px;
-    }
+    @media screen and (max-width: 510px) {}
 }
 
 .project-wrapper {
@@ -30,6 +27,7 @@ h1 {
     font-weight: 700;
     font-family: 'eczarBold';
     line-height: 100%;
+    margin: 0px;
 }
 
 .portfolio-header {
@@ -38,10 +36,11 @@ h1 {
     align-items: center;
     flex-direction: row;
     color: #1D1D1D;
-    margin-bottom: 60px;
+    padding-bottom: 42px;
     width: 100%;
     padding-right: 50px;
     gap: 50px;
+    padding-top: 42px;
 
     @media screen and (max-width: 1425px) {
         flex-direction: column;

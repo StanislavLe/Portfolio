@@ -67,7 +67,10 @@ h1 {
         padding-bottom: 40px;
     }
 
-    @media screen and (max-height: 800px) {}
+    @media screen and (max-width: 500px) {
+        padding-bottom: 0px;
+        padding-top: 8px;
+    }
 
     @media screen and (max-height: 680px) {}
 
@@ -90,7 +93,7 @@ h1 {
         position: relative;
     }
 
-     @media screen and (max-width: 1016px) {
+    @media screen and (max-width: 1016px) {
         bottom: unset;
     }
 
@@ -124,6 +127,7 @@ h1 {
             width: 127px;
             padding-top: 32px;
             color: #F8F7E5;
+            text-align: center;
 
             @media screen and (max-width: 1016px) {
                 font-size: clamp(12px, 4vw, 16px);
