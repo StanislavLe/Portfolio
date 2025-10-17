@@ -1,18 +1,19 @@
 .main-content {
-  min-height: 100dvh;
-  max-width: 1780px;
-  width: 80vw;
-  font-family: "eczarRegular";
   display: flex;
-  flex-direction: column;
-  padding-top: 170px;
+    justify-content: flex-start;
+    align-items: start;
+    flex-direction: column;
+    min-height: 100dvh;
+    max-width: 2040px;
+    width: 100vw;
+    position: relative;
+    margin: 0 auto;
 
   @media screen and (max-width: 900px) {
     width: 100vw;
   }
 
   @media screen and (max-width: 600px) {
-    padding-top: 80px;
   }
 
   @media screen and (max-height: 905px) {
@@ -23,7 +24,7 @@
 
 h1 {
   font-family: 'eczarBold';
-  font-size: clamp(36px, 4vw, 72px);
+    font-size: clamp(36px, 5vw, 72px);
   width: 100%;
   display: flex;
   justify-content: center;
@@ -59,12 +60,11 @@ h1 {
 
   @media screen and (max-width: 900px) {
     flex-direction: column;
-    width: 75%;
+    width: 100%;
     align-items: stretch;
   }
 
   @media screen and (max-width: 690px) {
-    width: 96%;
   }
 
   @media screen and (max-height: 770px) {
