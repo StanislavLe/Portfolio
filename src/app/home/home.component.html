@@ -3,9 +3,15 @@
   [currentSection]="currentSection"
   (navigateSection)="onNavigateSection($event)">
 </app-header>
+
+<app-section-pager
+  #pager
+  [currentSection]="currentSection"
+  (sectionChanged)="onSectionChanged($event)">
+</app-section-pager>
+
+<!-- 🔥 Footer jetzt dauerhaft sichtbar -->
 <app-footer
-  [class.visible]="isLastSection"
   variant="home"
   (navigateSection)="onNavigateSection($event)">
 </app-footer>
-

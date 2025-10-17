@@ -16,7 +16,7 @@ import {
 } from '@angular/core';
 import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 import { SECTIONS, SectionNavService } from '../sections.config';
-
+import { FooterComponent } from '../footer/footer.component';
 import { HeroSectionComponent } from '../../hero-section/hero-section.component';
 import { AboutMeComponent } from '../../about-me/about-me.component';
 import { SkillsetComponent } from '../../skillset/skillset.component';
@@ -38,6 +38,7 @@ import { ContactMeComponent } from '../../contact-me/contact-me.component';
     PortfolioComponent,
     ReferencesComponent,
     ContactMeComponent,
+    FooterComponent,
   ],
   templateUrl: './section-pager.component.html',
   styleUrls: ['./section-pager.component.scss'],
@@ -58,7 +59,8 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
   private swipeThreshold = 50;
   private viewReady = false;
   private pendingScrollId: string | null = null;
-  constructor(private nav: SectionNavService, private cdr: ChangeDetectorRef) { }
+
+  constructor(private nav: SectionNavService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.nav.scrollTo$.subscribe((id) => {
@@ -71,22 +73,16 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
     });
   }
 
-  ngAfterViewInit() {
-    this.viewReady = true;
-    const idx = this.sections.findIndex((s) => s.id === this.currentSection);
-    const targetIdx = idx >= 0 ? idx : 0;
-    const pendingIdx =
-      this.pendingScrollId != null
-        ? this.sections.findIndex((s) => s.id === this.pendingScrollId)
-        : -1;
+ngAfterViewInit() {
+  this.viewReady = true;
 
-    const finalIdx = pendingIdx >= 0 ? pendingIdx : targetIdx;
-    queueMicrotask(() => {
-      this.scrollToSection(finalIdx);
-      this.pendingScrollId = null;
-      this.cdr.markForCheck();
-    });
-  }
+  // Nur Initialisierung vorbereiten, nicht direkt scrollen!
+  const idx = this.sections.findIndex((s) => s.id === this.currentSection);
+  this.currentSectionIndex = idx >= 0 ? idx : 0;
+  this.pendingScrollId = null;
+  this.cdr.markForCheck();
+}
+
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['currentSection'] && this.viewReady) {
@@ -153,8 +149,7 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
       this.currentSectionIndex = index;
       const id = this.sections[index].id;
       this.sectionChanged.emit(id);
-      this.nav.setActive(id);
-      this.nav.setIsLast(index === this.sections.length - 1);
+      this.nav.setActive(id); // 🔥 jetzt kümmert sich der Service um isLast
       this.isScrolling = false;
       this.cdr.markForCheck();
     }, 0);

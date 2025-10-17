@@ -1,19 +1,23 @@
 app-footer {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 1s ease, transform 1s ease;
-    pointer-events: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+  pointer-events: none;
+  z-index: 9999;
 }
 
 app-footer.visible {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
-
-.footer-base {
-    width: 100vw;
+.footer-base.contact {
+    width: 100%;
     height: 100px;
     display: flex;
     justify-content: space-between;
@@ -25,8 +29,30 @@ app-footer.visible {
     padding-left: 64px;
     padding-right: 106px;
     position: absolute;
-    bottom: 100px;
     z-index: 100;
+    position: absolute;
+    bottom: 100px;
+    opacity: 1;
+}
+
+
+.footer-base.home {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    line-height: 120%;
+    font-family: "quicksandBook";
+    max-width: 2096px;
+    padding: 0px;
+    padding-left: 64px;
+    padding-right: 106px;
+    position: absolute;
+    z-index: 100;
+    position: absolute;
+    bottom: 100px;
+    opacity: 0;
 
     @media screen and (max-width: 1247px) {
         padding-left: 20px;
