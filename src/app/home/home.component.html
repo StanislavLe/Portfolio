@@ -7,11 +7,9 @@
 <app-section-pager
   #pager
   [currentSection]="currentSection"
-  (sectionChanged)="onSectionChanged($event)">
+  (sectionChanged)="onSectionChanged($event)"
+  (navigateSection)="onNavigateSection($event)">  <!-- 👈 funktioniert jetzt -->
 </app-section-pager>
 
-<!-- 🔥 Footer jetzt dauerhaft sichtbar -->
-<app-footer
-  variant="home"
-  (navigateSection)="onNavigateSection($event)">
-</app-footer>
+
+

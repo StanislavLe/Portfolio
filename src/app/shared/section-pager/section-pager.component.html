@@ -10,7 +10,13 @@
       <app-skillset *ngSwitchCase="'skills'"></app-skillset>
       <app-portfolio *ngSwitchCase="'portfolio'"></app-portfolio>
       <app-references *ngSwitchCase="'references'"></app-references>
-      <app-contact-me *ngSwitchCase="'contact'"></app-contact-me>
+<ng-container *ngSwitchCase="'contact'">
+  <app-contact-me></app-contact-me>
+  <app-footer
+    variant="home"
+    (navigateSection)="onNavigateSection($event)">
+  </app-footer>
+</ng-container>
     </ng-container>
   </div>
 

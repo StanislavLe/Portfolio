@@ -50,6 +50,7 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
   @ViewChildren('sectionRef') sectionRefs!: QueryList<ElementRef>;
   @Input() currentSection: string = 'hero';
   @Output() sectionChanged = new EventEmitter<string>();
+  @Output() navigateSection = new EventEmitter<string>();
 
   currentSectionIndex = 0;
   isScrolling = false;
@@ -60,7 +61,7 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
   private viewReady = false;
   private pendingScrollId: string | null = null;
 
-  constructor(private nav: SectionNavService, private cdr: ChangeDetectorRef) {}
+  constructor(private nav: SectionNavService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.nav.scrollTo$.subscribe((id) => {
@@ -73,15 +74,15 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
     });
   }
 
-ngAfterViewInit() {
-  this.viewReady = true;
+  ngAfterViewInit() {
+    this.viewReady = true;
 
-  // Nur Initialisierung vorbereiten, nicht direkt scrollen!
-  const idx = this.sections.findIndex((s) => s.id === this.currentSection);
-  this.currentSectionIndex = idx >= 0 ? idx : 0;
-  this.pendingScrollId = null;
-  this.cdr.markForCheck();
-}
+    // Nur Initialisierung vorbereiten, nicht direkt scrollen!
+    const idx = this.sections.findIndex((s) => s.id === this.currentSection);
+    this.currentSectionIndex = idx >= 0 ? idx : 0;
+    this.pendingScrollId = null;
+    this.cdr.markForCheck();
+  }
 
 
   ngOnChanges(changes: SimpleChanges) {
@@ -154,4 +155,9 @@ ngAfterViewInit() {
       this.cdr.markForCheck();
     }, 0);
   }
+
+  onNavigateSection(id: string) {
+    this.nav.requestScroll(id);
+  }
+
 }
