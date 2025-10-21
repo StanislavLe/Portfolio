@@ -11,19 +11,15 @@
   filter: none;
   padding: 10rem 82px 0px 58px;
 
-  @media screen and (max-width: 690px) {}
-
-  @media screen and (max-width: 390px) {
-    padding-top: 54px;
+  @media (max-width: 690px) {
+    padding: 7rem 24px 0px 16px;
   }
 
-  @media screen and (max-height: 696px) {
-    padding-top: 80px;
-  }
+  @media screen and (max-width: 390px) {}
 
-  @media screen and (max-width: 600px) {
-    padding-top: 92px;
-  }
+  @media screen and (max-height: 696px) {}
+
+  @media screen and (max-width: 600px) {}
 }
 
 .contentContainer {
@@ -39,19 +35,12 @@
 
   @media screen and (max-width: 1750px) {}
 
-  @media screen and (max-width: 1247px) {
-    width: 95%;
-  }
+  @media screen and (max-width: 1247px) {}
 
-  @media screen and (max-width: 900px) {
-    width: 90%;
-
-  }
+  @media screen and (max-width: 900px) {}
 
   @media screen and (max-width: 690px) {
     flex-direction: column;
-    width: 95%;
-    gap: 8px;
   }
 }
 
@@ -424,28 +413,20 @@ h1 {
   }
 
   @media screen and (max-width: 690px) {
-    top: 628px;
+    top: 721px;
   }
 
-  @media screen and (max-width: 606px) {
-    top: 645px;
-  }
-
-  @media screen and (max-width: 600px) {
-    top: 588px;
-  }
 
   @media screen and (max-width: 551px) {
-    top: 628px;
     right: clamp(52px, 100vw - 2015px, 1900px);
   }
 
   @media screen and (max-width: 466px) {
-    top: 547px;
+    top: 632px;
   }
 
-  @media screen and (max-width: 421px) {
-    top: 566px;
+  @media screen and (max-width: 429px) {
+    top: 652px;
   }
 
   @media screen and (max-height: 830px) {
@@ -528,6 +509,12 @@ h1 {
   -webkit-transform: translateZ(0);
   animation: floatUpDownContact 2s ease-in-out infinite;
   -webkit-animation: floatUpDownContact 2s ease-in-out infinite;
+
+  @media screen and (max-width: 690px) {
+    position: relative;
+    bottom: 46px;
+    z-index: 10000;
+  }
 }
 
 .arrow-wrapper {
@@ -540,6 +527,8 @@ h1 {
     -webkit-animation: floatUpDownContactSm 2s ease-in-out infinite;
     width: clamp(20px, 3vw, 40px);
     height: auto;
+    position: relative;
+    bottom: 27px;
   }
 }
 

@@ -28,7 +28,7 @@
 
     .footer-image-container {
         position: relative;
-        width: clamp(200px, 20vw, 400px);
+        width: clamp(150px, 20vw, 400px);
         aspect-ratio: 2 / 1;
         display: flex;
         justify-content: center;
@@ -76,7 +76,9 @@
         position: relative;
         z-index: 10000;
 
-        @media screen and (max-height: 670px) {}
+        @media screen and (max-width: 588px) {
+            flex-direction: column;
+        }
 
         :hover {
             color: #FF834F;
@@ -108,11 +110,20 @@
         }
 
 
-        @media screen and (max-width: 1350px) {}
+        @media screen and (max-width: 1230px) {
+            width: 67%;
+        }
 
-        @media screen and (max-width: 1040px) {}
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
+            gap: 8px;
+            justify-content: center;
+            top: 40px;
+        }
 
-        @media screen and (max-width: 930px) {}
+        @media screen and (max-width: 588px) {
+            top: 68px;
+        }
 
         @media screen and (max-width: 450px) {}
 
@@ -122,8 +133,12 @@
 }
 
 
+
+
+
+
 .footer-base.impressum {
-    width: 100vw;
+    width: 90vw;
     height: 100px;
     display: flex;
     justify-content: space-between;
@@ -132,9 +147,11 @@
     font-family: "quicksandBook";
     z-index: 100;
     position: relative;
-    top: 150px;
+    top: 75px;
 
-    @media screen and (max-width: 1247px) {}
+    @media screen and (max-width: 1247px) {
+        width: 89vw;
+    }
 
     @media screen and (max-width: 980px) {}
 
@@ -152,7 +169,7 @@
 
     .footer-image-container {
         position: relative;
-        width: clamp(200px, 20vw, 400px);
+        width: clamp(150px, 15vw, 400px);
         aspect-ratio: 2 / 1;
         display: flex;
         justify-content: center;
@@ -200,7 +217,9 @@
         position: relative;
         z-index: 10000;
 
-        @media screen and (max-height: 670px) {}
+        @media screen and (max-width: 623px) {
+            flex-direction: column;
+        }
 
         :hover {
             color: #FF834F;
@@ -232,13 +251,26 @@
         }
 
 
-        @media screen and (max-width: 1350px) {}
+        @media screen and (max-width: 1440px) {
+            width: 67%;
+        }
 
-        @media screen and (max-width: 1040px) {}
+        @media screen and (max-width: 1083px) {
+            width: 75%;
+        }
 
-        @media screen and (max-width: 930px) {}
 
-        @media screen and (max-width: 450px) {}
+        @media screen and (max-width: 984px) {
+            flex-direction: column;
+            gap: 8px;
+            justify-content: center;
+            top: 40px;
+        }
+
+        @media screen and (max-width: 588px) {
+            top: 68px;
+        }
+
 
         @media screen and (max-height: 670px) {}
     }
