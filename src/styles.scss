@@ -4,7 +4,6 @@ button {
     cursor: pointer;
 }
 
-:root {}
 
 html,
 body {
@@ -168,7 +167,6 @@ main.legal {
 .main-content {
     position: relative;
     overflow: visible !important;
-    height: auto !important;
 }
 
 
@@ -178,6 +176,7 @@ body.mat-typography {
     -webkit-overflow-scrolling: touch !important;
     position: static !important;
     display: block !important;
+    width: 100%;
 }
 
 html {
@@ -201,11 +200,6 @@ body {
     position: relative !important;
 }
 
-main.legal {
-    min-height: 100%;
-    height: auto !important;
-    overflow-y: visible !important;
-}
 
 .mat-drawer-container,
 .mat-sidenav-container,
@@ -293,7 +287,7 @@ main.legal {
 }
 
 .main-content {
-    padding: 7rem 82px 0px 58px;
+    padding: 10rem 82px 0px 58px;
 
     @media (max-width: 690px) {
         padding: 7rem 24px 0px 16px;

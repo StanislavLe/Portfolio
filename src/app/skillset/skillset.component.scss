@@ -8,6 +8,7 @@
     width: 100vw;
     position: relative;
     margin: 0 auto;
+    padding-top: 15rem;
 
     @media screen and (max-width: 690px) {
         flex-direction: column;
@@ -271,7 +272,7 @@ h1 {
 .mindset-icon:hover+.growth-mindset-container {
     opacity: 1;
     pointer-events: auto;
-    transform: translate(-50%, -167px);
+    transform: translate(-120%, -167px);
 }
 
 

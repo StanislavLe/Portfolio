@@ -138,13 +138,11 @@
   align-items: center;
   gap: 15px;
   padding-right: 16px;
-
-
 }
 
 .languageButton {
-  width: clamp(32px, 4vw, 100px);
-  height: clamp(32px, 4vw, 100px) !important;
+  width: clamp(32px, 3.8vw, 100px);
+  height: clamp(32px, 3.8vw, 100px) !important;
   border-radius: 100% !important;
   border: 2px solid #F8F7E5 !important;
   color: #F8F7E5 !important;
@@ -160,7 +158,7 @@
 
   span {
     font-family: 'quicksandBold';
-    font-size: clamp(16px, 2vw, 48px);
+    font-size: clamp(16px, 1.8vw, 48px);
     color: #F8F7E5;
     margin: 0;
   }
@@ -432,8 +430,8 @@
 
 .socialLinks a:nth-child(1) img {
   display: block;
-  width: clamp(32px, 1.5vw, 64px);
-  height: clamp(32px, 1.5vw, 64px);
+  width: clamp(32px, 2vw, 64px);
+  height: clamp(32px, 2vw, 64px);
   background: url("/assets/icons/githubIcon.png") no-repeat center / contain;
 }
 
@@ -442,8 +440,8 @@
 }
 
 .socialLinks a:nth-child(2) img {
-  width: clamp(32px, 1.5vw, 64px);
-  height: clamp(32px, 1.5vw, 64px);
+  width: clamp(32px, 2vw, 64px);
+  height: clamp(32px, 2vw, 64px);
   background: url("/assets/icons/linkedInIcon.png") no-repeat center / contain;
 }
 
@@ -452,8 +450,8 @@
 }
 
 .socialLinks a:nth-child(3) img {
-  width: clamp(32px, 1.5vw, 64px);
-  height: clamp(32px, 1.5vw, 64px);
+  width: clamp(32px, 2vw, 64px);
+  height: clamp(32px, 2vw, 64px);
   background: url("/assets/icons/emailIcon.png") no-repeat center / contain;
 }
 

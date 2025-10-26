@@ -1,7 +1,7 @@
 .main-content {
   display: flex;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: center;
   flex-direction: column;
   min-height: 90dvh;
   width: 100vw;
@@ -399,8 +399,8 @@ h1 {
   transition: border-color .2s ease;
   width: max-content;
   position: absolute;
-  bottom: calc(66vh + env(safe-area-inset-bottom));
-  right: clamp(41px, 100vw - 2015px, 1900px);
+  bottom: 899px;
+  right: 42px;
   will-change: transform;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);

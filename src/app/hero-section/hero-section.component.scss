@@ -136,10 +136,10 @@
   position: absolute;
   z-index: 2;
   pointer-events: none;
-  width: 65%;
-  right: 80px;
+  width: 86%;
+  right: -143px;
   bottom: 0;
-
+  max-width: 1800px;
 
   /* === WIDTH === */
   @media (max-width: 2518px) {}
@@ -182,8 +182,7 @@
   /* === HEIGHT === */
 
 
-  @media (max-height: 979px) {
-  }
+  @media (max-height: 979px) {}
 
   @media (max-height: 820px) {}
 
@@ -230,9 +229,9 @@
   position: absolute;
   z-index: 1;
   pointer-events: none;
-  width: 24%;
-  right: 287px;
-  bottom: 329px;
+  width: 30%;
+  right: 89px;
+  bottom: 450px;
 
   /* === WIDTH === */
   @media (max-width: 2518px) {}
@@ -270,11 +269,9 @@
   @media (max-width: 390px) {}
 
   /* === HEIGHT === */
-  @media (max-height: 1037px) {
-  }
+  @media (max-height: 1037px) {}
 
-  @media (max-height: 979px) {
-  }
+  @media (max-height: 979px) {}
 
   @media (max-height: 700px) {}
 
