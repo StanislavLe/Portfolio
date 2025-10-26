@@ -35,45 +35,17 @@
   position: relative;
 
   /* === WIDTH === */
-  @media (max-width: 2518px) {}
-
-  @media (max-width: 2200px) {}
-
-  @media (max-width: 1970px) {}
-
-  @media (max-width: 1534px) {}
-
-  @media (max-width: 1200px) {}
 
   @media (max-width: 1150px) {
     height: 75vh;
   }
 
-  @media (max-width: 992px) {}
-
-  @media (max-width: 768px) {}
-
-  @media (max-width: 480px) {}
-
-  @media (max-width: 390px) {}
-
   /* === HEIGHT === */
   @media (max-height: 1430px) {}
-
-  @media (max-height: 850px) {}
-
-  @media (max-height: 700px) {}
 
   /* === COMBINED WIDTH + HEIGHT === */
   @media (max-width: 1534px) and (max-height: 1430px) {}
 
-  @media (max-width: 1294px) and (max-height: 1028px) {}
-
-  @media (max-width: 768px) and (max-height: 820px) {}
-
-  @media (max-width: 480px) and (max-height: 700px) {}
-
-  @media (max-width: 390px) and (max-height: 700px) {}
 
   span {
     font-size: clamp(24px, 3.5vw, 52px);
@@ -132,38 +104,37 @@
    HERO IMAGE
    ========================================================= */
 
+/* =========================================================
+   HERO IMAGE – RESPONSIVE SYSTEM (SCSS BLUEPRINT)
+   ========================================================= */
+
 .hero-image {
   position: absolute;
   z-index: 2;
   pointer-events: none;
-  width: 86%;
-  right: -143px;
   bottom: 0;
+  right: -143px;
+  width: 92%;
   max-width: 1800px;
 
-  /* === WIDTH === */
-  @media (max-width: 2518px) {}
-
-  @media (max-width: 1970px) {}
+  /* ============================================
+     HEIGHT ≥ 1400px (BASE)
+     ============================================ */
+  @media (max-width: 2300px) {
+    width: 92%;
+  }
 
   @media (max-width: 1600px) {
-    width: 76%;
-    right: 57px;
+    width: 100%;
   }
 
-  @media (max-width: 1400px) {
-    width: 91%;
-    right: -75px;
-  }
-
-  @media (max-width: 1150px) {
+  @media (max-width: 1350px) {
     width: 108%;
     right: -134px;
   }
 
   @media (max-width: 992px) {
-    width: 800px;
-    right: 50px;
+    width: 1176px;
   }
 
   @media (max-width: 690px) {
@@ -172,23 +143,144 @@
   }
 
   @media (max-width: 521px) {
-    right: -30%;
+    right: -41%;
   }
 
   @media (max-width: 470px) {
-    right: -60%;
+    right: -50%;
   }
 
-  /* === HEIGHT === */
+  /* ============================================
+     HEIGHT ≤ 1284px
+     ============================================ */
+  @media (max-height: 1284px) {
+    width: 83%;
+    right: -60px;
 
+    @media (max-width: 1600px) {
+      width: 95%;
+    }
 
-  @media (max-height: 979px) {}
+    @media (max-width: 1150px) {
+      width: 113%;
+      right: -134px;
+    }
 
-  @media (max-height: 820px) {}
+    @media (max-width: 992px) {
+      width: 1071px;
+    }
 
-  @media (max-height: 700px) {}
+    @media (max-width: 690px) {
+      width: 930px;
+      right: -25%;
+    }
 
-  /* === COMBINED WIDTH + HEIGHT === */
+    @media (max-width: 521px) {
+      right: -41%;
+    }
+
+    @media (max-width: 470px) {
+      right: -50%;
+    }
+  }
+
+  /* ============================================
+     HEIGHT ≤ 1164px
+     ============================================ */
+  @media (max-height: 1164px) {
+    width: 75%;
+    right: -40px;
+
+    @media (max-width: 1600px) {
+      width: 85%;
+    }
+
+    @media (max-width: 1350px) {
+      width: 104%;
+      right: -134px;
+    }
+
+    @media (max-width: 992px) {
+      width: 1000px;
+    }
+
+    @media (max-width: 690px) {
+      width: 930px;
+      right: -25%;
+    }
+
+    @media (max-width: 475px) {
+      right: -42%;
+    }
+
+    @media (max-width: 410px) {
+      right: -53%;
+    }
+  }
+
+  /* ============================================
+     HEIGHT ≤ 1064px
+     ============================================ */
+  @media (max-height: 1064px) {
+    width: 70%;
+    right: 40px;
+
+    @media (max-width: 1600px) {
+      width: 85%;
+      right: -35px;
+    }
+
+    @media (max-width: 1350px) {
+      width: 104%;
+      right: -134px;
+    }
+
+    @media (max-width: 992px) {
+      width: 950px;
+    }
+
+    @media (max-width: 690px) {
+      right: -25%;
+    }
+  }
+
+  /* ============================================
+     HEIGHT ≤ 1000px
+     ============================================ */
+  @media (max-height: 1000px) {
+    width: 63%;
+    right: 70px;
+
+    @media (max-width: 1600px) {
+      width: 77%;
+      right: -35px;
+    }
+
+    @media (max-width: 1350px) {
+      width: 95%;
+      right: -134px;
+    }
+
+    @media (max-width: 992px) {
+      width: 880px;
+    }
+
+    @media (max-width: 690px) {
+      right: -25%;
+    }
+
+    @media (max-width: 521px) {
+      right: -41%;
+    }
+
+    @media (max-width: 470px) {
+      right: -50%;
+    }
+  }
+
+  /* ============================================
+     COMBINED WIDTH + HEIGHT (Compact Layout)
+     ============================================ */
   @media (max-width: 1250px) and (max-height: 900px) {
     width: 96%;
     right: -63px;
@@ -198,7 +290,6 @@
     width: 116%;
     right: -141px;
   }
-
 
   @media (max-width: 717px) and (max-height: 900px) {
     width: 127%;
@@ -218,8 +309,8 @@
     right: unset;
     left: -257px;
   }
-
 }
+
 
 /* =========================================================
    ORANGE STAR
@@ -233,12 +324,7 @@
   right: 89px;
   bottom: 450px;
 
-  /* === WIDTH === */
-  @media (max-width: 2518px) {}
-
-  @media (max-width: 2200px) {}
-
-  @media (max-width: 1970px) {}
+  /* === WIDTH === 1600px */
 
   @media (max-width: 1400px) {
     width: 24%;
@@ -246,57 +332,68 @@
     bottom: 499px;
   }
 
-  @media (max-width: 1300px) {}
-
-  @media (max-width: 1200px) {}
-
-  @media (max-width: 1150px) {}
-
   @media (max-width: 992px) {
     width: 250px;
-    right: 196px;
-    bottom: 276px;
   }
 
   @media (max-width: 690px) {
-    width: 307px;
+    width: 250px;
     right: 10%;
     bottom: 317px;
   }
 
-  @media (max-width: 480px) {}
+  /* === HEIGHT === 1284px */
 
-  @media (max-width: 390px) {}
+  @media (max-height: 1284px) {
+    width: 27%;
+  }
 
-  /* === HEIGHT === */
-  @media (max-height: 1037px) {}
+  @media (max-width: 1400px) {
+    right: 141px;
+    bottom: 499px;
+  }
 
-  @media (max-height: 979px) {}
+  @media (max-width: 992px) {
+    width: 250px;
+  }
 
-  @media (max-height: 700px) {}
+  @media (max-width: 690px) {
+    width: 250px;
+    right: 10%;
+    bottom: 317px;
+  }
+
+  /* === HEIGHT === 1164px */
+
+  @media (max-height: 1164px) {
+    width: 24%;
+  }
+
+  @media (max-width: 1400px) {
+    right: 141px;
+    bottom: 499px;
+  }
+
+  @media (max-width: 992px) {
+    width: 250px;
+    right: 102px;
+    bottom: 461px;
+  }
+
+  @media (max-width: 690px) {
+    width: 250px;
+    right: 10%;
+    bottom: 317px;
+  }
+
+  /* === HEIGHT === 1064px */
+
+  @media (max-height: 1064px) {
+    bottom: 250px;
+  }
 
   /* === COMBINED WIDTH + HEIGHT === */
-  @media (max-width: 1250px) and (max-height: 900px) {
-    width: 25%;
-    right: 127px;
-    bottom: 329px;
-  }
-
-  @media (max-width: 850px) and (max-height: 900px) {
-    width: 34%;
-    right: 78px;
-  }
-
-  @media (max-width: 690px) and (max-height: 900px) {
-    width: 295px;
-    right: 2%;
-    bottom: 260px;
-  }
-
-
-  @media (max-width: 460px) and (max-height: 900px) {}
-
-  @media (max-width: 390px) and (max-height: 700px) {}
+  @media (max-width: 1250px) and (max-height: 900px) {}
 }
 
 /* =========================================================
@@ -328,7 +425,7 @@
 .icon-wrapper {
   position: relative;
   display: inline-block;
-  bottom: 10px;
+  bottom: 70px;
 }
 
 .scrollAnimation {
