@@ -30,9 +30,13 @@
   height: 7rem;
   z-index: 20000;
 
-  @media screen and (max-width: 1200px) {}
+  @media screen and (max-height: 700px) {
+    height: 5rem;
+  }
 
-  @media screen and (max-width: 600px) {}
+  @media screen and (max-width: 690px) {
+    height: 5rem;
+  }
 }
 
 .sidenavContainer.about .mainToolbar.mat-toolbar {
@@ -40,14 +44,26 @@
   color: #679AAC !important;
   height: 7rem;
 
-  @media screen and (max-width: 600px) {}
+  @media screen and (max-width: 690px) {
+    height: 5rem;
+  }
+
+  @media screen and (max-height: 700px) {
+    height: 5rem;
+  }
 }
 
 .sidenavContainer.hero .mainToolbar.mat-toolbar {
   background-color: #679AAC !important;
   height: 7rem;
 
-  @media screen and (max-width: 600px) {}
+  @media screen and (max-width: 690px) {
+    height: 5rem;
+  }
+
+  @media screen and (max-height: 700px) {
+    height: 5rem;
+  }
 }
 
 .sidenavContainer.skills .mainToolbar.mat-toolbar,
@@ -56,7 +72,13 @@
 .sidenavContainer.references .mainToolbar.mat-toolbar {
   height: 7rem;
 
-  @media screen and (max-width: 600px) {}
+  @media screen and (max-width: 690px) {
+    height: 5rem;
+  }
+
+  @media screen and (max-height: 700px) {
+    height: 5rem;
+  }
 }
 
 .sidenavContainer.skills .mainToolbar.mat-toolbar,
@@ -64,21 +86,39 @@
   background: #1D1D1D !important;
   color: #F8F7E5 !important;
 
-  @media screen and (max-width: 600px) {}
+  @media screen and (max-width: 690px) {
+    height: 5rem;
+  }
+
+  @media screen and (max-height: 700px) {
+    height: 5rem;
+  }
 }
 
 .sidenavContainer.portfolio .mainToolbar.mat-toolbar {
   background: #F8F7E5 !important;
   color: #679AAC !important;
 
-  @media screen and (max-width: 600px) {}
+  @media screen and (max-width: 690px) {
+    height: 5rem;
+  }
+
+  @media screen and (max-height: 700px) {
+    height: 5rem;
+  }
 }
 
 .sidenavContainer.references .mainToolbar.mat-toolbar {
   background: #679AAC !important;
   color: #F8F7E5 !important;
 
-  @media screen and (max-width: 600px) {}
+  @media screen and (max-width: 690px) {
+    height: 5rem;
+  }
+
+  @media screen and (max-height: 700px) {
+    height: 5rem;
+  }
 }
 
 
@@ -125,12 +165,23 @@
     width: clamp(32px, 10vw, 160px);
     height: clamp(32px, 10vw, 160px);
     transform: rotate(-20deg);
+
+    @media screen and (max-height: 700px) {
+      width: clamp(32px, 10vw, 120px);
+      height: clamp(32px, 10vw, 120px);
+    }
   }
 
   span {
     font-size: clamp(26px, 2.5vw, 72px);
     font-family: 'quicksandBold';
+
+    @media screen and (max-height: 700px) {
+      font-size: clamp(26px, 2vw, 52px);
+    }
   }
+
+
 }
 
 .settings {
@@ -156,11 +207,21 @@
   font-family: 'quicksandBold';
   transition: background .1s, color .1s, border-color .1s;
 
+  @media screen and (max-height: 700px) {
+    width: clamp(32px, 3vw, 60px);
+    height: clamp(32px, 3vw, 60px) !important;
+  }
+
   span {
     font-family: 'quicksandBold';
     font-size: clamp(16px, 1.8vw, 48px);
     color: #F8F7E5;
     margin: 0;
+
+    @media screen and (max-height: 700px) {
+      font-size: clamp(16px, 1.8vw, 32px);
+    }
+
   }
 }
 
@@ -330,6 +391,11 @@
   outline: none;
   box-shadow: none;
 
+  @media screen and (max-height: 700px) {
+    width: clamp(32px, 1.5vw, 144px) !important;
+    height: clamp(32px, 1.5vw, 144px) !important;
+  }
+
   .mat-icon {
     color: #F8F7E5;
     transition: color .1s;
@@ -341,6 +407,10 @@
       padding-top: 0px;
     }
 
+    @media screen and (max-height: 700px) {
+      width: clamp(32px, 2.5vw, 144px) !important;
+      height: clamp(32px, 2.5vw, 144px) !important;
+    }
 
   }
 
@@ -351,6 +421,10 @@
 
 .material-icons {
   font-size: clamp(32px, 2.5vw, 72px) !important;
+
+  @media screen and (max-height: 700px) {
+    font-size: clamp(32px, 2vw, 72px) !important;
+  }
 }
 
 .sidenavContainer.about .mainToolbar .icon-btn .mat-icon,
