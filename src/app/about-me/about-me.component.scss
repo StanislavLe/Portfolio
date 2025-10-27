@@ -96,23 +96,13 @@ h1 {
 }
 
 .aboutMeImg {
-    width: 48%;
+    width: 950px;
     position: absolute;
     bottom: 0px;
     left: 44px;
 
-    @media screen and (max-width: 1650px) {
-        width: 38%;
-    }
-
-
-    @media screen and (max-width: 1430px) {
-        width: 45%;
-    }
-
-    @media screen and (max-width: 1200px) {
-        left: 44px;
-        width: 50%;
+    @media screen and (max-width: 1540px) {
+        width: 880px;
     }
 
     @media screen and (max-width: 930px) {
@@ -162,11 +152,7 @@ h1 {
     right: 50px;
     top: 209px;
 
-
-    @media screen and (max-width: 1650px) {
-        top: 53px;
-        right: 200px;
-    }
+    
 
 
     @media screen and (max-width: 1350px) {
