@@ -1,7 +1,3 @@
-/* =========================================================
-   MAIN CONTENT STRUCTURE
-   ========================================================= */
-
 .main-content {
   display: flex;
   justify-content: flex-start;
@@ -19,18 +15,10 @@
     flex-direction: column;
   }
 
-  /* ============================================
-     HEIGHT ≤ 700px
-     ============================================ */
   @media (max-height: 700px) {
     max-width: 1500px;
-
   }
 }
-
-/* =========================================================
-   GREETING SECTION
-   ========================================================= */
 
 .greeting {
   display: flex;
@@ -42,32 +30,17 @@
   height: 70vh;
   position: relative;
 
-  /* === WIDTH === */
-
   @media (max-width: 1150px) {
     height: 75vh;
   }
 
-  /* === HEIGHT === */
   @media (max-height: 870px) {
     gap: clamp(16px, 5vw, 32px);
-
   }
 
-  /* === HEIGHT === */
   @media (max-height: 816px) {
     gap: clamp(16px, 2vw, 24px);
-
   }
-
-  /* ============================================
-     HEIGHT ≤ 700px
-     ============================================ */
-  @media (max-height: 700px) {}
-
-  /* === COMBINED WIDTH + HEIGHT === */
-  @media (max-width: 1534px) and (max-height: 1430px) {}
-
 
   span {
     font-size: clamp(24px, 3.5vw, 52px);
@@ -80,7 +53,6 @@
 
     @media (max-height: 700px) {
       font-size: clamp(24px, 2.75vw, 52px);
-
     }
   }
 
@@ -100,9 +72,6 @@
   }
 }
 
-/* =========================================================
-   CTA BUTTON
-   ========================================================= */
 
 .conectBtn {
   font-family: 'quicksandBook';
@@ -121,23 +90,12 @@
   }
 }
 
-/* =========================================================
-   HERO IMAGE CONTAINER
-   ========================================================= */
 
 .hero-image-container {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
 }
-
-/* =========================================================
-   HERO IMAGE
-   ========================================================= */
-
-/* =========================================================
-   HERO IMAGE – RESPONSIVE SYSTEM (SCSS BLUEPRINT)
-   ========================================================= */
 
 .hero-image {
   position: absolute;
@@ -329,10 +287,7 @@
     @media (max-width: 992px) {
       width: 780px;
       right: -2%;
-
     }
-
-    @media (max-width: 690px) {}
 
     @media (max-width: 521px) {
       right: -10%;
@@ -397,29 +352,9 @@
     @media (max-width: 500px) {
       right: -18%;
     }
-
   }
-
-  /* ============================================
-     COMBINED WIDTH + HEIGHT (Compact Layout)
-     ============================================ */
-  @media (max-width: 1250px) and (max-height: 900px) {}
-
-  @media (max-width: 850px) and (max-height: 900px) {}
-
-  @media (max-width: 717px) and (max-height: 900px) {}
-
-  @media (max-width: 690px) and (max-height: 900px) {}
-
-  @media (max-width: 590px) and (max-height: 900px) {}
-
-  @media (max-width: 460px) and (max-height: 900px) {}
 }
 
-
-/* =========================================================
-   ORANGE STAR
-   ========================================================= */
 
 .orange-star {
   position: absolute;
@@ -548,10 +483,6 @@
     }
   }
 
-  /* === COMBINED WIDTH + HEIGHT === */
-  @media (max-width: 1250px) and (max-height: 900px) {}
-
-
   /* ============================================
      HEIGHT ≤ 700px
      ============================================ */
@@ -577,10 +508,6 @@
     }
   }
 }
-
-/* =========================================================
-   SCROLL ANIMATION + ICONS
-   ========================================================= */
 
 .text-wrapper {
   display: flex;
@@ -621,12 +548,8 @@
     }
   }
 
-  /* ============================================
-     HEIGHT ≤ 700px
-     ============================================ */
   @media (max-height: 700px) {
     bottom: 10px;
-
   }
 }
 
