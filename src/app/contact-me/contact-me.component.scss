@@ -3,7 +3,7 @@
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  min-height: 90dvh;
+  height: 85dvh;
   width: 100vw;
   position: relative;
   z-index: auto;
@@ -12,12 +12,10 @@
   padding: 10rem 82px 0px 58px;
 
   @media (max-width: 690px) {
-    padding: 7rem 24px 0px 16px;
+    padding: 5rem 24px 0px 16px;
   }
 
-  @media screen and (max-width: 390px) {}
 
-  @media screen and (max-height: 696px) {}
 
   @media screen and (max-width: 600px) {}
 }
@@ -102,6 +100,7 @@ h1 {
     color: #FF834F;
     font-weight: 700;
     font-size: clamp(18px, 2vw, 24px);
+    line-height: 120%;
 
     @media screen and (max-height: 770px) {
       font-size: 16px;
@@ -138,7 +137,7 @@ h1 {
   }
 
   @media screen and (max-width: 690px) {
-    margin-top: 40px;
+    margin-top: 18px;
   }
 
   form {
@@ -399,7 +398,7 @@ h1 {
   transition: border-color .2s ease;
   width: max-content;
   position: absolute;
-  bottom: 899px;
+  bottom: 73%;
   right: 42px;
   will-change: transform;
   -webkit-transform: translateZ(0);
@@ -413,6 +412,7 @@ h1 {
   }
 
   @media screen and (max-width: 690px) {
+    bottom: unset;
     top: 721px;
   }
 
@@ -429,19 +429,15 @@ h1 {
     top: 652px;
   }
 
-  @media screen and (max-height: 830px) {
-    top: 525px;
+
+  @media screen and (max-height: 880px) {
+      @media screen and (max-width: 690px) {
+         top: 80%;
+ 
+      }
+
   }
 
-  @media screen and (max-height: 770px) {
-    top: 510px;
-  }
-
-  @media screen and (max-height: 750px) {
-    top: unset;
-    bottom: 10.5%;
-    padding-bottom: unset;
-  }
 }
 
 @keyframes floatUpDownContact {

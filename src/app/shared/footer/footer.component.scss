@@ -8,13 +8,25 @@
     font-family: "quicksandBook";
     z-index: 100;
     position: relative;
-    bottom: 150px;
+    bottom: 70px;
+
+    @media screen and (max-width: 690px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        bottom: 43px;
+    }
+
+    @media screen and (max-height: 926px) {
+
+        @media screen and (max-width: 588px) {}
+    }
 
     @media screen and (max-width: 1247px) {}
 
     @media screen and (max-width: 980px) {}
 
-    @media screen and (max-width: 690px) {}
+
 
     @media screen and (max-width: 613px) {}
 
@@ -33,6 +45,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+        @media screen and (max-height: 926px) {
+
+            @media screen and (max-width: 588px) {
+                width: clamp(80px, 20vw, 400px);
+            }
+        }
 
         @media screen and (max-width: 900px) {}
 
@@ -76,8 +95,11 @@
         position: relative;
         z-index: 10000;
 
-        @media screen and (max-width: 588px) {
-            flex-direction: column;
+        @media screen and (max-height: 926px) {
+
+            @media screen and (max-width: 588px) {
+                gap: 12px;
+            }
         }
 
         :hover {
@@ -90,6 +112,7 @@
             font-family: 'quicksandBook';
             color: #F8F7E5;
             cursor: pointer;
+            white-space: nowrap;
 
             :hover {
                 color: #FF834F;
@@ -114,15 +137,17 @@
             width: 67%;
         }
 
+
+
         @media screen and (max-width: 900px) {
             flex-direction: column;
             gap: 8px;
             justify-content: center;
-            top: 40px;
+            top: 27px;
         }
 
-        @media screen and (max-width: 588px) {
-            top: 68px;
+        @media screen and (max-width: 690px) {
+            width: 100%;
         }
 
         @media screen and (max-width: 450px) {}

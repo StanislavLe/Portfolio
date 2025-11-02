@@ -77,9 +77,10 @@
   justify-content: center;
   align-items: center;
   text-decoration: none;
+  white-space: nowrap;
 
   @media screen and (max-width: 580px) {
-    width: 43%;
+    width: 44%;
   }
 
   &:hover {
@@ -268,6 +269,7 @@ h3 {
     font-family: 'QuicksandBold';
     font-size: 18px;
     background-color: transparent;
+    white-space: nowrap;
 
     &:hover {
       color: #FF834F;
