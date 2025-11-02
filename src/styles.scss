@@ -160,8 +160,7 @@ main.legal {
     position: relative;
     width: 100%;
     min-height: 100dvh;
-    overflow-y: visible !important;
-    -webkit-overflow-scrolling: touch;
+    background-color: #1D1D1D;
 }
 
 .main-content {
@@ -173,7 +172,6 @@ main.legal {
 body.mat-typography {
     height: auto !important;
     overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
     position: static !important;
     display: block !important;
     width: 100%;
@@ -196,7 +194,6 @@ body {
     height: auto !important;
     overflow-x: hidden !important;
     overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
     position: relative !important;
 }
 
