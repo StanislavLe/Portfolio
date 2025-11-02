@@ -4,10 +4,11 @@
     align-items: start;
     flex-direction: column;
     min-height: 76dvh;
-    max-width: 2040px;
+    max-width: 1920px;
     width: 100vw;
     position: relative;
     margin: 0 auto;
+    padding-top: 2rem;
 
     @media screen and (max-width: 690px) {}
 
@@ -19,7 +20,6 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    max-width: 1900px;
 }
 
 h1 {
@@ -49,8 +49,9 @@ h1 {
 
     @media screen and (max-width: 510px) {
         flex-direction: column;
-        margin-bottom: 16px;
+        padding-bottom: 4px;
         padding-right: unset;
+        padding-top: 4px;
         gap: 0px;
     }
 

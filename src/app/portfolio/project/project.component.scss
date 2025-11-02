@@ -49,6 +49,8 @@
   align-items: flex-start;
   padding: clamp(12px, 2vw, 20px) clamp(16px, 3vw, 24px);
   max-width: 1144px;
+    border: #1D1D1D solid 1px;
+  border-radius: 4px;
 
   @media screen and (max-width: 510px) {
     height: auto;
@@ -141,6 +143,8 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  border: #1D1D1D solid 1px;
+  border-radius: 4px;
 
   @media screen and (max-width: 900px) {
     width: 40%;
