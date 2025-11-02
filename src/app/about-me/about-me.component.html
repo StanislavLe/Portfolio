@@ -13,10 +13,16 @@
           {{ translations.button[currentLang] }}
         </button>
         <div class="emoji-wrapper">
-          <img src="assets/img/6. Secret info Emojis.png" alt="Secret Emoji" class="floating-emoji">
+          <img src="assets/img/6. Secret info Emojis.png" alt="Secret Emoji" (click)="togglePanel()"
+            class="floating-emoji" (click)="togglePanel()">
 
           <div class="secret-info-panel">
-            <h3>{{ translations.secretTitle[currentLang] }}</h3>
+            <div class="secret-info-panel-header">
+              <h3>{{ translations.secretTitle[currentLang] }}</h3>
+              <button mat-icon-button class="close-btn" (click)="closePanel()">
+                <img src="assets/icons/closeWhite.png" alt="Close" />
+              </button>
+            </div>
             <ul class="USP mat-checklist">
               <li *ngFor="let t of translations.traits[currentLang]">
                 <mat-icon [fontIcon]="t.icon"></mat-icon> {{ t.text }}

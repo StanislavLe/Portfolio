@@ -81,4 +81,15 @@ export class AboutMeComponent implements OnInit {
       this.cdr.detectChanges(); 
     });
   }
+
+  panelVisible = false;
+
+togglePanel() {
+  this.panelVisible = !this.panelVisible;
+}
+
+closePanel() {
+  this.panelVisible = false;
+}
+
 }

@@ -15,8 +15,6 @@
     @media screen and (max-width: 690px) {
         flex-direction: column;
         padding: 6rem 56px 0px 3px;
-        ;
-
     }
 
     @media (max-height: 990px) {
@@ -24,7 +22,12 @@
     }
 
     @media (max-height: 700px) {
-        padding: 6rem 56px 0px 3px;
+        padding: 7rem 56px 0px 3px;
+
+        @media screen and (max-width: 690px) {
+            flex-direction: column;
+            padding: 6rem 56px 0px 3px;
+        }
     }
 }
 
@@ -481,6 +484,7 @@ h1 {
 h3 {
     font-family: 'QuicksandBold';
     font-size: clamp(18px, 2vw, 24px);
+    margin-bottom: 0%;
 }
 
 .secret-info-panel {
@@ -495,9 +499,10 @@ h3 {
     transition: transform 0.5s cubic-bezier(.21, 1.11, .84, .86), opacity 0.35s;
     background: #679AAC;
     color: #F8F7E5;
-    width: clamp(204px, 20vw, 272px);
+    width: clamp(204px, 24vw, 272px);
     height: clamp(256px, 28vw, 300px);
     padding: clamp(24px, 2vw, 32px);
+    padding-top: 12px;
     border-radius: 4px;
     border: #1D1D1D solid 1px;
     box-shadow: 0 8px 32px #2222;
@@ -522,11 +527,39 @@ h3 {
     }
 }
 
+.secret-info-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 110%;
+    padding-bottom: 8px;
+}
+
+.close-btn {
+    padding: 0;
+    width: clamp(20px, 2vw, 24px);
+    display: none;
+
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .close-btn {
+        display: inline-flex;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .close-btn {
+        display: none;
+    }
+}
+
+
 .floating-emoji {
     width: clamp(32px, 3vw, 40px);
     animation: floatUpDown 2.2s ease-in-out infinite;
     will-change: transform;
-    z-index: 10000;
+    z-index: 1;
     position: relative;
 
     &:hover {
