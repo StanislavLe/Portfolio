@@ -60,12 +60,23 @@ export class SkillsetComponent implements OnInit {
   constructor(
     private langService: LanguageService,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.langService.lang$.subscribe(lang => {
       this.currentLang = lang;
-      this.cdr.detectChanges(); 
+      this.cdr.detectChanges();
     });
+  }
+
+
+  panelVisible = false;
+
+  togglePanel() {
+    this.panelVisible = !this.panelVisible;
+  }
+
+  closePanel() {
+    this.panelVisible = false;
   }
 }

@@ -21,6 +21,9 @@
       </div>
 
       <div class="growth-mindset-container">
+        <button mat-icon-button class="close-btn" (click)="closePanel()">
+                <img src="assets/icons/closeWhite.png" alt="Close" />
+              </button>
         <h2>{{ translations.mindsetTitle[currentLang] }}</h2>
         <span>{{ translations.mindsetText[currentLang] }}</span>
         <div class="learning-icons">

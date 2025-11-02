@@ -8,7 +8,6 @@
     width: 100vw;
     position: relative;
     margin: 0 auto;
-    padding-top: 15rem;
 
     @media screen and (max-width: 690px) {
         flex-direction: column;
@@ -16,7 +15,7 @@
         align-items: center;
     }
 
-    @media screen and (max-height: 800px) {}
+
 }
 
 .text-section {
@@ -31,7 +30,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 90%;
+        width: 100%;
+        gap: 4px;
     }
 
     @media screen and (max-width: 510px) {}
@@ -62,7 +62,7 @@ h1 {
     font-family: 'eczarBold';
     font-weight: 600;
     padding-bottom: 100px;
-    padding-top: 36px;
+    padding-top: 56px;
 
     @media screen and (max-width: 1016px) {
         padding-bottom: 40px;
@@ -70,7 +70,7 @@ h1 {
 
     @media screen and (max-width: 500px) {
         padding-bottom: 0px;
-        padding-top: 8px;
+        padding-top: 4px;
     }
 
     @media screen and (max-height: 680px) {}
@@ -104,9 +104,10 @@ h1 {
         justify-content: center;
         align-items: center;
         width: 100%;
-        gap: 16px;
+        gap: 8px;
         padding-top: 16px;
     }
+
 
 
     @media screen and (max-height: 800px) {}
@@ -137,7 +138,7 @@ h1 {
             }
 
             @media screen and (max-width: 690px) {
-                padding-top: 24px;
+                padding-top: 12px;
             }
         }
 
@@ -152,7 +153,7 @@ h1 {
             }
 
             @media screen and (max-width: 510px) {
-                width: clamp(30px, 12vw, 40px);
+                width: clamp(30px, 9vw, 40px);
                 height: auto;
             }
         }
@@ -189,7 +190,7 @@ h1 {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 90%;
+        width: 100%;
         top: unset;
     }
 
@@ -197,7 +198,13 @@ h1 {
 
     @media screen and (max-width: 510px) {}
 
+    @media screen and (max-height: 900px) {
+        top: 124px;
 
+        @media screen and (max-width: 690px) {
+            top: unset;
+        }
+    }
 
 }
 
@@ -220,13 +227,49 @@ h1 {
     transition: transform 0.5s cubic-bezier(.21, 1.11, .84, .86), opacity 0.35s;
 
 
-    @media screen and (max-width: 1516px) {}
+    @media screen and (max-width: 1062px) {
+        left: 138%;
+    }
 
     @media screen and (max-width: 1247px) {}
 
-    @media screen and (max-width: 510px) {}
+    @media screen and (max-width: 690px) {
+        position: absolute;
+        left: 230%;
+        bottom: -43px;
+    }
 
-    @media screen and (max-height: 800px) {}
+    @media screen and (max-height: 1170px) {
+        bottom: 0px;
+
+        @media screen and (max-width: 1062px) {
+            left: 138%;
+        }
+
+        @media screen and (max-width: 1247px) {}
+
+        @media screen and (max-width: 690px) {
+            position: absolute;
+            left: 230%;
+            bottom: -43px;
+        }
+    }
+
+    @media screen and (max-height: 994px) {
+        bottom: -42px;
+
+        @media screen and (max-width: 1230px) {
+            left: 138%;
+        }
+
+        @media screen and (max-width: 1247px) {}
+
+        @media screen and (max-width: 690px) {
+            position: absolute;
+            left: 230%;
+            bottom: -43px;
+        }
+    }
 
     h2 {
         font-family: 'quicksandBold';
@@ -323,4 +366,27 @@ h1 {
     width: clamp(20px, 3vw, 50px);
     height: auto;
     cursor: pointer;
+}
+
+.close-btn {
+    padding: 0;
+    display: none;
+    border: none;
+    background-color: #F9AF42;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    width: 100%;
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .close-btn {
+        display: inline-flex;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .close-btn {
+        display: none;
+    }
 }
