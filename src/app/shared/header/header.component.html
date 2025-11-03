@@ -15,19 +15,19 @@
           <span>{{ s.label }}</span>
         </div>
       </a>
-      
+    <div class="socialLinksNavList">
+      <a href="https://github.com/StanislavLe" target="_blank" rel="noopener noreferrer">
+        <img src="assets/icons/githubIconNavList.png" alt="GitHub" />
+      </a>
+      <a href="https://www.linkedin.com/in/stanislav-levin-881ab32b5" target="_blank" rel="noopener noreferrer">
+        <img src="assets/icons/linkedInIconNavList.png" alt="LinkedIn" />
+      </a>
+      <a href="mailto:stanislav1994@live.de">
+        <img src="assets/icons/emailIconNavList.png" alt="E-Mail" />
+      </a>
+    </div>
     </mat-nav-list>
-     <div class="socialLinksNavList">
-          <a href="https://github.com/StanislavLe" target="_blank" rel="noopener noreferrer">
-            <img src="assets/icons/githubIconNavList.png" alt="GitHub" />
-          </a>
-          <a href="https://www.linkedin.com/in/stanislav-levin-881ab32b5" target="_blank" rel="noopener noreferrer">
-            <img src="assets/icons/linkedInIconNavList.png" alt="LinkedIn" />
-          </a>
-          <a href="mailto:stanislav1994@live.de">
-            <img src="assets/icons/emailIconNavList.png" alt="E-Mail" />
-          </a>
-        </div>
+
 
     <mat-nav-list class="navList" *ngIf="variant === 'legal'">
       <a mat-list-item (click)="navigateAndScroll(['/'])">
@@ -50,7 +50,21 @@
           <span>{{ translations.privacy[currentLanguage] }}</span>
         </div>
       </a>
+
+      
+     <div class="socialLinksNavListLegal" [class.always-visible]="variant === 'legal'">
+      <a href="https://github.com/StanislavLe" target="_blank" rel="noopener noreferrer">
+        <img src="assets/icons/githubIconNavList.png" alt="GitHub" />
+      </a>
+      <a href="https://www.linkedin.com/in/stanislav-levin-881ab32b5" target="_blank" rel="noopener noreferrer">
+        <img src="assets/icons/linkedInIconNavList.png" alt="LinkedIn" />
+      </a>
+      <a href="mailto:stanislav1994@live.de">
+        <img src="assets/icons/emailIconNavList.png" alt="E-Mail" />
+      </a>
+    </div>
     </mat-nav-list>
+
 
   </mat-sidenav>
 

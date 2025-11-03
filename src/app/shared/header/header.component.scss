@@ -504,22 +504,58 @@
 }
 
 
-
+/* =========================================================
+   🔹 GLOBAL: SOCIAL LINKS (Toolbar & NavList)
+   ========================================================= */
 
 .socialLinks {
   display: flex;
   gap: 10px;
   opacity: 1;
   max-height: 200px;
+  pointer-events: auto;
   overflow: hidden;
+  transition: opacity 0.3s ease, max-height 0.4s ease;
+}
 
-  @media screen and (max-width: 690px) {
+.socialLinksNavListLegal {
+  display: flex;
+  gap: 10px;
+  opacity: 1;
+  max-height: 200px;
+  pointer-events: auto;
+  overflow: hidden;
+  transition: opacity 0.3s ease, max-height 0.4s ease;
+  width: 100%;
+  justify-content: start;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* =========================================================
+   🔹 STANDARDVERHALTEN – nur auf kleinen Screens sichtbar
+   ========================================================= */
+@media (max-width: 690px) {
+  .socialLinks {
     opacity: 0;
-    max-height: 0;
+    max-height: 200px;
     pointer-events: none;
   }
 }
 
+/* =========================================================
+   🔹 LEGAL-BEREICH – immer sichtbar (egal welche Bildschirmgröße)
+   ========================================================= */
+.socialLinks.always-visible {
+  opacity: 1;
+  pointer-events: auto;
+  max-height: 200px;
+}
+
+/* =========================================================
+   🔹 SEITENABHÄNGIGE DEAKTIVIERUNG (nur für Toolbar-Links)
+   ========================================================= */
 .sidenavContainer.about .mainToolbar .socialLinks,
 .sidenavContainer.skills .mainToolbar .socialLinks,
 .sidenavContainer.contact .mainToolbar .socialLinks,
@@ -530,113 +566,49 @@
   pointer-events: none;
 }
 
-.socialLinks a:nth-child(1) img {
+
+
+/* =========================================================
+   🔹 DESIGN (ICONS)
+   ========================================================= */
+
+/* Toolbar Icons */
+.socialLinks a img {
+  width: clamp(32px, 2vw, 64px);
+  height: clamp(32px, 2vw, 64px);
   display: block;
-  width: clamp(32px, 2vw, 64px);
-  height: clamp(32px, 2vw, 64px);
-  background: url("/assets/icons/githubIcon.png") no-repeat center / contain;
+  transition: filter 0.3s ease;
 }
 
-.socialLinks a:nth-child(1):hover img {
-  background: url("/assets/icons/githubIconHover.png") no-repeat center / contain;
+.socialLinks a:hover img {
+  filter: brightness(1.2);
 }
 
-.socialLinks a:nth-child(2) img {
-  width: clamp(32px, 2vw, 64px);
-  height: clamp(32px, 2vw, 64px);
-  background: url("/assets/icons/linkedInIcon.png") no-repeat center / contain;
-}
-
-.socialLinks a:nth-child(2):hover img {
-  background: url("/assets/icons/linkedInIconHover.png") no-repeat center / contain;
-}
-
-.socialLinks a:nth-child(3) img {
-  width: clamp(32px, 2vw, 64px);
-  height: clamp(32px, 2vw, 64px);
-  background: url("/assets/icons/emailIcon.png") no-repeat center / contain;
-}
-
-.socialLinks a:nth-child(3):hover img {
-  background: url("/assets/icons/emailIconHover.png") no-repeat center / contain;
-}
-
-
-
-
-
+/* Sidenav Icons */
 .socialLinksNavList {
-  display: flex;
-  gap: 10px;
-  overflow: hidden;
-  opacity: 1;
-  pointer-events: auto;
-  max-height: 200px;
-  background: #F8F7E5;
+  background: #f8f7e5;
   padding-left: clamp(15px, 2.5vw, 34px);
-
-
-  /* 👇 Sichtbarkeit NUR bei kleinen Screens umschalten */
-  @media screen and (max-width: 690px) {
-    opacity: 1;
-    pointer-events: auto;
-    max-height: 200px;
-  }
-
-  /* 👇 Bei größeren Screens ausblenden (nur wenn du das willst) */
-  @media screen and (min-width: 691px) {
-    opacity: 0;
-    pointer-events: none;
-    max-height: 0;
-  }
-}
-
-/* Seitenabhängige Deaktivierung */
-.sidenavContainer.about .mainToolbar .socialLinksNavList,
-.sidenavContainer.skills .mainToolbar .socialLinksNavList,
-.sidenavContainer.contact .mainToolbar .socialLinksNavList,
-.sidenavContainer.portfolio .mainToolbar .socialLinksNavList,
-.sidenavContainer.references .mainToolbar .socialLinksNavList {
   opacity: 0;
-  pointer-events: none;
-  max-height: 0;
+  display: none;
+  width: 100%;
+  justify-content: start;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @media (max-width: 690px) {
+    opacity: 1;
+    display: flex;
+  }
 }
 
-/* ====== ICONS ====== */
-
-/* GitHub */
-.socialLinksNavList a:nth-child(1) img {
+.socialLinksNavList a img {
   width: clamp(32px, 1.5vw, 64px);
   height: clamp(32px, 1.5vw, 64px);
   display: block;
-  background: url("/assets/icons/githubIcon.png") no-repeat center / contain;
-  transition: background 0.3s ease;
+  transition: filter 0.3s ease;
 }
 
-.socialLinksNavList a:nth-child(1):hover img {
-  background: url("/assets/icons/githubIconHover.png") no-repeat center / contain;
-}
-
-/* LinkedIn */
-.socialLinksNavList a:nth-child(2) img {
-  width: clamp(32px, 1.5vw, 64px);
-  height: clamp(32px, 1.5vw, 64px);
-  background: url("/assets/icons/linkedInIcon.png") no-repeat center / contain;
-  transition: background 0.3s ease;
-}
-
-.socialLinksNavList a:nth-child(2):hover img {
-  background: url("/assets/icons/linkedInIconHover.png") no-repeat center / contain;
-}
-
-/* Email */
-.socialLinksNavList a:nth-child(3) img {
-  width: clamp(32px, 1.5vw, 64px);
-  height: clamp(32px, 1.5vw, 64px);
-  background: url("/assets/icons/emailIcon.png") no-repeat center / contain;
-  transition: background 0.3s ease;
-}
-
-.socialLinksNavList a:nth-child(3):hover img {
-  background: url("/assets/icons/emailIconHover.png") no-repeat center / contain;
+.socialLinksNavList a:hover img {
+  filter: brightness(1.1);
 }
