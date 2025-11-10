@@ -1,105 +1,80 @@
-<mat-sidenav-container class="sidenavContainer" [ngClass]="themeClass" [attr.data-theme]="themeClass">
-  <mat-sidenav #sidenav class="sidenav" mode="over" position="end">
-    <div class="sidenavHeader">
-      <span>{{ translations.menu[currentLanguage] }}</span>
-      <button mat-icon-button class="close-btn" (click)="sidenav.close()">
-        <img src="assets/icons/closeMenu.png" alt="Close" />
+<header class="header" [ngClass]="themeClass">
+  <div class="header-inner">
+    <!-- 🔹 Left Side -->
+    <div class="header-left">
+      <div class="social-links">
+        <a href="https://github.com/StanislavLe" target="_blank" rel="noopener noreferrer">
+          <img src="assets/icons/githubIcon.png" alt="GitHub" />
+        </a>
+        <a href="https://www.linkedin.com/in/stanislav-levin-881ab32b5" target="_blank" rel="noopener noreferrer">
+          <img src="assets/icons/linkedInIcon.png" alt="LinkedIn" />
+        </a>
+        <a href="mailto:stanislav1994@live.de">
+          <img src="assets/icons/emailIcon.png" alt="E-Mail" />
+        </a>
+      </div>
+
+      <div class="logo">
+        <img src="assets/img/logo.png" alt="Logo" />
+        <span>{{ translations.name[currentLanguage] }}</span>
+      </div>
+    </div>
+
+    <!-- 🔹 Right Side -->
+    <div class="header-right">
+      <button class="languageButton" [class.flash]="justClicked" (click)="cycleLanguage()">
+        {{ currentLanguage.toUpperCase() }}
+      </button>
+
+      <button class="menuButton" (click)="toggleDrawer()">
+        <img [src]="menuIcon" alt="Menü öffnen" />
       </button>
     </div>
+  </div>
 
-    <mat-nav-list class="navList" *ngIf="variant==='home'">
-      <a mat-list-item *ngFor="let s of sections" [class.active]="s.id === currentSection"
-        (click)="navigateTo(s.id); sidenav.close()">
-        <div class="nav-item-content">
-          <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
+  <!-- 🔹 Custom Drawer -->
+  <div class="custom-drawer" [class.open]="drawerOpen">
+    <div class="drawer-inner">
+      <div class="drawer-header">
+        <span>{{ translations.menu[currentLanguage] }}</span>
+        <button class="close-btn" (click)="toggleDrawer(false)">
+          <img src="assets/icons/closeMenu.png" alt="Schließen" />
+        </button>
+      </div>
+
+      <nav class="drawer-nav" *ngIf="variant === 'home'">
+        <a *ngFor="let s of sections" [class.active]="s.id === currentSection" (click)="navigateTo(s.id)">
+          <img src="assets/icons/navListIcon.png" alt="icon" />
           <span>{{ s.label }}</span>
-        </div>
-      </a>
-    <div class="socialLinksNavList">
-      <a href="https://github.com/StanislavLe" target="_blank" rel="noopener noreferrer">
-        <img src="assets/icons/githubIconNavList.png" alt="GitHub" />
-      </a>
-      <a href="https://www.linkedin.com/in/stanislav-levin-881ab32b5" target="_blank" rel="noopener noreferrer">
-        <img src="assets/icons/linkedInIconNavList.png" alt="LinkedIn" />
-      </a>
-      <a href="mailto:stanislav1994@live.de">
-        <img src="assets/icons/emailIconNavList.png" alt="E-Mail" />
-      </a>
-    </div>
-    </mat-nav-list>
+        </a>
+      </nav>
 
-
-    <mat-nav-list class="navList" *ngIf="variant === 'legal'">
-      <a mat-list-item (click)="navigateAndScroll(['/'])">
-        <div class="nav-item-content">
-          <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
+      <nav class="drawer-nav" *ngIf="variant === 'legal'">
+        <a (click)="navigateAndScroll(['/'])">
+          <img src="assets/icons/navListIcon.png" alt="icon" />
           <span>{{ translations.start[currentLanguage] }}</span>
-        </div>
-      </a>
-
-      <a mat-list-item (click)="navigateAndScroll(['/legal', 'impressum'])">
-        <div class="nav-item-content">
-          <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
+        </a>
+        <a (click)="navigateAndScroll(['/legal', 'impressum'])">
+          <img src="assets/icons/navListIcon.png" alt="icon" />
           <span>{{ translations.impressum[currentLanguage] }}</span>
-        </div>
-      </a>
-
-      <a mat-list-item (click)="navigateAndScroll(['/legal', 'privacy-policy'])">
-        <div class="nav-item-content">
-          <img class="nav-icon" src="assets/icons/navListIcon.png" alt="icon" />
+        </a>
+        <a (click)="navigateAndScroll(['/legal', 'privacy-policy'])">
+          <img src="assets/icons/navListIcon.png" alt="icon" />
           <span>{{ translations.privacy[currentLanguage] }}</span>
-        </div>
-      </a>
+        </a>
+      </nav>
 
-      
-     <div class="socialLinksNavListLegal" [class.always-visible]="variant === 'legal'">
-      <a href="https://github.com/StanislavLe" target="_blank" rel="noopener noreferrer">
-        <img src="assets/icons/githubIconNavList.png" alt="GitHub" />
-      </a>
-      <a href="https://www.linkedin.com/in/stanislav-levin-881ab32b5" target="_blank" rel="noopener noreferrer">
-        <img src="assets/icons/linkedInIconNavList.png" alt="LinkedIn" />
-      </a>
-      <a href="mailto:stanislav1994@live.de">
-        <img src="assets/icons/emailIconNavList.png" alt="E-Mail" />
-      </a>
-    </div>
-    </mat-nav-list>
-
-
-  </mat-sidenav>
-
-  <mat-toolbar class="mainToolbar">
-    <div class="sidenavSpacer">
-      <div class="sidenavSpacerInner">
-        <div class="socialLinks">
-          <a href="https://github.com/StanislavLe" target="_blank" rel="noopener noreferrer">
-            <img src="assets/icons/githubIcon.png" alt="GitHub" />
-          </a>
-          <a href="https://www.linkedin.com/in/stanislav-levin-881ab32b5" target="_blank" rel="noopener noreferrer">
-            <img src="assets/icons/linkedInIcon.png" alt="LinkedIn" />
-          </a>
-          <a href="mailto:stanislav1994@live.de">
-            <img src="assets/icons/emailIcon.png" alt="E-Mail" />
-          </a>
-        </div>
-
-        <div class="logoHeader">
-          <img src="assets/img/logo.png" alt="Logo" />
-          <span>{{ translations.name[currentLanguage] }}</span>
-        </div>
-      </div>
-
-      <div class="settings">
-        <button mat-button class="languageButton" [class.flash]="justClicked" [class.active]="true"
-          (click)="cycleLanguage()">
-          {{ currentLanguage.toUpperCase() }}
-        </button>
-
-        <button class="icon-btn sidenav-btn" type="button" (click)="sidenav.toggle()" aria-label="Menü öffnen">
-          <mat-icon>menu</mat-icon>
-        </button>
-
+      <div class="drawer-social">
+        <a href="https://github.com/StanislavLe" target="_blank" rel="noopener noreferrer">
+          <img src="assets/icons/githubIconNavList.png" alt="GitHub" />
+        </a>
+        <a href="https://www.linkedin.com/in/stanislav-levin-881ab32b5" target="_blank" rel="noopener noreferrer">
+          <img src="assets/icons/linkedInIconNavList.png" alt="LinkedIn" />
+        </a>
+        <a href="mailto:stanislav1994@live.de">
+          <img src="assets/icons/emailIconNavList.png" alt="E-Mail" />
+        </a>
       </div>
     </div>
-  </mat-toolbar>
-</mat-sidenav-container>
+  </div>
+</header>

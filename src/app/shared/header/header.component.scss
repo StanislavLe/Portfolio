@@ -1,614 +1,358 @@
+/* =========================================================
+   🔹 BASE HEADER
+   ========================================================= */
 :host {
-  position: relative;
-  isolation: isolate;
-  z-index: 100000;
   display: block;
+  position: relative;
+  z-index: 10000;
 }
 
-.mat-drawer.mat-drawer-end {
-  z-index: 100002 !important;
-}
-
-.sidenavContainer {
-  width: 100% !important;
-  background-color: transparent !important;
-  transform: none !important;
-  will-change: auto !important;
-  overflow: visible !important;
-  z-index: 1000;
-  height: 7rem !important;
-}
-
-.mainToolbar {
+.header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 7rem;
-  z-index: 20000;
-
-  @media screen and (max-height: 700px) {
-    height: 5rem;
-    padding: 0 6px;
-
-  }
-
-  @media screen and (max-width: 690px) {
-    height: 5rem;
-    padding: 0 6px;
-
-  }
-}
-
-.sidenavContainer.about .mainToolbar.mat-toolbar {
-  background: #F8F7E5 !important;
-  color: #679AAC !important;
-  height: 7rem;
-
-  @media screen and (max-width: 690px) {
-    height: 5rem;
-    padding: 0 6px;
-
-  }
-
-  @media screen and (max-height: 700px) {
-    height: 5rem;
-    padding: 0 6px;
-
-  }
-}
-
-.sidenavContainer.hero .mainToolbar.mat-toolbar {
-  background-color: #679AAC !important;
-  height: 7rem;
-
-  @media screen and (max-width: 690px) {
-    height: 5rem;
-    padding: 0 6px;
-
-  }
-
-  @media screen and (max-height: 700px) {
-    height: 5rem;
-    padding: 0 6px;
-
-  }
-}
-
-.sidenavContainer.skills .mainToolbar.mat-toolbar,
-.sidenavContainer.contact .mainToolbar.mat-toolbar,
-.sidenavContainer.portfolio .mainToolbar.mat-toolbar,
-.sidenavContainer.references .mainToolbar.mat-toolbar {
-  height: 7rem;
-
-  @media screen and (max-width: 690px) {
-    height: 5rem;
-    padding: 0 6px;
-
-  }
-
-  @media screen and (max-height: 700px) {
-    height: 5rem;
-    padding: 0 6px;
-
-  }
-}
-
-.sidenavContainer.skills .mainToolbar.mat-toolbar,
-.sidenavContainer.contact .mainToolbar.mat-toolbar {
-  background: #1D1D1D !important;
-  color: #F8F7E5 !important;
-
-  @media screen and (max-width: 690px) {
-    height: 5rem;
-    padding: 0 6px;
-
-  }
-
-  @media screen and (max-height: 700px) {
-    height: 5rem;
-    padding: 0 6px;
-
-  }
-}
-
-.sidenavContainer.portfolio .mainToolbar.mat-toolbar {
-  background: #F8F7E5 !important;
-  color: #679AAC !important;
-
-  @media screen and (max-width: 690px) {
-    height: 5rem;
-    padding: 0 6px;
-
-  }
-
-  @media screen and (max-height: 700px) {
-    height: 5rem;
-    padding: 0 6px;
-
-  }
-}
-
-.sidenavContainer.references .mainToolbar.mat-toolbar {
-  background: #679AAC !important;
-  color: #F8F7E5 !important;
-
-  @media screen and (max-width: 690px) {
-    height: 5rem;
-    padding: 0 6px;
-
-  }
-
-  @media screen and (max-height: 700px) {
-    height: 5rem;
-    padding: 0 6px;
-
-  }
-}
-
-
-.sidenavSpacer {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.sidenavSpacerInner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  width: 68%;
-
-  @media screen and (max-width: 690px) {
-    flex-direction: row-reverse;
-    width: 75%;
-  }
-}
-
-.sidenavContainer.about .mainToolbar .sidenavSpacerInner,
-.sidenavContainer.skills .mainToolbar .sidenavSpacerInner,
-.sidenavContainer.contact .mainToolbar .sidenavSpacerInner,
-.sidenavContainer.portfolio .mainToolbar .sidenavSpacerInner,
-.sidenavContainer.references .mainToolbar .sidenavSpacerInner {
-  justify-content: start;
-  align-items: center;
-  width: 75%;
-  flex-direction: row-reverse;
-}
-
-.logoHeader {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition:
-    margin .6s cubic-bezier(.4, 0, .2, 1),
-    transform .6s cubic-bezier(.4, 0, .2, 1);
-
-  img {
-    width: clamp(32px, 10vw, 160px);
-    height: clamp(32px, 10vw, 160px);
-    transform: rotate(-20deg);
-
-    @media screen and (max-height: 700px) {
-      width: clamp(32px, 10vw, 120px);
-      height: clamp(32px, 10vw, 120px);
-    }
-  }
-
-  span {
-    font-size: clamp(26px, 2.5vw, 72px);
-    font-family: 'quicksandBold';
-
-    @media screen and (max-height: 700px) {
-      font-size: clamp(26px, 2vw, 52px);
-    }
-  }
-
-
-}
-
-.settings {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding-right: 16px;
-}
-
-.languageButton {
-  width: clamp(32px, 3.8vw, 100px);
-  height: clamp(32px, 3.8vw, 100px) !important;
-  border-radius: 100% !important;
-  border: 2px solid #F8F7E5 !important;
-  color: #F8F7E5 !important;
-  background: transparent !important;
-  padding: 0 !important;
+  height: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: unset !important;
-  font-size: 16px !important;
-  font-family: 'quicksandBold';
-  transition: background .1s, color .1s, border-color .1s;
+  z-index: 20000;
+  transition: background 0.3s ease, color 0.3s ease;
 
-  @media screen and (max-height: 700px) {
-    width: clamp(32px, 3vw, 60px);
-    height: clamp(32px, 3vw, 60px) !important;
+  &.hero {
+    background: #679AAC;
+    color: #F8F7E5;
+  }
+
+  &.about,
+  &.portfolio {
+    background: #F8F7E5;
+    color: #1D1D1D;
+  }
+
+  &.skills,
+  &.contact,
+  &.legal {
+    background: #1D1D1D;
+    color: #F8F7E5;
+  }
+
+  &.references {
+    background: #679AAC;
+    color: #F8F7E5;
+  }
+
+    @media (max-width: 1090px) {
+    height: 4.5rem;
+  }
+
+  @media (max-width: 690px) {
+    height: 3.5rem;
+  }
+}
+
+.header {
+
+  &.about,
+  &.portfolio,
+  &.skills,
+  &.contact,
+  &.references,
+  &.legal {
+    .social-links {
+      display: none;
+    }
+  }
+}
+
+
+/* =========================================================
+   🔹 INNER LAYOUT
+   ========================================================= */
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1920px;
+  padding-left: 24px;
+  padding-right: 24px;
+
+      @media (max-width: 1090px) {
+ padding-left: 20px;
+  padding-right: 20px;  }
+
+  @media (max-width: 690px) {
+ padding-left: 8px;
+  padding-right: 8px;  }
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-left {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* =========================================================
+   🔹 LOGO
+   ========================================================= */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.4s ease;
+
+  img {
+    width: clamp(32px, 10vw, 120px);
+    height: clamp(32px, 10vw, 120px);
+    transform: rotate(-20deg);
   }
 
   span {
     font-family: 'quicksandBold';
-    font-size: clamp(16px, 1.8vw, 48px);
-    color: #F8F7E5;
-    margin: 0;
-
-    @media screen and (max-height: 700px) {
-      font-size: clamp(16px, 1.8vw, 32px);
-    }
-
+    font-size: clamp(22px, 2vw, 48px);
   }
 }
 
-.sidenavContainer.about .mainToolbar .languageButton,
-.sidenavContainer.about .mainToolbar .languageButton .mdc-button__label,
-.sidenavContainer.portfolio .mainToolbar .languageButton,
-.sidenavContainer.portfolio .mainToolbar .languageButton .mdc-button__label {
-  color: #1D1D1D !important;
-  border-color: #1D1D1D !important;
+/* =========================================================
+   🔹 SOCIAL LINKS (in Toolbar)
+   ========================================================= */
+.social-links {
+  display: flex;
+  gap: 10px;
+
+  a img {
+    width: clamp(28px, 2vw, 48px);
+    height: clamp(28px, 2vw, 48px);
+    transition: filter 0.3s ease;
+
+    &:hover {
+      filter: brightness(1.2);
+    }
+  }
+
+  @media (max-width: 690px) {
+    display: none;
+  }
 }
 
-.languageButton:hover {
-  background: #FF834F !important;
-  outline: none !important;
-  box-shadow: none !important;
+/* =========================================================
+   🔹 BUTTONS (Language + Menu)
+   ========================================================= */
+.languageButton,
+.menuButton {
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  font-family: 'quicksandBold';
+  font-size: 16px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    background: #FF834F;
+    border-color: #FF834F;
+    color: #F8F7E5;
+  }
 }
 
 .languageButton.flash {
-  background: #FF834F !important;
-  border-color: #FF834F !important;
-  transition: background .15s, color .15s, border-color .15s;
+  background: #FF834F;
+  border-color: #FF834F;
 }
 
-.sidenav {
-  top: 12px;
-  right: 20px;
-  height: max-content !important;
-  width: clamp(180px, 38vw, 304px) !important;
-  background: #679AAC !important;
-  color: black !important;
+.menuButton img {
+  width: 24px;
+  height: 24px;
 }
 
-.mat-drawer.mat-drawer-end {
+/* =========================================================
+   🔹 DRAWER (Custom)
+   ========================================================= */
+.custom-drawer {
   position: fixed;
-  top: 15px;
-  right: 17px !important;
-  width: clamp(288px, 5vw, 500px);
-  background: #679AAC !important;
-  z-index: 100;
-  -webkit-transform: translate3d(0, 0, 0);
-  will-change: transform;
-  border: #1D1D1D 2px solid;
-  box-shadow: none !important;
+  top: 21px;
+  right: calc((100vw - 1946px) / 2 + 17px);
+  width: clamp(338px, 38vw, 388px);
+  background: #679AAC;
+  border: 2px solid #1D1D1D;
+  border-radius: 12px;
+  z-index: 10001;
+  overflow: hidden;
+  transform: translateY(-20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  &.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  // Sicherheitsnetz für kleine Screens:
+  @media (max-width: 1920px) {
+    right: 17px;
+  }
 }
 
-.sidenavHeader {
+
+/* =========================================================
+   🔹 DRAWER CONTENT
+   ========================================================= */
+.drawer-inner {
+  background: #F8F7E5;
+  height: max-content;
+  display: block;
+}
+
+.drawer-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #F8F7E5;
   color: #679AAC;
   font-family: 'quicksandBold';
-  font-size: clamp(24px, 2.5vw, 42px);
-  padding-left: clamp(15px, 2.5vw, 34px);
-  padding-right: clamp(15px, 2.5vw, 34px);
-  padding-top: 8px;
+  font-size: 42px;
+  padding: 12px 24px;
 
   img {
-    width: clamp(16px, 1.5vw, 64px) !important;
-    height: clamp(16px, 1.5vw, 64px) !important;
-    cursor: pointer;
+    width: 28px;
+    height: 28px;
   }
 }
 
-.navList {
-  background: #F8F7E5;
-  display: flex !important;
-  justify-self: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  height: max-content;
-  font-family: 'quicksandBold';
-  font-weight: 700;
+.close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
 
+/* =========================================================
+   🔹 NAVIGATION
+   ========================================================= */
+.drawer-nav {
+  display: flex;
+  flex-direction: column;
+  background: #F8F7E5;
+  padding: 12px 24px;
+  position: relative;
+  right: 47px;
 
   a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     font-family: 'quicksandBold';
-    font-size: 18px;
+    font-size: 32px;
+    color: #000 !important;
     text-decoration: none !important;
-    background: none !important;
-    height: clamp(24px, 3.5vw, 42px) !important;
-    color: black !important;
-  }
+    padding: 8px 0;
+    transition: transform 0.3s ease, color 0.3s ease;
 
-  ::ng-deep .mdc-list-item__primary-text {
-    color: black !important;
-    font-family: 'quicksandBold';
-    font-size: 18px;
-  }
-}
-
-.nav-item-content {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-direction: row;
-  position: relative;
-  right: 12px;
-  color: black !important;
-
-  .nav-icon {
-    width: clamp(12px, 2.5vw, 32px);
-    height: clamp(12px, 2.5vw, 32px);
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: all .3s ease;
-    flex-shrink: 0;
-  }
-
-  span {
-    transition: transform .3s ease, color .3s ease;
-    font-family: 'quicksandBold';
-    font-weight: 700;
-    font-size: clamp(14px, 2vw, 26px);
-  }
-
-  &:hover .nav-icon {
-    opacity: 1;
-    transform: translateX(50px);
-  }
-
-  &:hover span {
-    transform: translateX(50px);
-    color: #FF834F;
-  }
-}
-
-.sidenav-btn {
-  cursor: pointer;
-  background: none !important;
-  padding: 0 !important;
-  transition: background .1s, color .1s;
-}
-
-.sidenav-btn mat-icon {
-  color: #F8F7E5 !important;
-  transition: color .1s;
-}
-
-.sidenavContainer.about .mainToolbar .mat-icon,
-.sidenavContainer.portfolio .mainToolbar .mat-icon {
-  color: #1D1D1D !important;
-}
-
-.sidenavContainer.about .mainToolbar .sidenav-btn:hover mat-icon,
-.sidenavContainer.portfolio .mainToolbar .sidenav-btn:hover mat-icon,
-.sidenavContainer .mainToolbar .sidenav-btn:hover mat-icon {
-  color: #FF834F !important;
-  background: none;
-}
-
-.icon-btn {
-  -webkit-tap-highlight-color: transparent;
-  appearance: none;
-  background: transparent;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  width: clamp(32px, 3.5vw, 144px);
-  height: clamp(32px, 3.5vw, 144px);
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  outline: none;
-  box-shadow: none;
-
-  @media screen and (max-height: 700px) {
-    width: clamp(32px, 1.5vw, 144px) !important;
-    height: clamp(32px, 1.5vw, 144px) !important;
-  }
-
-  .mat-icon {
-    color: #F8F7E5;
-    transition: color .1s;
-    width: clamp(32px, 3.5vw, 144px) !important;
-    height: clamp(32px, 3.5vw, 144px) !important;
-    padding-top: 8px;
-
-    @media screen and (max-width: 1190px) {
-      padding-top: 0px;
+    /* 🔹 Text leicht bewegen */
+    span {
+      transition: transform 0.3s ease, color 0.3s ease;
     }
 
-    @media screen and (max-height: 700px) {
-      width: clamp(32px, 2.5vw, 144px) !important;
-      height: clamp(32px, 2.5vw, 144px) !important;
+    /* 🔹 Icon vorbereiten (unsichtbar & nach links verschoben) */
+    img {
+      width: 40px;
+      height: 40px;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.3s ease;
     }
 
-  }
+    /* 🔹 Hover-Effekt */
+    &:hover {
+      color: #FF834F;
 
-  &:hover .mat-icon {
-    color: #FF834F !important;
-  }
-}
+      img {
+        opacity: 1;
+        transform: translateX(50px);
+      }
 
-.material-icons {
-  font-size: clamp(32px, 2.5vw, 72px) !important;
+      span {
+        transform: translateX(50px);
+      }
+    }
 
-  @media screen and (max-height: 700px) {
-    font-size: clamp(32px, 2vw, 72px) !important;
-  }
-}
-
-.sidenavContainer.about .mainToolbar .icon-btn .mat-icon,
-.sidenavContainer.portfolio .mainToolbar .icon-btn .mat-icon {
-  color: #1D1D1D !important;
-
-}
-
-.icon-btn:focus,
-.icon-btn:focus-visible,
-.icon-btn:active {
-  outline: none;
-  box-shadow: none;
-}
-
-:lang(ru) {
-
-  html,
-  body,
-  p,
-  span,
-  a,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  li,
-  label,
-  input,
-  button,
-  div {
-    font-family: 'RobotoRegular', sans-serif !important;
-  }
-
-  /* explizit ausschließen */
-  .mat-icon,
-  .material-icons,
-  [class*="material-icons"] {
-    font-family: 'Material Icons' !important;
-    font-feature-settings: 'liga';
+    &.active span {
+      color: #FF834F;
+    }
   }
 }
-
-.mat-mdc-icon-button {
-  width: unset !important;
-  height: unset !important;
-}
-
 
 /* =========================================================
-   🔹 GLOBAL: SOCIAL LINKS (Toolbar & NavList)
+   🔹 DRAWER SOCIAL LINKS
    ========================================================= */
-
-.socialLinks {
-  display: flex;
+.drawer-social {
+  display: none;
   gap: 10px;
-  opacity: 1;
-  max-height: 200px;
-  pointer-events: auto;
-  overflow: hidden;
-  transition: opacity 0.3s ease, max-height 0.4s ease;
-}
-
-.socialLinksNavListLegal {
-  display: flex;
-  gap: 10px;
-  opacity: 1;
-  max-height: 200px;
-  pointer-events: auto;
-  overflow: hidden;
-  transition: opacity 0.3s ease, max-height 0.4s ease;
-  width: 100%;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding: 16px 24px;
+  background: #F8F7E5;
+
+  img {
+    width: 40px;
+    height: 40px;
+    transition: filter 0.3s ease;
+
+    &:hover {
+      filter: brightness(1.2);
+    }
+  }
 }
 
 /* =========================================================
-   🔹 STANDARDVERHALTEN – nur auf kleinen Screens sichtbar
+   🔹 RESPONSIVE
    ========================================================= */
 @media (max-width: 690px) {
-  .socialLinks {
-    opacity: 0;
-    max-height: 200px;
-    pointer-events: none;
+
+  .languageButton,
+  .menuButton {
+    width: 40px;
+    height: 40px;
   }
-}
 
-/* =========================================================
-   🔹 LEGAL-BEREICH – immer sichtbar (egal welche Bildschirmgröße)
-   ========================================================= */
-.socialLinks.always-visible {
-  opacity: 1;
-  pointer-events: auto;
-  max-height: 200px;
-}
-
-/* =========================================================
-   🔹 SEITENABHÄNGIGE DEAKTIVIERUNG (nur für Toolbar-Links)
-   ========================================================= */
-.sidenavContainer.about .mainToolbar .socialLinks,
-.sidenavContainer.skills .mainToolbar .socialLinks,
-.sidenavContainer.contact .mainToolbar .socialLinks,
-.sidenavContainer.portfolio .mainToolbar .socialLinks,
-.sidenavContainer.references .mainToolbar .socialLinks {
-  opacity: 0;
-  max-height: 0;
-  pointer-events: none;
-}
-
-
-
-/* =========================================================
-   🔹 DESIGN (ICONS)
-   ========================================================= */
-
-/* Toolbar Icons */
-.socialLinks a img {
-  width: clamp(32px, 2vw, 64px);
-  height: clamp(32px, 2vw, 64px);
-  display: block;
-  transition: filter 0.3s ease;
-}
-
-.socialLinks a:hover img {
-  filter: brightness(1.2);
-}
-
-/* Sidenav Icons */
-.socialLinksNavList {
-  background: #f8f7e5;
-  padding-left: clamp(15px, 2.5vw, 34px);
-  opacity: 0;
-  display: none;
-  width: 100%;
-  justify-content: start;
-  align-items: center;
-  padding-left: 16px;
-  padding-right: 16px;
-
-  @media (max-width: 690px) {
-    opacity: 1;
+  .drawer-social {
     display: flex;
   }
+
 }
 
-.socialLinksNavList a img {
-  width: clamp(32px, 1.5vw, 64px);
-  height: clamp(32px, 1.5vw, 64px);
-  display: block;
-  transition: filter 0.3s ease;
+
+/* =========================================================
+   🔹 LEGAL VARIANTE – Social Links immer sichtbar
+   ========================================================= */
+.header.legal {
+  .drawer-social {
+    display: flex !important;
+  }
 }
 
-.socialLinksNavList a:hover img {
-  filter: brightness(1.1);
-}
+
+
+
+
+
+
+
+
+
