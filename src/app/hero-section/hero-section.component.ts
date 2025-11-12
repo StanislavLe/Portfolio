@@ -9,7 +9,7 @@ import { SectionNavService } from '../shared/sections.config';
   standalone: true,
   imports: [CommonModule, MatButtonModule],
   templateUrl: './hero-section.component.html',
-  styleUrls: ['./hero-section.component.scss'],
+  styleUrls: ['./hero-section.component.scss','./hero-section.component.media.scss'],
 })
 export class HeroSectionComponent implements OnInit {
   currentLang: SupportedLang = 'de';

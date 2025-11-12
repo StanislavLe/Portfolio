@@ -4,7 +4,6 @@ button {
     cursor: pointer;
 }
 
-
 html,
 body {
     min-height: 100dvh;
@@ -150,6 +149,63 @@ body.force-repaint {
 }
 
 
+@keyframes floatUpDownContact {
+  0% {
+    transform: translate3d(0, 23px, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 23px, 0);
+  }
+}
+
+@-webkit-keyframes floatUpDownContact {
+  0% {
+    -webkit-transform: translate3d(0, 23px, 0);
+  }
+
+  50% {
+    -webkit-transform: translate3d(0, -10px, 0);
+  }
+
+  100% {
+    -webkit-transform: translate3d(0, 23px, 0);
+  }
+}
+
+@keyframes floatUpDownContactSm {
+  0% {
+    transform: translate3d(0, 10px, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -5px, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 10px, 0);
+  }
+}
+
+@-webkit-keyframes floatUpDownContactSm {
+  0% {
+    -webkit-transform: translate3d(0, 10px, 0);
+  }
+
+  50% {
+    -webkit-transform: translate3d(0, -5px, 0);
+  }
+
+  100% {
+    -webkit-transform: translate3d(0, 10px, 0);
+  }
+}
+
+
 app-header {
     position: absolute;
     z-index: 10000;
@@ -178,7 +234,6 @@ body.mat-typography {
 }
 
 html {
-    // height: auto !important;
     overflow-y: auto !important;
 }
 
@@ -197,14 +252,12 @@ html, body {
 }
 
 
-
 .mat-drawer-container,
 .mat-sidenav-container,
 .mat-app-background {
     height: auto !important;
     overflow: visible !important;
 }
-
 
 
 @font-face {
@@ -255,17 +308,14 @@ html, body {
         font-family: 'Material Icons' !important;
     }
 
-    /* 🧩 Platzhalter-Schrift für russische Texte */
     input::placeholder,
     textarea::placeholder {
         font-family: 'RobotoRegular';
         font-size: 15px;
         font-weight: 400;
         color: rgba(0, 0, 0, 0.6);
-        /* optional, weicher Grauton */
     }
 
-    /* Optional – falls dein Browser-Reset es überschreibt */
     ::-webkit-input-placeholder {
         font-family: 'RobotoRegular';
     }
@@ -288,7 +338,6 @@ html, body {
 
     @media (max-width: 690px) {
         padding: 4rem 24px 0px 16px;
-
     }
 
       @media screen and (max-height: 700px) {

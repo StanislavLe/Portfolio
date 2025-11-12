@@ -11,9 +11,6 @@
     gap: 10px;
   }
 
-  @media screen and (max-width: 690px) {
-  }
-
   @media screen and (max-width: 510px) {
     flex-direction: column;
     gap: 24px;
@@ -50,7 +47,7 @@
   align-items: flex-start;
   padding: clamp(12px, 2vw, 20px) clamp(16px, 3vw, 24px);
   max-width: 1144px;
-    border: #1D1D1D solid 1px;
+  border: #1D1D1D solid 1px;
   border-radius: 4px;
 
   @media screen and (max-width: 510px) {
@@ -225,7 +222,7 @@ h3 {
   will-change: transform;
 
   &:hover {
-    animation-play-state: paused; 
+    animation-play-state: paused;
     filter: brightness(1.2) drop-shadow(0 2px 6px #0002);
   }
 }

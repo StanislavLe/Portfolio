@@ -1,0 +1,137 @@
+.main-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  height: 85dvh;
+  width: 100vw;
+  position: relative;
+  z-index: auto;
+  transform: none;
+  filter: none;
+  padding: 10rem 82px 0px 58px;
+
+  @media (max-width: 690px) {
+    padding: 4.8rem 24px 0px 16px;
+  }
+}
+
+.contentContainer {
+  background-color: #1D1D1D;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: clamp(24px, 5vw, 160px);
+  max-width: 1900px;
+  width: 100%;
+
+  @media screen and (max-width: 690px) {
+    flex-direction: column;
+  }
+}
+
+.contact-header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1900px;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
+}
+
+h1 {
+  font-size: clamp(28px, 5vw, 72px);
+  font-family: 'eczarBold';
+  color: #F9AF42;
+  line-height: 110%;
+  margin-bottom: clamp(32px, 6vh, 64px);
+  max-width: 700px;
+  width: fit-content;
+
+  @media screen and (max-width:900px) {
+    max-width: 93%;
+    margin-bottom: clamp(32px, 4vh, 64px);
+  }
+
+  @media screen and (max-width: 690px) {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  @media screen and (max-height: 830px) {
+    padding: 0px;
+    margin: 0px;
+  }
+}
+
+.text-content {
+  flex: 1;
+  max-width: 875px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media screen and (max-width: 900px) {
+    max-width: none;
+    width: 100%;
+  }
+
+  h2 {
+    color: #FF834F;
+    font-weight: 700;
+    font-size: clamp(18px, 2vw, 24px);
+    line-height: 120%;
+
+    @media screen and (max-height: 770px) {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    @media screen and (max-height: 665px) {
+      padding: 0px;
+      margin: 0px;
+    }
+  }
+
+  span {
+    font-family: 'quicksandBook';
+    font-size: clamp(14px, 1.5vw, 16px);
+    line-height: 1.4;
+    color: #F8F7E5;
+  }
+}
+
+.arrow-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: border-color .2s ease;
+  width: max-content;
+  position: absolute;
+  bottom: 10%;
+  right: 42px;
+  will-change: transform;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  z-index: 10000;
+
+  &:hover {
+    border-bottom: 2px solid #FF834F;
+  }
+
+  @media screen and (max-height: 1090px) {
+    bottom: 12%;
+  }
+
+  @media screen and (max-width: 690px) {
+    bottom: 3%;
+  }
+}

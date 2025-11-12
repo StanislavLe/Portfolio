@@ -17,27 +17,6 @@
         bottom: 43px;
     }
 
-    @media screen and (max-height: 926px) {
-
-        @media screen and (max-width: 588px) {}
-    }
-
-    @media screen and (max-width: 1247px) {}
-
-    @media screen and (max-width: 980px) {}
-
-
-
-    @media screen and (max-width: 613px) {}
-
-    @media screen and (max-width: 930px) {}
-
-    @media screen and (max-height: 785px) {}
-
-    @media screen and (max-height: 680px) {}
-
-
-
     .footer-image-container {
         position: relative;
         width: clamp(150px, 20vw, 400px);
@@ -52,13 +31,6 @@
                 width: clamp(80px, 20vw, 400px);
             }
         }
-
-        @media screen and (max-width: 900px) {}
-
-        @media screen and (max-width: 690px) {}
-
-        @media screen and (max-width: 613px) {}
-
 
         img {
             position: absolute;
@@ -132,12 +104,9 @@
             color: #FF834F;
         }
 
-
         @media screen and (max-width: 1230px) {
             width: 67%;
         }
-
-
 
         @media screen and (max-width: 900px) {
             flex-direction: column;
@@ -149,10 +118,6 @@
         @media screen and (max-width: 690px) {
             width: 100%;
         }
-
-        @media screen and (max-width: 450px) {}
-
-        @media screen and (max-height: 670px) {}
     }
 
 }
@@ -177,27 +142,6 @@
         bottom: 43px;
     }
 
-    @media screen and (max-height: 926px) {
-
-        @media screen and (max-width: 588px) {}
-    }
-
-    @media screen and (max-width: 1247px) {}
-
-    @media screen and (max-width: 980px) {}
-
-
-
-    @media screen and (max-width: 613px) {}
-
-    @media screen and (max-width: 930px) {}
-
-    @media screen and (max-height: 785px) {}
-
-    @media screen and (max-height: 680px) {}
-
-
-
     .footer-image-container {
         position: relative;
         width: clamp(150px, 18vw, 380px);
@@ -212,13 +156,6 @@
                 width: clamp(80px, 20vw, 380px);
             }
         }
-
-        @media screen and (max-width: 900px) {}
-
-        @media screen and (max-width: 690px) {}
-
-        @media screen and (max-width: 613px) {}
-
 
         img {
             position: absolute;
@@ -257,7 +194,6 @@
 
         @media screen and (max-width: 480px) {
             flex-direction: column;
-
         }
 
         @media screen and (max-height: 926px) {
@@ -297,12 +233,9 @@
             color: #FF834F;
         }
 
-
         @media screen and (max-width: 1230px) {
             width: 67%;
         }
-
-
 
         @media screen and (max-width: 900px) {
             flex-direction: column;
@@ -314,10 +247,5 @@
         @media screen and (max-width: 690px) {
             width: 100%;
         }
-
-        @media screen and (max-width: 450px) {}
-
-        @media screen and (max-height: 670px) {}
     }
-
 }

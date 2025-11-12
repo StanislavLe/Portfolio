@@ -27,7 +27,7 @@ import { SectionNavService } from '../shared/sections.config';
     CommonModule,
   ],
   templateUrl: './contact-me.component.html',
-  styleUrls: ['./contact-me.component.scss'],
+  styleUrls: ['./contact-me.component.scss', './contact-me.component.media.scss']
 })
 export class ContactMeComponent implements OnInit {
   private http = inject(HttpClient);

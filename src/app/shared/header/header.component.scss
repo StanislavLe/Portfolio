@@ -1,6 +1,3 @@
-/* =========================================================
-   🔹 BASE HEADER
-   ========================================================= */
 :host {
   display: block;
   position: relative;
@@ -66,9 +63,6 @@
 }
 
 
-/* =========================================================
-   🔹 INNER LAYOUT
-   ========================================================= */
 .header-inner {
   display: flex;
   justify-content: space-between;
@@ -102,9 +96,6 @@
   justify-content: space-between;
 }
 
-/* =========================================================
-   🔹 LOGO
-   ========================================================= */
 .logo {
   display: flex;
   align-items: center;
@@ -123,9 +114,6 @@
   }
 }
 
-/* =========================================================
-   🔹 SOCIAL LINKS (in Toolbar)
-   ========================================================= */
 .social-links {
   display: flex;
   gap: 10px;
@@ -145,9 +133,6 @@
   }
 }
 
-/* =========================================================
-   🔹 BUTTONS (Language + Menu)
-   ========================================================= */
 .languageButton,
 .menuButton {
   border: 2px solid currentColor;
@@ -181,9 +166,6 @@
   height: 24px;
 }
 
-/* =========================================================
-   🔹 DRAWER (Custom)
-   ========================================================= */
 .custom-drawer {
   position: fixed;
   top: 6px;
@@ -205,7 +187,6 @@
     transform: translateY(0);
   }
 
-  // Sicherheitsnetz für kleine Screens:
   @media (max-width: 1960px) {
     right: 17px;
   }
@@ -218,9 +199,6 @@
 }
 
 
-/* =========================================================
-   🔹 DRAWER CONTENT
-   ========================================================= */
 .drawer-inner {
   background: #F8F7E5;
   height: max-content;
@@ -235,7 +213,7 @@
   color: #679AAC;
   font-family: 'quicksandBold';
   font-size: clamp(28px, 2.2vw, 38px);
-  padding-top: clamp(12px, 1vw, 24px); // 🔥 dynamisches Padding
+  padding-top: clamp(12px, 1vw, 24px); 
   padding-left: clamp(16px, 2vw, 20px);
   padding-bottom: clamp(8px, 1.5vw, 13px);
   padding-right: clamp(12px, 1vw, 24px);
@@ -253,12 +231,6 @@
   padding: 4px;
 }
 
-/* =========================================================
-   🔹 NAVIGATION
-   ========================================================= */
-/* =========================================================
-   🔹 DRAWER NAVIGATION (Responsive & Dynamisch)
-   ========================================================= */
 .drawer-nav {
   display: flex;
   flex-direction: column;
@@ -278,12 +250,10 @@
     padding: clamp(6px, 1vw, 12px) 0;
     transition: transform 0.3s ease, color 0.3s ease;
 
-    /* 🔹 Text leicht bewegen */
     span {
       transition: transform 0.3s ease, color 0.3s ease;
     }
 
-    /* 🔹 Icon vorbereitet (unsichtbar & nach links verschoben) */
     img {
       width: clamp(20px, 3vw, 40px);
       height: clamp(20px, 3vw, 40px);
@@ -293,7 +263,6 @@
       flex-shrink: 0;
     }
 
-    /* 🔹 Hover-Effekt */
     &:hover {
       color: #FF834F;
 
@@ -314,15 +283,12 @@
 }
 
 
-/* =========================================================
-   🔹 DRAWER SOCIAL LINKS
-   ========================================================= */
 .drawer-social {
   display: none;
   gap: 10px;
   justify-content: flex-start;
   align-items: center;
-  padding: clamp(8px, 1.5vw, 20px) clamp(16px, 3vw, 48px); // 🔥 dynamisches Padding
+  padding: clamp(8px, 1.5vw, 20px) clamp(16px, 3vw, 48px); 
   background: #F8F7E5;
 
   img {
@@ -336,9 +302,6 @@
   }
 }
 
-/* =========================================================
-   🔹 RESPONSIVE
-   ========================================================= */
 @media (max-width: 690px) {
 
   .languageButton,
@@ -354,9 +317,6 @@
 }
 
 
-/* =========================================================
-   🔹 LEGAL VARIANTE – Social Links immer sichtbar
-   ========================================================= */
 .header.legal {
   .drawer-social {
     display: flex !important;

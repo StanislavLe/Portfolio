@@ -15,8 +15,6 @@
         justify-content: start;
         align-items: center;
     }
-
-
 }
 
 .text-section {
@@ -34,10 +32,6 @@
         width: 100%;
         gap: 4px;
     }
-
-    @media screen and (max-width: 510px) {}
-
-    @media screen and (max-height: 540px) {}
 }
 
 .text {
@@ -78,10 +72,7 @@ h1 {
 
     @media screen and (max-height: 690px) {
         width: 107%;
-
     }
-
-    @media screen and (max-height: 635px) {}
 
 }
 
@@ -104,7 +95,6 @@ h1 {
         bottom: unset;
     }
 
-
     @media screen and (max-width: 690px) {
         flex-direction: row;
         justify-content: center;
@@ -114,17 +104,11 @@ h1 {
         padding-top: 16px;
     }
 
-
-
-    @media screen and (max-height: 800px) {}
-
     div {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column-reverse;
-
-
 
         span {
             display: flex;
@@ -172,8 +156,6 @@ h1 {
 }
 
 
-
-
 .skillset-container {
     display: flex;
     flex-direction: column;
@@ -191,7 +173,6 @@ h1 {
         top: 143px;
     }
 
-
     @media screen and (max-width: 690px) {
         flex-direction: column;
         justify-content: center;
@@ -199,10 +180,6 @@ h1 {
         width: 100%;
         top: unset;
     }
-
-    @media screen and (max-width: 690px) {}
-
-    @media screen and (max-width: 510px) {}
 
     @media screen and (max-height: 900px) {
         top: 124px;
@@ -237,8 +214,6 @@ h1 {
         left: 138%;
     }
 
-    @media screen and (max-width: 1247px) {}
-
     @media screen and (max-width: 690px) {
         position: absolute;
         left: 230%;
@@ -250,8 +225,6 @@ h1 {
         @media screen and (max-width: 1062px) {
             left: 138%;
         }
-
-        @media screen and (max-width: 1247px) {}
 
         @media screen and (max-width: 690px) {
             position: absolute;
@@ -267,14 +240,12 @@ h1 {
             left: 138%;
         }
 
-        @media screen and (max-width: 1247px) {}
-
         @media screen and (max-width: 690px) {
             position: absolute;
             left: 192%;
         }
 
-          @media screen and (max-width: 480px) {
+        @media screen and (max-width: 480px) {
             left: 236%;
         }
     }
@@ -296,7 +267,6 @@ h1 {
         align-items: stretch;
         text-align: justify;
         color: #F8F7E5;
-
     }
 
     div {
@@ -340,12 +310,6 @@ h1 {
     position: absolute;
     bottom: 0px;
     left: 20px;
-
-    @media screen and (max-width: 1516px) {}
-
-    @media screen and (max-width: 1023px) {}
-
-    @media screen and (max-width: 510px) {}
 }
 
 .mindset-icon {
@@ -357,9 +321,6 @@ h1 {
     width: clamp(60px, 8vw, 120px);
     height: clamp(60px, 8vw, 120px);
     bottom: 24px;
-
-    @media screen and (max-height: 1023px) {}
-
 }
 
 .skillsetImg {
@@ -389,15 +350,12 @@ h1 {
     align-items: end;
     width: 100%;
 
-
     @media screen and (max-width: 690px) {
         display: flex;
         cursor: pointer;
         bottom: 20px;
     }
 }
-
-
 
 @media (hover: hover) and (pointer: fine) {
     .close-btn {

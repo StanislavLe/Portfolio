@@ -13,8 +13,6 @@
     width: 100vw;
   }
 
-  @media screen and (max-width: 600px) {}
-
   @media screen and (max-height: 905px) {
     justify-content: start;
   }
@@ -64,8 +62,6 @@ h1 {
     width: 100%;
     align-items: stretch;
   }
-
-  @media screen and (max-width: 690px) {}
 
   @media screen and (max-height: 770px) {
     margin-top: 6px;

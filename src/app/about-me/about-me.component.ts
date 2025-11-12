@@ -10,7 +10,7 @@ import { SectionNavService } from '../shared/sections.config';
   standalone: true,
   imports: [CommonModule, MatButtonModule, MatIconModule],
   templateUrl: './about-me.component.html',
-  styleUrls: ['./about-me.component.scss']
+  styleUrls: ['./about-me.component.scss', './about-me.component.media.scss']
 })
 export class AboutMeComponent implements OnInit {
   currentLang: SupportedLang = 'de';
