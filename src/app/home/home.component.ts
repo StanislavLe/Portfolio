@@ -1,5 +1,5 @@
-import { Component, OnInit, AfterViewInit, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HeaderComponent } from '../shared/header/header.component';
 import { FooterComponent } from '../shared/footer/footer.component';
@@ -17,12 +17,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
   currentSection = 'hero';
   isLastSection = false;
 
-  @ViewChild('pager') pager!: SectionPagerComponent;
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private nav: SectionNavService,
+    @Inject(DOCUMENT) private document: Document,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
@@ -45,18 +44,32 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.nav.requestScroll('hero');
-    }
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    const sections = this.document.querySelectorAll('section[id]');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            if (id) this.nav.setActive(id);
+          }
+        }
+      },
+      { threshold: 0.5 }
+    );
+    sections.forEach((section) => observer.observe(section));
+
+    // 🧭 Handle scroll requests from Header/Hero
+    this.nav.scrollTo$.subscribe((id) => this.scrollToSection(id));
   }
 
-  onSectionChanged(id: string) {
-    this.currentSection = id;
-    this.router.navigate([], {
-      fragment: id,
-      replaceUrl: true,
-      queryParamsHandling: 'preserve'
-    });
+  private scrollToSection(id: string) {
+    const target = this.document.querySelector(`#${id}`);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      this.nav.setActive(id);
+    }
   }
 
   onNavigateSection(id: string) {

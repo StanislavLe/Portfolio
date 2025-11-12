@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Output, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { LanguageService, SupportedLang } from '../shared/language.service';
+import { SectionNavService } from '../shared/sections.config';
 
 @Component({
   selector: 'app-hero-section',
@@ -11,8 +12,6 @@ import { LanguageService, SupportedLang } from '../shared/language.service';
   styleUrls: ['./hero-section.component.scss'],
 })
 export class HeroSectionComponent implements OnInit {
-  @Output() scrollToBottom = new EventEmitter<void>();
-
   currentLang: SupportedLang = 'de';
 
   translations = {
@@ -40,13 +39,18 @@ export class HeroSectionComponent implements OnInit {
 
   constructor(
     private langService: LanguageService,
-    private cdr: ChangeDetectorRef 
+    private cdr: ChangeDetectorRef,
+    private nav: SectionNavService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.langService.lang$.subscribe((lang) => {
       this.currentLang = lang;
-      this.cdr.detectChanges(); 
+      this.cdr.detectChanges();
     });
+  }
+
+  scrollToContactSection(): void {
+    this.nav.requestScroll('contact');
   }
 }

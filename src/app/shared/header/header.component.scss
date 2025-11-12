@@ -42,7 +42,7 @@
     color: #F8F7E5;
   }
 
-    @media (max-width: 1090px) {
+  @media (max-width: 1090px) {
     height: 4.5rem;
   }
 
@@ -78,13 +78,15 @@
   padding-left: 24px;
   padding-right: 24px;
 
-      @media (max-width: 1090px) {
- padding-left: 20px;
-  padding-right: 20px;  }
+  @media (max-width: 1090px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 
   @media (max-width: 690px) {
- padding-left: 8px;
-  padding-right: 8px;  }
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 }
 
 .header-right {
@@ -184,9 +186,9 @@
    ========================================================= */
 .custom-drawer {
   position: fixed;
-  top: 21px;
-  right: calc((100vw - 1946px) / 2 + 17px);
-  width: clamp(338px, 38vw, 388px);
+  top: 6px;
+  right: calc((100vw - 1940px) / 2 + 17px);
+  width: clamp(216px, 38vw, 388px);
   background: #679AAC;
   border: 2px solid #1D1D1D;
   border-radius: 12px;
@@ -204,8 +206,14 @@
   }
 
   // Sicherheitsnetz für kleine Screens:
-  @media (max-width: 1920px) {
+  @media (max-width: 1960px) {
     right: 17px;
+  }
+
+  @media (max-width: 690px) {
+    right: 2px;
+    top: 2px;
+
   }
 }
 
@@ -226,12 +234,15 @@
   background: #F8F7E5;
   color: #679AAC;
   font-family: 'quicksandBold';
-  font-size: 42px;
-  padding: 12px 24px;
+  font-size: clamp(28px, 2.2vw, 38px);
+  padding-top: clamp(12px, 1vw, 24px); // 🔥 dynamisches Padding
+  padding-left: clamp(16px, 2vw, 20px);
+  padding-bottom: clamp(8px, 1.5vw, 13px);
+  padding-right: clamp(12px, 1vw, 24px);
 
   img {
-    width: 28px;
-    height: 28px;
+    width: clamp(24px, 1vw, 36px);
+    height: clamp(24px, 1vw, 36px);
   }
 }
 
@@ -245,23 +256,26 @@
 /* =========================================================
    🔹 NAVIGATION
    ========================================================= */
+/* =========================================================
+   🔹 DRAWER NAVIGATION (Responsive & Dynamisch)
+   ========================================================= */
 .drawer-nav {
   display: flex;
   flex-direction: column;
   background: #F8F7E5;
-  padding: 12px 24px;
+  padding: 12px clamp(16px, 3vw, 48px);
   position: relative;
-  right: 47px;
+  right: clamp(26px, 5vw, 88px);
 
   a {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: clamp(8px, 1.5vw, 24px);
     font-family: 'quicksandBold';
-    font-size: 32px;
+    font-size: clamp(18px, 2.2vw, 32px);
     color: #000 !important;
     text-decoration: none !important;
-    padding: 8px 0;
+    padding: clamp(6px, 1vw, 12px) 0;
     transition: transform 0.3s ease, color 0.3s ease;
 
     /* 🔹 Text leicht bewegen */
@@ -269,13 +283,14 @@
       transition: transform 0.3s ease, color 0.3s ease;
     }
 
-    /* 🔹 Icon vorbereiten (unsichtbar & nach links verschoben) */
+    /* 🔹 Icon vorbereitet (unsichtbar & nach links verschoben) */
     img {
-      width: 40px;
-      height: 40px;
+      width: clamp(20px, 3vw, 40px);
+      height: clamp(20px, 3vw, 40px);
       opacity: 0;
       transform: translateX(-20px);
       transition: all 0.3s ease;
+      flex-shrink: 0;
     }
 
     /* 🔹 Hover-Effekt */
@@ -284,11 +299,11 @@
 
       img {
         opacity: 1;
-        transform: translateX(50px);
+        transform: translateX(0);
       }
 
       span {
-        transform: translateX(50px);
+        transform: translateX(10px);
       }
     }
 
@@ -298,6 +313,7 @@
   }
 }
 
+
 /* =========================================================
    🔹 DRAWER SOCIAL LINKS
    ========================================================= */
@@ -306,12 +322,12 @@
   gap: 10px;
   justify-content: flex-start;
   align-items: center;
-  padding: 16px 24px;
+  padding: clamp(8px, 1.5vw, 20px) clamp(16px, 3vw, 48px); // 🔥 dynamisches Padding
   background: #F8F7E5;
 
   img {
-    width: 40px;
-    height: 40px;
+    width: clamp(24px, 2vw, 40px);
+    height: clamp(24px, 2vw, 40px);
     transition: filter 0.3s ease;
 
     &:hover {
@@ -346,13 +362,3 @@
     display: flex !important;
   }
 }
-
-
-
-
-
-
-
-
-
-

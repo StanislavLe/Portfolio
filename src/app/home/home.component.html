@@ -1,15 +1,3 @@
-<app-header
-  variant="home"
-  [currentSection]="currentSection"
-  (navigateSection)="onNavigateSection($event)">
-</app-header>
+<app-header variant="home"></app-header>
 
-<app-section-pager
-  #pager
-  [currentSection]="currentSection"
-  (sectionChanged)="onSectionChanged($event)"
-  (navigateSection)="onNavigateSection($event)">  <!-- 👈 funktioniert jetzt -->
-</app-section-pager>
-
-
-
+<app-section-pager></app-section-pager>

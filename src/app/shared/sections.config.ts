@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { SupportedLang } from './language.service'; // 👈 dein Typ-Import
+import { SupportedLang } from './language.service';
 
 @Injectable({ providedIn: 'root' })
 export class SectionNavService {
@@ -23,14 +23,12 @@ export class SectionNavService {
   private _isLast$ = new BehaviorSubject<boolean>(false);
   isLast$ = this._isLast$.asObservable();
 
-  /** 🧠 prüft automatisch, ob aktuelle Section die letzte ist */
   private updateIsLast(id: string) {
     const lastId = SECTIONS[SECTIONS.length - 1].id;
     this._isLast$.next(id === lastId);
   }
 }
 
-/* 🌍 Mehrsprachige Sections */
 export const SECTIONS_TRANSLATIONS: Record<SupportedLang, { id: string; label: string }[]> = {
   de: [
     { id: 'hero', label: 'Start' },
@@ -58,5 +56,4 @@ export const SECTIONS_TRANSLATIONS: Record<SupportedLang, { id: string; label: s
   ],
 };
 
-/* 🧱 Fallback auf Deutsch */
 export const SECTIONS = SECTIONS_TRANSLATIONS['de'];
