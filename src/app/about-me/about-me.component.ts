@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Output, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { LanguageService, SupportedLang } from '../shared/language.service';
+import { SectionNavService } from '../shared/sections.config';
 
 @Component({
   selector: 'app-about-me',
@@ -12,8 +13,8 @@ import { LanguageService, SupportedLang } from '../shared/language.service';
   styleUrls: ['./about-me.component.scss']
 })
 export class AboutMeComponent implements OnInit {
-  @Output() scrollToBottom = new EventEmitter<void>();
   currentLang: SupportedLang = 'de';
+  private sectionNav = inject(SectionNavService);
 
   translations = {
     title: {
@@ -70,6 +71,8 @@ export class AboutMeComponent implements OnInit {
     }
   };
 
+  panelVisible = false;
+
   constructor(
     private langService: LanguageService,
     private cdr: ChangeDetectorRef
@@ -82,14 +85,16 @@ export class AboutMeComponent implements OnInit {
     });
   }
 
-  panelVisible = false;
+  togglePanel() {
+    this.panelVisible = !this.panelVisible;
+  }
 
-togglePanel() {
-  this.panelVisible = !this.panelVisible;
-}
+  closePanel() {
+    this.panelVisible = false;
+  }
 
-closePanel() {
-  this.panelVisible = false;
-}
-
+  /** 🧭 Scrollt zur Kontakt-Section */
+  scrollToContact(): void {
+    this.sectionNav.requestScroll('contact');
+  }
 }

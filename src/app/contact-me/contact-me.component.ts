@@ -1,18 +1,17 @@
 import {
   Component,
-  Output,
-  EventEmitter,
   inject,
   ChangeDetectorRef,
   NgZone,
   OnInit
 } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { NgFor, NgIf, NgSwitch, NgSwitchCase, CommonModule } from '@angular/common';
+import { CommonModule, NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { HttpClient } from '@angular/common/http';
 import { LanguageService, SupportedLang } from '../shared/language.service';
+import { SectionNavService } from '../shared/sections.config';
 
 @Component({
   selector: 'app-contact-me',
@@ -31,10 +30,11 @@ import { LanguageService, SupportedLang } from '../shared/language.service';
   styleUrls: ['./contact-me.component.scss'],
 })
 export class ContactMeComponent implements OnInit {
-  http = inject(HttpClient);
-  @Output() scrollToTop = new EventEmitter<void>();
+  private http = inject(HttpClient);
+  private sectionNav = inject(SectionNavService);
 
   currentLang: SupportedLang = 'de';
+  isSuccess = false;
 
   contactData = {
     name: '',
@@ -42,8 +42,6 @@ export class ContactMeComponent implements OnInit {
     message: '',
     agreement: false,
   };
-
-  isSuccess: boolean = false;
 
   post = {
     endPoint: 'https://stanislav-levin.de/sendMail.php',
@@ -137,7 +135,7 @@ export class ContactMeComponent implements OnInit {
     private langService: LanguageService,
     private cdr: ChangeDetectorRef,
     private zone: NgZone
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.langService.lang$.subscribe((lang) => {
@@ -148,17 +146,15 @@ export class ContactMeComponent implements OnInit {
     });
   }
 
+  /** 📬 Sendet das Formular */
   onSubmit(ngForm: NgForm) {
     if (ngForm.submitted && ngForm.form.valid) {
       this.http
         .post(this.post.endPoint, this.post.body(this.contactData), this.post.options)
         .subscribe({
-          next: (response: any) => {
-            console.log('✅ Response:', response);
+          next: () => {
             this.isSuccess = true;
-
             setTimeout(() => (this.isSuccess = false), 4000);
-
             ngForm.resetForm({
               name: '',
               email: '',
@@ -166,15 +162,20 @@ export class ContactMeComponent implements OnInit {
               agreement: false,
             });
           },
-          error: (error: any) => {
+          error: (error) => {
             console.error('❌ Error:', error);
             this.isSuccess = false;
           },
-          complete: () => console.info('📬 send post complete'),
         });
     }
   }
 
+  /** ✅ Scrollt zur Hero Section */
+  scrollToHero(): void {
+    this.sectionNav.requestScroll('hero');
+  }
+
+  /** 💬 Tooltip & Form-Hinweise */
   get isFormAlmostValid(): boolean {
     const name = this.contactData.name ?? '';
     const email = this.contactData.email ?? '';
