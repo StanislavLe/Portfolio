@@ -121,7 +121,7 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
    * @param nav - Globaler Navigationsservice zur Synchronisierung aktiver Sections.
    * @param cdr - ChangeDetectorRef für manuelles Triggern von Change Detection bei OnPush.
    */
-  constructor(private nav: SectionNavService, private cdr: ChangeDetectorRef) {}
+  constructor(private nav: SectionNavService, private cdr: ChangeDetectorRef) { }
 
   /**
    * Lifecycle Hook – `ngOnInit`
@@ -190,23 +190,37 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   // ---------------------------------------------------------------------------
-  // Scroll- & Touch-Event Handling
+  // Scroll- & Touch-Event Handling (Ein-Section-pro-Scroll, stabil)
   // ---------------------------------------------------------------------------
 
   /**
-   * Reagiert auf Mausrad-Scrollereignisse und wechselt entsprechend die Section.
+   * 🖱️ Scroll-Verhalten:
+   * --------------------
+   * - Egal wie stark oder oft das Mausrad betätigt wird:
+   *   ➜ Es wird **immer nur eine Section** pro Scrollbewegung gewechselt.
+   * - Nach jedem Scroll gibt es eine kurze Pause (cooldown),
+   *   damit keine Mehrfach-Scrolls auftreten.
    */
+
+  private scrollCooldown = false; 
+  private scrollDelay = 900; 
+
   @HostListener('wheel', ['$event'])
   onWheel(event: WheelEvent): void {
-    if (this.isScrolling) return;
-    if (event.deltaY > 0 && this.currentSectionIndex < this.sections.length - 1) {
-      this.scheduleScroll(this.currentSectionIndex + 1);
-      event.preventDefault();
-    } else if (event.deltaY < 0 && this.currentSectionIndex > 0) {
-      this.scheduleScroll(this.currentSectionIndex - 1);
-      event.preventDefault();
-    }
+    event.preventDefault();
+    if (this.scrollCooldown || this.isScrolling) return;
+    const direction = event.deltaY > 0 ? 1 : -1;
+    const nextIndex = this.currentSectionIndex + direction;
+    if (nextIndex < 0 || nextIndex >= this.sections.length) return;
+    this.isScrolling = true;
+    this.scrollCooldown = true;
+    this.scrollToSection(nextIndex); 
+    setTimeout(() => {
+      this.scrollCooldown = false;
+      this.isScrolling = false;
+    }, this.scrollDelay);
   }
+
 
   /**
    * Speichert die Startposition bei einer Touch-Geste.
@@ -255,21 +269,25 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
    * - Löst `sectionChanged` Event für Elternkomponenten aus
    */
   scrollToSection(index: number): void {
-    if (this.isScrolling) return;
-    this.isScrolling = true;
     const el = this.sectionRefs.get(index)?.nativeElement;
-    if (el?.scrollIntoView) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (!el) return;
+
+    // 🎨 Aktive Section sofort setzen (Header-Update erfolgt direkt)
+    this.currentSectionIndex = index;
+    const id = this.sections[index].id;
+    this.sectionChanged.emit(id);
+    this.nav.setActive(id); // <- sofort Header-Farbe updaten
+
+    // Danach das eigentliche Scrollen starten
+    el.scrollIntoView({ behavior: 'smooth' });
+
+    // Optional leichte Verzögerung zur visuellen Synchronität
     setTimeout(() => {
-      this.currentSectionIndex = index;
-      const id = this.sections[index].id;
-      this.sectionChanged.emit(id);
-      this.nav.setActive(id);
-      this.isScrolling = false;
       this.cdr.markForCheck();
-    }, 0);
+    }, 200);
   }
+
+
 
   /**
    * Öffentliche Methode für externe Navigationsaufrufe.
