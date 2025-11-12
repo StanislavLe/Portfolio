@@ -12,7 +12,9 @@
 
     @media screen and (max-width: 690px) {}
 
-    @media screen and (max-width: 510px) {}
+    @media screen and (max-width: 510px) {
+        gap: 24px;
+    }
 }
 
 .project-wrapper {
@@ -52,7 +54,7 @@ h1 {
         padding-bottom: 4px;
         padding-right: unset;
         padding-top: 4px;
-        gap: 0px;
+        gap: 8px;
     }
 
     span {

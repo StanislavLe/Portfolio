@@ -47,6 +47,11 @@
   @media screen and (max-width: 1247px) {}
 
   @media screen and (max-width: 690px) {}
+
+      @media screen and (max-width: 510px) {
+        justify-content: start;
+        padding-top: 2rem;
+      }
 }
 
 .pager-section#skills {
