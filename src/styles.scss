@@ -178,7 +178,7 @@ body.mat-typography {
 }
 
 html {
-    height: auto !important;
+    // height: auto !important;
     overflow-y: auto !important;
 }
 
@@ -188,14 +188,14 @@ html {
     overflow: visible !important;
 }
 
-html,
-body {
-    min-height: 100dvh !important;
-    height: auto !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    position: relative !important;
+html, body {
+  height: 100%;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
+
 
 
 .mat-drawer-container,

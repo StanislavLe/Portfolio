@@ -12,7 +12,7 @@
   padding: 10rem 82px 0px 58px;
 
   @media (max-width: 690px) {
-    padding: 3.8rem 24px 0px 16px;
+    padding: 4.8rem 24px 0px 16px;
   }
 
 
@@ -398,7 +398,7 @@ h1 {
   transition: border-color .2s ease;
   width: max-content;
   position: absolute;
-  bottom: 73%;
+  bottom: 10%;
   right: 42px;
   will-change: transform;
   -webkit-transform: translateZ(0);
@@ -411,33 +411,15 @@ h1 {
     border-bottom: 2px solid #FF834F;
   }
 
+
+  @media screen and (max-height: 1090px) {
+    bottom: 12%;
+
+  }
+
   @media screen and (max-width: 690px) {
-    bottom: unset;
-    top: 721px;
+    bottom: 3%;
   }
-
-
-  @media screen and (max-width: 551px) {
-    right: clamp(52px, 100vw - 2015px, 1900px);
-  }
-
-  @media screen and (max-width: 466px) {
-    top: 632px;
-  }
-
-  @media screen and (max-width: 429px) {
-    top: 652px;
-  }
-
-
-  @media screen and (max-height: 880px) {
-    @media screen and (max-width: 690px) {
-      top: 80%;
-
-    }
-
-  }
-
 }
 
 @keyframes floatUpDownContact {
@@ -508,7 +490,6 @@ h1 {
 
   @media screen and (max-width: 690px) {
     position: relative;
-    bottom: 46px;
     z-index: 10000;
   }
 }
@@ -524,7 +505,6 @@ h1 {
     width: clamp(20px, 3vw, 40px);
     height: auto;
     position: relative;
-    bottom: 27px;
   }
 }
 
