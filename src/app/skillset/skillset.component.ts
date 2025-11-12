@@ -1,3 +1,21 @@
+/**
+ * SkillsetComponent
+ * ------------------
+ *
+ * Diese Komponente stellt die technischen Kernkompetenzen und Lerninteressen des Entwicklers dar.
+ *
+ * Hauptaufgaben:
+ * - Darstellung der wichtigsten Frontend-Technologien (Skills)
+ * - Mehrsprachige Textinhalte und Beschreibungen (Deutsch, Englisch, Russisch)
+ * - Umschaltbarer Informationsbereich über Lerninteressen
+ * - Dynamische Sprachaktualisierung über den `LanguageService`
+ *
+ * Besonderheiten:
+ * - Reaktive Sprachumschaltung mit `ChangeDetectorRef`
+ * - Klare Trennung zwischen Fachwissen (`skills`) und Lernzielen (`learning`)
+ * - Responsive UI (über zugehörige SCSS-Dateien)
+ */
+
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageService, SupportedLang } from '../shared/language.service';
@@ -10,8 +28,15 @@ import { LanguageService, SupportedLang } from '../shared/language.service';
   styleUrls: ['./skillset.component.scss'],
 })
 export class SkillsetComponent implements OnInit {
+  /**
+   * Aktuell aktive Sprache (wird durch den `LanguageService` gesteuert).
+   */
   currentLang: SupportedLang = 'de';
 
+  /**
+   * Enthält alle statischen und dynamischen Texte der Komponente in drei Sprachen.
+   * Dazu zählen Überschriften, Einleitungstexte und Skill-Listen.
+   */
   translations = {
     title: {
       de: 'Kernkompetenzen',
@@ -39,6 +64,10 @@ export class SkillsetComponent implements OnInit {
       en: 'Feel free to contact me — I’m always eager to expand my skills. I’m especially interested in learning the following:',
       ru: 'Свяжитесь со мной — я всегда стремлюсь расширять свои знания. Особенно интересуюсь изучением следующих технологий:',
     },
+
+    /**
+     * Liste aller aktuell beherrschten Kerntechnologien.
+     */
     skills: [
       { id: 'html', icon: 'assets/img/html.png', labels: { de: 'HTML', en: 'HTML', ru: 'HTML' } },
       { id: 'css', icon: 'assets/img/css.png', labels: { de: 'CSS', en: 'CSS', ru: 'CSS' } },
@@ -51,32 +80,56 @@ export class SkillsetComponent implements OnInit {
       { id: 'scrum', icon: 'assets/img/SCRUM.png', labels: { de: 'SCRUM', en: 'SCRUM', ru: 'SCRUM' } },
       { id: 'material', icon: 'assets/img/Material-Design.png', labels: { de: 'Material Design', en: 'Material Design', ru: 'Material Design' } },
     ],
+
+    /**
+     * Liste der Technologien, die aktuell gelernt oder vertieft werden sollen.
+     */
     learning: [
       { id: 'react', icon: 'assets/img/React.png', labels: { de: 'React', en: 'React', ru: 'React' } },
       { id: 'vue', icon: 'assets/img/Vue.Js.png', labels: { de: 'Vue.js', en: 'Vue.js', ru: 'Vue.js' } },
-    ]
+    ],
   };
 
+  /**
+   * Steuert die Sichtbarkeit des Info-Panels über Lerninteressen.
+   */
+  panelVisible = false;
+
+  /**
+   * Konstruktor
+   *
+   * @param langService - Reaktiver Service für Sprachverwaltung
+   * @param cdr - Angular ChangeDetectorRef für manuelles Triggern von UI-Updates
+   */
   constructor(
     private langService: LanguageService,
     private cdr: ChangeDetectorRef
-  ) { }
+  ) {}
 
-  ngOnInit() {
+  /**
+   * Lifecycle Hook – `ngOnInit`
+   *
+   * Abonniert den Sprachstrom (`lang$`) des `LanguageService`
+   * und aktualisiert die aktuelle Sprache reaktiv bei jeder Änderung.
+   */
+  ngOnInit(): void {
     this.langService.lang$.subscribe(lang => {
       this.currentLang = lang;
       this.cdr.detectChanges();
     });
   }
 
-
-  panelVisible = false;
-
-  togglePanel() {
+  /**
+   * Öffnet oder schließt das Info-Panel.
+   */
+  togglePanel(): void {
     this.panelVisible = !this.panelVisible;
   }
 
-  closePanel() {
+  /**
+   * Schließt das Info-Panel explizit.
+   */
+  closePanel(): void {
     this.panelVisible = false;
   }
 }

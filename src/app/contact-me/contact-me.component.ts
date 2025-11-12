@@ -1,3 +1,25 @@
+/**
+ * ContactMeComponent
+ * -------------------
+ *
+ * Diese Komponente stellt die Kontaktsektion der Website dar.
+ * Sie enthält ein Formular zur direkten Kontaktaufnahme per E-Mail,
+ * inklusive Validierung, Mehrsprachigkeit und einer asynchronen Backend-Anfrage.
+ *
+ * Hauptaufgaben:
+ * - Anzeige und Validierung des Kontaktformulars
+ * - Versand der Formulardaten an ein PHP-Mail-Backend
+ * - Reaktive Sprachunterstützung für alle Formulartexte
+ * - Anzeige dynamischer Hinweise (Erfolg, Datenschutz, etc.)
+ * - Integration mit der globalen Section-Navigation (`SectionNavService`)
+ *
+ * Besonderheiten:
+ * - `NgForm` zur Template-basierten Formularsteuerung
+ * - Sprachwechsel in Echtzeit durch `LanguageService`
+ * - Nutzung von `NgZone` + `ChangeDetectorRef` für performantes Rendering
+ * - API-Call via `HttpClient` mit JSON-Body und Custom Headern
+ */
+
 import {
   Component,
   inject,
@@ -6,7 +28,13 @@ import {
   OnInit
 } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { CommonModule, NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
+import {
+  CommonModule,
+  NgFor,
+  NgIf,
+  NgSwitch,
+  NgSwitchCase
+} from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { HttpClient } from '@angular/common/http';
@@ -30,12 +58,29 @@ import { SectionNavService } from '../shared/sections.config';
   styleUrls: ['./contact-me.component.scss', './contact-me.component.media.scss']
 })
 export class ContactMeComponent implements OnInit {
+  /**
+   * HTTP-Client für Formularübermittlung
+   */
   private http = inject(HttpClient);
+
+  /**
+   * Zugriff auf Section-Navigation für Scroll-to-Top / Hero
+   */
   private sectionNav = inject(SectionNavService);
 
+  /**
+   * Aktuell ausgewählte Sprache.
+   */
   currentLang: SupportedLang = 'de';
+
+  /**
+   * Zeigt an, ob das Formular erfolgreich versendet wurde.
+   */
   isSuccess = false;
 
+  /**
+   * Datenmodell für das Formular.
+   */
   contactData = {
     name: '',
     email: '',
@@ -43,6 +88,9 @@ export class ContactMeComponent implements OnInit {
     agreement: false,
   };
 
+  /**
+   * Konfiguration für den HTTP-POST-Request zum PHP-Mail-Endpunkt.
+   */
   post = {
     endPoint: 'https://stanislav-levin.de/sendMail.php',
     body: (payload: any) => JSON.stringify(payload),
@@ -52,6 +100,10 @@ export class ContactMeComponent implements OnInit {
     },
   };
 
+  /**
+   * Mehrsprachige Texte und Beschriftungen für das Formular.
+   * Enthält Header, Label, Placeholder, Fehlertexte und Buttons.
+   */
   translations = {
     header: {
       de: 'Lass uns was Cooles zusammen bauen',
@@ -131,13 +183,27 @@ export class ContactMeComponent implements OnInit {
     },
   };
 
+  /**
+   * Konstruktor mit Dependency Injection für Sprachsteuerung und Change Detection.
+   *
+   * @param langService - Service zur Sprachverwaltung
+   * @param cdr - ChangeDetectorRef für manuelles Aktualisieren des Templates
+   * @param zone - Angular NgZone für performante DOM-Aktualisierung außerhalb Angulars Change Detection
+   */
   constructor(
     private langService: LanguageService,
     private cdr: ChangeDetectorRef,
     private zone: NgZone
   ) {}
 
-  ngOnInit() {
+  /**
+   * Lifecycle Hook – `ngOnInit`
+   *
+   * Reaktives Sprachsystem:
+   * Aktualisiert alle Texte bei Sprachwechsel über den `LanguageService`.
+   * Führt UI-Updates in einer Microtask aus, um Performance zu optimieren.
+   */
+  ngOnInit(): void {
     this.langService.lang$.subscribe((lang) => {
       this.zone.runOutsideAngular(() => {
         this.currentLang = lang;
@@ -146,8 +212,17 @@ export class ContactMeComponent implements OnInit {
     });
   }
 
-  /** 📬 Sendet das Formular */
-  onSubmit(ngForm: NgForm) {
+  /**
+   * Wird beim Absenden des Formulars aufgerufen.
+   *
+   * @param ngForm - Template-gesteuertes Angular-Formular
+   *
+   * - Validiert Eingaben
+   * - Sendet POST-Request an definierten PHP-Endpunkt
+   * - Setzt Formular bei Erfolg zurück
+   * - Zeigt Erfolgsstatus temporär an
+   */
+  onSubmit(ngForm: NgForm): void {
     if (ngForm.submitted && ngForm.form.valid) {
       this.http
         .post(this.post.endPoint, this.post.body(this.contactData), this.post.options)
@@ -170,12 +245,18 @@ export class ContactMeComponent implements OnInit {
     }
   }
 
-  /** ✅ Scrollt zur Hero Section */
+  /**
+   * Scrollt zurück zum Hero-Abschnitt am Seitenanfang.
+   * Wird z. B. im Footer verwendet.
+   */
   scrollToHero(): void {
     this.sectionNav.requestScroll('hero');
   }
 
-  /** 💬 Tooltip & Form-Hinweise */
+  /**
+   * Prüft, ob das Formular fast vollständig, aber noch nicht abgesendet ist.
+   * Dient z. B. für dynamische UI-Stylingzustände oder Validierungshinweise.
+   */
   get isFormAlmostValid(): boolean {
     const name = this.contactData.name ?? '';
     const email = this.contactData.email ?? '';
@@ -191,6 +272,9 @@ export class ContactMeComponent implements OnInit {
     );
   }
 
+  /**
+   * Liefert den Datenschutz-Hinweis in der aktuellen Sprache.
+   */
   get checkboxHint(): string {
     switch (this.currentLang) {
       case 'de':
@@ -204,6 +288,9 @@ export class ContactMeComponent implements OnInit {
     }
   }
 
+  /**
+   * Liefert den Erfolgshinweis nach erfolgreichem Senden des Formulars.
+   */
   get successHint(): string {
     switch (this.currentLang) {
       case 'de':

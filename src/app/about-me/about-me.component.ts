@@ -1,3 +1,22 @@
+/**
+ * AboutMeComponent
+ * -----------------
+ *
+ * Diese Komponente bildet den „Über mich“-Abschnitt der Website.
+ *
+ * Hauptaufgaben:
+ * - Darstellung persönlicher Informationen in mehreren Sprachen
+ * - Anzeige charakteristischer Eigenschaften mit Icons
+ * - Dynamischer Sprachwechsel via `LanguageService`
+ * - Interaktives Info-Panel ("Mehr über mich") mit Ein-/Ausblenden
+ * - Call-to-Action-Button zum Scrollen zur Kontaktsektion
+ *
+ * Besonderheiten:
+ * - Nutzung von `inject()` für den `SectionNavService` (modernes Angular-Pattern)
+ * - Getrennte Stylesheets für Basis- und Responsive-Design
+ * - Reaktive Change Detection bei Sprachwechsel
+ */
+
 import { Component, OnInit, ChangeDetectorRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,9 +32,22 @@ import { SectionNavService } from '../shared/sections.config';
   styleUrls: ['./about-me.component.scss', './about-me.component.media.scss']
 })
 export class AboutMeComponent implements OnInit {
+  /**
+   * Aktuell ausgewählte Sprache der Anwendung.
+   * Wird reaktiv über den `LanguageService` verwaltet.
+   */
   currentLang: SupportedLang = 'de';
+
+  /**
+   * Instanz des globalen Navigationsservices.
+   * Wird per `inject()` eingebunden (anstatt über den Konstruktor).
+   */
   private sectionNav = inject(SectionNavService);
 
+  /**
+   * Mehrsprachige Textinhalte der Komponente.
+   * Alle sichtbaren Texte, Labels und Eigenschaften sind sprachabhängig.
+   */
   translations = {
     title: {
       de: 'Über mich',
@@ -71,29 +103,53 @@ export class AboutMeComponent implements OnInit {
     }
   };
 
+  /**
+   * Steuert die Sichtbarkeit des Zusatz-Info-Panels („Mehr über mich“).
+   */
   panelVisible = false;
 
+  /**
+   * Konstruktor
+   *
+   * @param langService - Service zur Steuerung der aktiven Sprache
+   * @param cdr - ChangeDetectorRef für manuelle UI-Aktualisierung
+   */
   constructor(
     private langService: LanguageService,
     private cdr: ChangeDetectorRef
   ) {}
 
-  ngOnInit() {
+  /**
+   * Lifecycle Hook – `ngOnInit`
+   *
+   * Abonniert Sprachänderungen und aktualisiert dynamisch die View,
+   * wenn der Benutzer die Sprache umschaltet.
+   */
+  ngOnInit(): void {
     this.langService.lang$.subscribe(lang => {
       this.currentLang = lang;
-      this.cdr.detectChanges(); 
+      this.cdr.detectChanges();
     });
   }
 
-  togglePanel() {
+  /**
+   * Öffnet oder schließt das „Mehr über mich“-Panel.
+   */
+  togglePanel(): void {
     this.panelVisible = !this.panelVisible;
   }
 
-  closePanel() {
+  /**
+   * Schließt das Info-Panel, falls es sichtbar ist.
+   */
+  closePanel(): void {
     this.panelVisible = false;
   }
 
-  /** 🧭 Scrollt zur Kontakt-Section */
+  /**
+   * Scrollt sanft zur Kontaktsektion am Ende der Seite.
+   * Wird durch den Button „Schreib mir“ ausgelöst.
+   */
   scrollToContact(): void {
     this.sectionNav.requestScroll('contact');
   }

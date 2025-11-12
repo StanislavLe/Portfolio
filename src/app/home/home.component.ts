@@ -1,3 +1,18 @@
+/**
+ * HomeComponent
+ * --------------
+ * Haupt-Startseite der Anwendung.
+ * 
+ * Diese Komponente:
+ * - Steuert den sichtbaren Abschnitt (hero, about, contact, etc.)
+ * - Verwaltet das Scrollverhalten zwischen Sektionen
+ * - Synchronisiert den Header und den SectionPager mit der aktuellen View
+ * 
+ * Importiert:
+ * - HeaderComponent, FooterComponent, SectionPagerComponent
+ * - SectionNavService für Navigation & Statusverwaltung
+ */
+
 import { Component, OnInit, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,9 +29,28 @@ import { SectionNavService } from '../shared/sections.config';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
+
+  /**
+   * ID des aktuell aktiven Abschnitts (z. B. "hero", "about", "contact")
+   * Wird von SectionNavService aktualisiert.
+   */
   currentSection = 'hero';
+
+  /**
+   * Gibt an, ob der aktuelle Abschnitt der letzte ist.
+   * Wird genutzt, um Navigation oder Scroll-Indikatoren anzupassen.
+   */
   isLastSection = false;
 
+  /**
+   * Konstruktor injiziert Router, Route und Navigations-Service.
+   * 
+   * @param route - Aktivierte Route für Fragment- und QueryParam-Abfragen
+   * @param router - Angular Router zum Navigieren
+   * @param nav - SectionNavService zur Kommunikation zwischen Komponenten
+   * @param document - Browser-Dokumentobjekt (wird injiziert für SSR-Kompatibilität)
+   * @param platformId - Plattform-ID für Browser-/Serverdifferenzierung
+   */
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -25,7 +59,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
-  ngOnInit() {
+  /**
+   * Lifecycle-Hook: Initialisierung.
+   * 
+   * - Setzt initial den aktiven Abschnitt ("hero")
+   * - Abonniert SectionNavService für:
+   *   - aktive Sektion (active$)
+   *   - Status, ob letzte Sektion aktiv ist (isLast$)
+   * - Reagiert auf URL-Fragmente und QueryParams, um gezielt zu scrollen
+   */
+  ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.nav.setActive('hero');
     }
@@ -33,17 +76,26 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.nav.active$.subscribe(id => (this.currentSection = id));
     this.nav.isLast$.subscribe(v => (this.isLastSection = v));
 
-    this.route.fragment.subscribe(f => {
-      if (f) this.nav.requestScroll(f);
+    // Scrollen über #fragment in der URL
+    this.route.fragment.subscribe(fragment => {
+      if (fragment) this.nav.requestScroll(fragment);
     });
 
-    this.route.queryParamMap.subscribe(p => {
-      const s = p.get('section');
-      if (s) this.nav.requestScroll(s);
+    // Scrollen über QueryParam (?section=about)
+    this.route.queryParamMap.subscribe(params => {
+      const section = params.get('section');
+      if (section) this.nav.requestScroll(section);
     });
   }
 
-  ngAfterViewInit() {
+  /**
+   * Lifecycle-Hook: Nach der Initialisierung der View.
+   * 
+   * - Initialisiert IntersectionObserver, um die aktive Sektion beim Scrollen zu erkennen
+   * - Beobachtet alle <section>-Elemente im DOM
+   * - Scrollt zu Sektionen, wenn sie über den SectionNavService angefordert werden
+   */
+  ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
     const sections = this.document.querySelectorAll('section[id]');
@@ -58,21 +110,31 @@ export class HomeComponent implements OnInit, AfterViewInit {
       },
       { threshold: 0.5 }
     );
+
     sections.forEach((section) => observer.observe(section));
 
-    // 🧭 Handle scroll requests from Header/Hero
     this.nav.scrollTo$.subscribe((id) => this.scrollToSection(id));
   }
 
-  private scrollToSection(id: string) {
-    const target = this.document.querySelector(`#${id}`);
+  /**
+   * Scrollt sanft zu einer bestimmten Sektion anhand der ID.
+   * 
+   * @param id - ID der Zielsektion (z. B. "contact")
+   */
+  private scrollToSection(id: string): void {
+    const target = this.document.querySelector<HTMLElement>(`#${id}`);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       this.nav.setActive(id);
     }
   }
 
-  onNavigateSection(id: string) {
+  /**
+   * Handler für manuelle Navigation über Header oder Pager.
+   * 
+   * @param id - Zielsektion, zu der navigiert werden soll
+   */
+  onNavigateSection(id: string): void {
     this.nav.requestScroll(id);
   }
 }

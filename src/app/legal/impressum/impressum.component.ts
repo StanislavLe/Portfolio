@@ -1,3 +1,18 @@
+/**
+ * ImpressumComponent
+ * -------------------
+ *
+ * Diese Komponente stellt das Impressum (rechtliche Informationen) der Anwendung bereit.
+ * 
+ * Hauptfunktionen:
+ * - Mehrsprachige Anzeige (Deutsch, Englisch, Russisch)
+ * - Reaktive Aktualisierung der Sprache über den LanguageService
+ * - Automatisches Scrollen zum Seitenanfang beim Laden
+ * 
+ * Das Impressum ist eine statische Seite, wird aber dynamisch in der Sprache
+ * des Benutzers angezeigt und verwendet Change Detection für performantes Redrawing.
+ */
+
 import { Component, OnInit, Inject, PLATFORM_ID, ChangeDetectorRef, NgZone } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FooterComponent } from '../../shared/footer/footer.component';
@@ -11,8 +26,24 @@ import { LanguageService, SupportedLang } from '../../shared/language.service';
   styleUrls: ['./impressum.component.scss'],
 })
 export class ImpressumComponent implements OnInit {
+  /**
+   * Aktuell ausgewählte Sprache (Standard: Deutsch).
+   * Wird durch den LanguageService gesetzt und reaktiv aktualisiert.
+   */
   currentLang: SupportedLang = 'de';
 
+  /**
+   * Konstruktor
+   * 
+   * Injiziert benötigte Angular- und App-spezifische Services:
+   * 
+   * @param platformId - Identifiziert die Ausführungsumgebung (Browser oder Server).
+   *                     Wird verwendet, um DOM-Zugriffe sicher nur im Browser auszuführen.
+   * @param langService - Bietet Zugriff auf den aktuellen Sprachzustand (Observable `lang$`).
+   * @param cdr - ChangeDetectorRef, um die Angular Change Detection manuell anzustoßen,
+   *              wenn Änderungen außerhalb der Angular Zone erfolgen.
+   * @param zone - NgZone, um asynchrone Operationen performant außerhalb der Angular Zone auszuführen.
+   */
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private langService: LanguageService,
@@ -20,6 +51,17 @@ export class ImpressumComponent implements OnInit {
     private zone: NgZone
   ) {}
 
+  /**
+   * Lifecycle Hook – `ngOnInit`
+   * 
+   * Wird beim Initialisieren der Komponente aufgerufen.
+   * 
+   * Aufgaben:
+   * - Scrollt automatisch zum oberen Seitenrand (nur im Browser-Kontext)
+   * - Abonniert Sprachänderungen über den LanguageService
+   * - Führt Aktualisierungen außerhalb der Angular Zone aus, um unnötige Change Detection-Zyklen zu vermeiden
+   * - Löst anschließend gezielt eine Change Detection aus, um die UI zu aktualisieren
+   */
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo({ top: 0 });
@@ -28,11 +70,24 @@ export class ImpressumComponent implements OnInit {
     this.langService.lang$.subscribe((lang) => {
       this.zone.runOutsideAngular(() => {
         this.currentLang = lang;
+
+        // Microtask-Schleife nutzen, um die UI nachträglich zu aktualisieren
         queueMicrotask(() => this.zone.run(() => this.cdr.detectChanges()));
       });
     });
   }
 
+  /**
+   * Mehrsprachige Übersetzungen für die Impressums-Seite.
+   * 
+   * Struktur:
+   * - Jeder Schlüssel repräsentiert eine Textsektion.
+   * - Jede Sektion enthält Übersetzungen in drei Sprachen (`de`, `en`, `ru`).
+   * 
+   * Verwendung:
+   * - Das Template bindet dynamisch über `translations.<key>[currentLang]`
+   *   den jeweils aktiven Text an.
+   */
   translations = {
     title: {
       de: 'Impressum',

@@ -1,3 +1,21 @@
+/**
+ * ReferencesComponent
+ * --------------------
+ *
+ * Diese Komponente zeigt Feedback und Referenzen von Kollegen in mehreren Sprachen an.
+ * Sie dient der Darstellung sozialer Beweise („Social Proof“) und stärkt die Glaubwürdigkeit des Entwicklers.
+ *
+ * Hauptaufgaben:
+ * - Anzeige mehrerer Kollegenkommentare mit Name, Titel und Feedback
+ * - Dynamische Sprachumschaltung über `LanguageService`
+ * - Reaktives UI-Update mittels `ChangeDetectorRef` und `NgZone`
+ * - Nutzung der Kind-Komponente `ColleagueCommentComponent` zur Darstellung einzelner Testimonials
+ *
+ * Besonderheiten:
+ * - Alle Texte und Kommentare sind mehrsprachig (Deutsch, Englisch, Russisch)
+ * - `runOutsideAngular` optimiert Performance durch gezieltes manuelles Triggern der Change Detection
+ */
+
 import { Component, ChangeDetectorRef, NgZone } from '@angular/core';
 import { ColleagueCommentComponent } from './colleague-comment/colleague-comment.component';
 import { LanguageService, SupportedLang } from './../shared/language.service';
@@ -11,8 +29,14 @@ import { NgFor } from '@angular/common';
   styleUrls: ['./references.component.scss'],
 })
 export class ReferencesComponent {
+  /**
+   * Aktuell aktive Sprache, wird reaktiv vom `LanguageService` aktualisiert.
+   */
   currentLang: SupportedLang = 'de';
 
+  /**
+   * Mehrsprachiger Titel für die Referenzen-Sektion.
+   */
   translations = {
     title: {
       de: 'Feedback meiner Kollegen',
@@ -21,6 +45,14 @@ export class ReferencesComponent {
     },
   };
 
+  /**
+   * Sammlung aller Referenzen sortiert nach Sprache.
+   * Jeder Eintrag enthält:
+   * - `name`: Name der Person
+   * - `comment`: Feedbacktext
+   * - `profileLink`: Verlinkung auf ein soziales Profil (z. B. LinkedIn)
+   * - `title`: Berufsbezeichnung oder Position
+   */
   comments: Record<SupportedLang, any[]> = {
     de: [
       {
@@ -93,19 +125,34 @@ export class ReferencesComponent {
     ],
   };
 
+  /**
+   * Aktuell angezeigte Kommentar-Liste basierend auf der aktuellen Sprache.
+   */
   displayedComments = this.comments[this.currentLang];
 
+  /**
+   * Konstruktor
+   *
+   * @param langService - Service zur Sprachverwaltung
+   * @param cdr - ChangeDetectorRef für manuelles Triggern von UI-Updates
+   * @param zone - Angular NgZone für performante DOM-Aktualisierung außerhalb der Angular-Zone
+   */
   constructor(
     private langService: LanguageService,
     private cdr: ChangeDetectorRef,
     private zone: NgZone
   ) {
+    /**
+     * Reaktive Sprachumschaltung:
+     * - Wechselt dynamisch die Kommentarlisten-Sprache
+     * - Führt DOM-Updates außerhalb der Angular-Zone aus, um Performance zu verbessern
+     */
     this.langService.lang$.subscribe((lang) => {
       this.zone.runOutsideAngular(() => {
         this.currentLang = lang;
         this.displayedComments = this.comments[lang];
 
-        // 🔁 Microtask: Änderung nach Rendering durchführen
+        // Microtask zur sicheren UI-Aktualisierung nach Sprachwechsel
         queueMicrotask(() => {
           this.zone.run(() => this.cdr.detectChanges());
         });
@@ -113,5 +160,12 @@ export class ReferencesComponent {
     });
   }
 
+  /**
+   * TrackBy-Funktion für *ngFor, um unnötige DOM-Neu-Renderings zu vermeiden.
+   *
+   * @param _ - Index des Kommentars
+   * @param c - Aktuelles Kommentarobjekt
+   * @returns Der eindeutige Name des Kommentators
+   */
   trackByName = (_: number, c: any) => c.name;
 }

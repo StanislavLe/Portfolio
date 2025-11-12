@@ -1,9 +1,32 @@
+/**
+ * PortfolioComponent
+ * -------------------
+ *
+ * Diese Komponente präsentiert eine Sammlung von Projekten im Portfolio-Bereich der Website.
+ * Sie nutzt die `ProjectComponent`, um einzelne Projekte anzuzeigen, und verwaltet die Navigation zwischen ihnen.
+ *
+ * Hauptaufgaben:
+ * - Anzeige einer rotierenden Liste von Projekten mit Animation
+ * - Steuerung der Projekt-Navigation (vor/zurück)
+ * - Dynamische Textanpassung bei Sprachwechsel
+ * - Integration der Kind-Komponente `ProjectComponent`
+ *
+ * Besonderheiten:
+ * - Animierte Übergänge mit Angular Animations API
+ * - Reaktives Sprachhandling über `LanguageService`
+ * - Type-sicheres Projektmodell mit Sprachabhängigen Beschreibungen
+ */
+
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProjectComponent } from './project/project.component';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { LanguageService, SupportedLang } from '../shared/language.service';
 
+/**
+ * Interface für ein einzelnes Projektobjekt.
+ * Enthält alle mehrsprachigen Beschreibungen, Links und Metadaten.
+ */
 type Project = {
   title: string;
   description: { [lang in SupportedLang]: string };
@@ -22,6 +45,12 @@ type Project = {
   imports: [CommonModule, ProjectComponent],
   templateUrl: './portfolio.component.html',
   styleUrls: ['./portfolio.component.scss'],
+
+  /**
+   * Definition der Slide-Animationslogik:
+   * - Animiert den Wechsel zwischen Projekten horizontal mit Fading.
+   * - Unterschiedliche Bewegungsrichtungen für Vorwärts- und Rückwärts-Navigation.
+   */
   animations: [
     trigger('slideFade', [
       transition(':increment', [
@@ -36,9 +65,20 @@ type Project = {
   ],
 })
 export class PortfolioComponent implements OnInit {
+  /**
+   * Aktuell aktive Sprache der Anwendung.
+   */
   currentLang: SupportedLang = 'de';
+
+  /**
+   * Index des aktuell angezeigten Projekts in der Projektliste.
+   */
   currentIndex = 0;
 
+  /**
+   * Überschriften- und Einleitungstexte für die Portfolio-Sektion.
+   * Mehrsprachig verwaltet.
+   */
   headerTranslations = {
     title: {
       de: 'Meine Werke',
@@ -52,6 +92,10 @@ export class PortfolioComponent implements OnInit {
     },
   };
 
+  /**
+   * Liste aller angezeigten Projekte.
+   * Jedes Projekt enthält mehrsprachige Texte, Icons, Technologien und Links.
+   */
   projects: Project[] = [
     {
       title: 'JOIN',
@@ -93,29 +137,52 @@ export class PortfolioComponent implements OnInit {
     },
   ];
 
+  /**
+   * Konstruktor
+   *
+   * @param langService - Service zur Sprachverwaltung
+   * @param cdr - ChangeDetectorRef für manuelles UI-Update bei Sprachänderung
+   */
   constructor(
     private langService: LanguageService,
     private cdr: ChangeDetectorRef
   ) {}
 
-  ngOnInit() {
+  /**
+   * Lifecycle Hook – `ngOnInit`
+   *
+   * Abonniert die aktuelle Sprache und aktualisiert dynamisch die Anzeige,
+   * wenn der Benutzer die Sprache ändert.
+   */
+  ngOnInit(): void {
     this.langService.lang$.subscribe((lang) => {
       this.currentLang = lang;
       this.cdr.detectChanges();
     });
   }
 
+  /**
+   * Liefert das aktuell sichtbare Projekt basierend auf dem aktuellen Index.
+   */
   get current(): Project {
     return this.projects[this.currentIndex];
   }
 
-  prevProject() {
+  /**
+   * Navigiert zum vorherigen Projekt in der Liste.
+   * Unterstützt zyklische Navigation (am Anfang → letztes Projekt).
+   */
+  prevProject(): void {
     if (!this.projects.length) return;
     this.currentIndex =
       (this.currentIndex - 1 + this.projects.length) % this.projects.length;
   }
 
-  nextProject() {
+  /**
+   * Navigiert zum nächsten Projekt in der Liste.
+   * Unterstützt zyklische Navigation (am Ende → erstes Projekt).
+   */
+  nextProject(): void {
     if (!this.projects.length) return;
     this.currentIndex = (this.currentIndex + 1) % this.projects.length;
   }

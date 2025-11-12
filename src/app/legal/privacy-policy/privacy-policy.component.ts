@@ -1,3 +1,17 @@
+/**
+ * PrivacyPolicyComponent
+ * -----------------------
+ *
+ * Diese Komponente stellt die mehrsprachige Datenschutzerklärung der Anwendung dar.
+ * Sie zeigt Inhalte in der aktuell aktiven Sprache (Deutsch, Englisch oder Russisch)
+ * und reagiert dynamisch auf Änderungen der Sprache über den LanguageService.
+ *
+ * Hauptfunktionen:
+ * - Scrollt beim Laden automatisch zum Seitenanfang
+ * - Hört auf Sprachänderungen über LanguageService
+ * - Aktualisiert den sichtbaren Inhalt reaktiv ohne Neuladen
+ */
+
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import {
@@ -18,8 +32,27 @@ import { LanguageService, SupportedLang } from '../../shared/language.service';
   styleUrls: ['./privacy-policy.component.scss'],
 })
 export class PrivacyPolicyComponent implements OnInit {
+  /**
+   * Aktuell aktive Sprache (Standard: 'de').
+   * 
+   * Der Wert wird vom LanguageService geliefert und 
+   * bestimmt, welche Übersetzungen im Template angezeigt werden.
+   */
   currentLang: SupportedLang = 'de';
 
+  /**
+   * Konstruktor
+   *
+   * Injiziert benötigte Services und Angular-Kernelemente:
+   * 
+   * @param platformId - Identifiziert, ob die App im Browser oder auf dem Server läuft.
+   *                     Wird genutzt, um DOM-Zugriffe nur im Browser auszuführen.
+   * @param langService - Zentraler Sprachservice, der die aktuelle Sprache bereitstellt und ändert.
+   * @param cdr - ChangeDetectorRef, um manuell Change Detection anzustoßen, 
+   *              wenn Änderungen außerhalb der Angular Zone passieren.
+   * @param zone - NgZone, um asynchrone Aktionen (z. B. Observables) außerhalb der Angular Zone auszuführen,
+   *               um unnötige Change Detection zu vermeiden.
+   */
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private langService: LanguageService,
@@ -27,20 +60,41 @@ export class PrivacyPolicyComponent implements OnInit {
     private zone: NgZone
   ) {}
 
+  /**
+   * Lifecycle Hook – `ngOnInit`
+   * 
+   * Wird beim Initialisieren der Komponente ausgeführt.
+   * 
+   * Aufgaben:
+   * - Scrollt beim Laden der Seite automatisch nach oben (nur im Browser)
+   * - Abonniert den `lang$`-Observable aus LanguageService, um Sprachänderungen zu erkennen
+   * - Führt Änderungen außerhalb der Angular Zone aus (Performanceoptimierung)
+   * - Löst nach Microtask-Queue gezielt eine Change Detection aus
+   */
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo({ top: 0 });
     }
 
-    // 🔁 Live-Update, wenn Sprache geändert wird
     this.langService.lang$.subscribe((lang) => {
       this.zone.runOutsideAngular(() => {
         this.currentLang = lang;
-        queueMicrotask(() => this.zone.run(() => this.cdr.detectChanges()));
+
+        // Erzwinge Change Detection nach dem Microtask-Zyklus
+        queueMicrotask(() =>
+          this.zone.run(() => this.cdr.detectChanges())
+        );
       });
     });
   }
 
+  /**
+   * Übersetzungsobjekt für alle sichtbaren Texte der Datenschutzerklärung.
+   * 
+   * Struktur:
+   * - Jeder Schlüssel (z. B. `title`, `generalText`) enthält ein Objekt mit drei Sprachen: `de`, `en`, `ru`
+   * - Die Texte werden im Template basierend auf `currentLang` dynamisch angezeigt
+   */
   translations = {
     title: {
       de: 'Datenschutzerklärung',
