@@ -13,6 +13,10 @@
     width: 100vw;
   }
 
+  @media screen and (max-width: 510px) {
+    padding: 3.3rem 8px 0px 8px;
+  }
+
   @media screen and (max-height: 905px) {
     justify-content: start;
   }
@@ -31,7 +35,7 @@ h1 {
 
   @media screen and (max-width: 900px) {
     justify-content: start;
-    width: 90%;
+    width: 100%;
     padding-top: 0px;
   }
 

@@ -55,6 +55,10 @@
     @media (max-height: 700px) {
       font-size: clamp(24px, 2.75vw, 52px);
     }
+
+           @media (max-width: 400px) {
+      font-size: clamp(20px, 2.75vw, 52px);
+    }
   }
 
   h1 {
@@ -70,6 +74,10 @@
 
     @media (max-height: 700px) {
       font-size: clamp(42px, 3.25vw, 80px);
+    }
+
+        @media (max-width: 400px) {
+      font-size: clamp(40px, 3.25vw, 80px);
     }
   }
 }

@@ -61,7 +61,7 @@
   font-family: 'quicksandBook';
   background-color: #1D1D1D;
   font-weight: 700;
-  font-size: clamp(14px, 1.5vw, 18px);
+  font-size: clamp(16px, 1.5vw, 18px);
   max-width: clamp(140px, 20vw, 198px);
   width: 50%;
   height: clamp(32px, 5vh, 40px);
@@ -186,7 +186,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
   border-radius: 8px;
 
 }
@@ -270,7 +269,7 @@ h3 {
     border-style: none;
     color: #1D1D1D;
     font-family: 'QuicksandBold';
-    font-size: 18px;
+    font-size: 16px;
     background-color: transparent;
     white-space: nowrap;
 

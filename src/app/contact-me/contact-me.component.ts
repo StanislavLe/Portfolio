@@ -132,7 +132,7 @@ export class ContactMeComponent implements OnInit {
       email: {
         de: 'Wie ist deine E-Mail?',
         en: 'What is your email?',
-        ru: 'Какой у тебя адрес электронной почты?',
+        ru: 'Какой у тебя адрес E-mail?',
       },
       message: {
         de: 'Wie kann ich dir helfen?',
@@ -182,7 +182,7 @@ export class ContactMeComponent implements OnInit {
     submit: {
       de: 'Nachricht senden',
       en: 'Send Message',
-      ru: 'Отправить сообщение',
+      ru: 'Отправь',
     },
   };
 

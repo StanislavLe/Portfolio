@@ -260,7 +260,6 @@
 
 .bounce-arrow {
   display: inline-block;
-  backface-visibility: hidden;
   transform: translateZ(0);
   animation: floatUpDownContact 2s ease-in-out infinite;
   will-change: transform;
