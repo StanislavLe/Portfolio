@@ -9,6 +9,8 @@
     z-index: 100;
     position: relative;
     bottom: 70px;
+        max-width: 1920px;
+
 
     @media screen and (max-width: 690px) {
         flex-direction: column;
@@ -134,6 +136,8 @@
     z-index: 100;
     position: relative;
     top: 85px;
+            max-width: 1920px;
+
 
     @media screen and (max-width: 690px) {
         flex-direction: column;

@@ -212,11 +212,13 @@ app-header {
 }
 
 main.legal {
-    display: block;
+    display: flex;
     position: relative;
     width: 100%;
     min-height: 100dvh;
     background-color: #1D1D1D;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-content {
@@ -298,14 +300,30 @@ body {
     }
 
     h1 {
-        font-size: clamp(34px, 4vw, 100px) !important;
+        font-size: clamp(30px, 3.5vw, 100px) !important;
         font-family: 'RobotoBold';
         font-weight: 700;
 
         @media (max-height: 700px) {
-            font-size: clamp(33px, 3vw, 58px) !important;
+            font-size: clamp(30px, 3vw, 54px) !important;
         }
     }
+
+    .contact-header h1 {
+        font-size: clamp(30px, 3.0vw, 72px) !important;
+        font-family: 'RobotoBold';
+        font-weight: 700;
+
+        @media (max-height: 700px) {
+            font-size: clamp(30px, 3vw, 54px) !important;
+        }
+    }
+
+    .logo span {
+        font-size: clamp(22px, 2vw, 44px);
+    }
+
+
 
     .mat-icon,
     .material-icons,
