@@ -40,6 +40,9 @@ import { FooterComponent } from '../shared/footer/footer.component';
 import { HttpClient } from '@angular/common/http';
 import { LanguageService, SupportedLang } from '../shared/language.service';
 import { SectionNavService } from '../shared/sections.config';
+import { Router } from '@angular/router';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-contact-me',
@@ -190,11 +193,16 @@ export class ContactMeComponent implements OnInit {
    * @param cdr - ChangeDetectorRef für manuelles Aktualisieren des Templates
    * @param zone - Angular NgZone für performante DOM-Aktualisierung außerhalb Angulars Change Detection
    */
-  constructor(
-    private langService: LanguageService,
-    private cdr: ChangeDetectorRef,
-    private zone: NgZone
-  ) {}
+ constructor(
+  private langService: LanguageService,
+  private cdr: ChangeDetectorRef,
+  private zone: NgZone,
+  private router: Router,
+  @Inject(PLATFORM_ID) private platformId: Object,
+  @Inject(DOCUMENT) private document: Document,
+  private nav: SectionNavService
+) {}
+
 
   /**
    * Lifecycle Hook – `ngOnInit`
@@ -252,6 +260,46 @@ export class ContactMeComponent implements OnInit {
   scrollToHero(): void {
     this.sectionNav.requestScroll('hero');
   }
+
+
+  
+    /**
+     * Führt eine Navigation aus und scrollt danach sanft an den Seitenanfang.
+     * 
+     * @param path - Array aus Routen-Fragmenten (z. B. `['/impressum']` oder `['/']`).
+     * 
+     * Verhalten:
+     * - Navigiert per Angular Router zum angegebenen Pfad.
+     * - Scrollt anschließend die Seite nach oben (nur im Browser).
+     * - Falls Ziel die Startseite ist, aktiviert zusätzlich die „hero“-Section
+     *   und synchronisiert sie mit dem SectionNavService.
+     */
+   navigateAndScroll(path: string[]): void {
+  const target = path.join('/');
+  const isHome = target === '/' || target === '';
+
+  this.router.navigate(path).then((success: boolean) => {
+    if (success && isPlatformBrowser(this.platformId)) {
+      const win = this.document.defaultView!;
+      const html = this.document.documentElement;
+      const body = this.document.body;
+
+      requestAnimationFrame(() => {
+        win.scrollTo({ top: 0, behavior: 'auto' });
+        html.scrollTop = 0;
+        body.scrollTop = 0;
+      });
+
+      if (isHome) {
+        this.nav.requestScroll('hero');
+        this.nav.setActive('hero');
+      }
+    }
+  });
+}
+
+
+
 
   /**
    * Prüft, ob das Formular fast vollständig, aber noch nicht abgesendet ist.

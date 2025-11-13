@@ -108,7 +108,7 @@ export class HeaderComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(DOCUMENT) private document: Document,
     private langService: LanguageService
-  ) {}
+  ) { }
 
   /**
    * Lifecycle Hook – `ngOnInit`
@@ -186,14 +186,29 @@ export class HeaderComponent implements OnInit {
    * @param path - Zielroute als Array (z. B. `['/']` oder `['/impressum']`).
    */
   navigateAndScroll(path: string[]): void {
-    this.router.navigate(path).then((success) => {
+    const target = path.join('/');
+    const isHome = target === '/' || target === '';
+    this.router.navigate(path).then((success: boolean) => {
       if (success && isPlatformBrowser(this.platformId)) {
         const win = this.document.defaultView!;
-        requestAnimationFrame(() => win.scrollTo({ top: 0, behavior: 'auto' }));
+        const html = this.document.documentElement;
+        const body = this.document.body;
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            win.scrollTo({ top: 0, behavior: 'auto' });
+            html.scrollTop = 0;
+            body.scrollTop = 0;
+          });
+        });
       }
       this.toggleDrawer(false);
+      if (isHome) {
+        this.nav.requestScroll('hero');
+        this.nav.setActive('hero');
+      }
     });
   }
+
 
   /**
    * Gibt das aktuell passende Menü-Icon zurück (abhängig von Theme und Variante).

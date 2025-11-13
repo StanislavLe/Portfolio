@@ -2,21 +2,20 @@
  * LegalComponent
  * ---------------
  * 
- * Diese Komponente repräsentiert die rechtlichen Seiten der Anwendung
- * (z. B. Impressum, Datenschutz, Nutzungsbedingungen).
+ * Diese Komponente stellt sicher, dass beim Öffnen der /legal-Seite
+ * immer automatisch zum Seitenanfang gescrollt wird –
+ * unabhängig davon, aus welcher Section der Benutzer kam.
  * 
- * Sie sorgt dafür, dass beim Aufruf dieser Seiten immer nach oben gescrollt wird,
- * unabhängig davon, aus welcher Position der Benutzer kam.
- * 
- * Außerdem werden Header und Footer eingebunden,
- * während der Hauptinhalt dynamisch über den RouterOutlet geladen wird.
+ * Der Scrollvorgang wird bewusst erst nach dem vollständigen Rendering
+ * aller Child-Komponenten (Header, Footer, RouterOutlet) ausgeführt,
+ * um Layout-Verschiebungen zu vermeiden.
  */
 
 import {
   Component,
   Inject,
-  OnInit,
-  PLATFORM_ID
+  PLATFORM_ID,
+  AfterViewInit
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
@@ -29,51 +28,30 @@ import { FooterComponent } from '../shared/footer/footer.component';
   imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './legal.component.html',
 })
-export class LegalComponent implements OnInit {
+export class LegalComponent implements AfterViewInit {
 
-  /**
-   * Konstruktor
-   * 
-   * Injiziert die benötigten Abhängigkeiten:
-   * 
-   * @param platformId - Identifiziert, ob die App im Browser oder auf dem Server läuft.
-   *                     Wird verwendet, um DOM-Operationen nur im Browser auszuführen.
-   * @param document - Zugriff auf das globale Dokumentobjekt, um Scrollaktionen durchzuführen.
-   */
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(DOCUMENT) private document: Document
   ) {}
 
   /**
-   * Lifecycle Hook – `ngOnInit`
+   * Lifecycle Hook – `ngAfterViewInit`
+   * -----------------------------------
+   * Wird aufgerufen, wenn alle Child-Komponenten (Header, Footer, etc.)
+   * vollständig im DOM aufgebaut sind.
    * 
-   * Wird beim Initialisieren der Komponente aufgerufen.
-   * 
-   * - Führt einen Scroll nach oben aus, sobald die Seite geladen ist.
-   * - Führt den Scrollvorgang erst nach der nächsten Browser-Render-Phase aus,
-   *   um Layout-Verschiebungen oder Race-Conditions zu vermeiden.
+   * Scrollt dann zuverlässig zum Seitenanfang.
    */
-  ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          const win = this.document.defaultView;
-          win?.scrollTo({ top: 0, behavior: 'auto' });
-        }, 50);
-      });
-    }
-  }
-
-  /**
-   * Scrollt den gesamten Seiteninhalt sofort nach oben.
-   * 
-   * Wird als Hilfsmethode verwendet, falls manuell
-   * oder von anderen Events ein „Back to Top“ ausgelöst werden soll.
-   */
-  private scrollToTop(): void {
+  ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
-    const body = this.document.body;
-    body.scrollTo({ top: 0, behavior: 'auto' });
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        const win = this.document.defaultView;
+        if (win) {
+          win.scrollTo({ top: 0, behavior: 'auto' });
+        }
+      }, 100);
+    });
   }
 }

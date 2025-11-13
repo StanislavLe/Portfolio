@@ -48,7 +48,7 @@
 
         <div class="agreement-group">
           <div class="agreement">
-            <a mat-list-item routerLink="/legal/privacy-policy">
+            <a (click)="navigateAndScroll(['/legal', 'privacy-policy'])">
               {{ translations.checkbox[currentLang] }}
             </a>
           </div>
