@@ -150,59 +150,59 @@ body.force-repaint {
 
 
 @keyframes floatUpDownContact {
-  0% {
-    transform: translate3d(0, 23px, 0);
-  }
+    0% {
+        transform: translate3d(0, 23px, 0);
+    }
 
-  50% {
-    transform: translate3d(0, -10px, 0);
-  }
+    50% {
+        transform: translate3d(0, -10px, 0);
+    }
 
-  100% {
-    transform: translate3d(0, 23px, 0);
-  }
+    100% {
+        transform: translate3d(0, 23px, 0);
+    }
 }
 
 @-webkit-keyframes floatUpDownContact {
-  0% {
-    -webkit-transform: translate3d(0, 23px, 0);
-  }
+    0% {
+        -webkit-transform: translate3d(0, 23px, 0);
+    }
 
-  50% {
-    -webkit-transform: translate3d(0, -10px, 0);
-  }
+    50% {
+        -webkit-transform: translate3d(0, -10px, 0);
+    }
 
-  100% {
-    -webkit-transform: translate3d(0, 23px, 0);
-  }
+    100% {
+        -webkit-transform: translate3d(0, 23px, 0);
+    }
 }
 
 @keyframes floatUpDownContactSm {
-  0% {
-    transform: translate3d(0, 10px, 0);
-  }
+    0% {
+        transform: translate3d(0, 10px, 0);
+    }
 
-  50% {
-    transform: translate3d(0, -5px, 0);
-  }
+    50% {
+        transform: translate3d(0, -5px, 0);
+    }
 
-  100% {
-    transform: translate3d(0, 10px, 0);
-  }
+    100% {
+        transform: translate3d(0, 10px, 0);
+    }
 }
 
 @-webkit-keyframes floatUpDownContactSm {
-  0% {
-    -webkit-transform: translate3d(0, 10px, 0);
-  }
+    0% {
+        -webkit-transform: translate3d(0, 10px, 0);
+    }
 
-  50% {
-    -webkit-transform: translate3d(0, -5px, 0);
-  }
+    50% {
+        -webkit-transform: translate3d(0, -5px, 0);
+    }
 
-  100% {
-    -webkit-transform: translate3d(0, 10px, 0);
-  }
+    100% {
+        -webkit-transform: translate3d(0, 10px, 0);
+    }
 }
 
 
@@ -243,12 +243,13 @@ html {
     overflow: visible !important;
 }
 
-html, body {
-  height: 100%;
-  min-height: 100dvh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+html,
+body {
+    height: 100%;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 
@@ -297,9 +298,13 @@ html, body {
     }
 
     h1 {
-        font-size: 28px;
+        font-size: clamp(42px, 5.5vw, 104px) !important;
         font-family: 'RobotoBold';
         font-weight: 700;
+
+        @media (max-height: 700px) {
+            font-size: clamp(38px, 3.25vw, 60px) !important;
+        }
     }
 
     .mat-icon,
@@ -340,7 +345,7 @@ html, body {
         padding: 4rem 24px 0px 16px;
     }
 
-      @media screen and (max-height: 700px) {
+    @media screen and (max-height: 700px) {
         padding: 4rem 24px 0px 16px;
-  }
+    }
 }
