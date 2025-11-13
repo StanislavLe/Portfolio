@@ -1,17 +1,12 @@
 <header class="header" [ngClass]="themeClass">
   <div class="header-inner">
-    <!-- 🔹 Left Side -->
+
     <div class="header-left">
       <div class="social-links">
-        <a href="https://github.com/StanislavLe" target="_blank" rel="noopener noreferrer">
-          <img src="assets/icons/githubIcon.png" alt="GitHub" />
-        </a>
-        <a href="https://www.linkedin.com/in/stanislav-levin-881ab32b5" target="_blank" rel="noopener noreferrer">
-          <img src="assets/icons/linkedInIcon.png" alt="LinkedIn" />
-        </a>
-        <a href="mailto:stanislav1994@live.de">
-          <img src="assets/icons/emailIcon.png" alt="E-Mail" />
-        </a>
+        <a href="https://github.com/StanislavLe" class="icon github" target="_blank" rel="noopener noreferrer"></a>
+        <a href="https://www.linkedin.com/in/stanislav-levin-881ab32b5" class="icon linkedin" target="_blank"
+          rel="noopener noreferrer"></a>
+        <a href="mailto:stanislav1994@live.de" class="icon email"></a>
       </div>
 
       <div class="logo">
@@ -20,7 +15,6 @@
       </div>
     </div>
 
-    <!-- 🔹 Right Side -->
     <div class="header-right">
       <button class="languageButton" [class.flash]="justClicked" (click)="cycleLanguage()">
         {{ currentLanguage.toUpperCase() }}
@@ -32,7 +26,6 @@
     </div>
   </div>
 
-  <!-- 🔹 Custom Drawer -->
   <div class="custom-drawer" [class.open]="drawerOpen">
     <div class="drawer-inner">
       <div class="drawer-header">
@@ -65,16 +58,12 @@
       </nav>
 
       <div class="drawer-social">
-        <a href="https://github.com/StanislavLe" target="_blank" rel="noopener noreferrer">
-          <img src="assets/icons/githubIconNavList.png" alt="GitHub" />
-        </a>
-        <a href="https://www.linkedin.com/in/stanislav-levin-881ab32b5" target="_blank" rel="noopener noreferrer">
-          <img src="assets/icons/linkedInIconNavList.png" alt="LinkedIn" />
-        </a>
-        <a href="mailto:stanislav1994@live.de">
-          <img src="assets/icons/emailIconNavList.png" alt="E-Mail" />
-        </a>
+        <a class="icon github" href="https://github.com/StanislavLe" target="_blank" rel="noopener noreferrer"></a>
+        <a class="icon linkedin" href="https://www.linkedin.com/in/stanislav-levin-881ab32b5" target="_blank"
+          rel="noopener noreferrer"></a>
+        <a class="icon email" href="mailto:stanislav1994@live.de"></a>
       </div>
+
     </div>
   </div>
 </header>

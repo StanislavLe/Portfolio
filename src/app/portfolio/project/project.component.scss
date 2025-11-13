@@ -220,6 +220,7 @@ h3 {
   margin-left: clamp(8px, 2vw, 16px);
   animation: floatUpDown 2.2s ease-in-out infinite;
   will-change: transform;
+  cursor: pointer;
 
   &:hover {
     animation-play-state: paused;
