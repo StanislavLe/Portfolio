@@ -6,21 +6,26 @@
 }
 
 .pager-section {
-  height: 100dvh; 
+  height: 100dvh;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   scroll-snap-align: start;
-  padding-bottom: env(safe-area-inset-bottom); 
+  padding-bottom: env(safe-area-inset-bottom);
   box-sizing: border-box;
+
+  @media screen and (max-width: 510px) {
+    align-items: unset;
+  }
 }
 
 
 .pager-section#hero {
   background: #679aac;
   color: #fff;
+  align-items: unset;
 }
 
 
@@ -31,10 +36,11 @@
 
 .pager-section#portfolio {
   background: #F8F7E5;
-      @media screen and (max-width: 510px) {
-        justify-content: start;
-        padding-top: 2rem;
-      }
+
+  @media screen and (max-width: 510px) {
+    justify-content: start;
+    padding-top: 2rem;
+  }
 }
 
 .pager-section#skills {
@@ -49,7 +55,7 @@
 
 .pager-section#contact {
   background: #1D1D1D;
-  padding-bottom: calc(32px + env(safe-area-inset-bottom)); 
+  padding-bottom: calc(100px + env(safe-area-inset-bottom));
 }
 
 

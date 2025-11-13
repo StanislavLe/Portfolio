@@ -7,16 +7,12 @@ button {
 html,
 body {
     min-height: 100dvh;
-    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
     min-height: 100dvh;
-    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     scroll-behavior: auto;
-    display: flex;
-
 
     &::-webkit-scrollbar {
         width: 0;
@@ -209,6 +205,16 @@ app-header {
     z-index: 10000;
 }
 
+app-portfolio {
+    width: webkit-fill-available !important;
+}
+
+app-hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: unset;
+}
+
 main.legal {
     display: flex;
     position: relative;
@@ -221,33 +227,20 @@ main.legal {
 
 .main-content {
     position: relative;
-    overflow: visible !important;
 }
 
 
-body.mat-typography {
-    height: auto !important;
-    overflow-y: auto !important;
-    position: static !important;
-    display: block !important;
-    width: 100%;
-}
-
-html {
-    overflow-y: auto !important;
-}
 
 .mat-drawer-container,
 .mat-sidenav-container {
     height: auto !important;
-    overflow: visible !important;
 }
 
 html,
 body {
     height: 100%;
     min-height: 100dvh;
-    overflow-y: auto;
+    width: 100%;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -256,7 +249,6 @@ body {
 .mat-sidenav-container,
 .mat-app-background {
     height: auto !important;
-    overflow: visible !important;
 }
 
 
@@ -302,7 +294,7 @@ body {
         font-weight: 700;
 
         @media (max-height: 700px) {
-            font-size: clamp(30px, 3vw, 54px) !important;
+            font-size: clamp(26px, 3vw, 54px) !important;
         }
     }
 
@@ -356,6 +348,7 @@ body {
 
 .main-content {
     padding: 10rem 82px 0px 58px;
+
 
     @media (max-width: 690px) {
         padding: 4rem 16px 0px 16px;
