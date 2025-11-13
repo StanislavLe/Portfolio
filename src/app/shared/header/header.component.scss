@@ -111,6 +111,7 @@
   span {
     font-family: 'quicksandBold';
     font-size: clamp(22px, 2vw, 48px);
+    white-space: nowrap;
   }
 }
 
@@ -326,6 +327,7 @@
 
     &.github {
       background-image: url('../../../assets/icons/githubIconNavList.png');
+
       &:hover {
         background-image: url('../../../assets/icons/githubIconHover.png');
       }
@@ -333,6 +335,7 @@
 
     &.linkedin {
       background-image: url('../../../assets/icons/linkedInIconNavList.png');
+
       &:hover {
         background-image: url('../../../assets/icons/linkedInIconHover.png');
       }
@@ -340,6 +343,7 @@
 
     &.email {
       background-image: url('../../../assets/icons/emailIconNavList.png');
+
       &:hover {
         background-image: url('../../../assets/icons/emailIconHover.png');
       }
