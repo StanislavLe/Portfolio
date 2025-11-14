@@ -24,6 +24,7 @@
     flex-direction: column;
     width: 50%;
     gap: 20px;
+    padding-top: clamp(4px, 2vw, 150px);
 
     @media screen and (max-width: 690px) {
         flex-direction: column;
@@ -40,7 +41,7 @@
     color: #F8F7E5;
     background-color: #679AAC;
     padding: clamp(16px, 2vw, 32px);
-    font-size: clamp(14px, 1vw, 16px);
+    font-size: clamp(16px, 1.5vw, 18px);
     font-family: 'quicksandBook';
     font-weight: 100;
     max-width: 800px;
@@ -72,6 +73,7 @@ h1 {
 
     @media screen and (max-height: 690px) {
         width: 107%;
+        margin-bottom: 4px;
     }
 
 }
@@ -122,7 +124,7 @@ h1 {
             text-align: center;
 
             @media screen and (max-width: 1016px) {
-                font-size: clamp(12px, 4vw, 16px);
+                font-size: clamp(16px, 2vw, 20px);
                 width: clamp(90px, 4vw, 127px);
                 height: auto;
             }
@@ -167,6 +169,10 @@ h1 {
 
     @media screen and (max-width: 1430px) {
         top: 203px;
+    }
+
+    @media screen and (max-width: 1093px) {
+        top: 288px;
     }
 
     @media screen and (max-width: 1016px) {
@@ -216,7 +222,7 @@ h1 {
 
     @media screen and (max-width: 690px) {
         position: absolute;
-        left: 230%;
+        left: 116%;
         bottom: -43px;
     }
 
@@ -228,7 +234,7 @@ h1 {
 
         @media screen and (max-width: 690px) {
             position: absolute;
-            left: 230%;
+            left: 122%;
             bottom: -43px;
         }
     }
@@ -242,11 +248,11 @@ h1 {
 
         @media screen and (max-width: 690px) {
             position: absolute;
-            left: 192%;
+            left: 120%;
         }
 
         @media screen and (max-width: 480px) {
-            left: 236%;
+            left: 110%;
         }
     }
 
@@ -263,7 +269,7 @@ h1 {
         font-family: 'quicksandBook';
         font-weight: 100;
         padding-bottom: clamp(6px, 1.2vw, 10px);
-        font-size: clamp(12px, 1.2vw, 14px);
+        font-size: clamp(16px, 1.5vw, 20px);
         align-items: stretch;
         text-align: justify;
         color: #F8F7E5;
@@ -297,7 +303,29 @@ h1 {
 .mindset-icon:hover+.growth-mindset-container {
     opacity: 1;
     pointer-events: auto;
-    transform: translate(-111%, -88px);
+    transform: translate(-423px, -101px);
+
+    @media screen and (max-width: 850px) {
+        transform: translate(-348px, -248px);
+
+    }
+
+    @media screen and (max-width: 690px) {
+        transform: translate(-47%, -152%);
+    }
+
+    @media screen and (max-height: 1270px) {
+        transform: translate(-423px, 2px);
+
+        @media screen and (max-width: 850px) {
+            transform: translate(-348px, -248px);
+
+        }
+
+        @media screen and (max-width: 690px) {
+            transform: translate(-50%, -44%);
+        }
+    }
 }
 
 
@@ -308,9 +336,21 @@ h1 {
     justify-content: center;
     width: 39%;
     position: absolute;
-    bottom: 0px;
+    bottom: 231px;
     left: 20px;
-    overflow: hidden;
+
+
+    @media screen and (max-width: 690px) {
+        bottom: 0px
+    }
+
+    @media screen and (max-height: 1270px) {
+        bottom: 0px;
+
+        @media screen and (max-width: 850px) {}
+
+        @media screen and (max-width: 690px) {}
+    }
 }
 
 .mindset-icon {

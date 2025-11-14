@@ -83,11 +83,10 @@ h1 {
   h2 {
     color: #FF834F;
     font-weight: 700;
-    font-size: clamp(18px, 2vw, 24px);
+    font-size: clamp(16px, 2vw, 24px);
     line-height: 120%;
 
     @media screen and (max-height: 770px) {
-      font-size: 16px;
       margin-bottom: 4px;
     }
 
@@ -99,7 +98,7 @@ h1 {
 
   span {
     font-family: 'quicksandBook';
-    font-size: clamp(14px, 1.5vw, 16px);
+    font-size: clamp(16px, 1.5vw, 18px);
     line-height: 1.4;
     color: #F8F7E5;
   }

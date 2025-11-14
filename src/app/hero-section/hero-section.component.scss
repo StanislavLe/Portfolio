@@ -1,16 +1,16 @@
 .main-content {
-    display: flex;
-    justify-content: start;
-    align-items: flex-end;
-    flex-direction: row;
-    min-height: 100dvh;
-    width: 100%;
-    z-index: auto;
-    transform: none;
-    filter: none;
-    padding-top: 5rem;
-    overflow: hidden;
-    max-width: 1920px;
+  display: flex;
+  justify-content: start;
+  align-items: flex-end;
+  flex-direction: row;
+  min-height: 100dvh;
+  width: 100%;
+  z-index: auto;
+  transform: none;
+  filter: none;
+  padding-top: 5rem;
+  overflow: hidden;
+  max-width: 1920px;
 
   @media screen and (max-width: 690px) {
     flex-direction: column;
@@ -29,17 +29,23 @@
   width: 100%;
   z-index: 3;
   height: 70vh;
-padding-top: clamp(50px, 5vw, 150px);
+  padding-top: clamp(50px, 5vw, 150px);
+
   @media (max-width: 1150px) {
     height: 68.5vh;
   }
 
-  @media (max-height: 870px) {
+  @media (max-height: 950px) {
     gap: clamp(16px, 5vw, 32px);
+    padding-top: clamp(30px, 1vw, 100px);
   }
 
-  @media (max-height: 816px) {
+  @media (max-height: 820px) {
     gap: clamp(16px, 2vw, 24px);
+  }
+
+    @media (max-height: 700px) {
+    padding-top: clamp(8px, 8px, 100px);
   }
 
   span {
@@ -85,7 +91,7 @@ padding-top: clamp(50px, 5vw, 150px);
 .conectBtn {
   font-family: 'quicksandBook';
   font-weight: 700;
-  font-size: clamp(16px, 1vw, 60px);
+  font-size: clamp(16px, 1.5vw, 60px);
   height: clamp(36px, 4.5vh, 44px);
   line-height: 120%;
   border: solid #F8F7E5 1px;

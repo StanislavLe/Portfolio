@@ -19,6 +19,8 @@
 
   @media screen and (max-height: 905px) {
     justify-content: start;
+        padding: 10rem 8px 0px 8px;
+
   }
 }
 
@@ -31,12 +33,14 @@ h1 {
   justify-content: center;
   align-items: center;
   max-width: 1900px;
-  padding-top: 100px;
+  padding-top: clamp(24px, 1vw, 72px);
 
   @media screen and (max-width: 900px) {
     justify-content: start;
     width: 100%;
     padding-top: 0px;
+        margin-bottom: 2px;
+
   }
 
   @media screen and (max-height: 695px) {

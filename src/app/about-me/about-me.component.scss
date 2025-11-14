@@ -20,7 +20,7 @@ h1 {
 .conectBtn {
     font-family: 'quicksandBook';
     font-weight: 700;
-    font-size: clamp(14px, 1.2vw, 18px);
+    font-size: clamp(16px, 1.5vw, 18px);
     width: clamp(133px, 15vw, 200px);
     height: clamp(36px, 5vh, 44px);
     line-height: 120%;
@@ -73,7 +73,7 @@ h3 {
     border-radius: 4px;
     border: #1D1D1D solid 1px;
     box-shadow: 0 8px 32px #2222;
-    font-size: clamp(14px, 1.2vw, 18px);
+    font-size: clamp(16px, 1.5vw, 18px);
     font-family: 'quicksandBook';
     right: -318%;
     bottom: -292px;
@@ -156,7 +156,7 @@ h3 {
     display: flex;
     align-items: center;
     gap: 12px;
-    font-size: clamp(14px, 1.1vw, 18px) !important;
+    font-size: clamp(16px, 1.5vw, 18px) !important;
 }
 
 .material-icons {
