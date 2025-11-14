@@ -14,9 +14,9 @@
         padding: 1.5rem 8px 0px 8px;
     }
 
-      @media (max-height: 700px) {
-    max-width: 1500px;
-  }
+    @media (max-height: 700px) {
+        max-width: 1500px;
+    }
 }
 
 .project-wrapper {
@@ -40,11 +40,11 @@ h1 {
     align-items: center;
     flex-direction: row;
     color: #1D1D1D;
-    padding-bottom: 42px;
+    padding-bottom: clamp(16px, 1.5vh, 42px);
     width: 100%;
     padding-right: 50px;
-    gap: 50px;
-    padding-top: 42px;
+    gap: clamp(16px, 1.5vh, 50px);
+    padding-top: clamp(16px, 1.5vh, 18px);
 
     @media screen and (max-width: 1425px) {
         flex-direction: column;

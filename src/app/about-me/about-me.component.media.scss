@@ -166,7 +166,7 @@
 
         @media screen and (max-width: 930px) {
             bottom: unset;
-            top: 8.5rem;
+            top: 7rem;
             width: 50%;
         }
 
@@ -245,7 +245,7 @@
     }
 
     @media screen and (max-width: 690px) {
-        right: -50px;
+        right: -16px;
     }
 
     @media screen and (max-width: 530px) {
@@ -264,7 +264,8 @@
         top: 100px;
 
         @media screen and (max-width: 530px) {
-            top: 265px;
+            top: unset;
+            bottom: -13rem;
         }
     }
 }
@@ -390,7 +391,7 @@
         }
 
         @media screen and (max-width: 690px) {
-            width: 60%;
+            width: 50%;
         }
 
         @media screen and (max-width: 530px) {
