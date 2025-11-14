@@ -15,6 +15,10 @@
         justify-content: start;
         align-items: center;
     }
+
+    @media (max-height: 700px) {
+        max-width: 1500px;
+    }
 }
 
 .text-section {

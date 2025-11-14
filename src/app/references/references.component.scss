@@ -14,13 +14,24 @@
   }
 
   @media screen and (max-width: 510px) {
-    padding: 3.3rem 8px 0px 8px;
+    padding-top: 3.3rem;
   }
 
   @media screen and (max-height: 905px) {
     justify-content: start;
-        padding: 10rem 8px 0px 8px;
+    padding-top: 5rem;
 
+  }
+
+
+  @media screen and (max-height: 733px) {
+    padding-left: 8px;
+
+    @media screen and (max-width: 510px) {}
+  }
+
+    @media (max-height: 700px) {
+    max-width: 1500px;
   }
 }
 
@@ -39,7 +50,7 @@ h1 {
     justify-content: start;
     width: 100%;
     padding-top: 0px;
-        margin-bottom: 2px;
+    margin-bottom: 2px;
 
   }
 
@@ -76,7 +87,6 @@ h1 {
   }
 
   @media screen and (max-height: 733px) {
-    gap: 4px;
   }
 }
 

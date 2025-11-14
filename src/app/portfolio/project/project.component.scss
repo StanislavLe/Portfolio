@@ -4,12 +4,13 @@
   align-items: center;
   justify-content: space-between;
   gap: 50px;
-  width: 100%;
+  width: 92%;
   color: #F8F7E5;
   overflow: hidden;
 
   @media screen and (max-width: 900px) {
     gap: 10px;
+    width: 91%;
   }
 
   @media screen and (max-width: 510px) {

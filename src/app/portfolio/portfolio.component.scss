@@ -13,6 +13,10 @@
         gap: 24px;
         padding: 1.5rem 8px 0px 8px;
     }
+
+      @media (max-height: 700px) {
+    max-width: 1500px;
+  }
 }
 
 .project-wrapper {
