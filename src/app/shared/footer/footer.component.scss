@@ -16,7 +16,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: start;
-        bottom: 54px;
+        bottom: 10px;
+        height: 50px;
     }
 
     .footer-image-container {
@@ -36,6 +37,14 @@
             }
         }
 
+        @media screen and (max-height: 926px) {
+            width: clamp(64px, 20vw, 340px);
+        }
+
+           @media screen and (max-height: 730px) {
+            width: clamp(64px, 10vw, 180px);
+            top: 53px;
+        }
         img {
             position: absolute;
             max-width: 100%;
@@ -104,7 +113,7 @@
     .footer-content {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: end;
         width: 50%;
         position: relative;
         top: 70px;
@@ -121,7 +130,7 @@
             flex-direction: column;
             gap: 8px;
             justify-content: center;
-            top: 27px;
+            top: 8px;
         }
 
         @media screen and (max-width: 690px) {
@@ -150,7 +159,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        bottom: 43px;
+        bottom: 20px;
+        height: 40px;
     }
 
     .footer-image-container {

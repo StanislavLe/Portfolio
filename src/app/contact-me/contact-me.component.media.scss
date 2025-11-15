@@ -12,7 +12,7 @@
   padding: 12rem 82px 0px 58px;
 
   @media (max-width: 690px) {
-    padding: 9.5rem 8px 0px 8px;
+    padding: 130px 8px 0px 8px;
   }
 }
 
@@ -63,9 +63,11 @@ h1 {
   }
 
   @media screen and (max-height: 830px) {
+      @media screen and (max-width: 690px) {
     padding: 0px;
     margin: 0px;
   }
+}
 }
 
 .text-content {
@@ -129,6 +131,6 @@ h1 {
   }
 
   @media screen and (max-width: 690px) {
-    bottom: 3%;
+    bottom: 2%;
   }
 }
