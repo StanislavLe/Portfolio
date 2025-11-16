@@ -15,35 +15,43 @@
       <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" novalidate>
         <div class="personal-group">
           <div class="form-group">
-            <label for="name">{{ translations.labels.name[currentLang] }}</label>
-            <input #name="ngModel" [(ngModel)]="contactData.name" name="name" id="name" type="text" required
-              pattern="^[A-Za-zÀ-ž\- ]{2,}$" autocomplete="off" [placeholder]="
-    (name.invalid && name.touched)
-      ? translations.errorPlaceholders.name[currentLang]
-      : translations.placeholders.name[currentLang]
-  " [class.is-error]="name.invalid && name.touched" (blur)="name.invalid ? (contactData.name='') : null" />
+            <div class="form-group">
+              <label for="name">{{ translations.labels.name[currentLang] }}</label>
+              <input #name="ngModel" [(ngModel)]="contactData.name" name="name" id="name" type="text" required
+                pattern="^(?!\s*$)[A-Za-zÄÖÜäöüß\- ]{2,}$" autocomplete="off"
+                [class.is-error]="name.invalid && name.touched" (focus)="hideErrorPopup('name')"
+                (blur)="name.invalid ? showErrorPopup('name') : null" />
+              <div class="error-popup" *ngIf="errorPopups.name" [@fadeInOut]>
+                {{ translations.errorPlaceholders.name[currentLang] }}
+              </div>
+            </div>
           </div>
 
           <div class="form-group">
-            <label for="email">{{ translations.labels.email[currentLang] }}</label>
-            <input #email="ngModel" [(ngModel)]="contactData.email" name="email" id="email" type="email" required
-              pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" autocomplete="off" [placeholder]="
-    (email.invalid && email.touched)
-      ? translations.errorPlaceholders.email[currentLang]
-      : translations.placeholders.email[currentLang]
-  " [class.is-error]="email.invalid && email.touched" (blur)="email.invalid ? (contactData.email='') : null" />
+            <div class="form-group">
+              <label for="email">{{ translations.labels.email[currentLang] }}</label>
+              <input #email="ngModel" [(ngModel)]="contactData.email" name="email" id="email" type="email" required
+                pattern="^(?!\s*$)[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[A-Za-z]{2,}$" autocomplete="off"
+                [class.is-error]="email.invalid && email.touched" (focus)="hideErrorPopup('email')"
+                (blur)="email.invalid ? showErrorPopup('email') : null" />
+              <div class="error-popup" *ngIf="errorPopups.email" [@fadeInOut]>
+                {{ translations.errorPlaceholders.email[currentLang] }}
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="message-group">
-          <label for="message">{{ translations.labels.message[currentLang] }}</label>
-          <textarea #message="ngModel" [(ngModel)]="contactData.message" name="message" id="message" rows="1" required
-            minlength="4" autocomplete="off" [placeholder]="
-    (message.invalid && message.touched)
-      ? translations.errorPlaceholders.message[currentLang]
-      : translations.placeholders.message[currentLang]
-  " [class.is-error]="message.invalid && message.touched"
-            (blur)="message.invalid ? (contactData.message='') : null"></textarea>
+          <div class="message-group">
+            <label for="message">{{ translations.labels.message[currentLang] }}</label>
+            <textarea #message="ngModel" [(ngModel)]="contactData.message" name="message" id="message" rows="1" required
+              minlength="4" autocomplete="off" [class.is-error]="message.invalid && message.touched"
+              (focus)="hideErrorPopup('message')" (blur)="message.invalid ? showErrorPopup('message') : null">
+            </textarea>
+            <div class="error-popup-message" *ngIf="errorPopups.message" [@fadeInOut]>
+              {{ translations.errorPlaceholders.message[currentLang] }}
+            </div>
+          </div>
         </div>
 
         <div class="agreement-group">

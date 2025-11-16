@@ -14,7 +14,8 @@
  * - Integration mit der globalen Section-Navigation (`SectionNavService`)
  *
  * Besonderheiten:
- * - `NgForm` zur Template-basierten Formularsteuerung
+ * - Template-basierte Formularsteuerung mit `NgForm`
+ * - Dynamische Animationen für Fehlermeldungen
  * - Sprachwechsel in Echtzeit durch `LanguageService`
  * - Nutzung von `NgZone` + `ChangeDetectorRef` für performantes Rendering
  * - API-Call via `HttpClient` mit JSON-Body und Custom Headern
@@ -25,7 +26,9 @@ import {
   inject,
   ChangeDetectorRef,
   NgZone,
-  OnInit
+  OnInit,
+  Inject,
+  PLATFORM_ID,
 } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import {
@@ -33,16 +36,21 @@ import {
   NgFor,
   NgIf,
   NgSwitch,
-  NgSwitchCase
+  NgSwitchCase,
+  isPlatformBrowser,
+  DOCUMENT,
 } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { FooterComponent } from '../shared/footer/footer.component';
+import { RouterModule, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { FooterComponent } from '../shared/footer/footer.component';
 import { LanguageService, SupportedLang } from '../shared/language.service';
 import { SectionNavService } from '../shared/sections.config';
-import { Router } from '@angular/router';
-import { Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, DOCUMENT } from '@angular/common';
+import {
+  trigger,
+  transition,
+  style,
+  animate,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-contact-me',
@@ -57,33 +65,42 @@ import { isPlatformBrowser, DOCUMENT } from '@angular/common';
     FooterComponent,
     CommonModule,
   ],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(-6px)' }),
+        animate('150ms ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
+      ]),
+      transition(':leave', [
+        animate('150ms ease-in', style({ opacity: 0, transform: 'translateY(-6px)' })),
+      ]),
+    ]),
+  ],
   templateUrl: './contact-me.component.html',
-  styleUrls: ['./contact-me.component.scss', './contact-me.component.media.scss']
+  styleUrls: ['./contact-me.component.scss', './contact-me.component.media.scss'],
 })
 export class ContactMeComponent implements OnInit {
-  /**
-   * HTTP-Client für Formularübermittlung
-   */
+  // ---------------------------------------------------------------------------
+  // 🔧 Abhängigkeiten & Services
+  // ---------------------------------------------------------------------------
+
+  /** HTTP-Client für den Versand der Formulardaten an das Backend */
   private http = inject(HttpClient);
 
-  /**
-   * Zugriff auf Section-Navigation für Scroll-to-Top / Hero
-   */
+  /** Zugriff auf globale Section-Navigation (z. B. für Scroll zu Hero) */
   private sectionNav = inject(SectionNavService);
 
-  /**
-   * Aktuell ausgewählte Sprache.
-   */
+  // ---------------------------------------------------------------------------
+  // 🌐 Zustände & Daten
+  // ---------------------------------------------------------------------------
+
+  /** Aktuell ausgewählte Sprache */
   currentLang: SupportedLang = 'de';
 
-  /**
-   * Zeigt an, ob das Formular erfolgreich versendet wurde.
-   */
+  /** Zeigt an, ob das Formular erfolgreich versendet wurde */
   isSuccess = false;
 
-  /**
-   * Datenmodell für das Formular.
-   */
+  /** Datenmodell des Kontaktformulars */
   contactData = {
     name: '',
     email: '',
@@ -91,8 +108,20 @@ export class ContactMeComponent implements OnInit {
     agreement: false,
   };
 
+  /** Zustände für Popup-Fehlermeldungen einzelner Felder */
+  errorPopups = {
+    name: false,
+    email: false,
+    message: false,
+  };
+
+  // ---------------------------------------------------------------------------
+  // 📩 Backend-Konfiguration
+  // ---------------------------------------------------------------------------
+
   /**
    * Konfiguration für den HTTP-POST-Request zum PHP-Mail-Endpunkt.
+   * Beinhaltet URL, Request-Body und Header.
    */
   post = {
     endPoint: 'https://stanislav-levin.de/sendMail.php',
@@ -103,9 +132,13 @@ export class ContactMeComponent implements OnInit {
     },
   };
 
+  // ---------------------------------------------------------------------------
+  // 🌍 Mehrsprachige Texte
+  // ---------------------------------------------------------------------------
+
   /**
-   * Mehrsprachige Texte und Beschriftungen für das Formular.
-   * Enthält Header, Label, Placeholder, Fehlertexte und Buttons.
+   * Mehrsprachige Texte, Labels, Platzhalter und Fehlermeldungen
+   * für alle Formularinhalte und UI-Texte.
    */
   translations = {
     header: {
@@ -186,30 +219,26 @@ export class ContactMeComponent implements OnInit {
     },
   };
 
+  // ---------------------------------------------------------------------------
+  // 🧱 Konstruktor & Lifecycle
+  // ---------------------------------------------------------------------------
+
   /**
-   * Konstruktor mit Dependency Injection für Sprachsteuerung und Change Detection.
-   *
-   * @param langService - Service zur Sprachverwaltung
-   * @param cdr - ChangeDetectorRef für manuelles Aktualisieren des Templates
-   * @param zone - Angular NgZone für performante DOM-Aktualisierung außerhalb Angulars Change Detection
+   * Konstruktor – injiziert Sprachservice, Router und DOM-Abhängigkeiten.
    */
- constructor(
-  private langService: LanguageService,
-  private cdr: ChangeDetectorRef,
-  private zone: NgZone,
-  private router: Router,
-  @Inject(PLATFORM_ID) private platformId: Object,
-  @Inject(DOCUMENT) private document: Document,
-  private nav: SectionNavService
-) {}
-
+  constructor(
+    private langService: LanguageService,
+    private cdr: ChangeDetectorRef,
+    private zone: NgZone,
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(DOCUMENT) private document: Document,
+    private nav: SectionNavService
+  ) {}
 
   /**
-   * Lifecycle Hook – `ngOnInit`
-   *
-   * Reaktives Sprachsystem:
-   * Aktualisiert alle Texte bei Sprachwechsel über den `LanguageService`.
-   * Führt UI-Updates in einer Microtask aus, um Performance zu optimieren.
+   * Lifecycle Hook – Initialisierung
+   * Abonniert Sprachänderungen und aktualisiert dynamisch alle UI-Texte.
    */
   ngOnInit(): void {
     this.langService.lang$.subscribe((lang) => {
@@ -220,15 +249,19 @@ export class ContactMeComponent implements OnInit {
     });
   }
 
+  // ---------------------------------------------------------------------------
+  // ✉️ Formularsteuerung & Validierung
+  // ---------------------------------------------------------------------------
+
   /**
    * Wird beim Absenden des Formulars aufgerufen.
    *
-   * @param ngForm - Template-gesteuertes Angular-Formular
+   * @param ngForm - Das Template-basierte Angular-Formular
    *
    * - Validiert Eingaben
-   * - Sendet POST-Request an definierten PHP-Endpunkt
-   * - Setzt Formular bei Erfolg zurück
-   * - Zeigt Erfolgsstatus temporär an
+   * - Sendet Daten per POST an das Backend
+   * - Zeigt bei Erfolg eine Erfolgsmeldung
+   * - Setzt Formular zurück
    */
   onSubmit(ngForm: NgForm): void {
     if (ngForm.submitted && ngForm.form.valid) {
@@ -246,7 +279,7 @@ export class ContactMeComponent implements OnInit {
             });
           },
           error: (error) => {
-            console.error('❌ Error:', error);
+            console.error('❌ Fehler beim Versand:', error);
             this.isSuccess = false;
           },
         });
@@ -254,56 +287,28 @@ export class ContactMeComponent implements OnInit {
   }
 
   /**
-   * Scrollt zurück zum Hero-Abschnitt am Seitenanfang.
-   * Wird z. B. im Footer verwendet.
+   * Zeigt ein Fehler-Popup für das angegebene Feld an.
+   * 
+   * @param field - Name des Feldes ('name', 'email', 'message')
    */
-  scrollToHero(): void {
-    this.sectionNav.requestScroll('hero');
+  showErrorPopup(field: 'name' | 'email' | 'message') {
+    this.errorPopups[field] = true;
+    setTimeout(() => (this.errorPopups[field] = false), 3000);
   }
 
-
-  
-    /**
-     * Führt eine Navigation aus und scrollt danach sanft an den Seitenanfang.
-     * 
-     * @param path - Array aus Routen-Fragmenten (z. B. `['/impressum']` oder `['/']`).
-     * 
-     * Verhalten:
-     * - Navigiert per Angular Router zum angegebenen Pfad.
-     * - Scrollt anschließend die Seite nach oben (nur im Browser).
-     * - Falls Ziel die Startseite ist, aktiviert zusätzlich die „hero“-Section
-     *   und synchronisiert sie mit dem SectionNavService.
-     */
-   navigateAndScroll(path: string[]): void {
-  const target = path.join('/');
-  const isHome = target === '/' || target === '';
-
-  this.router.navigate(path).then((success: boolean) => {
-    if (success && isPlatformBrowser(this.platformId)) {
-      const win = this.document.defaultView!;
-      const html = this.document.documentElement;
-      const body = this.document.body;
-
-      requestAnimationFrame(() => {
-        win.scrollTo({ top: 0, behavior: 'auto' });
-        html.scrollTop = 0;
-        body.scrollTop = 0;
-      });
-
-      if (isHome) {
-        this.nav.requestScroll('hero');
-        this.nav.setActive('hero');
-      }
-    }
-  });
-}
-
-
-
+  /**
+   * Blendet das Fehler-Popup des angegebenen Feldes aus.
+   * 
+   * @param field - Name des Feldes ('name', 'email', 'message')
+   */
+  hideErrorPopup(field: 'name' | 'email' | 'message') {
+    this.errorPopups[field] = false;
+  }
 
   /**
-   * Prüft, ob das Formular fast vollständig, aber noch nicht abgesendet ist.
-   * Dient z. B. für dynamische UI-Stylingzustände oder Validierungshinweise.
+   * Prüft, ob das Formular fast gültig ist (alle Eingaben korrekt, aber Checkbox fehlt).
+   * 
+   * Wird verwendet, um Tooltips oder UI-Hinweise anzuzeigen.
    */
   get isFormAlmostValid(): boolean {
     const name = this.contactData.name ?? '';
@@ -313,42 +318,74 @@ export class ContactMeComponent implements OnInit {
 
     return (
       name.trim().length > 1 &&
-      /^[A-Za-zÀ-ž\- ]{2,}$/.test(name) &&
-      /[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/.test(email) &&
+      /^(?!\s*$)[A-Za-zÄÖÜäöüß\- ]{2,}$/.test(name) &&
+      /^(?!\s*$)[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[A-Za-z]{2,}$/.test(email) &&
       message.trim().length >= 4 &&
       !agreement
     );
   }
 
+  // ---------------------------------------------------------------------------
+  // 🧭 Navigation
+  // ---------------------------------------------------------------------------
+
   /**
-   * Liefert den Datenschutz-Hinweis in der aktuellen Sprache.
+   * Scrollt zurück zum Hero-Abschnitt am Seitenanfang.
    */
-  get checkboxHint(): string {
-    switch (this.currentLang) {
-      case 'de':
-        return 'Bitte bestätige die Datenschutzerklärung.';
-      case 'en':
-        return 'Please confirm the privacy policy.';
-      case 'ru':
-        return 'Пожалуйста, подтвердите политику конфиденциальности.';
-      default:
-        return 'Bitte bestätige die Datenschutzerklärung.';
-    }
+  scrollToHero(): void {
+    this.sectionNav.requestScroll('hero');
   }
 
   /**
-   * Liefert den Erfolgshinweis nach erfolgreichem Senden des Formulars.
+   * Führt eine Navigation zu einer bestimmten Route aus und scrollt danach an den Seitenanfang.
+   * 
+   * @param path - Zielroute (z. B. `['/']` oder `['/legal', 'privacy-policy']`)
    */
+  navigateAndScroll(path: string[]): void {
+    const target = path.join('/');
+    const isHome = target === '/' || target === '';
+
+    this.router.navigate(path).then((success: boolean) => {
+      if (success && isPlatformBrowser(this.platformId)) {
+        const win = this.document.defaultView!;
+        const html = this.document.documentElement;
+        const body = this.document.body;
+
+        requestAnimationFrame(() => {
+          win.scrollTo({ top: 0, behavior: 'auto' });
+          html.scrollTop = 0;
+          body.scrollTop = 0;
+        });
+
+        if (isHome) {
+          this.nav.requestScroll('hero');
+          this.nav.setActive('hero');
+        }
+      }
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // 💬 Texte für Hinweise
+  // ---------------------------------------------------------------------------
+
+  /** Liefert den Datenschutz-Hinweis in der aktuellen Sprache */
+  get checkboxHint(): string {
+    switch (this.currentLang) {
+      case 'de': return 'Bitte bestätige die Datenschutzerklärung.';
+      case 'en': return 'Please confirm the privacy policy.';
+      case 'ru': return 'Пожалуйста, подтвердите политику конфиденциальности.';
+      default: return 'Bitte bestätige die Datenschutzerklärung.';
+    }
+  }
+
+  /** Liefert den Erfolgshinweis nach erfolgreichem Senden des Formulars */
   get successHint(): string {
     switch (this.currentLang) {
-      case 'de':
-        return 'Nachricht erfolgreich gesendet!';
-      case 'en':
-        return 'Message sent successfully!';
-      case 'ru':
-        return 'Сообщение успешно отправлено!';
-      default:
-        return 'Nachricht erfolgreich gesendet!';
+      case 'de': return 'Nachricht erfolgreich gesendet!';
+      case 'en': return 'Message sent successfully!';
+      case 'ru': return 'Сообщение успешно отправлено!';
+      default: return 'Nachricht erfolgreich gesendet!';
     }
   }
 }

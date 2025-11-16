@@ -1,5 +1,5 @@
 .contact-form {
-  width: 60%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -9,7 +9,7 @@
 
   @media screen and (max-width: 900px) {
     width: 100%;
-    margin-top: clamp(8px, 2vh, 32px);
+    margin-top: clamp(8px, 5vh, 47px);
   }
 
   @media screen and (max-width: 690px) {
@@ -17,7 +17,7 @@
   }
 
   form {
-    width: 87%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,7 +29,7 @@
     .personal-group {
       display: flex;
       gap: 32px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       width: 100%;
 
       @media screen and (max-width: 1300px) {
@@ -376,4 +376,86 @@
   .checkbox-tooltip.success::after {
     border-color: #F9AF42 transparent transparent transparent;
   }
+}
+
+
+
+
+.error-popup-message {
+  position: absolute;
+  background: #ff5c5c;
+  color: #fff;
+  font-size: 1rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  top: 76px;
+  left: 0;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.2s ease-out;
+  z-index: 10;
+
+  @media (max-width: 1300px) {
+    top: 194px;
+  }
+
+
+  @media screen and (max-width: 900px) {
+    top: 239px;
+  }
+
+  @media screen and (max-width: 690px) {
+    top: 219px;
+  }
+
+  @media screen and (max-width: 466px) {
+    top: 157px;
+    padding: 4px 6px;
+
+  }
+}
+
+.error-popup {
+  position: absolute;
+  background: #ff5c5c;
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  top: -42px;
+  left: 0;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.2s ease-out;
+  z-index: 10;
+
+  @media screen and (max-width: 900px) {
+    top: 25px;
+  }
+
+  @media screen and (max-width: 466px) {
+    top: 21px;
+    padding: 4px 6px;
+
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-group {
+  position: relative;
+}
+
+.is-error {
+  border: 2px solid #ff5c5c;
 }

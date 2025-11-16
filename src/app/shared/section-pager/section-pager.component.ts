@@ -289,6 +289,7 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
     setTimeout(() => {
       this.cdr.markForCheck();
     }, 200);
+    this.nav.setActive(id);
   }
 
 
