@@ -4,6 +4,7 @@
   align-items: center;
   flex-direction: column;
   height: 77dvh;
+  height: calc(var(--vh, 1vh) * 77);
   width: 100%;
   position: relative;
   z-index: auto;
@@ -63,11 +64,11 @@ h1 {
   }
 
   @media screen and (max-height: 830px) {
-      @media screen and (max-width: 690px) {
-    padding: 0px;
-    margin: 0px;
+    @media screen and (max-width: 690px) {
+      padding: 0px;
+      margin: 0px;
+    }
   }
-}
 }
 
 .text-content {

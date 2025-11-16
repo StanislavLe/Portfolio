@@ -3,7 +3,8 @@
   justify-content: start;
   align-items: flex-end;
   flex-direction: row;
-  min-height: 100dvh;
+min-height: 100dvh;
+min-height: calc(var(--vh, 1vh) * 100);
   width: 100%;
   z-index: auto;
   transform: none;
