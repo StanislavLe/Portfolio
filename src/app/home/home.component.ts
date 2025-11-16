@@ -74,57 +74,55 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if (isPlatformBrowser(this.platformId)) {
       this.nav.setActive('hero');
     }
-
     this.nav.active$.subscribe(id => (this.currentSection = id));
     this.nav.isLast$.subscribe(v => (this.isLastSection = v));
-
-    // Scrollen über #fragment in der URL
     this.route.fragment.subscribe(fragment => {
       if (fragment) this.nav.requestScroll(fragment);
     });
-
-    // Scrollen über QueryParam (?section=about)
     this.route.queryParamMap.subscribe(params => {
       const section = params.get('section');
       if (section) this.nav.requestScroll(section);
     });
   }
 
-  /**
-   * Lifecycle-Hook – `ngAfterViewInit`
-   * ----------------------------------
-   *
-   * Wird nach der Initialisierung der View aufgerufen und sorgt dafür,
-   * dass die aktuelle sichtbare Sektion (z. B. *hero*, *about*, *contact*) 
-   * zuverlässig erkannt und synchron mit der globalen Navigation (`SectionNavService`) gehalten wird.
-   *
-   * Hauptaufgaben:
-   * 1. Initialisiert den `IntersectionObserver`, um dynamisch zu erkennen,
-   *    welche Sektion gerade im Viewport sichtbar ist.
-   * 2. Reagiert auf Scrollbefehle aus dem `SectionNavService` (z. B. Klick im Header/Footer).
-   * 3. Führt nach dem Laden eine Sichtbarkeitsprüfung aus, um die korrekte aktive Section zu setzen.
-   *
-   * ⚙️ Funktionsweise:
-   * - Beobachtet alle `<div>`-Elemente mit einer `id` (jede Page-Section).
-   * - Sobald eine Section zu mindestens 50 % sichtbar ist (`threshold: 0.5`),
-   *   wird deren ID an den Navigationsservice übergeben.
-   * - Nach dem Laden prüft eine kurze Verzögerung (300 ms), 
-   *   welche Section initial sichtbar ist (z. B. bei Zurücknavigation oder Browser-Refresh).
-   */
-  ngAfterViewInit(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-    const sections = Array.from(this.document.querySelectorAll<HTMLElement>('div[id]'));
-    const observer = new IntersectionObserver(
-      (entries) =>
-        entries
-          .filter((entry) => entry.isIntersecting)
-          .forEach((entry) => this.nav.setActive(entry.target.id)),
-      { threshold: 0.5 }
-    );
-    sections.forEach((section) => observer.observe(section));
-    this.nav.scrollTo$.subscribe((id) => this.scrollToSection(id));
-    setTimeout(() => this.detectVisibleSection(sections), 300);
-  }
+/**
+ * Lifecycle-Hook – `ngAfterViewInit`
+ * ----------------------------------
+ *
+ * Erkennt zuverlässig die aktuell sichtbare Section und synchronisiert sie 
+ * mit der globalen Navigation (`SectionNavService`).
+ *
+ * Verbesserte Version:
+ * - Stabilisiert Safari-Viewport-Sprünge durch gedrosselte Observer-Events.
+ * - Verhindert doppelte Updates beim Ein-/Ausblenden der Toolbar.
+ * - Setzt beim Initial-Load sofort die sichtbare Section korrekt.
+ */
+ngAfterViewInit(): void {
+  if (!isPlatformBrowser(this.platformId)) return;
+  const sections = Array.from(this.document.querySelectorAll<HTMLElement>('div[id]'));
+  let lastUpdate = 0;
+  const THROTTLE_TIME = 200; 
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const now = Date.now();
+      if (now - lastUpdate < THROTTLE_TIME) return;
+      lastUpdate = now;
+      const visibleEntry = entries.find((e) => e.isIntersecting);
+      if (visibleEntry) {
+        const id = visibleEntry.target.id;
+        this.nav.setActive(id);
+      }
+    },
+    { threshold: 0.55 } 
+  );
+  sections.forEach((section) => observer.observe(section));
+  this.nav.scrollTo$.subscribe((id) => {
+    this.scrollToSection(id);
+    setTimeout(() => this.scrollToSection(id), 300);
+  });
+  setTimeout(() => this.detectVisibleSection(sections), 350);
+}
+
 
   /**
    * Hilfsmethode: `detectVisibleSection`

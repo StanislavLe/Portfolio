@@ -275,23 +275,16 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
   scrollToSection(index: number): void {
     const el = this.sectionRefs.get(index)?.nativeElement;
     if (!el) return;
-
-    // 🎨 Aktive Section sofort setzen (Header-Update erfolgt direkt)
     this.currentSectionIndex = index;
     const id = this.sections[index].id;
     this.sectionChanged.emit(id);
-    this.nav.setActive(id); // <- sofort Header-Farbe updaten
-
-    // Danach das eigentliche Scrollen starten
+    this.nav.setActive(id); 
     el.scrollIntoView({ behavior: 'smooth' });
-
-    // Optional leichte Verzögerung zur visuellen Synchronität
     setTimeout(() => {
       this.cdr.markForCheck();
     }, 200);
     this.nav.setActive(id);
   }
-
 
 
   /**

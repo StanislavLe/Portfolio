@@ -3,15 +3,16 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+    height: 100dvh;
+  height: calc(var(--vh, 1vh) * 100);
+  overflow-y: auto; 
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch; 
 }
 
 .pager-section {
-  /* ✅ Moderne Browser */
   height: 100dvh;
-
-  /* 🧩 Safari-Fallback */
   height: calc(var(--vh, 1vh) * 100);
-
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -26,14 +27,11 @@
   }
 }
 
-
-
 .pager-section#hero {
   background: #679aac;
   color: #fff;
   align-items: unset;
 }
-
 
 .pager-section#about {
   background: #F8F7E5;

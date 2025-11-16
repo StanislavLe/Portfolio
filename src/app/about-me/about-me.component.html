@@ -1,13 +1,9 @@
 <div class="main-content">
   <h1>{{ translations.title[currentLang] }}</h1>
-
   <div class="aboutMeSection">
     <img class="aboutMeImg" src="assets/img/aboutMe.jpg" alt="About me Image">
-
     <div class="aboutMeContainer">
       <span [innerHTML]="translations.intro[currentLang]"></span>
-
-
       <div>
         <button mat-button (click)="scrollToContact()" class="conectBtn">
           {{ translations.button[currentLang] }}
@@ -15,7 +11,6 @@
         <div class="emoji-wrapper">
           <img src="assets/img/6. Secret info Emojis.png" alt="Secret Emoji" (click)="togglePanel()"
             class="floating-emoji" (click)="togglePanel()">
-
           <div class="secret-info-panel">
             <div class="secret-info-panel-header">
               <h3>{{ translations.secretTitle[currentLang] }}</h3>
@@ -28,7 +23,6 @@
                 <mat-icon [fontIcon]="t.icon"></mat-icon> {{ t.text }}
               </li>
             </ul>
-
           </div>
         </div>
       </div>

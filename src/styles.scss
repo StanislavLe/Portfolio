@@ -12,7 +12,7 @@ body {
     scrollbar-width: none;
     -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
-    scroll-behavior: auto;
+    scroll-behavior: none;
 
     &::-webkit-scrollbar {
         width: 0;
@@ -211,18 +211,6 @@ app-hero-section {
     min-height: 100dvh;
     min-height: calc(var(--vh, 1vh) * 100);
 }
-
-app-footer {
-    position: absolute;
-    z-index: 10000;
-    bottom: 190px;
-
-    @media (max-height: 700px) {
-        bottom: 100px;
-    }
-}
-
-
 
 main.legal {
     display: flex;

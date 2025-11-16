@@ -25,7 +25,7 @@ import { LanguageService, SupportedLang } from '../shared/language.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './skillset.component.html',
-  styleUrls: ['./skillset.component.scss'],
+  styleUrls: ['./skillset.component.scss', './skillset.component.media.scss'],
 })
 export class SkillsetComponent implements OnInit {
   /**

@@ -1,0 +1,189 @@
+
+h1 {
+    color: #F8F7E5;
+    font-size: clamp(32px, 5vw, 72px);
+    font-family: 'eczarBold';
+    font-weight: 600;
+    padding-bottom: 100px;
+    padding-top: 56px;
+    white-space: nowrap;
+    text-align: center;
+
+    @media screen and (max-width: 1016px) {
+        padding-bottom: 40px;
+    }
+
+    @media screen and (max-width: 500px) {
+        padding-bottom: 0px;
+        padding-top: 4px;
+    }
+
+    @media screen and (max-height: 800px) {
+        @media screen and (max-width: 690px) {
+            padding-bottom: 0px;
+            padding-top: 4px;
+        }
+    }
+
+    @media screen and (max-height: 690px) {
+        width: 100%;
+        margin-bottom: 4px;
+    }
+}
+
+.icon-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    height: 283px;
+    flex-wrap: wrap;
+
+    @media screen and (max-width: 1093px) {
+        position: relative;
+    }
+
+    @media screen and (max-width: 690px) {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 4px;
+        padding-top: 16px;
+    }
+
+    @media screen and (max-height: 700px) {
+        position: relative;
+    }
+
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column-reverse;
+
+        span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            font-family: 'quicksandBook';
+            width: 127px;
+            padding-top: clamp(4px, 2vw, 32px);
+            color: #F8F7E5;
+            text-align: center;
+
+            @media screen and (max-width: 1016px) {
+                font-size: clamp(16px, 2vw, 20px);
+                width: clamp(80px, 4vw, 127px);
+                height: auto;
+            }
+
+            @media screen and (max-width: 690px) {
+                padding-top: 12px;
+            }
+
+            @media screen and (max-height: 761px) {
+                @media screen and (max-width: 1094px) {
+                    padding-top: 4px;
+                }
+            }
+        }
+
+        img {
+            transition: transform 0.20s cubic-bezier(.4, 0, .2, 1);
+            will-change: transform;
+            cursor: pointer;
+            width: clamp(40px, 5vw, 72px);
+
+
+            @media screen and (max-width: 510px) {
+                width: clamp(30px, 9vw, 40px);
+                height: auto;
+            }
+
+            @media screen and (max-height: 761px) {
+                @media screen and (max-width: 1094px) {
+                    width: clamp(26px, 8vw, 40px);
+                }
+            }
+        }
+
+        img:hover,
+        img:focus-visible {
+            transform: scale(1.25);
+        }
+    }
+}
+
+.skillset-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 45%;
+    position: relative;
+    top: 280px;
+
+    @media screen and (max-width: 1430px) {
+        top: 203px;
+    }
+
+    @media screen and (max-width: 1093px) {
+        top: 288px;
+    }
+
+    @media screen and (max-width: 1016px) {
+        top: 143px;
+    }
+
+    @media screen and (max-width: 690px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        top: unset;
+    }
+
+    @media screen and (max-height: 1083px) {
+
+        @media screen and (max-width: 1089px) {
+            top: 146px;
+        }
+
+        @media screen and (max-width: 690px) {
+            top: unset;
+        }
+    }
+
+    @media screen and (max-height: 960px) {
+
+        @media screen and (max-width: 840px) {
+            top: 72px;
+        }
+    }
+
+    @media screen and (max-height: 900px) {
+
+        @media screen and (max-width: 690px) {
+            top: unset;
+        }
+    }
+
+    @media screen and (max-height: 761px) {
+        top: 50px;
+
+        @media screen and (max-width: 1094px) {}
+    }
+
+    @media screen and (max-height: 700px) {
+        top: 196px;
+
+        @media screen and (max-width: 690px) {
+            top: -22px;
+        }
+    }
+
+}
