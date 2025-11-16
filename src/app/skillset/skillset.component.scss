@@ -120,7 +120,6 @@ h1 {
 
     @media screen and (max-height: 700px) {
         position: relative;
-        bottom: 120px;
     }
 
     div {
@@ -248,7 +247,7 @@ h1 {
         top: 196px;
 
         @media screen and (max-width: 690px) {
-            top: 94px;
+            top: -22px;
         }
     }
 

@@ -3,17 +3,17 @@
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  height: 77dvh;
-  height: calc(var(--vh, 1vh) * 77);
+  height: 100dvh;
+  height: calc(var(--vh, 1vh) * 100);
   width: 100%;
   position: relative;
   z-index: auto;
   transform: none;
   filter: none;
-  padding: 5rem 82px 0px 58px;
+  padding: 8rem 82px 0px 58px;
 
   @media (max-width: 690px) {
-    padding: 55px 8px 0px 8px;
+    padding: 106px 8px 0px 8px;
   }
 }
 

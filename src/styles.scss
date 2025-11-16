@@ -7,10 +7,10 @@ button {
 html,
 body {
     min-height: 100dvh;
+    min-height: calc(var(--vh, 1vh) * 100);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    min-height: 100dvh;
     -webkit-overflow-scrolling: touch;
     scroll-behavior: auto;
 
@@ -199,25 +199,37 @@ body.force-repaint {
     }
 }
 
-
 app-header {
     position: absolute;
     z-index: 10000;
 }
 
-
-
 app-hero-section {
     display: flex;
     justify-content: center;
-    align-items: unset;
+    align-items: center;
+    min-height: 100dvh;
+    min-height: calc(var(--vh, 1vh) * 100);
 }
+
+app-footer {
+    position: absolute;
+    z-index: 10000;
+    bottom: 190px;
+
+    @media (max-height: 700px) {
+        bottom: 100px;
+    }
+}
+
+
 
 main.legal {
     display: flex;
     position: relative;
     width: 100%;
     min-height: 100dvh;
+    min-height: calc(var(--vh, 1vh) * 100);
     background-color: #1D1D1D;
     justify-content: center;
     align-items: center;
@@ -236,8 +248,8 @@ main.legal {
 
 html,
 body {
-    height: 100%;
     min-height: 100dvh;
+    min-height: calc(var(--vh, 1vh) * 100);
     width: 100%;
     -webkit-overflow-scrolling: touch;
 }
