@@ -356,3 +356,19 @@ body {
         padding: 4rem 16px 0px 16px;
     }
 }
+
+html, body {
+  overflow: hidden;
+  height: 100%;
+}
+
+/* Falls du noch manuell scrollst */
+.pager-container {
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.pager-container::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
