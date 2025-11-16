@@ -13,7 +13,7 @@
   padding: 8rem 82px 0px 58px;
 
   @media (max-width: 690px) {
-    padding: 98px 8px 0px 8px;
+    padding: 114px 8px 0px 8px;
   }
 }
 
@@ -110,32 +110,44 @@ h1 {
 .arrow-wrapper {
   display: inline-flex;
   flex-direction: column;
-  align-items: center;
+  align-items: end;
   cursor: pointer;
-  border-bottom: 2px solid transparent;
   transition: border-color .2s ease;
   width: max-content;
-  position: absolute;
-  bottom: 12%;
-  right: 42px;
+  position: relative;
+  width: 100%;
   will-change: transform;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   z-index: 10000;
+  padding-right: 42px;
 
-  &:hover {
-    border-bottom: 2px solid #FF834F;
-  }
 
   @media screen and (max-height: 1090px) {
     bottom: 12%;
   }
 
   @media screen and (max-width: 690px) {
-    bottom: 3%;
+    padding-right: 16px;
+
+    @media screen and (max-width: 690px) {
+      bottom: 3%;
+    }
   }
 }
 
+.borderBox {
+  border-bottom: 2px solid transparent;
+
+  @media screen and (max-width: 690px) {
+    position: relative;
+    bottom: 4vh;
+  }
+
+  &:hover {
+    border-bottom: 2px solid #FF834F;
+  }
+}
 
 
 .error-popup-message {
