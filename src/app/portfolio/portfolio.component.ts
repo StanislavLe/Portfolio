@@ -105,7 +105,7 @@ export class PortfolioComponent implements OnInit {
         ru: 'Менеджер задач, вдохновленный системой Kanban. Создавайте и организуйте задачи с помощью drag-and-drop, назначайте пользователей и категории.',
       },
       imageUrl: 'assets/img/JOIN-SC.png',
-      projectLink: 'https://join-386.developerakademie.net/Join/index.html',
+      projectLink: 'https://join.stanislav-levin.de',
       gitHubLink: 'https://github.com/SilverBlure/Join',
       color: '#F9AF42',
       iconUrl: 'assets/img/JOIN-emoji.png',
