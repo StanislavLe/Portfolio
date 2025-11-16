@@ -7,11 +7,33 @@ import { RouterModule, ExtraOptions } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient } from '@angular/common/http';
 
+initViewportHeight();
+
+
+// viewport-fix.util.ts
+export function initViewportHeight() {
+  const setVh = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  };
+  setVh();
+  window.addEventListener('resize', setVh);
+  window.addEventListener('orientationchange', setVh);
+}
+
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: 'enabled', 
   anchorScrolling: 'enabled',           
   scrollOffset: [0, 0],
 };
+
+function setViewportHeight() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+setViewportHeight();
+window.addEventListener('resize', setViewportHeight);
+
 
 bootstrapApplication(AppComponent, {
   providers: [

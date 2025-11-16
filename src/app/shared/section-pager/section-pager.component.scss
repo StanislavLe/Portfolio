@@ -6,20 +6,26 @@
 }
 
 .pager-section {
+  /* ✅ Moderne Browser */
   height: 100dvh;
+
+  /* 🧩 Safari-Fallback */
+  height: calc(var(--vh, 1vh) * 100);
+
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   scroll-snap-align: start;
-  padding-bottom: env(safe-area-inset-bottom);
   box-sizing: border-box;
+  padding-bottom: env(safe-area-inset-bottom);
 
   @media screen and (max-width: 510px) {
     align-items: unset;
   }
 }
+
 
 
 .pager-section#hero {
