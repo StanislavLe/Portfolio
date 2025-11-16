@@ -19,7 +19,7 @@ import { Component, Input, OnInit, Inject, PLATFORM_ID, ViewEncapsulation } from
 import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { LanguageService, SupportedLang } from '../language.service';
-import { SECTIONS_TRANSLATIONS, SectionNavService } from '../sections.config';
+import { SECTIONS_TRANSLATIONS, SectionNavService, FEATURE_FLAGS } from '../sections.config';
 
 /**
  * Definiert mögliche Layout-Varianten des Headers.

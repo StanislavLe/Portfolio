@@ -124,7 +124,7 @@ export class PortfolioComponent implements OnInit {
         ru: 'Простая игра в жанре Jump’n’Run на объектно-ориентированной основе. Управляйте Шарки, собирайте монеты и избегайте врагов.',
       },
       imageUrl: 'assets/img/SHARKY-SC.png',
-      projectLink: 'https://stanislav-levin.developerakademie.net/SHARKY/index.html',
+      projectLink: 'https://sharky.stanislav-levin.de',
       gitHubLink: 'https://github.com/StanislavLe/Sharky',
       color: '#679AAC',
       iconUrl: 'assets/img/SHARKY-emoji.png',
@@ -146,7 +146,7 @@ export class PortfolioComponent implements OnInit {
   constructor(
     private langService: LanguageService,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
   /**
    * Lifecycle Hook – `ngOnInit`

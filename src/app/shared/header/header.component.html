@@ -35,12 +35,16 @@
         </button>
       </div>
 
-      <nav class="drawer-nav" *ngIf="variant === 'home'">
-        <a *ngFor="let s of sections" [class.active]="s.id === currentSection" (click)="navigateTo(s.id)">
-          <img src="assets/icons/navListIcon.png" alt="icon" />
-          <span>{{ s.label }}</span>
-        </a>
-      </nav>
+<nav class="drawer-nav" *ngIf="variant === 'home'">
+  <a
+    *ngFor="let s of sections"
+    [class.active]="s.id === currentSection"
+    (click)="navigateTo(s.id)">
+    <img src="assets/icons/navListIcon.png" alt="icon" />
+    <span>{{ s.label }}</span>
+  </a>
+</nav>
+
 
       <nav class="drawer-nav" *ngIf="variant === 'legal'">
         <a (click)="navigateAndScroll(['/'])">

@@ -9,7 +9,9 @@
       <app-about-me *ngSwitchCase="'about'"></app-about-me>
       <app-skillset *ngSwitchCase="'skills'"></app-skillset>
       <app-portfolio *ngSwitchCase="'portfolio'"></app-portfolio>
-      <app-references *ngSwitchCase="'references'"></app-references>
+<ng-container *ngSwitchCase="'references'">
+  <app-references *ngIf="featureFlags.references"></app-references>
+</ng-container>
 <ng-container *ngSwitchCase="'contact'">
   <app-contact-me></app-contact-me>
   <app-footer

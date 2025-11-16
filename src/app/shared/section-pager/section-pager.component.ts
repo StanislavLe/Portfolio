@@ -42,6 +42,7 @@ import { SkillsetComponent } from '../../skillset/skillset.component';
 import { PortfolioComponent } from '../../portfolio/portfolio.component';
 import { ReferencesComponent } from '../../references/references.component';
 import { ContactMeComponent } from '../../contact-me/contact-me.component';
+import { FEATURE_FLAGS } from '../../shared/sections.config';
 
 @Component({
   selector: 'app-section-pager',
@@ -96,6 +97,9 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
 
   /** Interner Index der aktuell aktiven Section. */
   currentSectionIndex = 0;
+
+
+  featureFlags = FEATURE_FLAGS;
 
   /** Flag, das verhindert, dass mehrere Scrolls gleichzeitig ausgeführt werden. */
   isScrolling = false;
