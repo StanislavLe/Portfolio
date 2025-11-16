@@ -3,16 +3,16 @@
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  height: 100dvh;
+  height: 77dvh;
   width: 100%;
   position: relative;
   z-index: auto;
   transform: none;
   filter: none;
-  padding: 12rem 82px 0px 58px;
+  padding: 5rem 82px 0px 58px;
 
   @media (max-width: 690px) {
-    padding: 130px 8px 0px 8px;
+    padding: 55px 8px 0px 8px;
   }
 }
 
@@ -115,7 +115,7 @@ h1 {
   transition: border-color .2s ease;
   width: max-content;
   position: absolute;
-  bottom: 10%;
+  bottom: 12%;
   right: 42px;
   will-change: transform;
   -webkit-transform: translateZ(0);
