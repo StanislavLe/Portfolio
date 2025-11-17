@@ -354,6 +354,8 @@ export class ContactMeComponent implements OnInit {
    * - Setzt Formular zurück
    */
   onSubmit(ngForm: NgForm): void {
+    this.contactData.email = this.contactData.email.trim();
+
     if (ngForm.submitted && ngForm.form.valid) {
       this.http
         .post(this.post.endPoint, this.post.body(this.contactData), this.post.options)
@@ -400,20 +402,21 @@ export class ContactMeComponent implements OnInit {
    * 
    * Wird verwendet, um Tooltips oder UI-Hinweise anzuzeigen.
    */
-  get isFormAlmostValid(): boolean {
-    const name = this.contactData.name ?? '';
-    const email = this.contactData.email ?? '';
-    const message = this.contactData.message ?? '';
-    const agreement = !!this.contactData.agreement;
+get isFormAlmostValid(): boolean {
+  const name = this.contactData.name ?? '';
+  const email = this.contactData.email ?? '';
+  const message = this.contactData.message ?? '';
+  const agreement = !!this.contactData.agreement;
 
-    return (
-      name.trim().length > 1 &&
-      /^(?!\s*$)[A-Za-zÄÖÜäöüß\- ]{2,}$/.test(name) &&
-      /^(?!\s*$)[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[A-Za-z]{2,}$/.test(email) &&
-      message.trim().length >= 4 &&
-      !agreement
-    );
-  }
+  return (
+    name.trim().length > 2 &&
+    /^(?!\s*$)[A-Za-zÄÖÜäöüß\- ]{2,}$/.test(name) &&
+    /^(?!\s)[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[A-Za-z]{2,}$/.test(email) &&
+    message.trim().length >= 4 &&
+    !agreement
+  );
+}
+
 
   // ---------------------------------------------------------------------------
   // 🧭 Navigation
