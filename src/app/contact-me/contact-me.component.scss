@@ -126,12 +126,17 @@
         }
 
         a {
-          color: #FF834F;
+          color: #F9AF42;
           text-decoration: none;
           font-family: 'quicksandBook';
           padding-right: 4px;
           padding-left: 4px;
           cursor: pointer;
+
+          &:hover {
+            cursor: pointer;
+            color: #EC7B7B;
+          }
 
           @media screen and (max-width: 2024px) {
             padding: 0px;
@@ -157,7 +162,7 @@
         width: 20px;
         height: 20px;
         margin-right: 10px;
-        border: 2px solid #FF834F;
+        border: 2px solid #F9AF42;
         border-radius: 4px;
         background: transparent;
         cursor: pointer;
@@ -165,7 +170,7 @@
         transition: border-color 0.3s ease;
 
         &:hover {
-          border-color: #F8F7E5;
+          border-color: #EC7B7B;
         }
 
         &:checked {
@@ -205,14 +210,14 @@
       }
 
       &::placeholder {
-        color: #EC7B7B !important;
+        color: #F9AF42 !important;
         line-height: 120%;
       }
 
       &.is-error::placeholder,
       &.is-error-email::placeholder,
       &.is-error-message::placeholder {
-        color: #EC7B7B;
+        color: #F9AF42;
       }
 
       &.is-error-message::placeholder {
@@ -225,13 +230,13 @@
       }
 
       &:focus::placeholder {
-        color: #EC7B7B !important;
+        color: #F9AF42 !important;
       }
 
       &.is-error:focus::placeholder,
       &.is-error-email:focus::placeholder,
       &.is-error-message:focus::placeholder {
-        color: #EC7B7B !important;
+        color: #F9AF42 !important;
       }
 
       @media screen and (max-width: 466px) {
