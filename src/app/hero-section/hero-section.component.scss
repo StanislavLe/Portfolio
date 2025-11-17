@@ -3,15 +3,15 @@
   justify-content: start;
   align-items: flex-end;
   flex-direction: row;
-min-height: 100dvh;
-min-height: calc(var(--vh, 1vh) * 100);
+  min-height: 100dvh;
+  min-height: calc(var(--vh, 1vh) * 100);
   width: 100%;
   z-index: auto;
   transform: none;
   filter: none;
   padding-top: 5rem;
-  overflow: hidden;
   max-width: 1920px;
+    overflow: hidden; 
 
   @media screen and (max-width: 690px) {
     flex-direction: column;
@@ -19,8 +19,15 @@ min-height: calc(var(--vh, 1vh) * 100);
 
   @media (max-height: 700px) {
     max-width: 1500px;
+
+    @media screen and (max-width: 690px) {
+      flex-direction: column;
+      padding-top: 3rem;
+    }
   }
 }
+
+
 
 .greeting {
   display: flex;
@@ -45,7 +52,7 @@ min-height: calc(var(--vh, 1vh) * 100);
     gap: clamp(16px, 2vw, 24px);
   }
 
-    @media (max-height: 700px) {
+  @media (max-height: 700px) {
     padding-top: clamp(8px, 8px, 100px);
   }
 
@@ -111,8 +118,6 @@ min-height: calc(var(--vh, 1vh) * 100);
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  overflow: hidden;
-
 }
 
 

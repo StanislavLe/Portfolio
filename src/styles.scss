@@ -8,10 +8,8 @@ html,
 body {
     min-height: 100dvh;
     min-height: calc(var(--vh, 1vh) * 100);
-    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    -webkit-overflow-scrolling: touch;
     scroll-behavior: none;
 
     &::-webkit-scrollbar {
@@ -239,7 +237,6 @@ body {
     min-height: 100dvh;
     min-height: calc(var(--vh, 1vh) * 100);
     width: 100%;
-    -webkit-overflow-scrolling: touch;
 }
 
 
@@ -358,13 +355,11 @@ body {
 }
 
 html, body {
-  overflow: hidden;
   height: 100%;
 }
 
 /* Falls du noch manuell scrollst */
 .pager-container {
-  overflow-y: scroll;
   -ms-overflow-style: none; /* IE/Edge */
   scrollbar-width: none; /* Firefox */
 }

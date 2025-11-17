@@ -184,8 +184,9 @@
       cursor: pointer;
     }
 
-    input,
-    textarea {
+    #name,
+    #email,
+    #message {
       width: 100%;
       padding: 10px;
       margin-bottom: 20px;
@@ -204,6 +205,11 @@
         }
       }
 
+      &::placeholder {
+        color: #EC7B7B !important;
+        line-height: 120%;
+      }
+
       &.is-error::placeholder,
       &.is-error-email::placeholder,
       &.is-error-message::placeholder {
@@ -214,22 +220,24 @@
         height: max-content;
       }
 
-      @media screen and (max-width: 466px) {
-        padding: 4px;
-        margin-bottom: 4px;
-      }
-
-      &::placeholder {
-        color: #FFFFFFCC;
-        line-height: 120%;
-      }
-
+      &:hover,
       &:focus {
         border-bottom-color: #FF834F;
       }
 
-      &:hover {
-        border-bottom-color: #FF834F;
+      &:focus::placeholder {
+        color: #EC7B7B !important;
+      }
+
+      &.is-error:focus::placeholder,
+      &.is-error-email:focus::placeholder,
+      &.is-error-message:focus::placeholder {
+        color: #EC7B7B !important;
+      }
+
+      @media screen and (max-width: 466px) {
+        padding: 4px;
+        margin-bottom: 4px;
       }
     }
 
@@ -252,9 +260,9 @@
       transition: background-color .3s, color .3s;
 
       @media screen and (max-height: 730px) {
-              @media screen and (max-width: 450px) {
-                margin-top: 1vw;
-              }
+        @media screen and (max-width: 450px) {
+          margin-top: 1vw;
+        }
 
         font-size: 16px;
         width: 100%;

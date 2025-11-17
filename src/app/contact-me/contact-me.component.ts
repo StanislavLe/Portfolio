@@ -115,6 +115,51 @@ export class ContactMeComponent implements OnInit {
     message: false,
   };
 
+  /**
+   * Verfolgt, ob ein Eingabefeld bereits verlassen wurde (Blur-Event).
+   * Steuert, ob Validierungsfehler angezeigt werden dürfen.
+   */
+  blurredFields = {
+    /** Status für Namensfeld */
+    name: false,
+    /** Status für E-Mail-Feld */
+    email: false,
+    /** Status für Nachrichtenfeld */
+    message: false,
+  };
+
+  /**
+   * Prüft, ob ein Fehler für ein bestimmtes Eingabefeld angezeigt werden soll.
+   *
+   * @param field - Name des Eingabefeldes (name, email oder message)
+   * @param control - Referenz auf das zugehörige `NgModel`-Steuerelement
+   * @returns `true`, wenn der Fehler angezeigt werden soll, sonst `false`
+   *
+   * Kriterien:
+   * - Das Feld wurde bereits verlassen (`blurredFields[field]` ist true)
+   * - Das Feld ist tatsächlich ungültig (`control.invalid`)
+   * - Das Feld wurde benutzt oder verändert (`control.dirty || control.touched`)
+   */
+  shouldShowError(field: 'name' | 'email' | 'message', control: any): boolean {
+    return (
+      this.blurredFields[field] &&          // nur nach Blur
+      control.invalid &&                    // wirklich ungültig
+      (control.dirty || control.touched)    // schon benutzt
+    );
+  }
+
+  /**
+   * Setzt den Blur-Zustand eines Feldes zurück, sobald der Benutzer erneut tippt.
+   *
+   * @param field - Das Feld, dessen Blur-Zustand zurückgesetzt werden soll
+   *
+   * Wird z. B. beim `(input)`-Event ausgelöst, um Fehlermeldungen auszublenden,
+   * während der Benutzer eine Korrektur vornimmt.
+   */
+  onInputChange(field: 'name' | 'email' | 'message'): void {
+    this.blurredFields[field] = false;
+  }
+
   // ---------------------------------------------------------------------------
   // 📩 Backend-Konfiguration
   // ---------------------------------------------------------------------------
@@ -192,26 +237,71 @@ export class ContactMeComponent implements OnInit {
     },
     errorPlaceholders: {
       name: {
-        de: 'Bitte trage einen Namen ein',
-        en: 'Please enter your name',
-        ru: 'Пожалуйста, введите ваше имя',
+        empty: {
+          de: 'Bitte gib deinen Namen ein.',
+          en: 'Please enter your name.',
+          ru: 'Введите ваше имя.',
+        },
+        tooShort: {
+          de: 'Der Name muss mindestens 3 Zeichen lang sein.',
+          en: 'Name must be at least 3 characters long.',
+          ru: 'Имя должно содержать не менее 3 символов.',
+        },
+        invalidChars: {
+          de: 'Nur Buchstaben und ein Leerzeichen sind erlaubt.',
+          en: 'Only letters and one space are allowed.',
+          ru: 'Допустимы только буквы и один пробел.',
+        },
       },
       email: {
-        de: 'Bitte trage eine E-Mail-Adresse ein',
-        en: 'Please enter a valid email address',
-        ru: 'Пожалуйста, введите адрес электронной почты',
+        empty: {
+          de: 'Bitte gib deine E-Mail-Adresse ein.',
+          en: 'Please enter your email address.',
+          ru: 'Введите адрес электронной почты.',
+        },
+        invalidFormat: {
+          de: 'Bitte gib eine gültige E-Mail-Adresse ohne Leerzeichen ein.',
+          en: 'Please enter a valid email address without spaces.',
+          ru: 'Введите корректный адрес электронной почты без пробелов.',
+        },
       },
       message: {
-        de: 'Schreibe eine Nachricht (min. 4 Zeichen)',
-        en: 'Write a message (min. 4 characters)',
-        ru: 'Напишите сообщение (мин. 4 символа)',
+        empty: {
+          de: 'Bitte schreibe eine Nachricht.',
+          en: 'Please write a message.',
+          ru: 'Пожалуйста, напишите сообщение.',
+        },
+        tooShort: {
+          de: 'Die Nachricht ist zu kurz (min. 4 Zeichen).',
+          en: 'The message is too short (min. 4 characters).',
+          ru: 'Сообщение слишком короткое (мин. 4 символа).',
+        },
+        leadingSpace: {
+          de: 'Die Nachricht darf nicht mit einem Leerzeichen beginnen.',
+          en: 'The message cannot start with a space.',
+          ru: 'Сообщение не должно начинаться с пробела.',
+        },
+      },
+    }
+    ,
+    checkbox: {
+      de: {
+        before: 'Ich habe die ',
+        link: 'Datenschutzerklärung',
+        after: ' gelesen und bin mit der Verarbeitung meiner Daten einverstanden.',
+      },
+      en: {
+        before: 'I have read the ',
+        link: 'privacy policy',
+        after: ' and agree to the processing of my data.',
+      },
+      ru: {
+        before: 'Я прочитал(а) ',
+        link: 'политику конфиденциальности',
+        after: ' и согласен(на) на обработку моих данных.',
       },
     },
-    checkbox: {
-      de: 'Ich habe die Datenschutzerklärung gelesen und bin mit der Verarbeitung meiner Daten einverstanden.',
-      en: 'I have read the privacy policy and agree to the processing of my data.',
-      ru: 'Я прочитал(а) политику конфиденциальности и согласен(на) на обработку моих данных.',
-    },
+
     submit: {
       de: 'Nachricht senden',
       en: 'Send Message',
@@ -234,7 +324,7 @@ export class ContactMeComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(DOCUMENT) private document: Document,
     private nav: SectionNavService
-  ) {}
+  ) { }
 
   /**
    * Lifecycle Hook – Initialisierung

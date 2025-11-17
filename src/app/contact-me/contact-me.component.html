@@ -2,7 +2,6 @@
   <div class="contact-header">
     <h1>{{ translations.header[currentLang] }}</h1>
   </div>
-
   <div class="contentContainer">
     <div class="text-content">
       <div>
@@ -10,73 +9,68 @@
         <span>{{ translations.description[currentLang] }}</span>
       </div>
     </div>
-
     <div class="contact-form">
       <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" novalidate>
         <div class="personal-group">
           <div class="form-group">
-            <div class="form-group">
-              <label for="name">{{ translations.labels.name[currentLang] }}</label>
-              <input #name="ngModel" [(ngModel)]="contactData.name" name="name" id="name" type="text" required
-                pattern="^(?!\s*$)[A-Za-zÄÖÜäöüß\- ]{2,}$" autocomplete="off"
-                [class.is-error]="name.invalid && name.touched" (focus)="hideErrorPopup('name')"
-                (blur)="name.invalid ? showErrorPopup('name') : null" />
-              <div class="error-popup" *ngIf="errorPopups.name" [@fadeInOut]>
-                {{ translations.errorPlaceholders.name[currentLang] }}
-              </div>
+            <label for="name">{{ translations.labels.name[currentLang] }}</label>
+            <input #name="ngModel" [(ngModel)]="contactData.name" name="name" id="name" type="text" required
+              minlength="3" pattern="^(?!\\s*$)[A-Za-zÄÖÜäöüß]+(?: [A-Za-zÄÖÜäöüß]+)?$" autocomplete="off"
+              [placeholder]="translations.placeholders.name[currentLang]"
+              [class.is-error]="name.invalid && name.touched" [class.is-error]="shouldShowError('name', name)"
+              (blur)="blurredFields.name = true" (focus)="blurredFields.name = false" />
+            <div class="error-popup" *ngIf="shouldShowError('name', name)" [@fadeInOut]>
+              <ng-container *ngIf="name.errors?.['required']">
+                {{ translations.errorPlaceholders.name.empty[currentLang] }}
+              </ng-container>
+              <ng-container *ngIf="name.errors?.['minlength']">
+                {{ translations.errorPlaceholders.name.tooShort[currentLang] }}
+              </ng-container>
+              <ng-container *ngIf="name.errors?.['pattern']">
+                {{ translations.errorPlaceholders.name.invalidChars[currentLang] }}
+              </ng-container>
             </div>
           </div>
-
           <div class="form-group">
-            <div class="form-group">
-              <label for="email">{{ translations.labels.email[currentLang] }}</label>
-              <input #email="ngModel" [(ngModel)]="contactData.email" name="email" id="email" type="email" required
-                pattern="^(?!\s*$)[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[A-Za-z]{2,}$" autocomplete="off"
-                [class.is-error]="email.invalid && email.touched" (focus)="hideErrorPopup('email')"
-                (blur)="email.invalid ? showErrorPopup('email') : null" />
-              <div class="error-popup" *ngIf="errorPopups.email" [@fadeInOut]>
-                {{ translations.errorPlaceholders.email[currentLang] }}
-              </div>
+            <label for="email">{{ translations.labels.email[currentLang] }}</label>
+            <input #email="ngModel" [(ngModel)]="contactData.email" name="email" id="email" type="email" required
+              pattern="^(?!\\s)(?!.*\\s)[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[A-Za-z]{2,}$" autocomplete="off"
+              [placeholder]="translations.placeholders.email[currentLang]"
+              [class.is-error]="email.invalid && email.touched" [class.is-error]="shouldShowError('name', name)"
+              (blur)="blurredFields.email = true" (focus)="blurredFields.email = false" />
+            <div class="error-popup" *ngIf="shouldShowError('email', email)" [@fadeInOut]>
+              <ng-container *ngIf="email.errors?.['required']">
+                {{ translations.errorPlaceholders.email.empty[currentLang] }}
+              </ng-container>
+              <ng-container *ngIf="email.errors?.['pattern'] || email.errors?.['email']">
+                {{ translations.errorPlaceholders.email.invalidFormat[currentLang] }}
+              </ng-container>
             </div>
           </div>
         </div>
-
         <div class="message-group">
-          <div class="message-group">
-            <label for="message">{{ translations.labels.message[currentLang] }}</label>
-            <textarea #message="ngModel" [(ngModel)]="contactData.message" name="message" id="message" rows="1" required
-              minlength="4" autocomplete="off" [class.is-error]="message.invalid && message.touched"
-              (focus)="hideErrorPopup('message')" (blur)="message.invalid ? showErrorPopup('message') : null">
-            </textarea>
-            <div class="error-popup-message" *ngIf="errorPopups.message" [@fadeInOut]>
-              {{ translations.errorPlaceholders.message[currentLang] }}
-            </div>
+          <label for="message">{{ translations.labels.message[currentLang] }}</label>
+          <textarea #message="ngModel" [(ngModel)]="contactData.message" name="message" id="message" rows="1" required
+            minlength="4" pattern="^(?!\\s)[\\s\\S]{4,}$" autocomplete="off"
+            [placeholder]="translations.placeholders.message[currentLang]"
+            [class.is-error]="message.invalid && message.touched" [class.is-error]="shouldShowError('name', name)"
+            (blur)="blurredFields.message = true" (focus)="blurredFields.message = false"></textarea>
+          <div class="error-popup-message" *ngIf="shouldShowError('message', message)" [@fadeInOut]>
+            <ng-container *ngIf="message.errors?.['required']">
+              {{ translations.errorPlaceholders.message.empty[currentLang] }}
+            </ng-container>
+            <ng-container *ngIf="message.errors?.['minlength']">
+              {{ translations.errorPlaceholders.message.tooShort[currentLang] }}
+            </ng-container>
+            <ng-container *ngIf="message.errors?.['pattern']">
+              {{ translations.errorPlaceholders.message.leadingSpace[currentLang] }}
+            </ng-container>
           </div>
         </div>
-
-        <div class="agreement-group">
-          <div class="agreement">
-            <a (click)="navigateAndScroll(['/legal', 'privacy-policy'])">
-              {{ translations.checkbox[currentLang] }}
-            </a>
-          </div>
-          <input [(ngModel)]="contactData.agreement" #agreement="ngModel" required class="checkbox" type="checkbox"
-            id="agreementbox" name="agreement" />
-        </div>
-
-        <div class="submit-wrapper">
-          <input type="submit" class="submit-btn" [value]="translations.submit[currentLang]"
-            [disabled]="contactForm.invalid" />
-          <div class="checkbox-tooltip" *ngIf="isFormAlmostValid || isSuccess" [class.success]="isSuccess">
-            {{ isSuccess ? successHint : checkboxHint }}
-          </div>
-        </div>
-
       </form>
     </div>
   </div>
 </div>
-
 <div class="arrow-wrapper">
   <div class="borderBox">
     <img src="assets/icons/arrow2.png" alt="Back to top" class="bounce-arrow" (click)="scrollToHero()" />
