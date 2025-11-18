@@ -1,22 +1,3 @@
-/**
- * SectionPagerComponent
- * ----------------------
- *
- * Diese Komponente steuert das Scroll-Verhalten zwischen den verschiedenen
- * Inhaltssektionen der Startseite (Hero, About, Skills, Portfolio, References, Contact).
- * 
- * Sie stellt sicher, dass:
- * - zwischen Sections per Scroll, Touch oder Swipe navigiert werden kann
- * - die aktive Section synchron mit dem `SectionNavService` aktualisiert wird
- * - gezielte Sprünge zu bestimmten Abschnitten (z. B. durch Footer/Header-Navigation) möglich sind
- *
- * Features:
- * - Smooth Scrolling mit Maus oder Touch-Gesten
- * - Synchronisierung mit der globalen Navigationslogik (`SectionNavService`)
- * - Unterstützung für asynchrone Section-Initialisierung (Lazy DOM readiness)
- * - ChangeDetection optimiert via `OnPush`
- */
-
 import {
   Component,
   ViewChildren,
@@ -30,10 +11,13 @@ import {
   OnChanges,
   SimpleChanges,
   OnInit,
+  OnDestroy,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  Inject,
+  PLATFORM_ID,
 } from '@angular/core';
-import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
+import { NgFor, NgIf, NgSwitch, NgSwitchCase, isPlatformBrowser } from '@angular/common';
 import { SECTIONS, SectionNavService } from '../sections.config';
 import { FooterComponent } from '../footer/footer.component';
 import { HeroSectionComponent } from '../../hero-section/hero-section.component';
@@ -44,6 +28,20 @@ import { ReferencesComponent } from '../../references/references.component';
 import { ContactMeComponent } from '../../contact-me/contact-me.component';
 import { FEATURE_FLAGS } from '../../shared/sections.config';
 
+/**
+ * SectionPagerComponent
+ * ----------------------
+ *
+ * Steuert das Scroll- und Navigationsverhalten zwischen den Hauptsektionen der Startseite.
+ *
+ * Features:
+ * - Smooth Scrolling per Mausrad, Touch-Geste oder Dot-Navigation
+ * - Echtzeit-Synchronisierung mit der aktiven Section über IntersectionObserver
+ * - SSR-sicher durch `isPlatformBrowser`-Abfrage
+ * - Integration mit globalem `SectionNavService`
+ *
+ * Jede sichtbare Section wird automatisch erkannt und in der Dot-Navigation hervorgehoben.
+ */
 @Component({
   selector: 'app-section-pager',
   standalone: true,
@@ -64,76 +62,106 @@ import { FEATURE_FLAGS } from '../../shared/sections.config';
   styleUrls: ['./section-pager.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
-
-  /**
-   * Liste aller verfügbaren Inhaltssektionen.
-   * Wird aus der zentralen Konfiguration (`sections.config.ts`) importiert.
-   */
+export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
+  /** Liste aller definierten Inhaltssektionen (z. B. Hero, About, Skills, etc.) */
   sections = SECTIONS;
 
-  /**
-   * Referenzen auf DOM-Elemente der einzelnen Sections.
-   * Ermöglicht gezieltes Scrolling über `scrollIntoView`.
-   */
+  /** DOM-Referenzen zu allen Sections im Template */
   @ViewChildren('sectionRef') sectionRefs!: QueryList<ElementRef>;
 
-  /**
-   * ID der aktuell aktiven Section (z. B. "hero", "about", "contact").
-   * Wird als Input vom übergeordneten Component übergeben (z. B. HomeComponent).
-   */
+  /** Aktuell aktive Section-ID, optional von außen gesetzt */
   @Input() currentSection: string = 'hero';
 
-  /**
-   * EventEmitter, der ausgelöst wird, wenn sich die aktive Section ändert.
-   * Wird von der Elternkomponente genutzt, um UI-Zustände zu aktualisieren.
-   */
+  /** Gibt das Event aus, wenn sich die aktive Section ändert */
   @Output() sectionChanged = new EventEmitter<string>();
 
-  /**
-   * EventEmitter zur Weitergabe von Navigationsanfragen an andere Komponenten (z. B. Footer).
-   */
+  /** Wird ausgelöst, wenn externe Navigation (z. B. Footer-Link) erfolgt */
   @Output() navigateSection = new EventEmitter<string>();
 
-  /** Interner Index der aktuell aktiven Section. */
+  /** Aktueller Index der aktiven Section */
   currentSectionIndex = 0;
 
-
+  /** Feature-Toggles für optionale Bereiche (z. B. References) */
   featureFlags = FEATURE_FLAGS;
 
-  /** Flag, das verhindert, dass mehrere Scrolls gleichzeitig ausgeführt werden. */
+  /** Scroll-Zustände */
   isScrolling = false;
+  private scrollCooldown = false;
+  private scrollDelay = 900;
 
-  /** Y-Koordinate des Touchstarts (zum Erkennen von Swipe-Richtung). */
-  private touchStartY = 0;
+  /** IntersectionObserver erkennt, welche Section sichtbar ist */
+  private observer!: IntersectionObserver;
 
-  /** Y-Koordinate des Touchendes. */
-  private touchEndY = 0;
-
-  /** Minimaler Swipe-Abstand in Pixeln, um als gültige Geste zu gelten. */
-  private swipeThreshold = 50;
-
-  /** Ob alle View-Elemente geladen und bereit sind. */
+  /** True, sobald alle DOM-Elemente der Sections initialisiert wurden */
   private viewReady = false;
 
-  /** Temporärer Speicher für Scroll-Anfragen, bevor das View initialisiert ist. */
+  /** Zwischenspeicher für Scroll-Anfragen, wenn View noch nicht geladen ist */
   private pendingScrollId: string | null = null;
 
   /**
    * Konstruktor
-   * 
-   * @param nav - Globaler Navigationsservice zur Synchronisierung aktiver Sections.
-   * @param cdr - ChangeDetectorRef für manuelles Triggern von Change Detection bei OnPush.
+   *
+   * - Integriert den globalen `SectionNavService`
+   * - Ermöglicht manuelle Change Detection für OnPush
+   * - Prüft Browserumgebung über `PLATFORM_ID`
    */
-  constructor(private nav: SectionNavService, private cdr: ChangeDetectorRef) { }
+  constructor(
+    private nav: SectionNavService,
+    private cdr: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
+
+  // ---------------------------------------------------------------------------
+  // 🧭 Lifecycle Hooks
+  // ---------------------------------------------------------------------------
 
   /**
-   * Lifecycle Hook – `ngOnInit`
-   *
-   * Initialisiert die Beobachtung von Scroll-Anfragen (via `scrollTo$` im SectionNavService).
-   * 
-   * Wenn eine Anfrage kommt, bevor die View bereit ist, wird sie zwischengespeichert
-   * und nach `AfterViewInit` ausgeführt.
+   * ngAfterViewInit
+   * ----------------
+   * Initialisiert den `IntersectionObserver`, um automatisch zu erkennen,
+   * welche Section aktuell im Viewport sichtbar ist.
+   * Nur im Browser aktiv (SSR-sicher).
+   */
+  ngAfterViewInit(): void {
+    this.viewReady = true;
+
+    // 🚫 Nur im Browser ausführen (verhindert SSR/Vite Fehler)
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    // 🔍 IntersectionObserver initialisieren
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            const idx = this.sections.findIndex((s) => s.id === id);
+            if (idx !== this.currentSectionIndex) {
+              this.currentSectionIndex = idx;
+              this.sectionChanged.emit(id);
+              this.nav.setActive(id);
+              this.cdr.markForCheck();
+            }
+          }
+        }
+      },
+      { threshold: 0.5 } // Section gilt als aktiv, wenn 50 % sichtbar
+    );
+
+    // Alle Sections beobachten
+    this.sectionRefs.forEach((ref) => this.observer.observe(ref.nativeElement));
+
+    // Falls ein Scroll bereits vor ViewInit angefordert wurde → jetzt ausführen
+    const idx = this.sections.findIndex((s) => s.id === this.currentSection);
+    this.currentSectionIndex = idx >= 0 ? idx : 0;
+    this.pendingScrollId = null;
+    this.cdr.markForCheck();
+  }
+
+  /**
+   * ngOnInit
+   * ---------
+   * Abonniert globale Scroll-Anfragen (z. B. von Footer oder Header Navigation).
+   * Wenn View noch nicht geladen ist, wird die Anfrage zwischengespeichert.
    */
   ngOnInit(): void {
     this.nav.scrollTo$.subscribe((id) => {
@@ -147,96 +175,75 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   /**
-   * Lifecycle Hook – `ngAfterViewInit`
-   *
-   * Wird nach der Initialisierung aller DOM-Elemente aufgerufen.
-   * 
-   * Setzt den aktuellen Section-Index und führt ggf. ein zuvor ausstehendes Scroll-Event aus.
-   */
-  ngAfterViewInit(): void {
-    this.viewReady = true;
-    const idx = this.sections.findIndex((s) => s.id === this.currentSection);
-    this.currentSectionIndex = idx >= 0 ? idx : 0;
-    this.pendingScrollId = null;
-    this.cdr.markForCheck();
-  }
-
-  /**
-   * Lifecycle Hook – `ngOnChanges`
-   *
-   * Wird ausgelöst, wenn sich die `currentSection` von außen ändert.
-   * 
-   * Erkennt Änderungen und führt (wenn nötig) automatisches Scrollen
-   * zur entsprechenden Section durch.
+   * ngOnChanges
+   * ------------
+   * Reagiert auf Änderungen der `currentSection` von außen.
+   * Führt bei Bedarf ein Scroll zur neuen Section durch.
    */
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['currentSection'] && this.viewReady) {
       const idx = this.sections.findIndex((s) => s.id === this.currentSection);
       if (idx >= 0 && idx !== this.currentSectionIndex) {
-        if (this.sectionRefs?.length > 0) {
-          this.scheduleScroll(idx);
-        } else {
-          setTimeout(() => {
-            if (this.sectionRefs?.length > 0) this.scheduleScroll(idx);
-          });
-        }
+        this.scheduleScroll(idx);
       }
     }
   }
 
   /**
-   * Plant das Scrollen zur angegebenen Section ein.
-   * 
-   * Wird als Microtask ausgeführt, um DOM-Stabilität sicherzustellen.
+   * ngOnDestroy
+   * ------------
+   * Trennt den IntersectionObserver, um Speicherlecks zu verhindern.
    */
-  private scheduleScroll(idx: number): void {
-    queueMicrotask(() => this.scrollToSection(idx));
+  ngOnDestroy(): void {
+    if (this.observer) this.observer.disconnect();
   }
 
   // ---------------------------------------------------------------------------
-  // Scroll- & Touch-Event Handling (Ein-Section-pro-Scroll, stabil)
+  // 🖱️ Scroll- und Touchsteuerung
   // ---------------------------------------------------------------------------
 
   /**
-   * 🖱️ Scroll-Verhalten:
-   * --------------------
-   * - Egal wie stark oder oft das Mausrad betätigt wird:
-   *   ➜ Es wird **immer nur eine Section** pro Scrollbewegung gewechselt.
-   * - Nach jedem Scroll gibt es eine kurze Pause (cooldown),
-   *   damit keine Mehrfach-Scrolls auftreten.
+   * Reagiert auf Mausrad-Scrolls.
+   *
+   * - Scrollt nur eine Section pro Radbewegung
+   * - Verhindert übermäßiges Scrollen mit Cooldown
    */
-
-  private scrollCooldown = false; 
-  private scrollDelay = 900; 
-
   @HostListener('wheel', ['$event'])
   onWheel(event: WheelEvent): void {
     event.preventDefault();
     if (this.scrollCooldown || this.isScrolling) return;
+
     const direction = event.deltaY > 0 ? 1 : -1;
     const nextIndex = this.currentSectionIndex + direction;
     if (nextIndex < 0 || nextIndex >= this.sections.length) return;
+
     this.isScrolling = true;
     this.scrollCooldown = true;
-    this.scrollToSection(nextIndex); 
+
+    this.scrollToSection(nextIndex);
+
     setTimeout(() => {
       this.scrollCooldown = false;
       this.isScrolling = false;
     }, this.scrollDelay);
   }
 
+  /** Y-Position des Touch-Starts (zum Erkennen von Swipe-Gesten) */
+  private touchStartY = 0;
 
-  /**
-   * Speichert die Startposition bei einer Touch-Geste.
-   */
+  /** Y-Position des Touch-Endes */
+  private touchEndY = 0;
+
+  /** Minimaler Swipe-Abstand in Pixeln, um als gültige Geste zu zählen */
+  private swipeThreshold = 50;
+
+  /** Speichert die Startposition eines Touch-Events */
   @HostListener('touchstart', ['$event'])
   onTouchStart(event: TouchEvent): void {
     this.touchStartY = event.touches[0].clientY;
   }
 
-  /**
-   * Speichert die Endposition einer Touch-Geste und wertet den Swipe aus.
-   */
+  /** Verarbeitet das Ende einer Touch-Geste und wertet die Richtung aus */
   @HostListener('touchend', ['$event'])
   onTouchEnd(event: TouchEvent): void {
     this.touchEndY = event.changedTouches[0].clientY;
@@ -244,12 +251,13 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   /**
-   * Ermittelt, ob eine gültige Swipe-Geste erkannt wurde (nach oben/unten).
-   * Navigiert entsprechend zwischen den Sections.
+   * Ermittelt die Swipe-Richtung und navigiert zur nächsten/vorherigen Section.
    */
   private handleSwipe(): void {
     if (this.isScrolling) return;
+
     const deltaY = this.touchStartY - this.touchEndY;
+
     if (Math.abs(deltaY) > this.swipeThreshold) {
       if (deltaY > 0 && this.currentSectionIndex < this.sections.length - 1) {
         this.scheduleScroll(this.currentSectionIndex + 1);
@@ -260,37 +268,41 @@ export class SectionPagerComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   // ---------------------------------------------------------------------------
-  // Core Scroll Logic
+  // 🧩 Scroll-Logik
   // ---------------------------------------------------------------------------
 
   /**
-   * Führt das eigentliche Scrollen zur angegebenen Section aus.
-   * 
-   * @param index - Index der Zielsektion in der `sections`-Liste.
-   * 
-   * - Scrollt sanft mit `scrollIntoView`
-   * - Aktualisiert den aktiven Zustand im `SectionNavService`
-   * - Löst `sectionChanged` Event für Elternkomponenten aus
+   * Plant das Scrollen asynchron (Microtask), um sicherzustellen,
+   * dass DOM und Change Detection stabil sind.
+   */
+  private scheduleScroll(idx: number): void {
+    queueMicrotask(() => this.scrollToSection(idx));
+  }
+
+  /**
+   * Scrollt zur angegebenen Section.
+   *
+   * - Scrollt sanft per `scrollIntoView`
+   * - Aktualisiert die aktive Section
+   * - Synchronisiert Navigation und Observer
    */
   scrollToSection(index: number): void {
     const el = this.sectionRefs.get(index)?.nativeElement;
     if (!el) return;
-    this.currentSectionIndex = index;
+
     const id = this.sections[index].id;
+    this.currentSectionIndex = index;
     this.sectionChanged.emit(id);
-    this.nav.setActive(id); 
-    el.scrollIntoView({ behavior: 'smooth' });
-    setTimeout(() => {
-      this.cdr.markForCheck();
-    }, 200);
     this.nav.setActive(id);
+
+    el.scrollIntoView({ behavior: 'smooth' });
+
+    setTimeout(() => this.cdr.detectChanges(), 300);
   }
 
-
   /**
-   * Öffentliche Methode für externe Navigationsaufrufe.
-   * 
-   * Wird z. B. vom Footer oder Header verwendet, um gezielt zu einer Section zu scrollen.
+   * Wird aufgerufen, wenn externe Navigation (z. B. Footer) ausgelöst wird.
+   * Fordert Scroll über den SectionNavService an.
    */
   onNavigateSection(id: string): void {
     this.nav.requestScroll(id);

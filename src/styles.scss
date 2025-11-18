@@ -268,13 +268,11 @@ main.legal {
 /* 1️⃣ Scroll-Kontrolle */
 html {
   scroll-snap-type: none;
-  overflow: hidden;
 }
 
 body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
   height: 100%;
   width: 100%;
   overscroll-behavior: none;

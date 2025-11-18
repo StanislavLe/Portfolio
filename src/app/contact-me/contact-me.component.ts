@@ -121,7 +121,7 @@ shouldShowError(field: 'name' | 'email' | 'message', control: any): boolean {
       this.blurredFields[field] = false;
       delete this.hideTimers[field];
       this.cdr.detectChanges();
-    }, 3000);
+    }, 5000);
   }
   return show;
 }
