@@ -19,6 +19,12 @@
   scroll-snap-align: start;
   box-sizing: border-box;
   padding-bottom: env(safe-area-inset-bottom);
+   scroll-snap-align: start;
+  scroll-snap-stop: always;
+  height: 100dvh;
+  min-height: calc(var(--vh, 1vh) * 100);
+  position: relative;
+  contain: layout paint size style; // verhindert Pixel-Verschiebung
 
   @media screen and (max-width: 510px) {
     align-items: unset;

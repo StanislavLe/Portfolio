@@ -20,15 +20,15 @@
               [placeholder]="translations.placeholders.name[currentLang]"
               [class.is-error]="shouldShowError('name', name)" (blur)="blurredFields.name = true"
               (focus)="blurredFields.name = false" />
-            <div class="error-popup" *ngIf="shouldShowError('name', name)" [@fadeInOut]>
+            <div class="error-popup-name" *ngIf="shouldShowError('name', name)" [@fadeInOut]>
               <ng-container *ngIf="name.errors?.['required']">
-                {{ translations.errorPlaceholders.name.empty[currentLang] }}
+                <p>{{ translations.errorPlaceholders.name.empty[currentLang] }} </p>
               </ng-container>
               <ng-container *ngIf="name.errors?.['minlength']">
-                {{ translations.errorPlaceholders.name.tooShort[currentLang] }}
+                <p>{{ translations.errorPlaceholders.name.tooShort[currentLang] }}</p>
               </ng-container>
               <ng-container *ngIf="name.errors?.['pattern']">
-                {{ translations.errorPlaceholders.name.invalidChars[currentLang] }}
+                <p>{{ translations.errorPlaceholders.name.invalidChars[currentLang] }}</p>
               </ng-container>
             </div>
           </div>
@@ -39,12 +39,12 @@
               [placeholder]="translations.placeholders.email[currentLang]"
               [class.is-error]="shouldShowError('email', email)" (blur)="blurredFields.email = true"
               (focus)="blurredFields.email = false" />
-            <div class="error-popup" *ngIf="shouldShowError('email', email)" [@fadeInOut]>
+            <div class="error-popup-mail" *ngIf="shouldShowError('email', email)" [@fadeInOut]>
               <ng-container *ngIf="email.errors?.['required']">
-                {{ translations.errorPlaceholders.email.empty[currentLang] }}
+                <p>{{ translations.errorPlaceholders.email.empty[currentLang] }}</p>
               </ng-container>
               <ng-container *ngIf="email.errors?.['pattern'] || email.errors?.['email']">
-                {{ translations.errorPlaceholders.email.invalidFormat[currentLang] }}
+                <p>{{ translations.errorPlaceholders.email.invalidFormat[currentLang] }}</p>
               </ng-container>
             </div>
           </div>
@@ -59,13 +59,13 @@
           </textarea>
           <div class="error-popup-message" *ngIf="shouldShowError('message', message)" [@fadeInOut]>
             <ng-container *ngIf="message.errors?.['required']">
-              {{ translations.errorPlaceholders.message.empty[currentLang] }}
+              <p>{{ translations.errorPlaceholders.message.empty[currentLang] }}</p>
             </ng-container>
             <ng-container *ngIf="message.errors?.['minlength']">
-              {{ translations.errorPlaceholders.message.tooShort[currentLang] }}
+              <p>{{ translations.errorPlaceholders.message.tooShort[currentLang] }}</p>
             </ng-container>
             <ng-container *ngIf="message.errors?.['pattern']">
-              {{ translations.errorPlaceholders.message.leadingSpace[currentLang] }}
+              <p>{{ translations.errorPlaceholders.message.leadingSpace[currentLang] }}</p>
             </ng-container>
           </div>
         </div>

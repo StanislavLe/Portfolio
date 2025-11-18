@@ -21,36 +21,15 @@
  * - API-Call via `HttpClient` mit JSON-Body und Custom Headern
  */
 
-import {
-  Component,
-  inject,
-  ChangeDetectorRef,
-  NgZone,
-  OnInit,
-  Inject,
-  PLATFORM_ID,
-} from '@angular/core';
+import {Component,inject,ChangeDetectorRef,NgZone,OnInit,Inject, PLATFORM_ID} from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import {
-  CommonModule,
-  NgFor,
-  NgIf,
-  NgSwitch,
-  NgSwitchCase,
-  isPlatformBrowser,
-  DOCUMENT,
-} from '@angular/common';
+import { CommonModule, NgFor, NgIf,NgSwitch, NgSwitchCase, isPlatformBrowser, DOCUMENT} from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { LanguageService, SupportedLang } from '../shared/language.service';
 import { SectionNavService } from '../shared/sections.config';
-import {
-  trigger,
-  transition,
-  style,
-  animate,
-} from '@angular/animations';
+import {trigger,transition,style,animate} from '@angular/animations';
 
 @Component({
   selector: 'app-contact-me',
@@ -80,19 +59,11 @@ import {
   styleUrls: ['./contact-me.component.scss', './contact-me.component.media.scss'],
 })
 export class ContactMeComponent implements OnInit {
-  // ---------------------------------------------------------------------------
-  // 🔧 Abhängigkeiten & Services
-  // ---------------------------------------------------------------------------
-
   /** HTTP-Client für den Versand der Formulardaten an das Backend */
   private http = inject(HttpClient);
 
   /** Zugriff auf globale Section-Navigation (z. B. für Scroll zu Hero) */
   private sectionNav = inject(SectionNavService);
-
-  // ---------------------------------------------------------------------------
-  // 🌐 Zustände & Daten
-  // ---------------------------------------------------------------------------
 
   /** Aktuell ausgewählte Sprache */
   currentLang: SupportedLang = 'de';
@@ -128,25 +99,32 @@ export class ContactMeComponent implements OnInit {
     message: false,
   };
 
-  /**
-   * Prüft, ob ein Fehler für ein bestimmtes Eingabefeld angezeigt werden soll.
-   *
-   * @param field - Name des Eingabefeldes (name, email oder message)
-   * @param control - Referenz auf das zugehörige `NgModel`-Steuerelement
-   * @returns `true`, wenn der Fehler angezeigt werden soll, sonst `false`
-   *
-   * Kriterien:
-   * - Das Feld wurde bereits verlassen (`blurredFields[field]` ist true)
-   * - Das Feld ist tatsächlich ungültig (`control.invalid`)
-   * - Das Feld wurde benutzt oder verändert (`control.dirty || control.touched`)
-   */
-  shouldShowError(field: 'name' | 'email' | 'message', control: any): boolean {
-    return (
-      this.blurredFields[field] &&          // nur nach Blur
-      control.invalid &&                    // wirklich ungültig
-      (control.dirty || control.touched)    // schon benutzt
-    );
+ /**
+ * Prüft, ob für ein bestimmtes Eingabefeld ein Fehler angezeigt werden soll.
+ * 
+ * Startet bei aktivem Fehler einen Timer, der die Fehlermeldung nach 3 Sekunden
+ * automatisch wieder ausblendet und das UI aktualisiert.
+ *
+ * @param field   Feldname ('name' | 'email' | 'message')
+ * @param control Zugehöriges `NgModel`-Objekt
+ * @returns `true`, wenn der Fehler angezeigt werden soll
+ */
+private hideTimers: { [key: string]: any } = {};
+
+shouldShowError(field: 'name' | 'email' | 'message', control: any): boolean {
+  const show =
+    this.blurredFields[field] &&
+    control.invalid &&
+    (control.dirty || control.touched);
+  if (show && !this.hideTimers[field]) {
+    this.hideTimers[field] = setTimeout(() => {
+      this.blurredFields[field] = false;
+      delete this.hideTimers[field];
+      this.cdr.detectChanges();
+    }, 3000);
   }
+  return show;
+}
 
   /**
    * Setzt den Blur-Zustand eines Feldes zurück, sobald der Benutzer erneut tippt.
@@ -159,10 +137,6 @@ export class ContactMeComponent implements OnInit {
   onInputChange(field: 'name' | 'email' | 'message'): void {
     this.blurredFields[field] = false;
   }
-
-  // ---------------------------------------------------------------------------
-  // 📩 Backend-Konfiguration
-  // ---------------------------------------------------------------------------
 
   /**
    * Konfiguration für den HTTP-POST-Request zum PHP-Mail-Endpunkt.
@@ -177,13 +151,8 @@ export class ContactMeComponent implements OnInit {
     },
   };
 
-  // ---------------------------------------------------------------------------
-  // 🌍 Mehrsprachige Texte
-  // ---------------------------------------------------------------------------
-
   /**
-   * Mehrsprachige Texte, Labels, Platzhalter und Fehlermeldungen
-   * für alle Formularinhalte und UI-Texte.
+   * Mehrsprachige Texte, Labels, Platzhalter und Fehlermeldungen.
    */
   translations = {
     header: {
@@ -309,10 +278,6 @@ export class ContactMeComponent implements OnInit {
     },
   };
 
-  // ---------------------------------------------------------------------------
-  // 🧱 Konstruktor & Lifecycle
-  // ---------------------------------------------------------------------------
-
   /**
    * Konstruktor – injiziert Sprachservice, Router und DOM-Abhängigkeiten.
    */
@@ -338,10 +303,6 @@ export class ContactMeComponent implements OnInit {
       });
     });
   }
-
-  // ---------------------------------------------------------------------------
-  // ✉️ Formularsteuerung & Validierung
-  // ---------------------------------------------------------------------------
 
   /**
    * Wird beim Absenden des Formulars aufgerufen.
@@ -379,48 +340,23 @@ export class ContactMeComponent implements OnInit {
   }
 
   /**
-   * Zeigt ein Fehler-Popup für das angegebene Feld an.
-   * 
-   * @param field - Name des Feldes ('name', 'email', 'message')
-   */
-  showErrorPopup(field: 'name' | 'email' | 'message') {
-    this.errorPopups[field] = true;
-    setTimeout(() => (this.errorPopups[field] = false), 3000);
-  }
-
-  /**
-   * Blendet das Fehler-Popup des angegebenen Feldes aus.
-   * 
-   * @param field - Name des Feldes ('name', 'email', 'message')
-   */
-  hideErrorPopup(field: 'name' | 'email' | 'message') {
-    this.errorPopups[field] = false;
-  }
-
-  /**
    * Prüft, ob das Formular fast gültig ist (alle Eingaben korrekt, aber Checkbox fehlt).
    * 
    * Wird verwendet, um Tooltips oder UI-Hinweise anzuzeigen.
    */
-get isFormAlmostValid(): boolean {
-  const name = this.contactData.name ?? '';
-  const email = this.contactData.email ?? '';
-  const message = this.contactData.message ?? '';
-  const agreement = !!this.contactData.agreement;
-
-  return (
-    name.trim().length > 2 &&
-    /^(?!\s*$)[A-Za-zÄÖÜäöüß\- ]{2,}$/.test(name) &&
-    /^(?!\s)[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[A-Za-z]{2,}$/.test(email) &&
-    message.trim().length >= 4 &&
-    !agreement
-  );
-}
-
-
-  // ---------------------------------------------------------------------------
-  // 🧭 Navigation
-  // ---------------------------------------------------------------------------
+  get isFormAlmostValid(): boolean {
+    const name = this.contactData.name ?? '';
+    const email = this.contactData.email ?? '';
+    const message = this.contactData.message ?? '';
+    const agreement = !!this.contactData.agreement;
+    return (
+      name.trim().length > 2 &&
+      /^(?!\s*$)[A-Za-zÄÖÜäöüß\- ]{2,}$/.test(name) &&
+      /^(?!\s)[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[A-Za-z]{2,}$/.test(email) &&
+      message.trim().length >= 4 &&
+      !agreement
+    );
+  }
 
   /**
    * Scrollt zurück zum Hero-Abschnitt am Seitenanfang.
@@ -457,10 +393,6 @@ get isFormAlmostValid(): boolean {
       }
     });
   }
-
-  // ---------------------------------------------------------------------------
-  // 💬 Texte für Hinweise
-  // ---------------------------------------------------------------------------
 
   /** Liefert den Datenschutz-Hinweis in der aktuellen Sprache */
   get checkboxHint(): string {

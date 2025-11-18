@@ -163,12 +163,11 @@ h1 {
   white-space: nowrap;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   animation: slideIn 0.2s ease-out;
-  z-index: 10;
+  z-index: 10000;
 
   @media (max-width: 1300px) {
     top: 194px;
   }
-
 
   @media screen and (max-width: 900px) {
     top: 239px;
@@ -179,13 +178,18 @@ h1 {
   }
 
   @media screen and (max-width: 466px) {
-    top: 157px;
+    top: 126px;
     padding: 4px 6px;
+  }
 
+  p {
+    max-width: 100%;
+    text-wrap: auto;
+    margin: 0px;
   }
 }
 
-.error-popup {
+.error-popup-mail {
   position: absolute;
   background: #ff5c5c;
   color: #fff;
@@ -204,9 +208,45 @@ h1 {
   }
 
   @media screen and (max-width: 466px) {
-    top: 21px;
+    top: 1px;
     padding: 4px 6px;
+  }
 
+  p {
+    max-width: 100%;
+    text-wrap: auto;
+    margin: 0px;
+  }
+}
+
+
+.error-popup-name {
+  position: absolute;
+  background: #ff5c5c;
+  color: #fff;
+  font-size: 1rem;
+  padding: 8px 32px;
+  border-radius: 8px;
+  top: -42px;
+  left: 0;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.2s ease-out;
+  z-index: 10;
+
+  @media screen and (max-width: 900px) {
+    top: 25px;
+  }
+
+  @media screen and (max-width: 466px) {
+    top: -40px;
+    padding: 4px 6px;
+  }
+
+  p {
+    max-width: 100%;
+    margin: 0px;
+    text-wrap: auto;
   }
 }
 

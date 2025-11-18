@@ -1,369 +1,337 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
+/* ============================= */
+/* ✅ Base Styles                */
+/* ============================= */
+
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 html,
 body {
-    min-height: 100dvh;
-    min-height: calc(var(--vh, 1vh) * 100);
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    scroll-behavior: none;
+  min-height: 100dvh;
+  min-height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
-    &::-webkit-scrollbar {
-        width: 0;
-        height: 0;
-        display: none;
-    }
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
 }
 
 body.force-repaint {
-    transform: translateZ(0);
-    will-change: transform;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
+/* ============================= */
+/* ✅ Fonts                     */
+/* ============================= */
 
 @font-face {
-    font-family: 'eczarBold';
-    src: url('assets/fonts/eczar/Eczar-Bold.ttf');
-    font-size: larger;
-}
-
-@font-face {
-    font-family: 'eczarExtraBold';
-    src: url('assets/fonts/eczar/Eczar-ExtraBold.ttf');
+  font-family: 'eczarBold';
+  src: url('assets/fonts/eczar/Eczar-Bold.ttf');
 }
 
 @font-face {
-    font-family: 'eczarMedium';
-    src: url('assets/fonts/eczar/Eczar-Medium.ttf');
+  font-family: 'eczarExtraBold';
+  src: url('assets/fonts/eczar/Eczar-ExtraBold.ttf');
 }
 
 @font-face {
-    font-family: 'eczarRegular';
-    src: url('assets/fonts/eczar/Eczar-Regular.ttf');
+  font-family: 'eczarMedium';
+  src: url('assets/fonts/eczar/Eczar-Medium.ttf');
 }
 
 @font-face {
-    font-family: 'eczarSemiBold';
-    src: url('assets/fonts/eczar/Eczar-SemiBold.ttf');
+  font-family: 'eczarRegular';
+  src: url('assets/fonts/eczar/Eczar-Regular.ttf');
 }
 
 @font-face {
-    font-family: 'quicksandBold';
-    src: url('assets/fonts/quicksand/Quicksand_Bold.otf');
+  font-family: 'eczarSemiBold';
+  src: url('assets/fonts/eczar/Eczar-SemiBold.ttf');
 }
 
 @font-face {
-    font-family: 'quicksandBoldOblique';
-    src: url('assets/fonts/quicksand/Quicksand_Bold_Oblique.otf');
+  font-family: 'quicksandBold';
+  src: url('assets/fonts/quicksand/Quicksand_Bold.otf');
 }
 
 @font-face {
-    font-family: 'quicksandBook';
-    src: url('assets/fonts/quicksand/Quicksand_Book.otf');
+  font-family: 'quicksandBoldOblique';
+  src: url('assets/fonts/quicksand/Quicksand_Bold_Oblique.otf');
 }
 
 @font-face {
-    font-family: 'quicksandBookOblique';
-    src: url('assets/fonts/quicksand/Quicksand_Book_Oblique.otf');
+  font-family: 'quicksandBook';
+  src: url('assets/fonts/quicksand/Quicksand_Book.otf');
 }
 
 @font-face {
-    font-family: 'quicksandDash';
-    src: url('assets/fonts/quicksand/Quicksand_Dash.otf');
+  font-family: 'quicksandBookOblique';
+  src: url('assets/fonts/quicksand/Quicksand_Book_Oblique.otf');
 }
 
 @font-face {
-    font-family: 'quicksandLight';
-    src: url('assets/fonts/quicksand/Quicksand_Light.otf');
+  font-family: 'quicksandDash';
+  src: url('assets/fonts/quicksand/Quicksand_Dash.otf');
 }
 
 @font-face {
-    font-family: 'quicksandLightOblique';
-    src: url('assets/fonts/quicksand/Quicksand_Light_Oblique.otf');
+  font-family: 'quicksandLight';
+  src: url('assets/fonts/quicksand/Quicksand_Light.otf');
 }
 
-
-@-moz-keyframes spin {
-    100% {
-        -moz-transform: rotate(360deg);
-    }
+@font-face {
+  font-family: 'quicksandLightOblique';
+  src: url('assets/fonts/quicksand/Quicksand_Light_Oblique.otf');
 }
 
-@-webkit-keyframes spin {
-    100% {
-        -webkit-transform: rotate(360deg);
-    }
+/* Roboto (für russische Lokalisierung) */
+@font-face {
+  font-family: 'RobotoRegular';
+  src: url('assets/fonts/Roboto/static/Roboto-Regular.ttf') format('truetype');
 }
+
+@font-face {
+  font-family: 'RobotoBold';
+  src: url('assets/fonts/Roboto/static/Roboto-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'RobotoItalic';
+  src: url('assets/fonts/Roboto/static/Roboto-Italic.ttf') format('truetype');
+}
+
+/* ============================= */
+/* ✅ Keyframes                 */
+/* ============================= */
 
 @keyframes spin {
-    100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
-}
-
-@-moz-keyframes spin-reverse {
-    100% {
-        -moz-transform: rotate(-360deg);
-    }
-}
-
-@-webkit-keyframes spin-reverse {
-    100% {
-        -webkit-transform: rotate(-360deg);
-    }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes spin-reverse {
-    100% {
-        -webkit-transform: rotate(-360deg);
-        transform: rotate(-360deg);
-    }
+  100% {
+    transform: rotate(-360deg);
+  }
 }
-
 
 @keyframes floatUpDown {
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-18px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
-
 
 @keyframes floatUpDownContact {
-    0% {
-        transform: translate3d(0, 23px, 0);
-    }
-
-    50% {
-        transform: translate3d(0, -10px, 0);
-    }
-
-    100% {
-        transform: translate3d(0, 23px, 0);
-    }
-}
-
-@-webkit-keyframes floatUpDownContact {
-    0% {
-        -webkit-transform: translate3d(0, 23px, 0);
-    }
-
-    50% {
-        -webkit-transform: translate3d(0, -10px, 0);
-    }
-
-    100% {
-        -webkit-transform: translate3d(0, 23px, 0);
-    }
+  0% {
+    transform: translate3d(0, 23px, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+  100% {
+    transform: translate3d(0, 23px, 0);
+  }
 }
 
 @keyframes floatUpDownContactSm {
-    0% {
-        transform: translate3d(0, 10px, 0);
-    }
-
-    50% {
-        transform: translate3d(0, -5px, 0);
-    }
-
-    100% {
-        transform: translate3d(0, 10px, 0);
-    }
+  0% {
+    transform: translate3d(0, 10px, 0);
+  }
+  50% {
+    transform: translate3d(0, -5px, 0);
+  }
+  100% {
+    transform: translate3d(0, 10px, 0);
+  }
 }
 
-@-webkit-keyframes floatUpDownContactSm {
-    0% {
-        -webkit-transform: translate3d(0, 10px, 0);
-    }
-
-    50% {
-        -webkit-transform: translate3d(0, -5px, 0);
-    }
-
-    100% {
-        -webkit-transform: translate3d(0, 10px, 0);
-    }
-}
+/* ============================= */
+/* ✅ App Layout                */
+/* ============================= */
 
 app-header {
-    position: absolute;
-    z-index: 10000;
+  position: absolute;
+  z-index: 10000;
 }
 
 app-hero-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100dvh;
-    min-height: calc(var(--vh, 1vh) * 100);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(var(--vh, 1vh) * 100);
 }
 
 main.legal {
-    display: flex;
-    position: relative;
-    width: 100%;
-    min-height: 100dvh;
-    min-height: calc(var(--vh, 1vh) * 100);
-    background-color: #1D1D1D;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  position: relative;
+  width: 100%;
+  min-height: calc(var(--vh, 1vh) * 100);
+  background-color: #1d1d1d;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-content {
-    position: relative;
+  position: relative;
+  padding: 10rem 82px 0 58px;
+
+  @media (max-width: 690px),
+  (max-height: 700px) {
+    padding: 4rem 16px 0 16px;
+  }
 }
 
-
-
-.mat-drawer-container,
-.mat-sidenav-container {
-    height: auto !important;
-}
-
-html,
-body {
-    min-height: 100dvh;
-    min-height: calc(var(--vh, 1vh) * 100);
-    width: 100%;
-}
-
+/* ============================= */
+/* ✅ Angular Material Fixes    */
+/* ============================= */
 
 .mat-drawer-container,
 .mat-sidenav-container,
 .mat-app-background {
-    height: auto !important;
+  height: auto !important;
 }
 
-
-@font-face {
-    font-family: 'RobotoRegular';
-    src: url('assets/fonts/Roboto/static/Roboto-Regular.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'RobotoBold';
-    src: url('assets/fonts/Roboto/static/Roboto-Bold.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'RobotoItalic';
-    src: url('assets/fonts/Roboto/static/Roboto-Italic.ttf') format('truetype');
-}
+/* ============================= */
+/* ✅ Sprachspezifisches (RU)   */
+/* ============================= */
 
 :lang(ru) {
+  html,
+  body,
+  p,
+  span,
+  a,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  li,
+  label,
+  input,
+  button,
+  textarea,
+  div {
+    font-family: 'RobotoRegular';
+  }
 
-    html,
-    body,
-    p,
-    span,
-    a,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    li,
-    label,
-    input,
-    button,
-    textarea,
-    div {
-        font-family: 'RobotoRegular';
+  h1,
+  .contact-header h1 {
+    font-family: 'RobotoBold';
+    font-weight: 700;
+    font-size: clamp(30px, 3.5vw, 100px) !important;
+
+    @media (max-height: 700px) {
+      font-size: clamp(26px, 3vw, 54px) !important;
     }
+  }
 
-    h1 {
-        font-size: clamp(30px, 3.5vw, 100px) !important;
-        font-family: 'RobotoBold';
-        font-weight: 700;
+  .logo span {
+    font-size: clamp(22px, 2vw, 42px) !important;
+    white-space: nowrap;
+  }
 
-        @media (max-height: 700px) {
-            font-size: clamp(26px, 3vw, 54px) !important;
-        }
-    }
+  .mat-icon,
+  .material-icons,
+  [class*='material-icons'] {
+    font-family: 'Material Icons' !important;
+  }
 
-    .contact-header h1 {
-        font-size: clamp(30px, 3.0vw, 72px) !important;
-        font-family: 'RobotoBold';
-        font-weight: 700;
-
-        @media (max-height: 700px) {
-            font-size: clamp(30px, 3vw, 54px) !important;
-        }
-    }
-
-    .logo span {
-        font-size: clamp(22px, 2vw, 42px) !important;
-        white-space: nowrap;
-    }
-
-
-
-    .mat-icon,
-    .material-icons,
-    [class*="material-icons"] {
-        font-family: 'Material Icons' !important;
-    }
-
-    input::placeholder,
-    textarea::placeholder {
-        font-family: 'RobotoRegular';
-        font-size: 18px;
-        font-weight: 400;
-        color: rgba(0, 0, 0, 0.6);
-    }
-
-    ::-webkit-input-placeholder {
-        font-family: 'RobotoRegular';
-    }
-
-    :-ms-input-placeholder {
-        font-family: 'RobotoRegular';
-    }
-
-    ::-moz-placeholder {
-        font-family: 'RobotoRegular';
-    }
-
-    :-moz-placeholder {
-        font-family: 'RobotoRegular';
-    }
+  input::placeholder,
+  textarea::placeholder {
+    font-family: 'RobotoRegular';
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.6);
+  }
 }
 
-.main-content {
-    padding: 10rem 82px 0px 58px;
+/* ============================= */
+/* ✅ Mobile Scroll Fix - 2025  */
+/* ============================= */
 
-
-    @media (max-width: 690px) {
-        padding: 4rem 16px 0px 16px;
-    }
-
-    @media screen and (max-height: 700px) {
-        padding: 4rem 16px 0px 16px;
-    }
+/* 1️⃣ Scroll-Kontrolle */
+html {
+  scroll-snap-type: none;
+  overflow: hidden;
 }
 
-html, body {
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
   height: 100%;
+  width: 100%;
+  overscroll-behavior: none;
 }
 
-/* Falls du noch manuell scrollst */
+/* 2️⃣ Pager ist der Scroll-Container */
 .pager-container {
-  -ms-overflow-style: none; /* IE/Edge */
-  scrollbar-width: none; /* Firefox */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  height: calc(var(--vh, 1vh) * 100);
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.pager-container::-webkit-scrollbar {
+  display: none;
 }
 
-.pager-container::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
+/* 3️⃣ Section = 1 Bildschirm */
+.pager-section {
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  min-height: calc(var(--vh, 1vh) * 100);
+  height: calc(var(--vh, 1vh) * 100);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+
+  contain: layout paint;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+
+  @media screen and (max-width: 510px) {
+    align-items: flex-start;
+  }
+}
+
+/* 4️⃣ Safari Sonderbehandlung */
+@supports (-webkit-touch-callout: none) {
+  .pager-container {
+    scroll-snap-type: y mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .pager-section {
+    contain: layout paint !important;
+    transform: translateZ(0) !important;
+  }
 }
