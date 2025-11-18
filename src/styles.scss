@@ -14,7 +14,6 @@ body {
   min-height: calc(var(--vh, 1vh) * 100);
   width: 100%;
   scrollbar-width: none;
-  -ms-overflow-style: none;
 
   &::-webkit-scrollbar {
     width: 0;
@@ -284,14 +283,12 @@ body {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  overflow-x: hidden;
 
   height: calc(var(--vh, 1vh) * 100);
   scroll-snap-type: y mandatory;
   -webkit-overflow-scrolling: touch;
 
   scrollbar-width: none;
-  -ms-overflow-style: none;
 }
 .pager-container::-webkit-scrollbar {
   display: none;
