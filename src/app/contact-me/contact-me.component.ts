@@ -2,10 +2,17 @@
  * ContactMeComponent
  * -------------------
  *
- * Kontaktformular mit smarter Validierung:
- * - Fehler erscheinen nur bei invalidem Submit
- * - Erfolg blendet alle Fehlerzustände zurück
- * - Automatisches Timeout bei Fehlermeldungen
+ * Kontaktformular der Website mit Validierung, Mehrsprachigkeit
+ * und automatischer Fehlersteuerung. Ermöglicht Nutzern den
+ * Versand einer Nachricht an das Backend per HTTP-POST.
+ *
+ * Merkmale:
+ * - Template-basiertes Formular mit `NgForm` und `NgModel`
+ * - Mehrsprachige Labels, Platzhalter und Fehlermeldungen
+ * - Automatische Fehleranzeige mit Timeout (5 Sekunden)
+ * - Benutzerdefinierte Checkbox mit eigenen Icons
+ * - Visuelles Feedback bei erfolgreichem Versand
+ * - Performantes Rendering durch `ChangeDetectorRef`
  */
 
 import {
@@ -62,13 +69,22 @@ import { trigger, transition, style, animate } from '@angular/animations';
   styleUrls: ['./contact-me.component.scss', './contact-me.component.media.scss'],
 })
 export class ContactMeComponent implements OnInit {
+  /** HTTP-Client für den Versand der Formulardaten */
   private http = inject(HttpClient);
+
+  /** Zugriff auf die globale Seitennavigation */
   private sectionNav = inject(SectionNavService);
 
+  /** Aktuell ausgewählte Sprache */
   currentLang: SupportedLang = 'de';
+
+  /** Gibt an, ob die Erfolgsmeldung sichtbar ist */
   isSuccess = false;
 
-  /** Hauptdatenmodell */
+  /**
+   * Datenmodell des Formulars.
+   * Wird bidirektional über `ngModel` gebunden.
+   */
   contactData = {
     name: '',
     email: '',
@@ -76,7 +92,10 @@ export class ContactMeComponent implements OnInit {
     agreement: false,
   };
 
-  /** Felder, deren Fehler angezeigt werden */
+  /**
+   * Verfolgt, welche Felder aktuell einen Fehler anzeigen sollen.
+   * Wird per Blur-Event oder invalidem Submit gesteuert.
+   */
   blurredFields: Record<'name' | 'email' | 'message' | 'agreement', boolean> = {
     name: false,
     email: false,
@@ -84,9 +103,13 @@ export class ContactMeComponent implements OnInit {
     agreement: false,
   };
 
+  /** Timer zur zeitgesteuerten Ausblendung von Fehlermeldungen */
   private hideTimers: { [key: string]: any } = {};
 
-  /** Backend-Konfiguration */
+  /**
+   * Backend-Konfiguration für den Formularversand.
+   * Beinhaltet Endpunkt, Body und Header.
+   */
   post = {
     endPoint: 'https://stanislav-levin.de/sendMail.php',
     body: (payload: any) => JSON.stringify(payload),
@@ -96,7 +119,10 @@ export class ContactMeComponent implements OnInit {
     },
   };
 
-  /** Mehrsprachige Texte */
+  /**
+   * Mehrsprachige Texte für Labels, Platzhalter und Fehlermeldungen.
+   * Wird über den `LanguageService` dynamisch aktualisiert.
+   */
   translations = {
     header: {
       de: 'Lass uns was Cooles zusammen bauen',
@@ -114,109 +140,37 @@ export class ContactMeComponent implements OnInit {
       ru: 'Я помогаю компаниям в области металлообработки и производства автоматизировать процессы и сделать шаг к Индустрии 4.0.',
     },
     labels: {
-      name: {
-        de: 'Wie ist dein Name?',
-        en: 'What is your name?',
-        ru: 'Как тебя зовут?',
-      },
-      email: {
-        de: 'Wie ist deine E-Mail?',
-        en: 'What is your email?',
-        ru: 'Какой у тебя адрес E-mail?',
-      },
-      message: {
-        de: 'Wie kann ich dir helfen?',
-        en: 'How can I help you?',
-        ru: 'Чем я могу помочь?',
-      },
+      name: { de: 'Wie ist dein Name?', en: 'What is your name?', ru: 'Как тебя зовут?' },
+      email: { de: 'Wie ist deine E-Mail?', en: 'What is your email?', ru: 'Какой у тебя адрес E-mail?' },
+      message: { de: 'Wie kann ich dir helfen?', en: 'How can I help you?', ru: 'Чем я могу помочь?' },
     },
     placeholders: {
-      name: {
-        de: 'Dein Name kommt hier hin',
-        en: 'Your name goes here',
-        ru: 'Введите ваше имя',
-      },
-      email: {
-        de: 'deine-Email@email.com',
-        en: 'your-email@email.com',
-        ru: 'ваш-email@email.com',
-      },
-      message: {
-        de: 'Hallo Stanislav, mich interessiert...',
-        en: 'Hi Stanislav, I’m interested in...',
-        ru: 'Привет, Станислав! Меня интересует...',
-      },
+      name: { de: 'Dein Name kommt hier hin', en: 'Your name goes here', ru: 'Введите ваше имя' },
+      email: { de: 'deine-Email@email.com', en: 'your-email@email.com', ru: 'ваш-email@email.com' },
+      message: { de: 'Hallo Stanislav, mich interessiert...', en: 'Hi Stanislav, I’m interested in...', ru: 'Привет, Станислав! Меня интересует...' },
     },
     errorPlaceholders: {
       name: {
-        empty: {
-          de: 'Bitte gib deinen Namen ein.',
-          en: 'Please enter your name.',
-          ru: 'Введите ваше имя.',
-        },
-        tooShort: {
-          de: 'Der Name muss mindestens 3 Zeichen lang sein.',
-          en: 'Name must be at least 3 characters long.',
-          ru: 'Имя должно содержать не менее 3 символов.',
-        },
-        invalidChars: {
-          de: 'Nur Buchstaben und ein Leerzeichen sind erlaubt.',
-          en: 'Only letters and one space are allowed.',
-          ru: 'Допустимы только буквы и один пробел.',
-        },
+        empty: { de: 'Bitte gib deinen Namen ein.', en: 'Please enter your name.', ru: 'Введите ваше имя.' },
+        tooShort: { de: 'Der Name muss mindestens 3 Zeichen lang sein.', en: 'Name must be at least 3 characters long.', ru: 'Имя должно содержать не менее 3 символов.' },
+        invalidChars: { de: 'Nur Buchstaben und ein Leerzeichen sind erlaubt.', en: 'Only letters and one space are allowed.', ru: 'Допустимы только буквы и один пробел.' },
       },
       email: {
-        empty: {
-          de: 'Bitte gib deine E-Mail-Adresse ein.',
-          en: 'Please enter your email address.',
-          ru: 'Введите адрес электронной почты.',
-        },
-        invalidFormat: {
-          de: 'Bitte gib eine gültige E-Mail-Adresse ohne Leerzeichen ein.',
-          en: 'Please enter a valid email address without spaces.',
-          ru: 'Введите корректный адрес электронной почты без пробелов.',
-        },
+        empty: { de: 'Bitte gib deine E-Mail-Adresse ein.', en: 'Please enter your email address.', ru: 'Введите адрес электронной почты.' },
+        invalidFormat: { de: 'Bitte gib eine gültige E-Mail-Adresse ohne Leerzeichen ein.', en: 'Please enter a valid email address without spaces.', ru: 'Введите корректный адрес электронной почты без пробелов.' },
       },
       message: {
-        empty: {
-          de: 'Bitte schreibe eine Nachricht.',
-          en: 'Please write a message.',
-          ru: 'Пожалуйста, напишите сообщение.',
-        },
-        tooShort: {
-          de: 'Die Nachricht ist zu kurz (min. 4 Zeichen).',
-          en: 'The message is too short (min. 4 characters).',
-          ru: 'Сообщение слишком короткое (мин. 4 символа).',
-        },
-        leadingSpace: {
-          de: 'Die Nachricht darf nicht mit einem Leerzeichen beginnen.',
-          en: 'The message cannot start with a space.',
-          ru: 'Сообщение не должно начинаться с пробела.',
-        },
+        empty: { de: 'Bitte schreibe eine Nachricht.', en: 'Please write a message.', ru: 'Пожалуйста, напишите сообщение.' },
+        tooShort: { de: 'Die Nachricht ist zu kurz (min. 4 Zeichen).', en: 'The message is too short (min. 4 characters).', ru: 'Сообщение слишком короткое (мин. 4 символа).' },
+        leadingSpace: { de: 'Die Nachricht darf nicht mit einem Leerzeichen beginnen.', en: 'The message cannot start with a space.', ru: 'Сообщение не должно начинаться с пробела.' },
       },
     },
     checkbox: {
-      de: {
-        before: 'Ich habe die ',
-        link: 'Datenschutzerklärung',
-        after: ' gelesen und bin mit der Verarbeitung meiner Daten einverstanden.',
-      },
-      en: {
-        before: 'I have read the ',
-        link: 'privacy policy',
-        after: ' and agree to the processing of my data.',
-      },
-      ru: {
-        before: 'Я прочитал(а) ',
-        link: 'политику конфиденциальности',
-        after: ' и согласен(на) на обработку моих данных.',
-      },
+      de: { before: 'Ich habe die ', link: 'Datenschutzerklärung', after: ' gelesen und bin mit der Verarbeitung meiner Daten einverstanden.' },
+      en: { before: 'I have read the ', link: 'privacy policy', after: ' and agree to the processing of my data.' },
+      ru: { before: 'Я прочитал(а) ', link: 'политику конфиденциальности', after: ' и согласен(на) на обработку моих данных.' },
     },
-    submit: {
-      de: 'Nachricht senden',
-      en: 'Send Message',
-      ru: 'Отправь',
-    },
+    submit: { de: 'Nachricht senden', en: 'Send Message', ru: 'Отправь' },
   };
 
   constructor(
@@ -229,6 +183,10 @@ export class ContactMeComponent implements OnInit {
     private nav: SectionNavService
   ) {}
 
+  /**
+   * Lifecycle-Hook: Initialisiert Sprachabonnement.
+   * Aktualisiert alle Texte dynamisch bei Sprachwechsel.
+   */
   ngOnInit(): void {
     this.langService.lang$.subscribe((lang) => {
       this.zone.runOutsideAngular(() => {
@@ -238,7 +196,14 @@ export class ContactMeComponent implements OnInit {
     });
   }
 
-  /** prüft, ob Error angezeigt werden soll */
+  /**
+   * Prüft, ob für ein Feld eine Fehlermeldung angezeigt werden soll.
+   * Startet bei Anzeige einen 5s-Timer zum automatischen Ausblenden.
+   *
+   * @param field - Name des Eingabefeldes
+   * @param control - Referenz auf das `NgModel`-Steuerelement
+   * @returns `true`, wenn Fehler angezeigt werden soll
+   */
   shouldShowError(field: keyof typeof this.blurredFields, control: any): boolean {
     const show = this.blurredFields[field] && control.invalid;
 
@@ -253,12 +218,24 @@ export class ContactMeComponent implements OnInit {
     return show;
   }
 
+  /**
+   * Wird aufgerufen, wenn ein Benutzer ein Feld ändert.
+   * Blendet dabei bestehende Fehlermeldungen für dieses Feld sofort aus.
+   *
+   * @param field - Name des geänderten Feldes
+   */
   onInputChange(field: keyof typeof this.blurredFields): void {
     this.blurredFields[field] = false;
   }
 
   /**
-   * Klick auf den Submit-Button (auch bei ungültigem Formular)
+   * Wird beim Klick auf den Submit-Button ausgeführt –
+   * auch dann, wenn das Formular ungültig ist.
+   *
+   * - Wenn valide → Sendevorgang starten
+   * - Wenn invalid → Alle invaliden Felder sichtbar machen
+   *
+   * @param form - Das Template-basierte Formularobjekt
    */
   handleSubmitClick(form: NgForm): void {
     if (!form) return;
@@ -280,32 +257,27 @@ export class ContactMeComponent implements OnInit {
   }
 
   /**
-   * Tatsächliches Senden an Backend
+   * Sendet das Formular an das Backend.
+   * Bei Erfolg: zeigt Erfolgshinweis, setzt Formular und Fehlerzustände zurück.
+   *
+   * @param form - Angular-Formularinstanz (`NgForm`)
    */
   onSubmit(form: NgForm): void {
     this.contactData.email = this.contactData.email.trim();
-
     if (!form.valid) {
       this.handleSubmitClick(form);
       return;
     }
-
     this.http
       .post(this.post.endPoint, this.post.body(this.contactData), this.post.options)
       .subscribe({
         next: () => {
-          // ✅ Erfolgreich gesendet
           this.isSuccess = true;
-
-          // ❌ Fehlerzustände sofort löschen, damit keine alten Popups aufblitzen
-          Object.keys(this.blurredFields).forEach((k) => (this.blurredFields[k as keyof typeof this.blurredFields] = false));
-
+          Object.keys(this.blurredFields).forEach(
+            (k) => (this.blurredFields[k as keyof typeof this.blurredFields] = false)
+          );
           this.cdr.detectChanges();
-
-          // Hinweis ausblenden nach 4s
           setTimeout(() => (this.isSuccess = false), 4000);
-
-          // Formular leeren
           form.resetForm({
             name: '',
             email: '',
@@ -320,6 +292,10 @@ export class ContactMeComponent implements OnInit {
       });
   }
 
+  /**
+   * Prüft, ob das Formular fast gültig ist (Checkbox fehlt noch).
+   * Wird für visuelle Tooltips verwendet.
+   */
   get isFormAlmostValid(): boolean {
     const { name, email, message, agreement } = this.contactData;
     return (
@@ -331,10 +307,15 @@ export class ContactMeComponent implements OnInit {
     );
   }
 
+  /** Scrollt programmatisch zur Hero-Sektion am Seitenanfang. */
   scrollToHero(): void {
     this.sectionNav.requestScroll('hero');
   }
 
+  /**
+   * Führt eine Navigation aus und scrollt nach Abschluss automatisch zum Seitenanfang.
+   * Wird u. a. für Datenschutzlink genutzt.
+   */
   navigateAndScroll(path: string[]): void {
     const target = path.join('/');
     const isHome = target === '/' || target === '';
@@ -342,9 +323,7 @@ export class ContactMeComponent implements OnInit {
     this.router.navigate(path).then((success: boolean) => {
       if (success && isPlatformBrowser(this.platformId)) {
         const win = this.document.defaultView!;
-        requestAnimationFrame(() => {
-          win.scrollTo({ top: 0, behavior: 'auto' });
-        });
+        requestAnimationFrame(() => win.scrollTo({ top: 0, behavior: 'auto' }));
 
         if (isHome) {
           this.nav.requestScroll('hero');
@@ -354,29 +333,23 @@ export class ContactMeComponent implements OnInit {
     });
   }
 
+  /** Gibt den mehrsprachigen Datenschutzhinweis zurück. */
   get checkboxHint(): string {
     switch (this.currentLang) {
-      case 'de':
-        return 'Bitte bestätige die Datenschutzerklärung.';
-      case 'en':
-        return 'Please confirm the privacy policy.';
-      case 'ru':
-        return 'Пожалуйста, подтвердите политику конфиденциальности.';
-      default:
-        return 'Bitte bestätige die Datenschutzerklärung.';
+      case 'de': return 'Bitte bestätige die Datenschutzerklärung.';
+      case 'en': return 'Please confirm the privacy policy.';
+      case 'ru': return 'Пожалуйста, подтвердите политику конфиденциальности.';
+      default: return 'Bitte bestätige die Datenschutzerklärung.';
     }
   }
 
+  /** Gibt den Erfolgshinweis nach erfolgreichem Versand zurück. */
   get successHint(): string {
     switch (this.currentLang) {
-      case 'de':
-        return 'Nachricht erfolgreich gesendet!';
-      case 'en':
-        return 'Message sent successfully!';
-      case 'ru':
-        return 'Сообщение успешно отправлено!';
-      default:
-        return 'Nachricht erfolgreich gesendet!';
+      case 'de': return 'Nachricht erfolgreich gesendet!';
+      case 'en': return 'Message sent successfully!';
+      case 'ru': return 'Сообщение успешно отправлено!';
+      default: return 'Nachricht erfolgreich gesendet!';
     }
   }
 }
