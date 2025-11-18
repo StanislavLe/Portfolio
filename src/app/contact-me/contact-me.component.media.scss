@@ -262,10 +262,83 @@ h1 {
   }
 }
 
+.error-popup-agreement {
+  position: absolute;
+  background: #ff5c5c;
+  color: #fff;
+  font-size: 1rem;
+  padding: 8px 32px;
+  border-radius: 8px;
+  top: -42px;
+  left: 0;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.2s ease-out;
+  z-index: 10;
+
+  @media screen and (max-width: 900px) {
+    top: 25px;
+  }
+
+  @media screen and (max-width: 466px) {
+    top: 0px;
+    padding: 4px 6px;
+  }
+
+  p {
+    max-width: 100%;
+    margin: 0px;
+    text-wrap: auto;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .form-group {
   position: relative;
 }
 
 .is-error {
   border: 2px solid #ff5c5c;
+}
+
+.checkbox-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox-hidden {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.custom-checkbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.custom-checkbox img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.15s ease;
+}
+
+.custom-checkbox.checked img {
+  transform: scale(1.1);
 }

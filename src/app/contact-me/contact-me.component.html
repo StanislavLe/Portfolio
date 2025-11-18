@@ -69,26 +69,80 @@
             </ng-container>
           </div>
         </div>
-        <div class="agreement-group">
-          <div class="agreement">
-            <span>
-              {{ translations.checkbox[currentLang].before }}
-              <a (click)="navigateAndScroll(['/legal', 'privacy-policy'])">
-                {{ translations.checkbox[currentLang].link }}
-              </a>
-              {{ translations.checkbox[currentLang].after }}
-            </span>
-          </div>
-          <input [(ngModel)]="contactData.agreement" #agreement="ngModel" required class="checkbox" type="checkbox"
-            id="agreementbox" name="agreement" />
-        </div>
-        <div class="submit-wrapper">
-          <input type="submit" class="submit-btn" [value]="translations.submit[currentLang]"
-            [disabled]="contactForm.invalid" />
-          <div class="checkbox-tooltip" *ngIf="isFormAlmostValid || isSuccess" [class.success]="isSuccess">
-            {{ isSuccess ? successHint : checkboxHint }}
-          </div>
-        </div>
+        <!-- ... deine bisherigen Inputfelder (name, email, message) bleiben unverändert ... -->
+
+<!-- ✅ Agreement (Checkbox mit Custom-Icons + Error + Validation) -->
+<div class="agreement-group">
+  <div class="agreement">
+    <span>
+      {{ translations.checkbox[currentLang].before }}
+      <a (click)="navigateAndScroll(['/legal', 'privacy-policy'])">
+        {{ translations.checkbox[currentLang].link }}
+      </a>
+      {{ translations.checkbox[currentLang].after }}
+    </span>
+  </div>
+
+ <div class="checkbox-wrapper">
+  <!-- Unsichtbare echte Checkbox -->
+  <input
+    [(ngModel)]="contactData.agreement"
+    #agreement="ngModel"
+    name="agreement"
+    id="agreementbox"
+    type="checkbox"
+    required
+    class="checkbox-hidden"
+    (change)="onInputChange('agreement')"
+    (blur)="blurredFields.agreement = true"
+  />
+
+  <!-- Label, das den Input referenziert -->
+  <label
+    for="agreementbox"
+    class="custom-checkbox"
+    [class.checked]="contactData.agreement"
+  >
+    <img
+      *ngIf="!contactData.agreement"
+      src="../assets/img/unchecked.png"
+      alt="unchecked"
+    />
+    <img
+      *ngIf="contactData.agreement"
+      src="../assets/img/checked.png"
+      alt="checked"
+    />
+  </label>
+
+  <!-- Fehleranzeige -->
+  <div class="error-popup-agreement" *ngIf="shouldShowError('agreement', agreement)" [@fadeInOut]>
+    <p>{{ checkboxHint }}</p>
+  </div>
+</div>
+
+</div>
+
+<div class="submit-wrapper">
+  <button
+    type="button"
+    class="submit-btn"
+    [class.disabled]="contactForm.invalid"
+    (click)="handleSubmitClick(contactForm)"
+  >
+    {{ translations.submit[currentLang] }}
+  </button>
+
+  <div
+    class="checkbox-tooltip"
+    *ngIf="isFormAlmostValid || isSuccess"
+    [class.success]="isSuccess"
+  >
+    {{ isSuccess ? successHint : checkboxHint }}
+  </div>
+</div>
+
+
       </form>
     </div>
   </div>

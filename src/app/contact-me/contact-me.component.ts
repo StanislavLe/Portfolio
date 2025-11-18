@@ -2,34 +2,37 @@
  * ContactMeComponent
  * -------------------
  *
- * Diese Komponente stellt die Kontaktsektion der Website dar.
- * Sie enthält ein Formular zur direkten Kontaktaufnahme per E-Mail,
- * inklusive Validierung, Mehrsprachigkeit und einer asynchronen Backend-Anfrage.
- *
- * Hauptaufgaben:
- * - Anzeige und Validierung des Kontaktformulars
- * - Versand der Formulardaten an ein PHP-Mail-Backend
- * - Reaktive Sprachunterstützung für alle Formulartexte
- * - Anzeige dynamischer Hinweise (Erfolg, Datenschutz, etc.)
- * - Integration mit der globalen Section-Navigation (`SectionNavService`)
- *
- * Besonderheiten:
- * - Template-basierte Formularsteuerung mit `NgForm`
- * - Dynamische Animationen für Fehlermeldungen
- * - Sprachwechsel in Echtzeit durch `LanguageService`
- * - Nutzung von `NgZone` + `ChangeDetectorRef` für performantes Rendering
- * - API-Call via `HttpClient` mit JSON-Body und Custom Headern
+ * Kontaktformular mit smarter Validierung:
+ * - Fehler erscheinen nur bei invalidem Submit
+ * - Erfolg blendet alle Fehlerzustände zurück
+ * - Automatisches Timeout bei Fehlermeldungen
  */
 
-import {Component,inject,ChangeDetectorRef,NgZone,OnInit,Inject, PLATFORM_ID} from '@angular/core';
+import {
+  Component,
+  inject,
+  ChangeDetectorRef,
+  NgZone,
+  OnInit,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { CommonModule, NgFor, NgIf,NgSwitch, NgSwitchCase, isPlatformBrowser, DOCUMENT} from '@angular/common';
+import {
+  CommonModule,
+  NgFor,
+  NgIf,
+  NgSwitch,
+  NgSwitchCase,
+  isPlatformBrowser,
+  DOCUMENT,
+} from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { LanguageService, SupportedLang } from '../shared/language.service';
 import { SectionNavService } from '../shared/sections.config';
-import {trigger,transition,style,animate} from '@angular/animations';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-contact-me',
@@ -59,19 +62,13 @@ import {trigger,transition,style,animate} from '@angular/animations';
   styleUrls: ['./contact-me.component.scss', './contact-me.component.media.scss'],
 })
 export class ContactMeComponent implements OnInit {
-  /** HTTP-Client für den Versand der Formulardaten an das Backend */
   private http = inject(HttpClient);
-
-  /** Zugriff auf globale Section-Navigation (z. B. für Scroll zu Hero) */
   private sectionNav = inject(SectionNavService);
 
-  /** Aktuell ausgewählte Sprache */
   currentLang: SupportedLang = 'de';
-
-  /** Zeigt an, ob das Formular erfolgreich versendet wurde */
   isSuccess = false;
 
-  /** Datenmodell des Kontaktformulars */
+  /** Hauptdatenmodell */
   contactData = {
     name: '',
     email: '',
@@ -79,69 +76,17 @@ export class ContactMeComponent implements OnInit {
     agreement: false,
   };
 
-  /** Zustände für Popup-Fehlermeldungen einzelner Felder */
-  errorPopups = {
+  /** Felder, deren Fehler angezeigt werden */
+  blurredFields: Record<'name' | 'email' | 'message' | 'agreement', boolean> = {
     name: false,
     email: false,
     message: false,
+    agreement: false,
   };
 
-  /**
-   * Verfolgt, ob ein Eingabefeld bereits verlassen wurde (Blur-Event).
-   * Steuert, ob Validierungsfehler angezeigt werden dürfen.
-   */
-  blurredFields = {
-    /** Status für Namensfeld */
-    name: false,
-    /** Status für E-Mail-Feld */
-    email: false,
-    /** Status für Nachrichtenfeld */
-    message: false,
-  };
+  private hideTimers: { [key: string]: any } = {};
 
- /**
- * Prüft, ob für ein bestimmtes Eingabefeld ein Fehler angezeigt werden soll.
- * 
- * Startet bei aktivem Fehler einen Timer, der die Fehlermeldung nach 3 Sekunden
- * automatisch wieder ausblendet und das UI aktualisiert.
- *
- * @param field   Feldname ('name' | 'email' | 'message')
- * @param control Zugehöriges `NgModel`-Objekt
- * @returns `true`, wenn der Fehler angezeigt werden soll
- */
-private hideTimers: { [key: string]: any } = {};
-
-shouldShowError(field: 'name' | 'email' | 'message', control: any): boolean {
-  const show =
-    this.blurredFields[field] &&
-    control.invalid &&
-    (control.dirty || control.touched);
-  if (show && !this.hideTimers[field]) {
-    this.hideTimers[field] = setTimeout(() => {
-      this.blurredFields[field] = false;
-      delete this.hideTimers[field];
-      this.cdr.detectChanges();
-    }, 5000);
-  }
-  return show;
-}
-
-  /**
-   * Setzt den Blur-Zustand eines Feldes zurück, sobald der Benutzer erneut tippt.
-   *
-   * @param field - Das Feld, dessen Blur-Zustand zurückgesetzt werden soll
-   *
-   * Wird z. B. beim `(input)`-Event ausgelöst, um Fehlermeldungen auszublenden,
-   * während der Benutzer eine Korrektur vornimmt.
-   */
-  onInputChange(field: 'name' | 'email' | 'message'): void {
-    this.blurredFields[field] = false;
-  }
-
-  /**
-   * Konfiguration für den HTTP-POST-Request zum PHP-Mail-Endpunkt.
-   * Beinhaltet URL, Request-Body und Header.
-   */
+  /** Backend-Konfiguration */
   post = {
     endPoint: 'https://stanislav-levin.de/sendMail.php',
     body: (payload: any) => JSON.stringify(payload),
@@ -151,9 +96,7 @@ shouldShowError(field: 'name' | 'email' | 'message', control: any): boolean {
     },
   };
 
-  /**
-   * Mehrsprachige Texte, Labels, Platzhalter und Fehlermeldungen.
-   */
+  /** Mehrsprachige Texte */
   translations = {
     header: {
       de: 'Lass uns was Cooles zusammen bauen',
@@ -251,8 +194,7 @@ shouldShowError(field: 'name' | 'email' | 'message', control: any): boolean {
           ru: 'Сообщение не должно начинаться с пробела.',
         },
       },
-    }
-    ,
+    },
     checkbox: {
       de: {
         before: 'Ich habe die ',
@@ -270,7 +212,6 @@ shouldShowError(field: 'name' | 'email' | 'message', control: any): boolean {
         after: ' и согласен(на) на обработку моих данных.',
       },
     },
-
     submit: {
       de: 'Nachricht senden',
       en: 'Send Message',
@@ -278,9 +219,6 @@ shouldShowError(field: 'name' | 'email' | 'message', control: any): boolean {
     },
   };
 
-  /**
-   * Konstruktor – injiziert Sprachservice, Router und DOM-Abhängigkeiten.
-   */
   constructor(
     private langService: LanguageService,
     private cdr: ChangeDetectorRef,
@@ -289,12 +227,8 @@ shouldShowError(field: 'name' | 'email' | 'message', control: any): boolean {
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(DOCUMENT) private document: Document,
     private nav: SectionNavService
-  ) { }
+  ) {}
 
-  /**
-   * Lifecycle Hook – Initialisierung
-   * Abonniert Sprachänderungen und aktualisiert dynamisch alle UI-Texte.
-   */
   ngOnInit(): void {
     this.langService.lang$.subscribe((lang) => {
       this.zone.runOutsideAngular(() => {
@@ -304,51 +238,90 @@ shouldShowError(field: 'name' | 'email' | 'message', control: any): boolean {
     });
   }
 
-  /**
-   * Wird beim Absenden des Formulars aufgerufen.
-   *
-   * @param ngForm - Das Template-basierte Angular-Formular
-   *
-   * - Validiert Eingaben
-   * - Sendet Daten per POST an das Backend
-   * - Zeigt bei Erfolg eine Erfolgsmeldung
-   * - Setzt Formular zurück
-   */
-  onSubmit(ngForm: NgForm): void {
-    this.contactData.email = this.contactData.email.trim();
+  /** prüft, ob Error angezeigt werden soll */
+  shouldShowError(field: keyof typeof this.blurredFields, control: any): boolean {
+    const show = this.blurredFields[field] && control.invalid;
 
-    if (ngForm.submitted && ngForm.form.valid) {
-      this.http
-        .post(this.post.endPoint, this.post.body(this.contactData), this.post.options)
-        .subscribe({
-          next: () => {
-            this.isSuccess = true;
-            setTimeout(() => (this.isSuccess = false), 4000);
-            ngForm.resetForm({
-              name: '',
-              email: '',
-              message: '',
-              agreement: false,
-            });
-          },
-          error: (error) => {
-            console.error('❌ Fehler beim Versand:', error);
-            this.isSuccess = false;
-          },
-        });
+    if (show && !this.hideTimers[field]) {
+      this.hideTimers[field] = setTimeout(() => {
+        this.blurredFields[field] = false;
+        delete this.hideTimers[field];
+        this.cdr.detectChanges();
+      }, 5000);
     }
+
+    return show;
+  }
+
+  onInputChange(field: keyof typeof this.blurredFields): void {
+    this.blurredFields[field] = false;
   }
 
   /**
-   * Prüft, ob das Formular fast gültig ist (alle Eingaben korrekt, aber Checkbox fehlt).
-   * 
-   * Wird verwendet, um Tooltips oder UI-Hinweise anzuzeigen.
+   * Klick auf den Submit-Button (auch bei ungültigem Formular)
    */
+  handleSubmitClick(form: NgForm): void {
+    if (!form) return;
+
+    if (form.valid) {
+      this.onSubmit(form);
+      return;
+    }
+
+    Object.keys(form.controls).forEach((key) => {
+      const control = form.controls[key];
+      if (control.invalid) {
+        this.blurredFields[key as keyof typeof this.blurredFields] = true;
+        this.shouldShowError(key as keyof typeof this.blurredFields, control);
+      }
+    });
+
+    this.cdr.detectChanges();
+  }
+
+  /**
+   * Tatsächliches Senden an Backend
+   */
+  onSubmit(form: NgForm): void {
+    this.contactData.email = this.contactData.email.trim();
+
+    if (!form.valid) {
+      this.handleSubmitClick(form);
+      return;
+    }
+
+    this.http
+      .post(this.post.endPoint, this.post.body(this.contactData), this.post.options)
+      .subscribe({
+        next: () => {
+          // ✅ Erfolgreich gesendet
+          this.isSuccess = true;
+
+          // ❌ Fehlerzustände sofort löschen, damit keine alten Popups aufblitzen
+          Object.keys(this.blurredFields).forEach((k) => (this.blurredFields[k as keyof typeof this.blurredFields] = false));
+
+          this.cdr.detectChanges();
+
+          // Hinweis ausblenden nach 4s
+          setTimeout(() => (this.isSuccess = false), 4000);
+
+          // Formular leeren
+          form.resetForm({
+            name: '',
+            email: '',
+            message: '',
+            agreement: false,
+          });
+        },
+        error: (error) => {
+          console.error('❌ Fehler beim Versand:', error);
+          this.isSuccess = false;
+        },
+      });
+  }
+
   get isFormAlmostValid(): boolean {
-    const name = this.contactData.name ?? '';
-    const email = this.contactData.email ?? '';
-    const message = this.contactData.message ?? '';
-    const agreement = !!this.contactData.agreement;
+    const { name, email, message, agreement } = this.contactData;
     return (
       name.trim().length > 2 &&
       /^(?!\s*$)[A-Za-zÄÖÜäöüß\- ]{2,}$/.test(name) &&
@@ -358,18 +331,10 @@ shouldShowError(field: 'name' | 'email' | 'message', control: any): boolean {
     );
   }
 
-  /**
-   * Scrollt zurück zum Hero-Abschnitt am Seitenanfang.
-   */
   scrollToHero(): void {
     this.sectionNav.requestScroll('hero');
   }
 
-  /**
-   * Führt eine Navigation zu einer bestimmten Route aus und scrollt danach an den Seitenanfang.
-   * 
-   * @param path - Zielroute (z. B. `['/']` oder `['/legal', 'privacy-policy']`)
-   */
   navigateAndScroll(path: string[]): void {
     const target = path.join('/');
     const isHome = target === '/' || target === '';
@@ -377,13 +342,8 @@ shouldShowError(field: 'name' | 'email' | 'message', control: any): boolean {
     this.router.navigate(path).then((success: boolean) => {
       if (success && isPlatformBrowser(this.platformId)) {
         const win = this.document.defaultView!;
-        const html = this.document.documentElement;
-        const body = this.document.body;
-
         requestAnimationFrame(() => {
           win.scrollTo({ top: 0, behavior: 'auto' });
-          html.scrollTop = 0;
-          body.scrollTop = 0;
         });
 
         if (isHome) {
@@ -394,23 +354,29 @@ shouldShowError(field: 'name' | 'email' | 'message', control: any): boolean {
     });
   }
 
-  /** Liefert den Datenschutz-Hinweis in der aktuellen Sprache */
   get checkboxHint(): string {
     switch (this.currentLang) {
-      case 'de': return 'Bitte bestätige die Datenschutzerklärung.';
-      case 'en': return 'Please confirm the privacy policy.';
-      case 'ru': return 'Пожалуйста, подтвердите политику конфиденциальности.';
-      default: return 'Bitte bestätige die Datenschutzerklärung.';
+      case 'de':
+        return 'Bitte bestätige die Datenschutzerklärung.';
+      case 'en':
+        return 'Please confirm the privacy policy.';
+      case 'ru':
+        return 'Пожалуйста, подтвердите политику конфиденциальности.';
+      default:
+        return 'Bitte bestätige die Datenschutzerklärung.';
     }
   }
 
-  /** Liefert den Erfolgshinweis nach erfolgreichem Senden des Formulars */
   get successHint(): string {
     switch (this.currentLang) {
-      case 'de': return 'Nachricht erfolgreich gesendet!';
-      case 'en': return 'Message sent successfully!';
-      case 'ru': return 'Сообщение успешно отправлено!';
-      default: return 'Nachricht erfolgreich gesendet!';
+      case 'de':
+        return 'Nachricht erfolgreich gesendet!';
+      case 'en':
+        return 'Message sent successfully!';
+      case 'ru':
+        return 'Сообщение успешно отправлено!';
+      default:
+        return 'Nachricht erfolgreich gesendet!';
     }
   }
 }
